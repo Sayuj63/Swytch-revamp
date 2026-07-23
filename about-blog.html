@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swytch Studio — About & Blog</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root{
+  --c-bg:#FFF;--c-bg2:#F5F5F7;--c-ink:#1D1D1F;--c-sub:#6E6E73;--c-muted:#86868B;
+  --c-rule:#D2D2D7;--c-orange:#FF6B1A;--c-orange-dk:#D95A10;
+  --gl-sh-lg:0 12px 56px rgba(0,0,0,0.11),0 2px 6px rgba(0,0,0,0.05);
+  --r-md:14px;--r-lg:20px;--r-xl:28px;--r-2xl:40px;--r-pill:100px;
+  --sp:clamp(20px,5vw,80px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:var(--c-ink);}
+section{padding:clamp(60px,8vw,120px) var(--sp);}
+.container{max-width:1200px;margin:0 auto;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:14px;}
+[data-anim]{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(0,0,.2,1),transform .7s cubic-bezier(0,0,.2,1);}
+[data-anim].v{opacity:1;transform:none;}
+[data-anim="left"]{transform:translateX(-24px);opacity:0;}
+[data-anim="right"]{transform:translateX(24px);opacity:0;}
+[data-d1]{transition-delay:.1s!important;}[data-d2]{transition-delay:.2s!important;}
+[data-d3]{transition-delay:.3s!important;}[data-d4]{transition-delay:.4s!important;}
+.btn-orange{display:inline-flex;align-items:center;gap:7px;background:var(--c-orange);color:#fff;font-size:15px;font-weight:600;padding:14px 28px;border-radius:var(--r-pill);border:none;cursor:pointer;box-shadow:0 2px 16px rgba(255,107,26,.28);transition:all .2s;}
+.btn-orange:hover{background:var(--c-orange-dk);transform:translateY(-1px);}
+
+/* ══ ABOUT HERO ════════════════════════════════════════════════════ */
+#about-hero{background:var(--c-bg);}
+.ah-grid{display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center;}
+.ah-hl{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.04;color:var(--c-ink);margin-bottom:20px;}
+.ah-hl em{color:var(--c-orange);font-style:normal;}
+.ah-body{font-size:15px;color:var(--c-sub);line-height:1.75;margin-bottom:36px;}
+.ah-values{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:36px;}
+.av{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-lg);padding:18px 16px;transition:transform .25s,box-shadow .25s;}
+.av:hover{transform:translateY(-3px);box-shadow:var(--gl-sh-lg);}
+.av-icon{font-size:22px;margin-bottom:8px;}
+.av-name{font-size:13px;font-weight:700;color:var(--c-ink);margin-bottom:3px;}
+.av-desc{font-size:12px;color:var(--c-muted);line-height:1.5;}
+/* Studio card */
+.studio-visual{border-radius:var(--r-2xl);background:linear-gradient(135deg,#f0eef5,#e8f0f8);border:0.5px solid var(--c-rule);overflow:hidden;position:relative;min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;}
+.sv-bg{position:absolute;font-size:180px;font-weight:800;color:rgba(0,0,0,.04);letter-spacing:-8px;line-height:1;bottom:-20px;right:-10px;pointer-events:none;}
+.sv-content{position:relative;z-index:1;text-align:center;}
+.sv-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border:0.5px solid rgba(255,107,26,.2);border-radius:var(--r-pill);padding:7px 16px;font-size:11px;font-weight:600;color:var(--c-orange);letter-spacing:.5px;margin-bottom:16px;}
+.sv-dot{width:6px;height:6px;border-radius:50%;background:var(--c-orange);animation:svpulse 2.4s ease-in-out infinite;}
+@keyframes svpulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,107,26,.4);}50%{opacity:.7;box-shadow:0 0 0 7px rgba(255,107,26,0);}}
+.sv-name{font-size:32px;font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:6px;}
+.sv-sub{font-size:14px;color:var(--c-muted);}
+.sv-stat{position:absolute;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border:0.5px solid rgba(210,210,215,.6);border-radius:var(--r-lg);padding:12px 18px;box-shadow:var(--gl-sh-lg);}
+.sv-stat-val{font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
+.sv-stat-lbl{font-size:10px;color:var(--c-muted);letter-spacing:1px;margin-top:2px;}
+.sv-s1{top:28px;right:-16px;animation:floatA 3.5s ease-in-out infinite;}
+.sv-s2{bottom:60px;left:-20px;animation:floatA 4.2s ease-in-out infinite .8s;}
+.sv-s3{bottom:28px;right:16px;animation:floatA 5s ease-in-out infinite 1.5s;}
+@keyframes floatA{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+/* ══ TEAM ════════════════════════════════════════════════════════ */
+#team{background:var(--c-bg2);}
+.team-header{text-align:center;margin-bottom:56px;}
+.team-hl{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:14px;}
+.team-sub{font-size:clamp(14px,1.5vw,17px);color:var(--c-sub);font-weight:300;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.team-card{background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-xl);overflow:hidden;transition:transform .3s,box-shadow .3s;}
+.team-card:hover{transform:translateY(-5px);box-shadow:var(--gl-sh-lg);}
+.tc-avatar{height:180px;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:800;position:relative;overflow:hidden;}
+.tc-avatar::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,.1) 100%);}
+.tc-body{padding:20px 18px;}
+.tc-name{font-size:15px;font-weight:700;color:var(--c-ink);margin-bottom:3px;}
+.tc-role{font-size:12px;color:var(--c-orange);font-weight:600;margin-bottom:6px;}
+.tc-bio{font-size:12px;color:var(--c-muted);line-height:1.5;}
+.tc-links{display:flex;gap:8px;margin-top:12px;}
+.tc-link{width:28px;height:28px;border-radius:var(--r-sm);border:0.5px solid var(--c-rule);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--c-muted);transition:all .2s;}
+.tc-link:hover{border-color:var(--c-orange);color:var(--c-orange);}
+
+/* Culture section */
+#culture{background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 100%);}
+.culture-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.culture-left h2{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:16px;line-height:1.08;}
+.culture-left p{font-size:15px;color:var(--c-sub);line-height:1.7;margin-bottom:32px;}
+.culture-perks{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.perk{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-lg);padding:16px;}
+.perk-icon{font-size:20px;margin-bottom:6px;}
+.perk-name{font-size:13px;font-weight:600;color:var(--c-ink);margin-bottom:3px;}
+.perk-desc{font-size:11px;color:var(--c-muted);line-height:1.4;}
+.culture-right{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.culture-stat{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-xl);padding:24px;text-align:center;}
+.cst-num{font-size:36px;font-weight:800;letter-spacing:-2px;color:var(--c-orange);}
+.cst-lbl{font-size:11px;color:var(--c-muted);margin-top:5px;}
+.culture-stat.big{grid-column:span 2;background:rgba(255,107,26,.14);border-color:rgba(255,107,26,.25);}
+.culture-stat.big .cst-num{color:var(--c-orange-dk);}
+
+/* ══ BLOG ═══════════════════════════════════════════════════════ */
+#blog-section{background:var(--c-bg);}
+.blog-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px;}
+.blog-hl{font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-1px;color:var(--c-ink);}
+.blog-link{font-size:14px;color:var(--c-orange);font-weight:500;display:flex;align-items:center;gap:5px;transition:gap .2s;}
+.blog-link:hover{gap:9px;}
+/* Article card */
+.article-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);overflow:hidden;transition:transform .3s,box-shadow .3s;cursor:pointer;}
+.article-card:hover{transform:translateY(-4px);box-shadow:var(--gl-sh-lg);}
+.article-card:hover .ac-arrow svg{transform:translateX(4px);}
+.ac-img{height:200px;background:linear-gradient(135deg,#F5F5F7,#EBEBED);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden;}
+.ac-img-bg{position:absolute;font-size:120px;opacity:.08;font-weight:800;letter-spacing:-5px;color:var(--c-ink);}
+.ac-img-label{position:absolute;bottom:16px;left:16px;background:rgba(255,107,26,.9);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;padding:5px 12px;border-radius:var(--r-pill);text-transform:uppercase;}
+.ac-body{padding:24px 22px;}
+.ac-tag{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;margin-bottom:8px;}
+.ac-title{font-size:17px;font-weight:700;letter-spacing:-.3px;color:var(--c-ink);line-height:1.4;margin-bottom:8px;}
+.ac-excerpt{font-size:13px;color:var(--c-muted);line-height:1.6;margin-bottom:16px;}
+.ac-footer{display:flex;align-items:center;justify-content:space-between;}
+.ac-author{display:flex;align-items:center;gap:8px;}
+.ac-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--c-orange),#FF9A5C);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;}
+.ac-name{font-size:12px;font-weight:600;color:var(--c-ink);}
+.ac-date{font-size:11px;color:var(--c-muted);}
+.ac-arrow{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--c-orange);font-weight:600;}
+.ac-arrow svg{transition:transform .2s;}
+/* Blog layout */
+.blog-main{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.article-card.featured{grid-column:span 3;display:grid;grid-template-columns:1fr 1fr;}
+.article-card.featured .ac-img{height:100%;min-height:280px;}
+/* Blog article page template */
+.article-template{max-width:720px;margin:0 auto;padding:60px var(--sp);}
+.art-header{margin-bottom:48px;}
+.art-cat{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:16px;}
+.art-title{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.06;color:var(--c-ink);margin-bottom:20px;}
+.art-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:24px;border-bottom:0.5px solid var(--c-rule);}
+.art-author{display:flex;align-items:center;gap:8px;}
+.art-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--c-orange),#FF9A5C);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;}
+.art-byline{font-size:13px;font-weight:600;color:var(--c-ink);}
+.art-date{font-size:13px;color:var(--c-muted);}
+.art-read{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--c-muted);}
+.art-body{font-size:17px;line-height:1.75;color:var(--c-ink);margin-top:40px;}
+.art-body p{margin-bottom:24px;}
+.art-body h2{font-size:24px;font-weight:700;letter-spacing:-.5px;margin:40px 0 16px;color:var(--c-ink);}
+.art-body h3{font-size:19px;font-weight:700;margin:32px 0 12px;color:var(--c-ink);}
+.pull-quote-art{border-left:3px solid var(--c-orange);padding:16px 24px;margin:32px 0;background:rgba(255,107,26,.04);border-radius:0 var(--r-md) var(--r-md) 0;}
+.pqa-text{font-size:19px;font-style:italic;color:var(--c-ink);line-height:1.55;}
+
+@media(max-width:960px){.ah-grid,.culture-grid,.contact-grid{grid-template-columns:1fr;}.studio-visual{display:none;}.team-grid{grid-template-columns:repeat(2,1fr);}.blog-main{grid-template-columns:1fr;}.article-card.featured{grid-column:span 1;grid-template-columns:1fr;}}
+@media(max-width:600px){.team-grid{grid-template-columns:1fr 1fr;}.ah-values{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ════════ ABOUT ════════════════════════════════════════════════ -->
+<section id="about-hero">
+  <div class="container">
+    <div class="ah-grid">
+      <div data-anim="left">
+        <p class="eyebrow">About Swytch Studio</p>
+        <h1 class="ah-hl">Built by people tired of <em>bad agencies.</em></h1>
+        <p class="ah-body">Swytch was founded in Mumbai by a team sick of agencies that over-promise, under-deliver, and hide behind reach metrics.<br><br>We built the studio we wished existed — one that thinks like a partner, moves at startup speed, and reports like a CFO. 15+ creatives, strategists, engineers, and marketers, embedded in your brand.</p>
+        <div class="ah-values">
+          <div class="av" data-anim data-d1><div class="av-icon">⚡</div><div class="av-name">Speed</div><div class="av-desc">We launch in weeks. Every time. No excuses, no setup months.</div></div>
+          <div class="av" data-anim data-d2><div class="av-icon">🎯</div><div class="av-name">Accountability</div><div class="av-desc">Revenue tracked. Outcomes owned. No hiding in vanity metrics.</div></div>
+          <div class="av" data-anim data-d3><div class="av-icon">🤖</div><div class="av-name">AI-first</div><div class="av-desc">AI as infrastructure across every workflow. Not a gimmick.</div></div>
+          <div class="av" data-anim data-d4><div class="av-icon">🔗</div><div class="av-name">Integrated</div><div class="av-desc">Strategy through execution. One team. Zero handoffs.</div></div>
+        </div>
+        <button class="btn-orange" onclick="window.location.href='https://api.whatsapp.com/send/?phone=%2B919821817273'">Work with us ↗</button>
+      </div>
+      <div data-anim="right">
+        <div class="studio-visual">
+          <div class="sv-bg">SS</div>
+          <div class="sv-content">
+            <div class="sv-badge"><div class="sv-dot"></div>Mumbai · Est. 2021</div>
+            <div class="sv-name">Swytch Studio</div>
+            <div class="sv-sub">Creative Mar-Tech · Mumbai, India</div>
+          </div>
+          <div class="sv-stat sv-s1"><div class="sv-stat-val">15+</div><div class="sv-stat-lbl">TEAM MEMBERS</div></div>
+          <div class="sv-stat sv-s2"><div class="sv-stat-val">26+</div><div class="sv-stat-lbl">PROJECTS</div></div>
+          <div class="sv-stat sv-s3"><div class="sv-stat-val">₹8L+</div><div class="sv-stat-lbl">REVENUE SCALED</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="team-header" data-anim>
+      <p class="eyebrow">The team</p>
+      <h2 class="team-hl">15+ people. One obsession.</h2>
+      <p class="team-sub">Creators, strategists, engineers, and performance marketers — all embedded in your growth.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card" data-anim data-d1>
+        <div class="tc-avatar" style="background:linear-gradient(135deg,#FFE8DC,#FFD4B8);">
+          <span style="color:var(--c-orange);position:relative;z-index:1;">RS</span>
+        </div>
+        <div class="tc-body">
+          <div class="tc-name">Raj Shah</div>
+          <div class="tc-role">Chief Business Officer</div>
+          <div class="tc-bio">Full-stack marketing strategist. D2C growth, performance systems, and brand strategy.</div>
+          <div class="tc-links"><a class="tc-link" href="#">li</a><a class="tc-link" href="#">tw</a></div>
+        </div>
+      </div>
+      <div class="team-card" data-anim data-d2>
+        <div class="tc-avatar" style="background:linear-gradient(135deg,#E5EFFA,#D5E5F5);">
+          <span style="color:var(--c-orange);position:relative;z-index:1;">PD</span>
+        </div>
+        <div class="tc-body">
+          <div class="tc-name">Priya Desai</div>
+          <div class="tc-role">Creative Director</div>
+          <div class="tc-bio">Visual identity, campaign concepting, and content direction for D2C and lifestyle brands.</div>
+          <div class="tc-links"><a class="tc-link" href="#">li</a><a class="tc-link" href="#">be</a></div>
+        </div>
+      </div>
+      <div class="team-card" data-anim data-d3>
+        <div class="tc-avatar" style="background:linear-gradient(135deg,#FDF0DC,#FAE0C0);">
+          <span style="color:var(--c-orange);position:relative;z-index:1;">AM</span>
+        </div>
+        <div class="tc-body">
+          <div class="tc-name">Arjun Mehta</div>
+          <div class="tc-role">Head of Performance</div>
+          <div class="tc-bio">Meta + Google specialist. 3.2× average ROAS across 20+ active campaigns.</div>
+          <div class="tc-links"><a class="tc-link" href="#">li</a></div>
+        </div>
+      </div>
+      <div class="team-card" data-anim data-d4>
+        <div class="tc-avatar" style="background:linear-gradient(135deg,#E0F2E8,#D0EADB);">
+          <span style="color:var(--c-orange);position:relative;z-index:1;">SK</span>
+        </div>
+        <div class="tc-body">
+          <div class="tc-name">Shreya Kumar</div>
+          <div class="tc-role">Tech Lead</div>
+          <div class="tc-bio">Full-stack engineer. Shopify builds, MarTech integrations, and custom AI workflows.</div>
+          <div class="tc-links"><a class="tc-link" href="#">gh</a><a class="tc-link" href="#">li</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CULTURE -->
+<section id="culture">
+  <div class="container">
+    <div class="culture-grid">
+      <div data-anim="left">
+        <p class="eyebrow" style="color:rgba(255,107,26,.7)">Life at Swytch</p>
+        <h2 class="culture-left" style="font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:16px;line-height:1.08;">Where strategy meets<br>creative chaos.</h2>
+        <p style="font-size:15px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:32px;">We're based in Mumbai, work with brands across India, and obsess over results the way most agencies obsess over decks.</p>
+        <div class="culture-perks">
+          <div class="perk"><div class="perk-icon">🏢</div><div class="perk-name">WeWork Mumbai</div><div class="perk-desc">Central, collaborative, high-energy.</div></div>
+          <div class="perk"><div class="perk-icon">📈</div><div class="perk-name">Outcome-driven</div><div class="perk-desc">We measure everything. Including ourselves.</div></div>
+          <div class="perk"><div class="perk-icon">🤖</div><div class="perk-name">AI-first culture</div><div class="perk-desc">Tools, workflows, and thinking.</div></div>
+          <div class="perk"><div class="perk-icon">🌱</div><div class="perk-name">Fast growth</div><div class="perk-desc">Real ownership. Real responsibility.</div></div>
+        </div>
+        <button class="btn-orange" style="margin-top:28px;" onclick="window.location.href='mailto:hello@swytch.studio'">We're hiring — say hi ↗</button>
+      </div>
+      <div class="culture-right" data-anim="right">
+        <div class="culture-stat big"><div class="cst-num">₹50Cr+</div><div class="cst-lbl">Total revenue influenced across client portfolio</div></div>
+        <div class="culture-stat"><div class="cst-num">15+</div><div class="cst-lbl">Team members</div></div>
+        <div class="culture-stat"><div class="cst-num">26+</div><div class="cst-lbl">Projects</div></div>
+        <div class="culture-stat"><div class="cst-num">4yr</div><div class="cst-lbl">In business</div></div>
+        <div class="culture-stat"><div class="cst-num">8</div><div class="cst-lbl">Services</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BLOG ════════════════════════════════════════════════ -->
+<section id="blog-section">
+  <div class="container">
+    <div class="blog-header" data-anim>
+      <div>
+        <p class="eyebrow">Insights</p>
+        <h2 class="blog-hl">Thinking from the studio.</h2>
+      </div>
+      <a href="#" class="blog-link">All articles <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="blog-main">
+      <!-- Featured article -->
+      <div class="article-card featured" data-anim>
+        <div class="ac-img" style="background:linear-gradient(135deg,#F0EEF5,#E5E1F0);">
+          <div class="ac-img-bg">AI</div>
+          <div class="ac-img-label">AI & Creative</div>
+        </div>
+        <div class="ac-body" style="display:flex;flex-direction:column;justify-content:center;">
+          <div class="ac-tag">AI & Creative</div>
+          <div class="ac-title">AI Fake Ads and Content Creation Redefine Brand Storytelling</div>
+          <div class="ac-excerpt">How AI-generated TVC-style content is changing the economics of brand advertising for Indian D2C brands — and why the studios that figure this out early will win the next decade of marketing.</div>
+          <div class="ac-footer">
+            <div class="ac-author"><div class="ac-avatar">RS</div><div><div class="ac-name">Raj Shah</div><div class="ac-date">Nov 2024 · 6 min read</div></div></div>
+            <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-anim data-d1>
+        <div class="ac-img" style="background:linear-gradient(135deg,#E5EFFA,#D5E5F5);">
+          <div class="ac-img-bg">UGC</div>
+          <div class="ac-img-label">Influencer</div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-tag">Influencer Marketing</div>
+          <div class="ac-title">Why Swytch's UGC Ecosystem Outshines Traditional Influencer Marketing</div>
+          <div class="ac-excerpt">The shift from one-time posts to always-on UGC systems — and why the brands that build creator pipelines instead of booking individual posts will win.</div>
+          <div class="ac-footer">
+            <div class="ac-author"><div class="ac-avatar">PD</div><div><div class="ac-name">Priya Desai</div><div class="ac-date">Oct 2024 · 5 min read</div></div></div>
+            <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card" data-anim data-d2>
+        <div class="ac-img" style="background:linear-gradient(135deg,#FDF0DC,#FAE0C0);">
+          <div class="ac-img-bg">AD</div>
+          <div class="ac-img-label">Industry</div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-tag">Industry</div>
+          <div class="ac-title">The Advertising Industry Is Not Dead. It's Reloading.</div>
+          <div class="ac-excerpt">A contrarian take on advertising in India in 2025 — and where the next generation of creative studios will come from.</div>
+          <div class="ac-footer">
+            <div class="ac-author"><div class="ac-avatar">RS</div><div><div class="ac-name">Raj Shah</div><div class="ac-date">Sep 2024 · 7 min read</div></div></div>
+            <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG ARTICLE TEMPLATE (sample) -->
+<section style="background:var(--c-bg2);padding:clamp(40px,6vw,80px) var(--sp);">
+  <div class="container">
+    <p style="text-align:center;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:24px;">Article page template preview</p>
+    <div class="article-template" style="background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);">
+      <div class="art-header">
+        <div class="art-cat">AI & Creative</div>
+        <h1 class="art-title">AI Fake Ads and Content Creation Redefine Brand Storytelling</h1>
+        <div class="art-meta">
+          <div class="art-author"><div class="art-avatar">RS</div><div><div class="art-byline">Raj Shah</div><div class="art-date">Chief Business Officer, Swytch Studio</div></div></div>
+          <div class="art-read">📅 Nov 12, 2024</div>
+          <div class="art-read">⏱ 6 min read</div>
+        </div>
+      </div>
+      <div class="art-body">
+        <p>For decades, producing a brand film meant a real barrier. A TVC required a director, crew, studio, talent, and a budget running into lakhs. That barrier is gone.</p>
+        <h2>The democratisation of cinematic production</h2>
+        <p>AI-generated content tools have reached a quality level where, for many applications — product showcases, lifestyle campaigns, social content — the output is indistinguishable from traditional footage, at a fraction of the cost.</p>
+        <div class="pull-quote-art"><div class="pqa-text">"The brands that figure out AI content production in 2024 will have a 3-year head start on everyone who waits for 'the right time' to start."</div></div>
+        <p>At Swytch, we've embedded AI into creative production since early 2023 — not as an experiment, as infrastructure. Every brand we work with has some part of their content pipeline powered by AI: fashion shoots, CGI renders, or AI-assisted scripting.</p>
+        <h2>What this means for D2C brands</h2>
+        <p>The implications for D2C brands are significant. A brand that couldn't afford a monthly campaign video can now produce one at a fraction of the cost. A fashion brand that needed a studio and models for every SKU can now generate visuals in 48 hours.</p>
+        <p>This isn't the future of marketing — it's the present. And the brands adopting it now are already seeing the results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

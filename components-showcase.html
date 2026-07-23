@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swytch Studio — Advanced Components</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root{
+  --c-bg:#FFF;--c-bg2:#F5F5F7;--c-ink:#1D1D1F;--c-sub:#6E6E73;--c-muted:#86868B;
+  --c-rule:#D2D2D7;--c-orange:#FF6B1A;--c-orange-dk:#D95A10;
+  --gl-sh:0 4px 32px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04);
+  --gl-sh-lg:0 12px 56px rgba(0,0,0,0.11),0 2px 6px rgba(0,0,0,0.05);
+  --r-md:14px;--r-lg:20px;--r-xl:28px;--r-2xl:40px;--r-pill:100px;
+  --sp:clamp(20px,5vw,80px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:var(--c-ink);overflow-x:hidden;}
+section{padding:clamp(60px,8vw,120px) var(--sp);}
+.container{max-width:1200px;margin:0 auto;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:14px;}
+[data-anim]{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(0,0,.2,1),transform .7s cubic-bezier(0,0,.2,1);}
+[data-anim].visible{opacity:1;transform:none;}
+[data-anim="left"]{transform:translateX(-32px);}
+[data-anim="right"]{transform:translateX(32px);}
+[data-anim="scale"]{transform:scale(.92);opacity:0;}
+[data-delay="1"]{transition-delay:.1s!important;}[data-delay="2"]{transition-delay:.2s!important;}
+[data-delay="3"]{transition-delay:.3s!important;}[data-delay="4"]{transition-delay:.4s!important;}
+
+/* ══ 1. SCROLL-DRIVEN STICKY FEATURE REVEAL ══════════════════════════ */
+#features{padding:0;background:var(--c-bg);}
+.features-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:0;position:relative;}
+/* Sticky left nav */
+.features-nav{position:sticky;top:80px;height:calc(100vh - 100px);padding:clamp(40px,6vw,80px) 40px clamp(40px,6vw,80px) var(--sp);display:flex;flex-direction:column;justify-content:center;gap:0;border-right:0.5px solid var(--c-rule);}
+.fn-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:32px;}
+.fn-headline{font-size:clamp(28px,3.5vw,42px);font-weight:800;letter-spacing:-1.5px;line-height:1.06;color:var(--c-ink);margin-bottom:40px;}
+.fn-items{display:flex;flex-direction:column;gap:0;}
+.fn-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:0.5px solid var(--c-rule);cursor:pointer;transition:all .2s;}
+.fn-item:last-child{border-bottom:none;}
+.fn-item-dot{width:7px;height:7px;border-radius:50%;background:var(--c-rule);transition:background .3s,transform .3s;flex-shrink:0;}
+.fn-item.active .fn-item-dot{background:var(--c-orange);transform:scale(1.5);}
+.fn-item-name{font-size:14px;font-weight:500;color:var(--c-muted);transition:color .2s;}
+.fn-item.active .fn-item-name{color:var(--c-ink);font-weight:600;}
+/* Scroll content panels */
+.features-panels{padding:clamp(40px,6vw,80px) 0 clamp(40px,6vw,80px) 48px;}
+.feature-panel{min-height:80vh;display:flex;align-items:center;padding:40px 0;opacity:.3;transition:opacity .5s;}
+.feature-panel.active{opacity:1;}
+.fp-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:48px 44px;width:100%;position:relative;overflow:hidden;}
+.fp-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,26,.07),transparent 70%);pointer-events:none;}
+.fp-num{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);margin-bottom:16px;}
+.fp-title{font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-1px;color:var(--c-ink);margin-bottom:16px;line-height:1.1;}
+.fp-sub{font-size:15px;color:var(--c-sub);line-height:1.7;margin-bottom:32px;}
+.fp-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fp-point{background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-md);padding:16px;}
+.fp-point-icon{font-size:18px;margin-bottom:6px;}
+.fp-point-name{font-size:13px;font-weight:600;color:var(--c-ink);margin-bottom:3px;}
+.fp-point-desc{font-size:11px;color:var(--c-muted);line-height:1.4;}
+.fp-stat{display:flex;gap:20px;margin-top:24px;padding-top:24px;border-top:0.5px solid var(--c-rule);}
+.fps-item{font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
+.fps-item span{display:block;font-size:11px;font-weight:400;color:var(--c-muted);margin-top:2px;}
+
+/* ══ 2. ANIMATED METRICS DASHBOARD ═══════════════════════════════════ */
+#metrics{background:linear-gradient(135deg,#FFF8F4 0%,#FFEFE3 100%);}
+.dash-header{text-align:center;margin-bottom:56px;}
+.dash-hl{font-size:clamp(32px,4.5vw,56px);font-weight:800;letter-spacing:-2px;color:var(--c-ink);line-height:1.04;margin-bottom:14px;}
+.dash-sub{font-size:clamp(14px,1.5vw,17px);color:var(--c-sub);font-weight:300;}
+/* KPI counters */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+.kpi{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-xl);padding:28px 24px;text-align:center;}
+.kpi-num{font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--c-orange);font-variant-numeric:tabular-nums;}
+.kpi-num.green{color:#30D158;}
+.kpi-lbl{font-size:11px;color:var(--c-muted);letter-spacing:1px;margin-top:6px;}
+/* Chart area */
+.dash-chart{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-xl);padding:28px;margin-bottom:24px;}
+.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+.chart-title{font-size:15px;font-weight:600;color:var(--c-ink);}
+.chart-legend{display:flex;gap:16px;}
+.cl-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--c-muted);}
+.cl-dot{width:8px;height:8px;border-radius:50%;}
+.chart-bars{display:flex;align-items:flex-end;gap:8px;height:140px;position:relative;}
+.chart-bars::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--c-rule);}
+.chart-bars::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--c-rule);}
+.bar-group{display:flex;align-items:flex-end;gap:3px;flex:1;}
+.bar-item{flex:1;border-radius:3px 3px 0 0;min-width:8px;transition:height 1.2s cubic-bezier(0,0,.2,1);}
+.bar-spend{background:#E5DDD3;}
+.bar-rev{background:var(--c-orange);}
+.chart-months{display:flex;gap:8px;padding-top:8px;}
+.cm{flex:1;font-size:10px;color:var(--c-muted);text-align:center;}
+/* Live ticker */
+.dash-live{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.live-card{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-lg);padding:20px;}
+.live-label{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--c-muted);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#30D158;animation:livepulse 2s ease-in-out infinite;}
+@keyframes livepulse{0%,100%{opacity:1;} 50%{opacity:.3;}}
+.live-val{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--c-ink);}
+.live-delta{font-size:12px;color:#30D158;margin-top:4px;}
+
+/* ══ 3. COMPARISON TABLE ═════════════════════════════════════════════ */
+#comparison{background:var(--c-bg2);}
+.comp-header{text-align:center;margin-bottom:56px;}
+.comp-hl{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:14px;}
+.comp-sub{font-size:clamp(14px,1.5vw,17px);color:var(--c-sub);font-weight:300;}
+.comp-table{background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);overflow:hidden;box-shadow:var(--gl-sh-lg);}
+.comp-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--c-bg2);border-bottom:0.5px solid var(--c-rule);}
+.ch-cell{padding:20px 24px;font-size:13px;font-weight:700;color:var(--c-muted);letter-spacing:.5px;text-transform:uppercase;}
+.ch-cell.swytch{color:var(--c-orange);background:rgba(255,107,26,.04);display:flex;align-items:center;gap:8px;}
+.comp-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:0.5px solid var(--c-rule);transition:background .2s;}
+.comp-row:last-child{border-bottom:none;}
+.comp-row:hover{background:rgba(255,107,26,.02);}
+.cr-cell{padding:16px 24px;font-size:14px;color:var(--c-ink);display:flex;align-items:center;gap:8px;line-height:1.4;}
+.cr-cell.topic{font-weight:600;color:var(--c-ink);}
+.cr-cell.old{color:var(--c-muted);}
+.cr-cell.swytch{color:var(--c-ink);background:rgba(255,107,26,.03);}
+.tick{width:18px;height:18px;border-radius:50%;background:rgba(255,107,26,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--c-orange);}
+.cross{width:18px;height:18px;border-radius:50%;background:rgba(0,0,0,.05);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--c-muted);}
+
+/* ══ 4. CONTACT PAGE ═════════════════════════════════════════════════ */
+#contact{background:var(--c-bg);}
+.contact-grid{display:grid;grid-template-columns:1fr 480px;gap:64px;align-items:start;}
+.contact-left h2{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:16px;line-height:1.06;}
+.contact-left p{font-size:15px;color:var(--c-sub);line-height:1.7;margin-bottom:36px;}
+.contact-methods{display:flex;flex-direction:column;gap:16px;}
+.cm-item{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-lg);transition:all .2s;text-decoration:none;}
+.cm-item:hover{border-color:var(--c-orange);background:rgba(255,107,26,.04);transform:translateX(4px);}
+.cm-icon{width:40px;height:40px;border-radius:var(--r-md);background:rgba(255,107,26,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.cm-label{font-size:11px;font-weight:600;letter-spacing:1px;color:var(--c-muted);text-transform:uppercase;margin-bottom:3px;}
+.cm-value{font-size:14px;font-weight:600;color:var(--c-ink);}
+/* Multi-step contact form */
+.contact-form-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:36px 32px;}
+.cf-step{display:none;animation:fadeIn .35s ease;}
+.cf-step.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+.cf-progress{height:3px;background:var(--c-rule);border-radius:2px;margin-bottom:28px;overflow:hidden;}
+.cf-progress-fill{height:100%;background:var(--c-orange);border-radius:2px;transition:width .4s cubic-bezier(0,0,.2,1);}
+.cf-title{font-size:20px;font-weight:800;letter-spacing:-.5px;color:var(--c-ink);margin-bottom:6px;}
+.cf-sub{font-size:13px;color:var(--c-muted);margin-bottom:24px;}
+.cf-field{margin-bottom:16px;}
+.cf-field label{display:block;font-size:11px;font-weight:600;letter-spacing:.5px;color:var(--c-sub);text-transform:uppercase;margin-bottom:7px;}
+.cf-field input,.cf-field select,.cf-field textarea{width:100%;padding:12px 15px;border-radius:var(--r-md);border:0.5px solid var(--c-rule);background:rgba(255,255,255,.8);font-size:14px;font-family:inherit;color:var(--c-ink);outline:none;transition:border-color .2s,box-shadow .2s;}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:var(--c-orange);box-shadow:0 0 0 3px rgba(255,107,26,.1);}
+.cf-field textarea{min-height:90px;resize:vertical;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cf-actions{display:flex;align-items:center;justify-content:space-between;margin-top:24px;}
+.btn-cf-next{display:inline-flex;align-items:center;gap:6px;background:var(--c-orange);color:#fff;font-size:14px;font-weight:600;padding:12px 22px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:all .2s;}
+.btn-cf-next:hover{background:var(--c-orange-dk);}
+.btn-cf-back{font-size:13px;color:var(--c-muted);background:none;border:none;cursor:pointer;padding:8px;}
+.btn-cf-back:hover{color:var(--c-ink);}
+.cf-success{text-align:center;padding:20px 0;}
+.cfs-icon{font-size:48px;margin-bottom:16px;}
+.cfs-title{font-size:22px;font-weight:800;color:var(--c-ink);margin-bottom:8px;}
+.cfs-sub{font-size:14px;color:var(--c-sub);line-height:1.6;}
+
+/* ══ STICKY CTA BAR ══════════════════════════════════════════════════ */
+#sticky-cta{
+  position:fixed;bottom:-80px;left:50%;transform:translateX(-50%);z-index:500;
+  background:rgba(255,255,255,.92);backdrop-filter:saturate(200%) blur(20px);
+  border:0.5px solid var(--c-rule);border-radius:var(--r-pill);
+  padding:12px 12px 12px 20px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 8px 40px rgba(0,0,0,.14);
+  transition:bottom .4s cubic-bezier(0.34,1.56,0.64,1);
+  white-space:nowrap;
+}
+#sticky-cta.visible{bottom:24px;}
+.sc-text{font-size:13px;color:var(--c-sub);}
+.sc-text strong{color:var(--c-ink);font-weight:600;}
+.sc-btn{display:inline-flex;align-items:center;gap:6px;background:var(--c-orange);color:#fff;font-size:13px;font-weight:600;padding:9px 18px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:background .2s;}
+.sc-btn:hover{background:var(--c-orange-dk);}
+.sc-btn-wa{display:inline-flex;align-items:center;gap:6px;background:var(--c-bg2);color:var(--c-sub);font-size:13px;font-weight:500;padding:9px 18px;border-radius:var(--r-pill);border:0.5px solid var(--c-rule);cursor:pointer;transition:all .2s;}
+.sc-btn-wa:hover{background:#EFEFEF;color:var(--c-ink);}
+.sc-close{background:none;border:none;color:var(--c-muted);font-size:18px;cursor:pointer;padding:4px 8px;transition:color .2s;}
+.sc-close:hover{color:var(--c-ink);}
+
+@media(max-width:960px){
+  .features-inner{grid-template-columns:1fr;}.features-nav{position:relative;height:auto;padding:40px var(--sp);}
+  .kpi-row{grid-template-columns:repeat(2,1fr);}.dash-live{grid-template-columns:1fr 1fr;}
+  .comp-head,.comp-row{grid-template-columns:1fr 1fr;}.ch-cell.topic,.cr-cell.topic{display:none;}
+  .contact-grid{grid-template-columns:1fr;}
+  #sticky-cta{width:calc(100% - 32px);justify-content:center;}
+}
+@media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr;}.dash-live{grid-template-columns:1fr;}.fp-points{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- STICKY CTA BAR -->
+<div id="sticky-cta">
+  <span class="sc-text"><strong>Swytch Studio</strong> · Mumbai's creative mar-tech studio</span>
+  <button class="sc-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start a project ↗</button>
+  <a href="https://api.whatsapp.com/send/?phone=%2B919821817273" class="sc-btn-wa">WhatsApp</a>
+  <button class="sc-close" onclick="this.parentNode.remove()">×</button>
+</div>
+
+<!-- 1. SCROLL-DRIVEN FEATURE REVEAL -->
+<section id="features">
+  <div class="features-inner">
+    <div class="features-nav">
+      <p class="fn-eyebrow">Our services</p>
+      <h2 class="fn-headline">Eight services.<br>Zero handoffs.</h2>
+      <div class="fn-items" id="fnItems">
+        <div class="fn-item active" data-target="0"><div class="fn-item-dot"></div><span class="fn-item-name">Content Creation</span></div>
+        <div class="fn-item" data-target="1"><div class="fn-item-dot"></div><span class="fn-item-name">Performance Marketing</span></div>
+        <div class="fn-item" data-target="2"><div class="fn-item-dot"></div><span class="fn-item-name">Website Design & Dev</span></div>
+        <div class="fn-item" data-target="3"><div class="fn-item-dot"></div><span class="fn-item-name">AI Solutions</span></div>
+        <div class="fn-item" data-target="4"><div class="fn-item-dot"></div><span class="fn-item-name">Influencer Marketing</span></div>
+        <div class="fn-item" data-target="5"><div class="fn-item-dot"></div><span class="fn-item-name">MarTech</span></div>
+        <div class="fn-item" data-target="6"><div class="fn-item-dot"></div><span class="fn-item-name">Creative Strategy</span></div>
+        <div class="fn-item" data-target="7"><div class="fn-item-dot"></div><span class="fn-item-name">Custom Tech</span></div>
+      </div>
+    </div>
+    <div class="features-panels" id="featurePanels">
+
+      <div class="feature-panel active" data-panel="0">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 01</div>
+          <div class="fp-title">Content Creation & Management</div>
+          <div class="fp-sub">From strategy and scripting to production and analytics. We run your content as a system, not a reaction to trends.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">🎬</div><div class="fp-point-name">Reels & Short-form</div><div class="fp-point-desc">High-retention vertical content for Instagram and YouTube Shorts.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🗂️</div><div class="fp-point-name">Content Calendars</div><div class="fp-point-desc">30 days planned and briefed — hooks, formats, CTAs pre-loaded.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📸</div><div class="fp-point-name">Static & Carousels</div><div class="fp-point-desc">On-brand, platform-native, designed to convert.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📊</div><div class="fp-point-name">Analytics & Reporting</div><div class="fp-point-desc">Weekly reports — what worked, what didn't, what's next.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">30+<span>Posts/month</span></div>
+            <div class="fps-item">48h<span>Turnaround</span></div>
+            <div class="fps-item">3×<span>Avg engagement lift</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" data-panel="1">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 02</div>
+          <div class="fp-title">Performance Marketing</div>
+          <div class="fp-sub">Ads that pay for themselves. Every rupee tracked to revenue, every campaign optimised to a real outcome.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">🎯</div><div class="fp-point-name">Meta Ads</div><div class="fp-point-desc">Prospecting, retargeting, and retention across Meta.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🔍</div><div class="fp-point-name">Google Ads</div><div class="fp-point-desc">Search, shopping, YouTube, display — full-funnel.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📈</div><div class="fp-point-name">Attribution</div><div class="fp-point-desc">Every rupee tracked, click to purchase.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🔬</div><div class="fp-point-name">Creative Testing</div><div class="fp-point-desc">Multi-variant testing. Scale winners, kill losers fast.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">3.2×<span>Avg ROAS</span></div>
+            <div class="fps-item">68%<span>Retention lift</span></div>
+            <div class="fps-item">90d<span>To results</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" data-panel="2">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 03</div>
+          <div class="fp-title">Website Design & Development</div>
+          <div class="fp-sub">Not pretty websites. Websites that convert. CRO-first, mobile-native from day one, built to make visitors act.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">🛒</div><div class="fp-point-name">Shopify Builds</div><div class="fp-point-desc">D2C-optimised Shopify stores that sell.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">⚡</div><div class="fp-point-name">CRO Audits</div><div class="fp-point-desc">Find and fix every conversion killer on your site.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📱</div><div class="fp-point-name">Mobile-First</div><div class="fp-point-desc">70% of your traffic is mobile. We build for that first.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">⚙️</div><div class="fp-point-name">Custom Builds</div><div class="fp-point-desc">React, Next.js, or WordPress — whatever fits your logic.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">4–6wk<span>Build time</span></div>
+            <div class="fps-item">3s<span>Load time target</span></div>
+            <div class="fps-item">+40%<span>Avg CVR lift</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" data-panel="3">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 04</div>
+          <div class="fp-title">AI Solutions</div>
+          <div class="fp-sub">AI as infrastructure, not a gimmick. Embedded into content production, campaigns, and creative — 10× output at the same cost.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">📸</div><div class="fp-point-name">AI Fashion Shoots</div><div class="fp-point-desc">Studio-quality photos. No studio, no logistics.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🎥</div><div class="fp-point-name">CGI Ad Films</div><div class="fp-point-desc">TVC-quality films from ₹15,000, not ₹15,00,000.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🤖</div><div class="fp-point-name">Content Automation</div><div class="fp-point-desc">AI-drafted copy and scripts at scale.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🔄</div><div class="fp-point-name">Workflow AI</div><div class="fp-point-desc">AI embedded into briefs, approvals, and reporting.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">10×<span>Output speed</span></div>
+            <div class="fps-item">70%<span>Cost reduction</span></div>
+            <div class="fps-item">48h<span>Delivery</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" data-panel="4">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 05</div>
+          <div class="fp-title">Influencer Marketing</div>
+          <div class="fp-sub">Creator matching, briefs, UTM tracking, and ROI reporting. Not gifting — performance. Right creator, right audience.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">🎯</div><div class="fp-point-name">Creator Matching</div><div class="fp-point-desc">Data-driven creator selection — audience fit over followers.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📋</div><div class="fp-point-name">Creative Briefs</div><div class="fp-point-desc">Detailed briefs that produce better content — first time.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🔗</div><div class="fp-point-name">UGC at Scale</div><div class="fp-point-desc">Always-on UGC pipelines. Content that feeds your ads.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📊</div><div class="fp-point-name">ROI Tracking</div><div class="fp-point-desc">UTMs, unique codes, post-campaign revenue attribution.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">3–5×<span>Avg ROI</span></div>
+            <div class="fps-item">48h<span>Creator turnaround</span></div>
+            <div class="fps-item">100+<span>Creator network</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" data-panel="5">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 06</div>
+          <div class="fp-title">MarTech Services</div>
+          <div class="fp-sub">Stack setup, CRM integration, live dashboards, and automation. Every tool connected, every workflow running without you touching it.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">🔗</div><div class="fp-point-name">Stack Integration</div><div class="fp-point-desc">CRM, ads, analytics, email — all talking to each other.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📊</div><div class="fp-point-name">Live Dashboards</div><div class="fp-point-desc">One screen. Every metric. Updated in real time.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">⚡</div><div class="fp-point-name">Automation</div><div class="fp-point-desc">Zapier, Make, n8n — workflows that run themselves.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📧</div><div class="fp-point-name">Email & WhatsApp</div><div class="fp-point-desc">Retention flows that activate, nurture, and win back.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">68%<span>Retention lift</span></div>
+            <div class="fps-item">∞<span>Tools connected</span></div>
+            <div class="fps-item">0<span>Manual steps</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" data-panel="6">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 07</div>
+          <div class="fp-title">Creative Strategy</div>
+          <div class="fp-sub">Brand voice, visual identity, campaign concepting, and content direction — built for brands that want to be remembered, not just scrolled past.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">🎨</div><div class="fp-point-name">Brand Identity</div><div class="fp-point-desc">Voice, tone, visual language, and positioning — all defined.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">💡</div><div class="fp-point-name">Campaign Concepting</div><div class="fp-point-desc">From theme to execution. Big ideas that travel across channels.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">✍️</div><div class="fp-point-name">Content Direction</div><div class="fp-point-desc">Creative guidelines so every piece of content feels like it belongs.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">📐</div><div class="fp-point-name">Design Systems</div><div class="fp-point-desc">Templates and toolkits so your team can create on-brand fast.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">2wk<span>Brand sprint</span></div>
+            <div class="fps-item">100%<span>Original</span></div>
+            <div class="fps-item">∞<span>Differentiation</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" data-panel="7">
+        <div class="fp-card">
+          <div class="fp-num">SERVICE 08</div>
+          <div class="fp-title">Custom Tech Services</div>
+          <div class="fp-sub">Apps, integrations, and bespoke tools built to your exact business logic. iOS, Android, or web — engineered for how your business actually works.</div>
+          <div class="fp-points">
+            <div class="fp-point"><div class="fp-point-icon">📱</div><div class="fp-point-name">Mobile Apps</div><div class="fp-point-desc">iOS and Android, designed and built from scratch.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🔌</div><div class="fp-point-name">Integrations</div><div class="fp-point-desc">Connect any two tools. Build what doesn't exist yet.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">🛠️</div><div class="fp-point-name">Internal Tools</div><div class="fp-point-desc">Dashboards, ops tools, and portals your team will actually use.</div></div>
+            <div class="fp-point"><div class="fp-point-icon">⚙️</div><div class="fp-point-name">API Development</div><div class="fp-point-desc">REST, GraphQL, webhooks — whatever your stack needs.</div></div>
+          </div>
+          <div class="fp-stat">
+            <div class="fps-item">6–12wk<span>App delivery</span></div>
+            <div class="fps-item">React<span>Frontend</span></div>
+            <div class="fps-item">Node.js<span>Backend</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 2. ANIMATED METRICS DASHBOARD -->
+<section id="metrics">
+  <div class="container">
+    <div class="dash-header" data-anim>
+      <p class="eyebrow" style="color:rgba(255,107,26,.7)">Live metrics</p>
+      <h2 class="dash-hl">Numbers we're proud of.</h2>
+      <p class="dash-sub">Real outcomes from real campaigns, drawn from our active client portfolio.</p>
+    </div>
+    <div class="kpi-row" data-anim data-delay="1">
+      <div class="kpi"><div class="kpi-num" data-count="26" data-suffix="+">0+</div><div class="kpi-lbl">Projects delivered</div></div>
+      <div class="kpi"><div class="kpi-num green" data-count="50" data-suffix="M+">0M+</div><div class="kpi-lbl">Impressions generated</div></div>
+      <div class="kpi"><div class="kpi-num" data-count="320" data-suffix="%" data-prefix="3.2">3.2×</div><div class="kpi-lbl">Average ROAS</div></div>
+      <div class="kpi"><div class="kpi-num green" data-count="68" data-suffix="%">0%</div><div class="kpi-lbl">Avg retention lift</div></div>
+    </div>
+    <div class="dash-chart" data-anim data-delay="2">
+      <div class="chart-header">
+        <div class="chart-title">Revenue vs Ad Spend — Swytch Client Composite</div>
+        <div class="chart-legend">
+          <div class="cl-item"><div class="cl-dot" style="background:rgba(255,255,255,.3)"></div>Ad Spend</div>
+          <div class="cl-item"><div class="cl-dot" style="background:var(--c-orange)"></div>Revenue</div>
+        </div>
+      </div>
+      <div class="chart-bars" id="chartBars">
+        <!-- Bars injected by JS -->
+      </div>
+      <div class="chart-months" id="chartMonths"></div>
+    </div>
+    <div class="dash-live" data-anim data-delay="3">
+      <div class="live-card">
+        <div class="live-label"><div class="live-dot"></div>Active campaigns</div>
+        <div class="live-val" id="lv-campaigns">14</div>
+        <div class="live-delta">↑ 3 this month</div>
+      </div>
+      <div class="live-card">
+        <div class="live-label"><div class="live-dot"></div>Avg ROAS this month</div>
+        <div class="live-val" id="lv-roas">3.4×</div>
+        <div class="live-delta">↑ +0.2 vs last month</div>
+      </div>
+      <div class="live-card">
+        <div class="live-label"><div class="live-dot"></div>Content pieces live</div>
+        <div class="live-val" id="lv-content">847</div>
+        <div class="live-delta">↑ 62 this week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. COMPARISON TABLE -->
+<section id="comparison">
+  <div class="container">
+    <div class="comp-header" data-anim>
+      <p class="eyebrow">Why Swytch</p>
+      <h2 class="comp-hl">The honest comparison.</h2>
+      <p class="comp-sub">What most agencies won't tell you, and why we're different.</p>
+    </div>
+    <div class="comp-table" data-anim data-delay="1">
+      <div class="comp-head">
+        <div class="ch-cell topic">What you need</div>
+        <div class="ch-cell">Typical Agency</div>
+        <div class="ch-cell swytch">✦ Swytch Studio</div>
+      </div>
+      <div class="comp-row">
+        <div class="cr-cell topic">Revenue attribution</div>
+        <div class="cr-cell old"><span class="cross">×</span>Reports reach & impressions</div>
+        <div class="cr-cell swytch"><span class="tick">✓</span>Every rupee tracked to revenue</div>
+      </div>
+      <div class="comp-row">
+        <div class="cr-cell topic">Account access</div>
+        <div class="cr-cell old"><span class="cross">×</span>Works from their own accounts</div>
+        <div class="cr-cell swytch"><span class="tick">✓</span>Full access to your accounts, always</div>
+      </div>
+      <div class="comp-row">
+        <div class="cr-cell topic">Launch speed</div>
+        <div class="cr-cell old"><span class="cross">×</span>2–3 months onboarding</div>
+        <div class="cr-cell swytch"><span class="tick">✓</span>Live in weeks, not quarters</div>
+      </div>
+      <div class="comp-row">
+        <div class="cr-cell topic">Service breadth</div>
+        <div class="cr-cell old"><span class="cross">×</span>Specialised in 1–2 areas</div>
+        <div class="cr-cell swytch"><span class="tick">✓</span>8 services, one team, zero handoffs</div>
+      </div>
+      <div class="comp-row">
+        <div class="cr-cell topic">AI adoption</div>
+        <div class="cr-cell old"><span class="cross">×</span>Mentions AI in slides</div>
+        <div class="cr-cell swytch"><span class="tick">✓</span>AI embedded in every workflow</div>
+      </div>
+      <div class="comp-row">
+        <div class="cr-cell topic">Communication</div>
+        <div class="cr-cell old"><span class="cross">×</span>Monthly update calls</div>
+        <div class="cr-cell swytch"><span class="tick">✓</span>Weekly reviews + live dashboards</div>
+      </div>
+      <div class="comp-row">
+        <div class="cr-cell topic">Accountability</div>
+        <div class="cr-cell old"><span class="cross">×</span>Hides behind reach metrics</div>
+        <div class="cr-cell swytch"><span class="tick">✓</span>Revenue-first. No excuses.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div data-anim="left">
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="contact-left" style="font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:16px;line-height:1.06;">Let's build something remarkable.</h2>
+        <p style="font-size:15px;color:var(--c-sub);line-height:1.7;margin-bottom:36px;">Fill in the brief or reach us directly. We'll get back within one business day with a clear plan, not a deck.</p>
+        <div class="contact-methods">
+          <a href="mailto:hello@swytch.studio" class="cm-item">
+            <div class="cm-icon">✉️</div>
+            <div><div class="cm-label">Email</div><div class="cm-value">hello@swytch.studio</div></div>
+          </a>
+          <a href="https://api.whatsapp.com/send/?phone=%2B919821817273" class="cm-item">
+            <div class="cm-icon">💬</div>
+            <div><div class="cm-label">WhatsApp</div><div class="cm-value">+91 98218 17273</div></div>
+          </a>
+          <a href="tel:+919821817273" class="cm-item">
+            <div class="cm-icon">📞</div>
+            <div><div class="cm-label">Phone</div><div class="cm-value">+91 98218 17273</div></div>
+          </a>
+          <div class="cm-item" style="cursor:default;">
+            <div class="cm-icon">📍</div>
+            <div><div class="cm-label">Office</div><div class="cm-value">WeWork Oberoi Commerz II, Goregaon, Mumbai 400063</div></div>
+          </div>
+          <div class="cm-item" style="cursor:default;">
+            <div class="cm-icon">🕐</div>
+            <div><div class="cm-label">Hours</div><div class="cm-value">Monday – Friday, 10am – 8pm IST</div></div>
+          </div>
+        </div>
+      </div>
+      <div data-anim="right">
+        <div class="contact-form-card">
+          <div class="cf-progress"><div class="cf-progress-fill" id="cfProg" style="width:25%"></div></div>
+
+          <div class="cf-step active" id="cf1">
+            <div class="cf-title">About your brand</div>
+            <div class="cf-sub">Let's start with the basics.</div>
+            <div class="cf-field"><label>Brand name</label><input type="text" placeholder="Your brand / company name"></div>
+            <div class="cf-field"><label>Industry</label>
+              <select>
+                <option>Fashion & Apparel</option><option>Beauty & Personal Care</option>
+                <option>Food & Beverage</option><option>Consumer Electronics</option>
+                <option>Financial Services</option><option>D2C / Ecommerce</option><option>Other</option>
+              </select>
+            </div>
+            <div class="cf-field"><label>Website (if live)</label><input type="url" placeholder="https://yourbrand.com"></div>
+            <div class="cf-actions"><span></span><button class="btn-cf-next" onclick="cfNext(2)">Next →</button></div>
+          </div>
+
+          <div class="cf-step" id="cf2">
+            <div class="cf-title">Your goals</div>
+            <div class="cf-sub">What do you most want to achieve?</div>
+            <div class="cf-field"><label>Primary goal</label>
+              <select>
+                <option>Increase online sales / ROAS</option>
+                <option>Grow social media following</option>
+                <option>Launch or redesign website</option>
+                <option>Build marketing automation</option>
+                <option>Scale content production</option>
+                <option>Run influencer campaigns</option>
+              </select>
+            </div>
+            <div class="cf-field"><label>Monthly budget range</label>
+              <select>
+                <option>Under ₹50K/month</option>
+                <option>₹50K – ₹2L/month</option>
+                <option>₹2L – ₹5L/month</option>
+                <option>₹5L – ₹15L/month</option>
+                <option>₹15L+/month</option>
+              </select>
+            </div>
+            <div class="cf-field"><label>What's your biggest pain right now?</label><textarea placeholder="Describe your current challenge in one or two sentences..."></textarea></div>
+            <div class="cf-actions"><button class="btn-cf-back" onclick="cfNext(1)">← Back</button><button class="btn-cf-next" onclick="cfNext(3)">Next →</button></div>
+          </div>
+
+          <div class="cf-step" id="cf3">
+            <div class="cf-title">Contact details</div>
+            <div class="cf-sub">Where should we send your strategy plan?</div>
+            <div class="cf-row">
+              <div class="cf-field"><label>First name</label><input type="text" placeholder="Raj"></div>
+              <div class="cf-field"><label>Last name</label><input type="text" placeholder="Shah"></div>
+            </div>
+            <div class="cf-field"><label>Work email</label><input type="email" placeholder="raj@yourbrand.com"></div>
+            <div class="cf-field"><label>WhatsApp number</label><input type="tel" placeholder="+91 98218 17273"></div>
+            <div class="cf-field"><label>How did you hear about us?</label>
+              <select><option>Instagram</option><option>LinkedIn</option><option>Google</option><option>Referral</option><option>Other</option></select>
+            </div>
+            <div class="cf-actions"><button class="btn-cf-back" onclick="cfNext(2)">← Back</button><button class="btn-cf-next" onclick="cfNext(4)">Submit brief ↗</button></div>
+          </div>
+
+          <div class="cf-step" id="cf4">
+            <div class="cf-success">
+              <div class="cfs-icon">🎉</div>
+              <div class="cfs-title">Brief received!</div>
+              <div class="cfs-sub">We'll review your details and get back within one business day with a personalised plan — not a generic deck.<br><br>Connect on WhatsApp for faster responses.</div>
+              <div style="margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                <button style="display:inline-flex;align-items:center;gap:7px;background:var(--c-orange);color:#fff;font-size:14px;font-weight:600;padding:12px 22px;border-radius:var(--r-pill);border:none;cursor:pointer;" onclick="window.open('https://api.whatsapp.com/send/?phone=%2B919821817273')">Chat on WhatsApp ↗</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── INTERSECTION OBSERVER ───────────────────────────────────────────────
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+
+// ── SCROLL-DRIVEN FEATURES ─────────────────────────────────────────────
+const panels=document.querySelectorAll('.feature-panel');
+const navItems=document.querySelectorAll('.fn-item');
+
+function activatePanel(idx){
+  panels.forEach((p,i)=>{p.classList.toggle('active',i===idx);});
+  navItems.forEach((n,i)=>{n.classList.toggle('active',i===idx);});
+}
+
+navItems.forEach(n=>n.addEventListener('click',()=>activatePanel(+n.dataset.target)));
+
+const panelObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) activatePanel(+e.target.dataset.panel);});
+},{threshold:.5});
+panels.forEach(p=>panelObs.observe(p));
+
+// ── CHART BARS ─────────────────────────────────────────────────────────
+const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const spendData=[80,90,100,110,120,130,125,140,150,160,170,180];
+const revData=[128,162,200,242,288,338,325,392,450,512,578,648];
+const maxVal=Math.max(...revData)*1.1;
+
+const barsEl=document.getElementById('chartBars');
+const monthsEl=document.getElementById('chartMonths');
+months.forEach((m,i)=>{
+  const g=document.createElement('div'); g.className='bar-group';
+  const b1=document.createElement('div'); b1.className='bar-item bar-spend'; b1.style.height='0'; b1.style.maxHeight='100%';
+  const b2=document.createElement('div'); b2.className='bar-item bar-rev'; b2.style.height='0'; b2.style.maxHeight='100%';
+  g.append(b1,b2); barsEl.appendChild(g);
+  const ml=document.createElement('div'); ml.className='cm'; ml.textContent=m; monthsEl.appendChild(ml);
+});
+
+const chartObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      setTimeout(()=>{
+        document.querySelectorAll('.bar-spend').forEach((b,i)=>{b.style.height=(spendData[i]/maxVal*100)+'%';});
+        document.querySelectorAll('.bar-rev').forEach((b,i)=>{b.style.height=(revData[i]/maxVal*100)+'%';});
+      },300);
+      chartObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+chartObs.observe(document.getElementById('metrics'));
+
+// ── COUNTER ANIMATION ──────────────────────────────────────────────────
+const cntObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('[data-count]').forEach(el=>{
+      const target=+el.dataset.count, suffix=el.dataset.suffix||'';
+      let start, dur=1600;
+      const step=ts=>{
+        if(!start) start=ts;
+        const p=Math.min((ts-start)/dur,1), ease=1-Math.pow(1-p,3);
+        el.textContent=Math.floor(ease*target)+suffix;
+        if(p<1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+    cntObs.unobserve(e.target);
+  });
+},{threshold:.4});
+document.querySelectorAll('[data-anim]').forEach(el=>{if(el.querySelector('[data-count]')) cntObs.observe(el);});
+
+// ── CONTACT FORM STEPS ─────────────────────────────────────────────────
+let cfStep=1;
+function cfNext(n){
+  document.getElementById('cf'+cfStep).classList.remove('active');
+  cfStep=n;
+  document.getElementById('cf'+n).classList.add('active');
+  document.getElementById('cfProg').style.width=(n/4*100)+'%';
+}
+
+// ── STICKY CTA BAR ─────────────────────────────────────────────────────
+const stickyBar=document.getElementById('sticky-cta');
+window.addEventListener('scroll',()=>{
+  const shown=scrollY/document.body.scrollHeight>0.45;
+  stickyBar.classList.toggle('visible',shown);
+},{passive:true});
+
+// ── LIVE VALUES TICKER ─────────────────────────────────────────────────
+setInterval(()=>{
+  const r=(3.2+Math.random()*.4).toFixed(1);
+  document.getElementById('lv-roas').textContent=r+'×';
+},5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swytch Studio — Tools</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root{
+  --c-bg:#FFFFFF;--c-bg2:#F5F5F7;--c-ink:#1D1D1F;--c-sub:#6E6E73;--c-muted:#86868B;
+  --c-rule:#D2D2D7;--c-orange:#FF6B1A;--c-orange-dk:#D95A10;
+  --gl:rgba(255,255,255,0.82);--gl-blur:saturate(200%) blur(20px);
+  --gl-sh:0 4px 32px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04);
+  --gl-sh-lg:0 12px 56px rgba(0,0,0,0.11),0 2px 6px rgba(0,0,0,0.05);
+  --r-sm:10px;--r-md:16px;--r-lg:20px;--r-xl:28px;--r-pill:100px;
+  --sp:clamp(20px,5vw,80px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:var(--c-ink);}
+a{color:inherit;text-decoration:none;}
+/* TABS */
+.page-header{padding:120px var(--sp) 0;text-align:center;max-width:900px;margin:0 auto;}
+.page-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:14px;}
+.page-hl{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.04;color:var(--c-ink);margin-bottom:16px;}
+.page-sub{font-size:clamp(15px,1.6vw,18px);font-weight:300;color:var(--c-sub);line-height:1.65;}
+.tool-tabs{display:flex;align-items:center;justify-content:center;gap:8px;margin:48px 0 0;flex-wrap:wrap;}
+.tool-tab{font-size:14px;font-weight:500;padding:10px 24px;border-radius:var(--r-pill);border:0.5px solid var(--c-rule);background:rgba(255,255,255,.7);backdrop-filter:blur(8px);color:var(--c-sub);cursor:pointer;transition:all .2s;}
+.tool-tab.active,.tool-tab:hover{border-color:var(--c-orange);color:var(--c-orange);background:rgba(255,107,26,.06);}
+.tool-tab.active{font-weight:600;}
+/* TOOL PANELS */
+.tools-wrap{padding:48px var(--sp) 80px;max-width:900px;margin:0 auto;}
+.tool-panel{display:none;animation:fadeIn .4s ease;}
+.tool-panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+
+/* ── BRIEF INTAKE FORM ─────────────────────────────────────────────── */
+.form-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:40px 36px;position:relative;overflow:hidden;}
+.form-card::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,26,.06),transparent 70%);pointer-events:none;}
+.step-indicator{display:flex;align-items:center;gap:8px;margin-bottom:32px;}
+.step-dot{width:8px;height:8px;border-radius:50%;background:var(--c-rule);transition:background .3s,transform .3s;}
+.step-dot.active{background:var(--c-orange);transform:scale(1.4);}
+.step-dot.done{background:rgba(255,107,26,.4);}
+.step-label{font-size:12px;color:var(--c-muted);margin-left:4px;}
+.step{display:none;}.step.active{display:block;animation:fadeIn .35s ease;}
+.step-title{font-size:22px;font-weight:800;letter-spacing:-.5px;color:var(--c-ink);margin-bottom:6px;}
+.step-sub{font-size:14px;color:var(--c-sub);margin-bottom:28px;}
+.field{margin-bottom:20px;}
+.field label{display:block;font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--c-sub);text-transform:uppercase;margin-bottom:8px;}
+.field input,.field select,.field textarea{width:100%;padding:13px 16px;border-radius:var(--r-md);border:0.5px solid var(--c-rule);background:rgba(255,255,255,.8);backdrop-filter:blur(8px);font-size:15px;font-family:inherit;color:var(--c-ink);outline:none;transition:border-color .2s,box-shadow .2s;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--c-orange);box-shadow:0 0 0 3px rgba(255,107,26,.1);}
+.field textarea{resize:vertical;min-height:100px;}
+.field select{-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2386868B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:12px;}
+.option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.option-btn{padding:14px 16px;border-radius:var(--r-md);border:0.5px solid var(--c-rule);background:rgba(255,255,255,.7);font-size:14px;font-weight:500;color:var(--c-sub);cursor:pointer;transition:all .2s;text-align:left;}
+.option-btn.selected,.option-btn:hover{border-color:var(--c-orange);background:rgba(255,107,26,.06);color:var(--c-orange);}
+.option-btn .ob-icon{font-size:20px;display:block;margin-bottom:6px;}
+.budget-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.budget-chip{padding:8px 18px;border-radius:var(--r-pill);border:0.5px solid var(--c-rule);background:rgba(255,255,255,.7);font-size:13px;font-weight:500;color:var(--c-sub);cursor:pointer;transition:all .2s;}
+.budget-chip.selected{border-color:var(--c-orange);background:rgba(255,107,26,.06);color:var(--c-orange);}
+.form-actions{display:flex;align-items:center;justify-content:space-between;margin-top:32px;gap:12px;}
+.btn-primary{display:inline-flex;align-items:center;gap:7px;background:var(--c-orange);color:#fff;font-size:15px;font-weight:600;padding:13px 26px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:all .2s;box-shadow:0 2px 16px rgba(255,107,26,.28);}
+.btn-primary:hover{background:var(--c-orange-dk);transform:translateY(-1px);}
+.btn-ghost{font-size:14px;color:var(--c-muted);background:none;border:none;cursor:pointer;padding:8px;}
+.btn-ghost:hover{color:var(--c-ink);}
+/* Result card */
+.result-card{background:linear-gradient(135deg,#FFF3EE 0%,#FFE8DC 100%);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-xl);padding:40px 36px;color:var(--c-ink);}
+.result-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,107,26,.15);border:0.5px solid rgba(255,107,26,.3);border-radius:var(--r-pill);padding:6px 14px;font-size:11px;font-weight:600;color:var(--c-orange);letter-spacing:.5px;margin-bottom:20px;}
+.result-hl{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:12px;}
+.result-sub{font-size:14px;color:var(--c-sub);margin-bottom:28px;line-height:1.6;}
+.result-services{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;}
+.rs-card{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-lg);padding:16px;}
+.rs-num{font-size:11px;font-weight:600;letter-spacing:2px;color:rgba(255,107,26,.7);margin-bottom:4px;}
+.rs-name{font-size:13px;font-weight:600;color:var(--c-ink);}
+.rs-desc{font-size:11px;color:var(--c-muted);margin-top:3px;line-height:1.4;}
+.result-cta{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-orange-solid{display:inline-flex;align-items:center;gap:7px;background:var(--c-orange);color:#fff;font-size:14px;font-weight:600;padding:12px 22px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:all .2s;}
+.btn-orange-solid:hover{background:var(--c-orange-dk);}
+.btn-outline-wt{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--c-sub);font-size:14px;font-weight:400;padding:12px 22px;border-radius:var(--r-pill);border:0.5px solid var(--c-rule);cursor:pointer;transition:all .2s;}
+.btn-outline-wt:hover{border-color:var(--c-ink);color:var(--c-ink);}
+
+/* ── ROAS CALCULATOR ─────────────────────────────────────────────── */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.calc-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:32px 28px;}
+.calc-label{font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--c-muted);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.calc-label::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--c-orange);}
+.slider-field{margin-bottom:24px;}
+.slider-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.slider-name{font-size:13px;color:var(--c-ink);font-weight:500;}
+.slider-val{font-size:18px;font-weight:700;color:var(--c-orange);letter-spacing:-.5px;}
+input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--c-rule);outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--c-orange);cursor:pointer;border:2px solid #fff;box-shadow:0 2px 8px rgba(255,107,26,.3);}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--c-orange);cursor:pointer;border:2px solid #fff;}
+.result-panel{background:linear-gradient(135deg,#FFF3EE 0%,#FFE8DC 100%);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-xl);padding:32px 28px;color:var(--c-ink);}
+.rp-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;color:rgba(255,107,26,.7);text-transform:uppercase;margin-bottom:14px;}
+.rp-headline{font-size:14px;color:var(--c-sub);margin-bottom:24px;}
+.metric-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.metric{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-lg);padding:16px;}
+.metric-num{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
+.metric-num.good{color:#30D158;}
+.metric-lbl{font-size:11px;color:var(--c-muted);margin-top:4px;}
+.uplift-bar{margin-top:16px;}
+.uplift-label{display:flex;justify-content:space-between;margin-bottom:8px;}
+.uplift-label span{font-size:12px;color:var(--c-muted);}
+.bar-track{height:8px;background:var(--c-rule);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--c-orange),#FF9A5C);transition:width .6s cubic-bezier(0,0,.2,1);}
+.bar-fill.good{background:linear-gradient(90deg,#30D158,#34C759);}
+.calc-cta{margin-top:20px;text-align:center;padding:20px;background:rgba(255,107,26,.08);border:0.5px solid rgba(255,107,26,.2);border-radius:var(--r-lg);}
+.calc-cta p{font-size:13px;color:var(--c-sub);margin-bottom:12px;}
+
+/* ── PRICING ESTIMATOR ─────────────────────────────────────────────── */
+.estimator-wrap{display:grid;grid-template-columns:1fr 380px;gap:16px;align-items:start;}
+.service-picker{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:28px;}
+.sp-title{font-size:17px;font-weight:700;color:var(--c-ink);margin-bottom:20px;}
+.svc-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:0.5px solid var(--c-rule);cursor:pointer;}
+.svc-row:last-child{border-bottom:none;}
+.svc-toggle{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--c-rule);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.svc-toggle.on{background:var(--c-orange);border-color:var(--c-orange);}
+.svc-toggle.on::after{content:'✓';font-size:12px;font-weight:700;color:#fff;}
+.svc-info{flex:1;}
+.svc-info-name{font-size:14px;font-weight:600;color:var(--c-ink);}
+.svc-info-desc{font-size:12px;color:var(--c-muted);margin-top:1px;}
+.svc-range{font-size:13px;font-weight:600;color:var(--c-orange);white-space:nowrap;}
+.estimate-panel{background:linear-gradient(135deg,#FFF3EE 0%,#FFE8DC 100%);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-xl);padding:28px;color:var(--c-ink);position:sticky;top:80px;}
+.ep-title{font-size:14px;font-weight:600;color:var(--c-muted);margin-bottom:20px;letter-spacing:.5px;text-transform:uppercase;}
+.ep-total{font-size:44px;font-weight:800;letter-spacing:-2px;color:var(--c-ink);margin-bottom:4px;transition:all .3s;}
+.ep-total em{font-size:20px;font-weight:400;color:rgba(255,107,26,.7);font-style:normal;letter-spacing:0;}
+.ep-sub{font-size:13px;color:var(--c-muted);margin-bottom:24px;}
+.ep-items{margin-bottom:24px;}
+.ep-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:0.5px solid var(--c-rule);}
+.ep-item:last-child{border-bottom:none;}
+.ep-item-name{font-size:13px;color:var(--c-sub);}
+.ep-item-val{font-size:13px;font-weight:600;color:var(--c-orange);}
+.ep-note{font-size:11px;color:var(--c-muted);line-height:1.5;margin-bottom:20px;}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <p class="page-eyebrow">Swytch Studio · Tools</p>
+  <h1 class="page-hl">Find your path to growth.</h1>
+  <p class="page-sub">Use these interactive tools to see exactly what Swytch can do for your brand — and what it takes to get there.</p>
+  <div class="tool-tabs">
+    <button class="tool-tab active" onclick="switchTab('brief')">AI Brief Intake</button>
+    <button class="tool-tab" onclick="switchTab('roas')">ROAS Calculator</button>
+    <button class="tool-tab" onclick="switchTab('pricing')">Pricing Estimator</button>
+  </div>
+</div>
+
+<div class="tools-wrap">
+
+<!-- ══ BRIEF INTAKE ══════════════════════════════════════════════════ -->
+<div class="tool-panel active" id="tab-brief">
+  <div class="form-card" id="briefForm">
+    <div class="step-indicator">
+      <div class="step-dot active" id="dot-1"></div>
+      <div class="step-dot" id="dot-2"></div>
+      <div class="step-dot" id="dot-3"></div>
+      <div class="step-dot" id="dot-4"></div>
+      <span class="step-label" id="step-label">Step 1 of 4</span>
+    </div>
+
+    <!-- Step 1: Brand basics -->
+    <div class="step active" id="step-1">
+      <div class="step-title">Tell us about your brand.</div>
+      <div class="step-sub">We'll use this to recommend the right services for you.</div>
+      <div class="field"><label>Brand / Company Name</label><input type="text" id="brandName" placeholder="e.g. Nykaa, Boat, Your Brand"></div>
+      <div class="field"><label>Industry</label>
+        <select id="industry">
+          <option value="">Select your industry</option>
+          <option>Fashion & Apparel</option><option>Beauty & Personal Care</option>
+          <option>Food & Beverage</option><option>Consumer Electronics</option>
+          <option>Home & Lifestyle</option><option>Financial Services</option>
+          <option>Healthcare & Wellness</option><option>Gaming & Entertainment</option>
+          <option>Real Estate</option><option>Education</option><option>Other</option>
+        </select>
+      </div>
+      <div class="field"><label>Stage</label>
+        <div class="option-grid">
+          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">🌱</span>Early stage / Pre-revenue</button>
+          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">🚀</span>Growing (₹10L – ₹1Cr/mo)</button>
+          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">📈</span>Scaling (₹1Cr – ₹10Cr/mo)</button>
+          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">🏢</span>Enterprise (₹10Cr+/mo)</button>
+        </div>
+      </div>
+      <div class="form-actions">
+        <span></span>
+        <button class="btn-primary" onclick="nextStep(2)">Continue <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Step 2: Goals -->
+    <div class="step" id="step-2">
+      <div class="step-title">What are your biggest goals?</div>
+      <div class="step-sub">Select all that apply — we'll prioritise accordingly.</div>
+      <div class="option-grid" style="grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;">
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">💰</span>Drive more sales</button>
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">📱</span>Grow social following</button>
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🌐</span>Launch / redesign website</button>
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🎯</span>Improve ad performance</button>
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🤖</span>Automate marketing</button>
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🎬</span>Create content at scale</button>
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">👥</span>Influencer campaigns</button>
+        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">📊</span>Track & measure everything</button>
+      </div>
+      <div class="form-actions">
+        <button class="btn-ghost" onclick="nextStep(1)">← Back</button>
+        <button class="btn-primary" onclick="nextStep(3)">Continue <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Step 3: Budget & timeline -->
+    <div class="step" id="step-3">
+      <div class="step-title">Budget &amp; timeline.</div>
+      <div class="step-sub">No judgement — this helps us recommend what's realistic.</div>
+      <div class="field">
+        <label>Monthly Marketing Budget</label>
+        <div class="budget-chips">
+          <button class="budget-chip" onclick="selectChip(this,'budget')">Under ₹50K</button>
+          <button class="budget-chip" onclick="selectChip(this,'budget')">₹50K – ₹2L</button>
+          <button class="budget-chip" onclick="selectChip(this,'budget')">₹2L – ₹5L</button>
+          <button class="budget-chip" onclick="selectChip(this,'budget')">₹5L – ₹15L</button>
+          <button class="budget-chip" onclick="selectChip(this,'budget')">₹15L+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>When do you want to start?</label>
+        <div class="budget-chips">
+          <button class="budget-chip" onclick="selectChip(this,'timeline')">ASAP</button>
+          <button class="budget-chip" onclick="selectChip(this,'timeline')">Next 2–4 weeks</button>
+          <button class="budget-chip" onclick="selectChip(this,'timeline')">Next 1–2 months</button>
+          <button class="budget-chip" onclick="selectChip(this,'timeline')">Just exploring</button>
+        </div>
+      </div>
+      <div class="field"><label>Biggest frustration with current marketing</label><textarea id="frustration" placeholder="e.g. We're spending on ads but can't track what's working. Our content is inconsistent..."></textarea></div>
+      <div class="form-actions">
+        <button class="btn-ghost" onclick="nextStep(2)">← Back</button>
+        <button class="btn-primary" onclick="nextStep(4)">Continue <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Step 4: Contact -->
+    <div class="step" id="step-4">
+      <div class="step-title">One last thing.</div>
+      <div class="step-sub">Where should we send your personalised Swytch recommendation?</div>
+      <div class="field"><label>Your Name</label><input type="text" id="contactName" placeholder="Raj Shah"></div>
+      <div class="field"><label>Work Email</label><input type="email" id="contactEmail" placeholder="raj@yourbrand.com"></div>
+      <div class="field"><label>WhatsApp Number</label><input type="tel" id="contactPhone" placeholder="+91 98218 17273"></div>
+      <div class="form-actions">
+        <button class="btn-ghost" onclick="nextStep(3)">← Back</button>
+        <button class="btn-primary" onclick="showResult()">Get my recommendation <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-card" id="briefResult" style="display:none;margin-top:16px;">
+    <div class="result-badge">✦ Your Swytch Growth Plan</div>
+    <div class="result-hl" id="result-hl">Here's what we'd build for you.</div>
+    <div class="result-sub" id="result-sub">Based on your goals and stage, here are the three services that will move the needle fastest.</div>
+    <div class="result-services" id="result-services"></div>
+    <div class="result-cta">
+      <button class="btn-orange-solid" onclick="window.location.href='https://api.whatsapp.com/send/?phone=%2B919821817273'">Book a strategy call ↗</button>
+      <button class="btn-outline-wt" onclick="resetForm()">Start over</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ROAS CALCULATOR ═════════════════════════════════════════════ -->
+<div class="tool-panel" id="tab-roas">
+  <div class="calc-grid">
+    <div class="calc-card">
+      <div class="calc-label">Your current numbers</div>
+      <div class="slider-field">
+        <div class="slider-top"><span class="slider-name">Monthly ad spend</span><span class="slider-val" id="spend-val">₹1,00,000</span></div>
+        <input type="range" min="10000" max="1000000" step="10000" value="100000" oninput="updateCalc()" id="spend-slider">
+      </div>
+      <div class="slider-field">
+        <div class="slider-top"><span class="slider-name">Current ROAS</span><span class="slider-val" id="roas-val">1.8×</span></div>
+        <input type="range" min="0.5" max="8" step="0.1" value="1.8" oninput="updateCalc()" id="roas-slider">
+      </div>
+      <div class="slider-field">
+        <div class="slider-top"><span class="slider-name">Avg order value</span><span class="slider-val" id="aov-val">₹1,200</span></div>
+        <input type="range" min="200" max="10000" step="100" value="1200" oninput="updateCalc()" id="aov-slider">
+      </div>
+      <div class="slider-field">
+        <div class="slider-top"><span class="slider-name">Avg team size</span><span class="slider-val" id="team-val">3 people</span></div>
+        <input type="range" min="1" max="20" step="1" value="3" oninput="updateCalc()" id="team-slider">
+      </div>
+    </div>
+    <div class="result-panel">
+      <div class="rp-eyebrow">Projected with Swytch</div>
+      <div class="rp-headline">Here's what we typically achieve in 90 days:</div>
+      <div class="metric-row">
+        <div class="metric"><div class="metric-num" id="proj-roas">3.2×</div><div class="metric-lbl">Projected ROAS</div></div>
+        <div class="metric"><div class="metric-num good" id="proj-rev">₹3.2L</div><div class="metric-lbl">Monthly revenue</div></div>
+        <div class="metric"><div class="metric-num" id="proj-orders">267</div><div class="metric-lbl">Est. orders/mo</div></div>
+        <div class="metric"><div class="metric-num good" id="proj-uplift">+78%</div><div class="metric-lbl">Revenue uplift</div></div>
+      </div>
+      <div class="uplift-bar">
+        <div class="uplift-label"><span>Current revenue</span><span id="cur-rev-lbl">₹1.8L</span></div>
+        <div class="bar-track"><div class="bar-fill" id="cur-bar" style="width:45%"></div></div>
+      </div>
+      <div class="uplift-bar" style="margin-top:10px;">
+        <div class="uplift-label"><span>With Swytch</span><span id="proj-rev-lbl">₹3.2L</span></div>
+        <div class="bar-track"><div class="bar-fill good" id="proj-bar" style="width:80%"></div></div>
+      </div>
+      <div class="calc-cta">
+        <p>Ready to achieve these numbers for your brand?</p>
+        <button class="btn-orange-solid" onclick="window.location.href='https://api.whatsapp.com/send/?phone=%2B919821817273'">Talk to Swytch ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRICING ESTIMATOR ═══════════════════════════════════════════ -->
+<div class="tool-panel" id="tab-pricing">
+  <div class="estimator-wrap">
+    <div class="service-picker">
+      <div class="sp-title">Select the services you need</div>
+      <div id="svc-list"></div>
+    </div>
+    <div class="estimate-panel">
+      <div class="ep-title">Monthly Estimate</div>
+      <div class="ep-total" id="ep-total">₹0 <em>/mo</em></div>
+      <div class="ep-sub" id="ep-sub">Select services to see your estimate</div>
+      <div class="ep-items" id="ep-items"></div>
+      <div class="ep-note">All estimates are indicative ranges. Final pricing depends on scope, deliverables, and campaign scale. We'll give you an exact quote on a 30-min call.</div>
+      <button class="btn-orange-solid" style="width:100%;justify-content:center;" onclick="window.location.href='https://api.whatsapp.com/send/?phone=%2B919821817273'">Get exact quote ↗</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /tools-wrap -->
+
+<script>
+// ── TAB SWITCHING ──────────────────────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.tool-tab').forEach((t,i)=>t.classList.toggle('active',['brief','roas','pricing'][i]===id));
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+// ── BRIEF FORM ─────────────────────────────────────────────────────────
+let currentStep=1, goals=[], selectedStage='', selectedBudget='', selectedTimeline='';
+
+function nextStep(n) {
+  document.getElementById('step-'+currentStep).classList.remove('active');
+  document.getElementById('dot-'+currentStep).classList.remove('active');
+  document.getElementById('dot-'+currentStep).classList.add('done');
+  currentStep=n;
+  if(n<=4){
+    document.getElementById('step-'+n).classList.add('active');
+    document.getElementById('dot-'+n).classList.add('active');
+    document.getElementById('step-label').textContent='Step '+n+' of 4';
+  }
+}
+
+function selectOption(btn, group) {
+  btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if(group==='stage') selectedStage=btn.textContent.trim();
+}
+function toggleGoal(btn) {
+  btn.classList.toggle('selected');
+  const t=btn.textContent.trim();
+  goals=goals.includes(t)?goals.filter(g=>g!==t):[...goals,t];
+}
+function selectChip(btn,group){
+  btn.closest('.budget-chips').querySelectorAll('.budget-chip').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if(group==='budget') selectedBudget=btn.textContent.trim();
+  if(group==='timeline') selectedTimeline=btn.textContent.trim();
+}
+
+function showResult(){
+  document.getElementById('briefForm').style.display='none';
+  const res=document.getElementById('briefResult');
+  res.style.display='block';
+
+  // Generate recommendation based on goals
+  const serviceMap={
+    'Drive more sales':          {num:'02',name:'Performance Marketing',desc:'Meta + Google ads optimised to real revenue. Full attribution.'},
+    'Grow social following':     {num:'01',name:'Content & SMM',desc:'Strategy, reels, carousels, posting schedule — all managed.'},
+    'Launch / redesign website': {num:'03',name:'Website Design & Dev',desc:'CRO-first Shopify or custom build. Live in 4–6 weeks.'},
+    'Improve ad performance':    {num:'02',name:'Performance Marketing',desc:'Audit + rebuild. Every campaign tracked to rupee.'},
+    'Automate marketing':        {num:'06',name:'MarTech Services',desc:'CRM + automation + dashboards — all connected.'},
+    'Create content at scale':   {num:'04',name:'AI Content Production',desc:'AI-powered shoots, video, and content at 10× speed.'},
+    'Influencer campaigns':      {num:'05',name:'Influencer Marketing',desc:'Creator matching, briefs, UTMs, reporting.'},
+    'Track & measure everything':{num:'06',name:'MarTech & Analytics',desc:'Live dashboards. Revenue attribution. No more guesswork.'},
+  };
+  const defaults=[
+    {num:'07',name:'Creative Strategy',desc:'Brand positioning, voice, visual identity.'},
+    {num:'01',name:'Content Creation',desc:'Reels, carousels, campaigns — on brand every time.'},
+    {num:'03',name:'Website Design',desc:'Websites built to convert, not just look good.'},
+  ];
+  let recs=goals.map(g=>serviceMap[g]).filter(Boolean).slice(0,3);
+  while(recs.length<3) recs.push(defaults[recs.length]);
+
+  document.getElementById('result-services').innerHTML=recs.map(r=>`
+    <div class="rs-card">
+      <div class="rs-num">${r.num}</div>
+      <div class="rs-name">${r.name}</div>
+      <div class="rs-desc">${r.desc}</div>
+    </div>`).join('');
+
+  const name=document.getElementById('contactName').value||'there';
+  document.getElementById('result-hl').textContent=`Here's what we'd build for ${name.split(' ')[0]}.`;
+}
+
+function resetForm(){
+  document.getElementById('briefResult').style.display='none';
+  document.getElementById('briefForm').style.display='block';
+  currentStep=1; goals=[];
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.step-dot').forEach(d=>{d.classList.remove('active','done');});
+  document.getElementById('step-1').classList.add('active');
+  document.getElementById('dot-1').classList.add('active');
+  document.getElementById('step-label').textContent='Step 1 of 4';
+  document.querySelectorAll('.option-btn,.budget-chip').forEach(b=>b.classList.remove('selected'));
+}
+
+// ── ROAS CALCULATOR ────────────────────────────────────────────────────
+function fmt(n){return'₹'+n.toLocaleString('en-IN');}
+
+function updateCalc(){
+  const spend=+document.getElementById('spend-slider').value;
+  const roas=+document.getElementById('roas-slider').value;
+  const aov=+document.getElementById('aov-slider').value;
+  const team=+document.getElementById('team-slider').value;
+
+  document.getElementById('spend-val').textContent=fmt(spend);
+  document.getElementById('roas-val').textContent=roas.toFixed(1)+'×';
+  document.getElementById('aov-val').textContent=fmt(aov);
+  document.getElementById('team-val').textContent=team+' '+(team===1?'person':'people');
+
+  const curRev=spend*roas;
+  const curOrders=Math.round(curRev/aov);
+
+  // Swytch typically achieves 1.6–2.4× improvement
+  const improvement=Math.min(1+(team<=3?0.9:0.6),roas<2?1.9:roas<4?1.5:1.3);
+  const projRoas=Math.min(roas*improvement, 12);
+  const projRev=spend*projRoas;
+  const projOrders=Math.round(projRev/aov);
+  const uplift=Math.round((projRev/curRev-1)*100);
+
+  document.getElementById('proj-roas').textContent=projRoas.toFixed(1)+'×';
+  document.getElementById('proj-rev').textContent=fmt(Math.round(projRev));
+  document.getElementById('proj-orders').textContent=projOrders.toLocaleString('en-IN');
+  document.getElementById('proj-uplift').textContent='+'+uplift+'%';
+  document.getElementById('cur-rev-lbl').textContent=fmt(Math.round(curRev));
+  document.getElementById('proj-rev-lbl').textContent=fmt(Math.round(projRev));
+
+  const maxRev=Math.max(curRev,projRev)*1.1;
+  document.getElementById('cur-bar').style.width=Math.round(curRev/maxRev*100)+'%';
+  document.getElementById('proj-bar').style.width=Math.round(projRev/maxRev*100)+'%';
+}
+updateCalc();
+
+// ── PRICING ESTIMATOR ──────────────────────────────────────────────────
+const SERVICES=[
+  {name:'Content Creation & Management',  desc:'30 posts/mo · calendar · scheduling',    min:35000, max:75000},
+  {name:'Performance Marketing',           desc:'Meta + Google · full attribution',        min:25000, max:60000},
+  {name:'Website Design & Development',    desc:'Shopify/custom · CRO-first',             min:50000, max:150000},
+  {name:'AI Content Production',           desc:'AI shoots · CGI ads · automation',       min:40000, max:90000},
+  {name:'Influencer Marketing',            desc:'Creator sourcing · briefs · tracking',   min:30000, max:80000},
+  {name:'MarTech Services',                desc:'CRM · dashboards · Zapier/n8n',          min:20000, max:55000},
+  {name:'Creative Strategy',              desc:'Brand voice · identity · direction',      min:15000, max:40000},
+  {name:'Custom Tech Services',           desc:'Apps · integrations · custom builds',     min:50000, max:200000},
+];
+
+let selectedSvcs=new Set();
+
+function renderSvcList(){
+  document.getElementById('svc-list').innerHTML=SERVICES.map((s,i)=>`
+    <div class="svc-row" onclick="toggleSvc(${i})">
+      <div class="svc-toggle ${selectedSvcs.has(i)?'on':''}" id="stog-${i}"></div>
+      <div class="svc-info">
+        <div class="svc-info-name">${s.name}</div>
+        <div class="svc-info-desc">${s.desc}</div>
+      </div>
+      <div class="svc-range">₹${(s.min/1000).toFixed(0)}K–${(s.max/1000).toFixed(0)}K</div>
+    </div>`).join('');
+}
+
+function toggleSvc(i){
+  if(selectedSvcs.has(i)) selectedSvcs.delete(i); else selectedSvcs.add(i);
+  renderSvcList(); updateEstimate();
+}
+
+function updateEstimate(){
+  const sel=[...selectedSvcs].map(i=>SERVICES[i]);
+  const total=sel.reduce((s,v)=>s+(v.min+v.max)/2,0);
+  const minT=sel.reduce((s,v)=>s+v.min,0);
+  const maxT=sel.reduce((s,v)=>s+v.max,0);
+  const fmt2=n=>'₹'+Math.round(n/1000)+'K';
+  document.getElementById('ep-total').innerHTML=sel.length?`${fmt2(minT)}–${fmt2(maxT)} <em>/mo</em>`:'₹0 <em>/mo</em>';
+  document.getElementById('ep-sub').textContent=sel.length?`${sel.length} service${sel.length>1?'s':''} selected · indicative range`:'Select services to see your estimate';
+  document.getElementById('ep-items').innerHTML=sel.map(s=>`
+    <div class="ep-item">
+      <span class="ep-item-name">${s.name}</span>
+      <span class="ep-item-val">₹${(s.min/1000).toFixed(0)}K–${(s.max/1000).toFixed(0)}K</span>
+    </div>`).join('');
+}
+
+renderSvcList(); updateEstimate();
+</script>
+</body>
+</html>

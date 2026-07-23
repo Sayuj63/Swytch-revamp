@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swytch Studio — Portfolio & Case Studies</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root{
+  --c-bg:#FFF;--c-bg2:#F5F5F7;--c-ink:#1D1D1F;--c-sub:#6E6E73;--c-muted:#86868B;
+  --c-rule:#D2D2D7;--c-orange:#FF6B1A;--c-orange-dk:#D95A10;
+  --gl-sh:0 4px 32px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04);
+  --gl-sh-lg:0 12px 56px rgba(0,0,0,0.11),0 2px 6px rgba(0,0,0,0.05);
+  --r-md:14px;--r-lg:20px;--r-xl:28px;--r-2xl:40px;--r-pill:100px;
+  --sp:clamp(20px,5vw,80px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:var(--c-ink);}
+[data-anim]{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(0,0,.2,1),transform .7s cubic-bezier(0,0,.2,1);}
+[data-anim].visible{opacity:1;transform:none;}
+[data-delay="1"]{transition-delay:.08s!important;}
+[data-delay="2"]{transition-delay:.16s!important;}
+[data-delay="3"]{transition-delay:.24s!important;}
+[data-delay="4"]{transition-delay:.32s!important;}
+
+/* HEADER */
+.page-hero{padding:120px var(--sp) 72px;background:var(--c-bg);}
+.ph-inner{max-width:1200px;margin:0 auto;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:14px;}
+.ph-hl{font-size:clamp(40px,6vw,80px);font-weight:800;letter-spacing:-2.5px;line-height:1.03;color:var(--c-ink);margin-bottom:20px;}
+.ph-sub{font-size:clamp(15px,1.6vw,18px);font-weight:300;color:var(--c-sub);line-height:1.65;max-width:560px;}
+.ph-stats{display:flex;gap:48px;margin-top:48px;padding-top:40px;border-top:0.5px solid var(--c-rule);flex-wrap:wrap;}
+.ph-stat-num{font-size:36px;font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);}
+.ph-stat-num em{color:var(--c-orange);font-style:normal;}
+.ph-stat-lbl{font-size:12px;color:var(--c-muted);margin-top:4px;}
+
+/* FILTER */
+.filter-bar{padding:0 var(--sp) 48px;max-width:1200px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;}
+.filter-btn{font-size:13px;font-weight:500;padding:8px 20px;border-radius:var(--r-pill);border:0.5px solid var(--c-rule);background:rgba(255,255,255,.7);color:var(--c-sub);cursor:pointer;transition:all .2s;}
+.filter-btn.active,.filter-btn:hover{border-color:var(--c-orange);color:var(--c-orange);background:rgba(255,107,26,.06);}
+.filter-btn.active{font-weight:600;}
+
+/* CASE STUDY GRID */
+.cases-grid{padding:0 var(--sp) 120px;max-width:1200px;margin:0 auto;display:grid;gap:16px;}
+
+/* Hero case study */
+.cs-hero{border-radius:var(--r-2xl);overflow:hidden;display:grid;grid-template-columns:1.1fr 1fr;min-height:480px;border:0.5px solid var(--c-rule);}
+.cs-hero-visual{position:relative;background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;}
+.cs-hero-bg-num{position:absolute;font-size:200px;font-weight:800;color:rgba(255,107,26,.06);letter-spacing:-8px;line-height:1;bottom:-20px;right:-10px;pointer-events:none;}
+.cs-logo{font-size:28px;font-weight:800;color:var(--c-ink);letter-spacing:-1px;margin-bottom:32px;position:relative;z-index:1;}
+.cs-metric-big{text-align:center;position:relative;z-index:1;}
+.cs-mb-num{font-size:72px;font-weight:800;letter-spacing:-3px;color:var(--c-orange);line-height:1;}
+.cs-mb-lbl{font-size:13px;color:var(--c-sub);letter-spacing:1px;margin-top:6px;}
+.cs-hero-content{padding:48px 44px;display:flex;flex-direction:column;gap:0;background:var(--c-bg2);}
+.cs-tag{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;margin-bottom:16px;}
+.cs-name{font-size:28px;font-weight:800;letter-spacing:-.8px;color:var(--c-ink);margin-bottom:12px;line-height:1.1;}
+.cs-scope{font-size:14px;color:var(--c-sub);line-height:1.6;margin-bottom:28px;}
+.cs-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.cs-m{background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-md);padding:14px 12px;}
+.cs-m-num{font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
+.cs-m-lbl{font-size:11px;color:var(--c-muted);margin-top:3px;}
+.cs-read{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--c-orange);}
+.cs-read svg{transition:transform .2s;}
+.cs-read:hover svg{transform:translateX(4px);}
+
+/* Small case study cards */
+.cs-small-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.cs-card{border-radius:var(--r-xl);overflow:hidden;border:0.5px solid var(--c-rule);background:var(--c-bg);transition:transform .3s,box-shadow .3s;}
+.cs-card:hover{transform:translateY(-4px);box-shadow:var(--gl-sh-lg);}
+.cs-card-visual{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.cs-card-visual .cv-num{font-size:80px;font-weight:800;letter-spacing:-3px;color:rgba(0,0,0,.06);position:absolute;}
+.cs-card-visual .cv-metric{text-align:center;position:relative;z-index:1;}
+.cv-metric-num{font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--c-ink);line-height:1;}
+.cv-metric-lbl{font-size:10px;color:var(--c-sub);letter-spacing:1px;margin-top:4px;}
+.cs-card-body{padding:24px 20px;}
+.cs-card-tag{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;margin-bottom:8px;}
+.cs-card-name{font-size:16px;font-weight:700;letter-spacing:-.3px;color:var(--c-ink);margin-bottom:6px;}
+.cs-card-scope{font-size:12px;color:var(--c-muted);line-height:1.5;margin-bottom:14px;}
+.cs-card-metrics{display:flex;gap:16px;}
+.ccm{font-size:13px;font-weight:700;color:var(--c-orange);}
+.ccm span{font-size:10px;font-weight:400;color:var(--c-muted);display:block;margin-top:1px;}
+
+/* Testimonial pull quote */
+.pull-quote{background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 100%);border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-2xl);padding:56px 48px;margin:16px 0;position:relative;overflow:hidden;}
+.pull-quote::before{content:'❝';position:absolute;top:24px;left:40px;font-size:80px;color:rgba(255,107,26,.15);line-height:1;font-family:Georgia,serif;}
+.pq-text{font-size:clamp(18px,2.5vw,26px);font-weight:300;color:var(--c-ink);line-height:1.55;margin-bottom:28px;padding-top:16px;font-style:italic;max-width:700px;}
+.pq-author{display:flex;align-items:center;gap:16px;}
+.pq-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--c-orange),#FF9A5C);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;}
+.pq-name{font-size:14px;font-weight:700;color:var(--c-ink);}
+.pq-role{font-size:12px;color:var(--c-muted);}
+
+/* CTA */
+.cases-cta{text-align:center;padding:48px;background:var(--c-bg2);border-radius:var(--r-2xl);margin-top:16px;}
+.cases-cta h2{font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-1px;color:var(--c-ink);margin-bottom:12px;}
+.cases-cta p{font-size:15px;color:var(--c-sub);margin-bottom:32px;}
+.btn-orange{display:inline-flex;align-items:center;gap:7px;background:var(--c-orange);color:#fff;font-size:15px;font-weight:600;padding:14px 28px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:all .2s;box-shadow:0 2px 16px rgba(255,107,26,.28);}
+.btn-orange:hover{background:var(--c-orange-dk);transform:translateY(-1px);}
+
+@media(max-width:900px){.cs-hero{grid-template-columns:1fr;}.cs-small-grid{grid-template-columns:1fr;}.cs-hero-visual{min-height:260px;}}
+@media(max-width:600px){.ph-stats{gap:28px;}.cs-metrics{grid-template-columns:1fr 1fr;}.cs-small-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <p class="eyebrow" data-anim>Work & outcomes</p>
+    <h1 class="ph-hl" data-anim data-delay="1">Results.<br>Not just reels.</h1>
+    <p class="ph-sub" data-anim data-delay="2">Real campaigns. Real numbers. Real brands that grew with Swytch.</p>
+    <div class="ph-stats" data-anim data-delay="3">
+      <div><div class="ph-stat-num">26<em>+</em></div><div class="ph-stat-lbl">Projects delivered</div></div>
+      <div><div class="ph-stat-num">50<em>M+</em></div><div class="ph-stat-lbl">Impressions generated</div></div>
+      <div><div class="ph-stat-num">3.2<em>×</em></div><div class="ph-stat-lbl">Avg ROAS</div></div>
+      <div><div class="ph-stat-num">₹8<em>L+</em></div><div class="ph-stat-lbl">Monthly revenue scaled</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar" data-anim>
+  <button class="filter-btn active" onclick="filterCases(this,'all')">All work</button>
+  <button class="filter-btn" onclick="filterCases(this,'performance')">Performance Marketing</button>
+  <button class="filter-btn" onclick="filterCases(this,'content')">Content & Social</button>
+  <button class="filter-btn" onclick="filterCases(this,'tech')">Web & Tech</button>
+  <button class="filter-btn" onclick="filterCases(this,'ai')">AI Solutions</button>
+</div>
+
+<div class="cases-grid">
+  <!-- Hero: MeTime -->
+  <div class="cs-hero" data-anim data-category="content tech">
+    <div class="cs-hero-visual">
+      <div class="cs-hero-bg-num">ME</div>
+      <div class="cs-logo">MeTime</div>
+      <div class="cs-metric-big">
+        <div class="cs-mb-num">2M+</div>
+        <div class="cs-mb-lbl">APP INSTALLS</div>
+      </div>
+    </div>
+    <div class="cs-hero-content">
+      <div class="cs-tag">Content · Brand · Tech</div>
+      <div class="cs-name">From zero to India's top family video platform.</div>
+      <div class="cs-scope">Swytch built MeTime's entire brand identity, content system, and growth campaigns from scratch — taking the platform to 2M+ installs across India.</div>
+      <div class="cs-metrics">
+        <div class="cs-m"><div class="cs-m-num">2M+</div><div class="cs-m-lbl">App installs</div></div>
+        <div class="cs-m"><div class="cs-m-num">40K+</div><div class="cs-m-lbl">Followers</div></div>
+        <div class="cs-m"><div class="cs-m-num">12mo</div><div class="cs-m-lbl">Partnership</div></div>
+      </div>
+      <a href="#" class="cs-read">Read case study <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <!-- Pull quote -->
+  <div class="pull-quote" data-anim>
+    <div class="pq-text">"Swytch didn't just run our social — they built our entire marketing infrastructure. Content system, ad stack, dashboards. We couldn't have scaled without them."</div>
+    <div class="pq-author">
+      <div class="pq-avatar">VG</div>
+      <div><div class="pq-name">Viren Gathani</div><div class="pq-role">Founder, MeTime / Twenties Entertainment</div></div>
+    </div>
+  </div>
+
+  <!-- 3 small cards -->
+  <div class="cs-small-grid">
+    <div class="cs-card" data-anim data-delay="1" data-category="performance content">
+      <div class="cs-card-visual" style="background:linear-gradient(135deg,#F0EEF5,#E5E1F0);">
+        <div class="cv-num">MF</div>
+        <div class="cv-metric"><div class="cv-metric-num">50M+</div><div class="cv-metric-lbl">IMPRESSIONS</div></div>
+      </div>
+      <div class="cs-card-body">
+        <div class="cs-card-tag">Content · Social</div>
+        <div class="cs-card-name">Mahindra Finance</div>
+        <div class="cs-card-scope">Nationwide content campaign across 8 platforms — 50M+ impressions in 60 days.</div>
+        <div class="cs-card-metrics">
+          <div class="ccm">50M+ <span>Impressions</span></div>
+          <div class="ccm">60d <span>Delivery</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-card" data-anim data-delay="2" data-category="performance content">
+      <div class="cs-card-visual" style="background:linear-gradient(135deg,#FAF0DC,#F5E4C0);">
+        <div class="cv-num">KK</div>
+        <div class="cv-metric"><div class="cv-metric-num">3×</div><div class="cv-metric-lbl">ENGAGEMENT</div></div>
+      </div>
+      <div class="cs-card-body">
+        <div class="cs-card-tag">Performance · Content</div>
+        <div class="cs-card-name">Kewal Kiran / Lawman</div>
+        <div class="cs-card-scope">Ecommerce content overhaul and social growth strategy. 3× engagement in 90 days.</div>
+        <div class="cs-card-metrics">
+          <div class="ccm">3× <span>Engagement</span></div>
+          <div class="ccm">+40% <span>Organic reach</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-card" data-anim data-delay="3" data-category="tech ai">
+      <div class="cs-card-visual" style="background:linear-gradient(135deg,#E8F0FA,#D8E8F5);">
+        <div class="cv-num">CS</div>
+        <div class="cv-metric"><div class="cv-metric-num">6wk</div><div class="cv-metric-lbl">BRAND LAUNCH</div></div>
+      </div>
+      <div class="cs-card-body">
+        <div class="cs-card-tag">Brand · Tech · Content</div>
+        <div class="cs-card-name">Coinstore</div>
+        <div class="cs-card-scope">Full brand identity, website, and content system — brief to live in 6 weeks.</div>
+        <div class="cs-card-metrics">
+          <div class="ccm">6wk <span>Full build</span></div>
+          <div class="ccm">100% <span>On brief</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 wide cards -->
+  <div class="cs-small-grid" style="grid-template-columns:1fr 1fr;">
+    <div class="cs-card" data-anim data-delay="1" data-category="performance">
+      <div class="cs-card-visual" style="background:linear-gradient(135deg,#FFF0E5,#FFE0C8);height:200px;">
+        <div class="cv-num">KJ</div>
+        <div class="cv-metric"><div class="cv-metric-num">₹8L+</div><div class="cv-metric-lbl">MONTHLY REVENUE</div></div>
+      </div>
+      <div class="cs-card-body">
+        <div class="cs-card-tag">D2C · Performance · Content</div>
+        <div class="cs-card-name">Killer Jeans</div>
+        <div class="cs-card-scope">D2C growth strategy, Meta + Google ads, and content system. ₹0 to ₹8L+/mo in 90 days.</div>
+        <div class="cs-card-metrics">
+          <div class="ccm">₹8L+ <span>Monthly revenue</span></div>
+          <div class="ccm">90d <span>To scale</span></div>
+          <div class="ccm">3.8× <span>ROAS</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cs-card" data-anim data-delay="2" data-category="ai content">
+      <div class="cs-card-visual" style="background:linear-gradient(135deg,#E5F5EE,#D5EDE0);height:200px;">
+        <div class="cv-num">TY</div>
+        <div class="cv-metric"><div class="cv-metric-num">10×</div><div class="cv-metric-lbl">CONTENT OUTPUT</div></div>
+      </div>
+      <div class="cs-card-body">
+        <div class="cs-card-tag">AI · Content · Social</div>
+        <div class="cs-card-name">The Yoga Institute</div>
+        <div class="cs-card-scope">AI-led content production. 10× output, 68% lower cost vs traditional shoots.</div>
+        <div class="cs-card-metrics">
+          <div class="ccm">10× <span>Output</span></div>
+          <div class="ccm">68% <span>Cost savings</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cases-cta" data-anim>
+    <h2>Your brand could be the next case study.</h2>
+    <p>Tell us your goal. We'll tell you how we'd approach it — and what results look realistic.</p>
+    <button class="btn-orange" onclick="window.location.href='https://api.whatsapp.com/send/?phone=%2B919821817273'">
+      Start a project ↗
+    </button>
+  </div>
+</div>
+
+<script>
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+
+function filterCases(btn, cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-category]').forEach(el=>{
+    el.style.opacity = cat==='all'||el.dataset.category.includes(cat) ? '1':'0.3';
+    el.style.transform = cat==='all'||el.dataset.category.includes(cat) ? '':'scale(0.97)';
+    el.style.transition = 'opacity .3s,transform .3s';
+  });
+}
+</script>
+</body>
+</html>
