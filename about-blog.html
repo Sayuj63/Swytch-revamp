@@ -143,6 +143,41 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 </style>
 </head>
 <body>
+<style>
+#site-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(255,255,255,0.82);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:0.5px solid rgba(210,210,215,0.55);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
+#site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;}
+#site-nav .sn-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:#1D1D1F;text-decoration:none;}
+#site-nav .sn-logo svg{width:26px;height:26px;}
+#site-nav .sn-logo .dot{color:#FF6B1A;}
+#site-nav ul{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
+#site-nav ul a{font-size:14px;color:#6E6E73;text-decoration:none;position:relative;transition:color .15s;}
+#site-nav ul a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:#FF6B1A;transform:scaleX(0);transition:transform .2s ease-out;}
+#site-nav ul a:hover{color:#1D1D1F;}
+#site-nav ul a:hover::after,#site-nav ul a.active::after{transform:scaleX(1);}
+#site-nav ul a.active{color:#1D1D1F;font-weight:600;}
+#site-nav .sn-cta{font-size:14px;font-weight:600;color:#FF6B1A;padding:7px 18px;border:1px solid #FF6B1A;border-radius:100px;text-decoration:none;transition:background .2s,color .2s,transform .15s;}
+#site-nav .sn-cta:hover{background:#FF6B1A;color:#fff;transform:scale(1.02);}
+body{padding-top:52px;}
+@media(max-width:768px){#site-nav ul{display:none;}}
+</style>
+<nav id="site-nav">
+  <div class="sn-inner">
+    <a href="index.html" class="sn-logo">
+      <svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
+      Swytch<span class="dot">.</span>
+    </a>
+    <ul>
+      <li><a href="index.html" data-page="index">Home</a></li>
+      <li><a href="portfolio.html" data-page="portfolio">Portfolio</a></li>
+      <li><a href="tools.html" data-page="tools">Tools</a></li>
+      <li><a href="about-blog.html" data-page="about-blog">About</a></li>
+      <li><a href="components-showcase.html" data-page="components-showcase">Components</a></li>
+    </ul>
+    <a href="index.html#cta" class="sn-cta">Get in touch</a>
+  </div>
+</nav>
+<script>(function(){var p=(location.pathname.split('/').pop()||'index.html').replace('.html','');document.querySelectorAll('#site-nav a[data-page]').forEach(function(a){if(a.dataset.page===p)a.classList.add('active');});})();</script>
+
 
 <!-- ════════ ABOUT ════════════════════════════════════════════════ -->
 <section id="about-hero">
