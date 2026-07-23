@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Swytch Studio</title>
+<meta name="description" content="Terms of Use for Swytch Studio, a brand of Swytch Web3 Technologies Private Limited.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap');
+
+/* ══════════════════════════════════════════════════════
+   DESIGN TOKENS (mirrors index.html)
+══════════════════════════════════════════════════════ */
+:root {
+  --c-bg:        #FFFFFF;
+  --c-bg-2:      #F5F5F7;
+  --c-bg-3:      #FAFAFA;
+  --c-ink:       #1D1D1F;
+  --c-sub:       #6E6E73;
+  --c-muted:     #86868B;
+  --c-rule:      #D2D2D7;
+  --c-rule-lt:   rgba(210,210,215,0.5);
+  --c-orange:    #FF6B1A;
+  --c-orange-dk: #D95A10;
+  --c-orange-lt: rgba(255,107,26,0.08);
+  --c-orange-bd: rgba(255,107,26,0.20);
+
+  --gl-bg:     rgba(255,255,255,0.75);
+  --gl-bg-hv:  rgba(255,255,255,0.92);
+  --gl-bd:     rgba(255,255,255,0.55);
+  --gl-blur:   saturate(200%) blur(24px);
+  --gl-sh:     0 4px 32px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+  --gl-sh-lg:  0 12px 56px rgba(0,0,0,0.11), 0 2px 6px rgba(0,0,0,0.05);
+
+  --r-xs:  6px;  --r-sm: 10px; --r-md: 14px;
+  --r-lg:  20px; --r-xl: 28px; --r-2xl:40px;
+  --r-pill:100px;
+
+  --t-display: clamp(44px,6.5vw,88px);
+  --t-hero:    clamp(32px,4.8vw,64px);
+  --t-title:   clamp(24px,3vw,42px);
+  --t-sec:     clamp(18px,2.2vw,28px);
+  --t-lg:      clamp(15px,1.4vw,18px);
+  --t-body:    15px;
+  --t-sm:      13px;
+  --t-xs:      11px;
+
+  --sp:  clamp(20px,5vw,80px);
+  --sec: clamp(60px,8vw,120px);
+
+  --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+  --ease-out:    cubic-bezier(0,0,0.2,1);
+  --ease-in-out: cubic-bezier(0.45,0,0.55,1);
+}
+
+/* ══════════════════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;font-size:16px;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--c-bg);color:var(--c-ink);overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
+
+/* ══════════════════════════════════════════════════════
+   NAV — frosted glass
+══════════════════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:52px;
+  background:rgba(255,255,255,0.82);
+  backdrop-filter:var(--gl-blur);
+  -webkit-backdrop-filter:var(--gl-blur);
+  border-bottom:0.5px solid rgba(210,210,215,0.55);
+  transition:background .3s;
+}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 var(--sp);height:100%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:var(--c-ink);}
+.nav-logo-icon{width:26px;height:26px;}
+.nav-logo-icon svg{width:100%;height:100%;}
+.nav-links{display:flex;align-items:center;gap:24px;list-style:none;}
+.nav-links a{font-size:var(--t-sm);color:var(--c-sub);transition:color .15s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--c-orange);transform:scaleX(0);transition:transform .2s var(--ease-out);}
+.nav-links a:hover{color:var(--c-ink);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-pill{font-size:var(--t-sm);font-weight:600;color:var(--c-orange);padding:7px 18px;border:1px solid var(--c-orange);border-radius:var(--r-pill);transition:background .2s,color .2s,transform .15s;}
+.nav-pill:hover{background:var(--c-orange);color:#fff;transform:scale(1.02);}
+
+/* ══════════════════════════════════════════════════════
+   PAGE HERO
+══════════════════════════════════════════════════════ */
+.page-hero{
+  position:relative;overflow:hidden;
+  padding:160px var(--sp) 80px;
+  text-align:center;
+  background:var(--c-bg);
+}
+.page-hero-glow{
+  position:absolute;top:-15%;left:50%;transform:translateX(-50%);
+  width:800px;height:600px;
+  background:radial-gradient(ellipse,rgba(255,107,26,.06) 0%,rgba(255,107,26,.015) 45%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.page-hero-grid{
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(0,0,0,.055) 1px,transparent 1px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(ellipse 70% 55% at 50% 40%,black 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 55% at 50% 40%,black 20%,transparent 75%);
+  pointer-events:none;z-index:0;
+}
+.page-hero-content{position:relative;z-index:1;max-width:820px;margin:0 auto;}
+.eyebrow{
+  display:inline-block;
+  font-size:var(--t-xs);font-weight:700;letter-spacing:3px;
+  color:var(--c-orange);text-transform:uppercase;margin-bottom:20px;
+}
+.page-title{
+  font-size:var(--t-display);font-weight:800;
+  letter-spacing:-2px;line-height:1.03;color:var(--c-ink);
+  margin-bottom:0;
+}
+
+/* ══════════════════════════════════════════════════════
+   ARTICLE BODY
+══════════════════════════════════════════════════════ */
+.legal-body{
+  padding:20px var(--sp) var(--sec);
+  background:var(--c-bg);
+}
+.legal-inner{
+  max-width:720px;margin:0 auto;
+}
+.legal-body section{
+  margin-bottom:28px;
+}
+.legal-body section:last-of-type{margin-bottom:0;}
+.legal-body h2{
+  font-size:22px;font-weight:700;
+  letter-spacing:-0.5px;color:var(--c-ink);
+  margin-bottom:14px;margin-top:8px;
+}
+.legal-body p{
+  font-size:16px;line-height:1.75;
+  color:var(--c-sub);font-weight:400;
+  margin-bottom:14px;
+}
+.legal-body p.lead{
+  font-size:18px;font-weight:500;color:var(--c-ink);
+}
+.legal-body p:last-child{margin-bottom:0;}
+.legal-body strong{color:var(--c-ink);font-weight:600;}
+.legal-body a{
+  color:var(--c-orange);
+  border-bottom:1px solid rgba(255,107,26,.25);
+  transition:border-color .2s,color .2s;
+}
+.legal-body a:hover{
+  color:var(--c-orange-dk);
+  border-bottom-color:var(--c-orange);
+}
+
+.legal-footer-note{
+  margin-top:56px;
+  padding:24px 28px;
+  background:var(--c-bg-2);
+  border:0.5px solid var(--c-rule-lt);
+  border-radius:var(--r-lg);
+  font-size:14px;line-height:1.7;
+  color:var(--c-muted);
+}
+.legal-footer-note strong{color:var(--c-ink);font-weight:600;}
+
+.legal-divider{
+  width:60px;height:2px;
+  background:var(--c-orange);
+  border:none;margin:0 0 36px;
+  border-radius:2px;
+}
+
+/* ══════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════ */
+footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px solid var(--c-rule);}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:0.5px solid var(--c-rule);}
+.f-brand-name{font-size:17px;font-weight:800;color:var(--c-ink);letter-spacing:-.5px;margin-bottom:10px;}
+.f-brand-name span{color:var(--c-orange);}
+.f-brand-desc{font-size:var(--t-sm);color:var(--c-muted);line-height:1.6;margin-bottom:22px;}
+.f-socials{display:flex;gap:10px;}
+.f-soc{
+  width:34px;height:34px;border-radius:var(--r-sm);
+  border:0.5px solid var(--c-rule);
+  background:rgba(255,255,255,.7);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--c-muted);
+  transition:border-color .2s,color .2s,transform .2s;
+}
+.f-soc svg{width:16px;height:16px;}
+.f-soc:hover{border-color:var(--c-ink);color:var(--c-ink);transform:translateY(-2px);}
+.f-col-title{font-size:var(--t-xs);font-weight:700;letter-spacing:2px;color:var(--c-ink);text-transform:uppercase;margin-bottom:18px;}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.f-links a{font-size:var(--t-sm);color:var(--c-sub);transition:color .15s;line-height:1.5;}
+.f-links a:hover{color:var(--c-ink);}
+.footer-btm{max-width:1200px;margin:0 auto;padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.f-copy{font-size:12px;color:var(--c-muted);}
+.f-address{font-size:12px;color:var(--c-muted);}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════ */
+@media(max-width:960px){
+  .footer-inner{grid-template-columns:1fr 1fr;gap:36px;}
+  .nav-links{display:none;}
+  .page-hero{padding:130px var(--sp) 60px;}
+}
+@media(max-width:600px){
+  .footer-inner{grid-template-columns:1fr;gap:32px;}
+  .legal-body p{font-size:15px;}
+  .legal-body p.lead{font-size:16px;}
+  .legal-body h2{font-size:20px;}
+  .page-hero{padding:120px var(--sp) 50px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg></div>
+      <span class="nav-logo-text">Swytch Studio</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="components-showcase.html">Services</a></li>
+      <li><a href="portfolio.html">Case studies</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="Blogs.html">Blogs</a></li>
+    </ul>
+    <a href="index.html#cta" class="nav-pill">Get in touch</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     PAGE HERO
+════════════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="eyebrow">Legal</div>
+    <h1 class="page-title">Terms of Use</h1>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     BODY
+════════════════════════════════════════════ -->
+<article class="legal-body">
+  <div class="legal-inner">
+    <hr class="legal-divider">
+
+    <section>
+      <p class="lead">Welcome to Swytch Studio.</p>
+    </section>
+
+    <section>
+      <p>By accessing our website, you agree to use it responsibly and lawfully.</p>
+    </section>
+
+    <section>
+      <p>Everything you see here — including our designs, content, case studies, branding, visuals, and ideas — is the intellectual property of Swytch Web3 Technologies Private Limited unless stated otherwise. Please don't copy, reproduce, or redistribute it without written permission.</p>
+    </section>
+
+    <section>
+      <p>Any proposals, quotations, timelines, or estimates shared by us are indicative unless agreed upon in writing.</p>
+    </section>
+
+    <section>
+      <p>Our website may contain links to third-party services. While we recommend trusted platforms, we're not responsible for their content or policies.</p>
+    </section>
+
+    <section>
+      <p>We may update these terms from time to time. Continued use of our website means you accept the latest version.</p>
+    </section>
+
+    <div class="legal-footer-note">
+      <strong>Swytch Studio</strong> is a creative, AI, marketing, and technology studio operated by <strong>Swytch Web3 Technologies Private Limited</strong>, Mumbai, India.
+    </div>
+  </div>
+</article>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand-name">Swytch<span>.</span></div>
+      <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
+      <div class="f-socials">
+        <a href="https://www.google.com/search?q=Swytch+Studio" class="f-soc" aria-label="Google" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.35 11.1H12v2.9h5.35c-.24 1.42-1.66 4.15-5.35 4.15-3.22 0-5.85-2.66-5.85-5.95S8.78 6.25 12 6.25c1.83 0 3.06.78 3.76 1.45l2.56-2.48C16.76 3.72 14.6 2.8 12 2.8 6.98 2.8 2.9 6.88 2.9 11.9c0 5.02 4.08 9.1 9.1 9.1 5.25 0 8.73-3.68 8.73-8.87 0-.6-.07-1.05-.15-1.53z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/swytch.studio/" class="f-soc" aria-label="Instagram" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/82158673/" class="f-soc" aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.36 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.63 0 5.48 3.05 5.48 7.02V22h-4.56v-6.32c0-1.51-.03-3.45-2.1-3.45-2.1 0-2.42 1.64-2.42 3.34V22H7.58V8z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title">Services</div>
+      <ul class="f-links">
+        <li><a href="components-showcase.html">Content Creation</a></li>
+        <li><a href="components-showcase.html">Performance Marketing</a></li>
+        <li><a href="components-showcase.html">Web Design</a></li>
+        <li><a href="components-showcase.html">AI Solutions</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Company</div>
+      <ul class="f-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="portfolio.html">Case Studies</a></li>
+        <li><a href="Blogs.html">Blogs</a></li>
+        <li><a href="index.html#cta">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Contact</div>
+      <ul class="f-links">
+        <li><a href="#">First Floor, WeWork,<br>Oberoi Commerz II,<br>Goregaon East, Mumbai</a></li>
+        <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Legal</div>
+      <ul class="f-links">
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p class="f-copy">Copyright © 2026-27 Swytch Studio. All rights reserved.</p>
+    <p class="f-address">First Floor, WeWork, Oberoi Commerz II, Goregaon East, Mumbai</p>
+  </div>
+</footer>
+
+<script>
+/* Nav scroll fade — subtle background intensity on scroll */
+(function(){
+  const nav = document.getElementById('nav');
+  if(!nav) return;
+  const onScroll = () => {
+    if(window.scrollY > 20){
+      nav.style.background = 'rgba(255,255,255,0.94)';
+    } else {
+      nav.style.background = 'rgba(255,255,255,0.82)';
+    }
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>

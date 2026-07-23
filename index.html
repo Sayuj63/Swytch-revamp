@@ -80,9 +80,10 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
   transition:background .3s;
 }
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 var(--sp);height:100%;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;}
+.nav-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:var(--c-ink);}
 .nav-logo-icon{width:26px;height:26px;}
 .nav-logo-icon svg{width:100%;height:100%;}
+.nav-logo-text{font-size:16px;font-weight:700;color:var(--c-ink);letter-spacing:-0.3px;}
 .logo-dot{color:var(--c-orange);}
 .nav-links{display:flex;align-items:center;gap:24px;list-style:none;}
 .nav-links a{font-size:var(--t-sm);color:var(--c-sub);transition:color .15s;position:relative;}
@@ -425,19 +426,20 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 #results{}
 .results-hl-row{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px;}
 .results-hl{font-size:var(--t-title);font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);}
-.results-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .r-card{
-  border-radius:var(--r-xl);padding:40px 36px;
+  border-radius:var(--r-xl);padding:32px 28px;
   background:#FAFAFA;border:0.5px solid var(--c-rule-lt);
-  display:grid;grid-template-columns:100px 1fr;gap:28px;align-items:start;
+  display:flex;flex-direction:column;gap:14px;align-items:flex-start;
   transition:transform .3s var(--ease-out),box-shadow .3s,background .3s;
+  min-height:280px;
 }
 .r-card:hover{transform:translateY(-4px);background:var(--gl-bg-hv);backdrop-filter:var(--gl-blur);-webkit-backdrop-filter:var(--gl-blur);box-shadow:var(--gl-sh-lg);}
-.r-metric{font-size:38px;font-weight:800;letter-spacing:-2px;color:var(--c-orange);line-height:1;}
-.r-metric-lbl{font-size:10px;font-weight:600;letter-spacing:2px;color:rgba(255,107,26,.45);margin-top:6px;}
-.r-brand{font-size:15px;font-weight:700;color:var(--c-ink);margin-bottom:5px;}
-.r-scope{font-size:var(--t-sm);color:var(--c-muted);margin-bottom:10px;line-height:1.4;}
-.r-outcome{font-size:var(--t-sm);font-style:italic;color:var(--c-orange);opacity:.75;line-height:1.5;}
+.r-metric{font-size:44px;font-weight:800;letter-spacing:-2px;color:var(--c-orange);line-height:1;}
+.r-metric-lbl{font-size:10px;font-weight:600;letter-spacing:2px;color:rgba(255,107,26,.55);margin-top:-4px;text-transform:uppercase;}
+.r-brand{font-size:15px;font-weight:700;color:var(--c-ink);margin-top:6px;letter-spacing:-.3px;line-height:1.3;}
+.r-scope{font-size:var(--t-xs);color:var(--c-muted);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+.r-outcome{font-size:var(--t-sm);color:var(--c-sub);opacity:.9;line-height:1.55;margin-top:2px;}
 
 /* ══════════════════════════════════════════════════════
    CLIENTS
@@ -445,19 +447,21 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 #clients{text-align:center;}
 .clients-hl{font-size:var(--t-sec);font-weight:700;letter-spacing:-.8px;color:var(--c-ink);margin-bottom:8px;}
 .clients-sub{font-size:var(--t-body);color:var(--c-muted);margin-bottom:48px;}
-.clients-grid{
-  display:grid;grid-template-columns:repeat(5,1fr);
+.brands-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
   border-radius:var(--r-xl);overflow:hidden;
   border:0.5px solid var(--c-rule);box-shadow:var(--gl-sh);
   background:var(--c-rule);gap:.5px;
 }
-.c-cell{
-  padding:26px 12px;background:var(--c-bg);
-  display:flex;align-items:center;justify-content:center;
-  font-size:var(--t-sm);font-weight:600;color:var(--c-muted);
+.b-cell{
+  padding:28px 16px;background:var(--c-bg);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:var(--t-sm);font-weight:500;color:var(--c-muted);
+  letter-spacing:.2px;line-height:1.3;
   transition:background .2s,color .2s,transform .2s;
+  min-height:76px;
 }
-.c-cell:hover{background:var(--gl-bg-hv);backdrop-filter:var(--gl-blur);color:var(--c-ink);transform:scale(1.04);}
+.b-cell:hover{background:var(--gl-bg-hv);backdrop-filter:var(--gl-blur);color:var(--c-ink);transform:scale(1.03);}
 .partner-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:40px;}
 .p-badge{
   font-size:10px;font-weight:600;letter-spacing:.8px;color:var(--c-muted);
@@ -649,16 +653,15 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 .f-brand-name{font-size:17px;font-weight:800;color:var(--c-ink);letter-spacing:-.5px;margin-bottom:10px;}
 .f-brand-name span{color:var(--c-orange);}
 .f-brand-desc{font-size:var(--t-sm);color:var(--c-muted);line-height:1.6;margin-bottom:22px;}
-.f-socials{display:flex;gap:8px;}
+.f-socials{display:flex;gap:14px;align-items:center;}
 .f-soc{
-  width:32px;height:32px;border-radius:var(--r-sm);
-  border:0.5px solid var(--c-rule);
-  background:rgba(255,255,255,.7);backdrop-filter:blur(8px);
+  width:22px;height:22px;
   display:flex;align-items:center;justify-content:center;
-  color:var(--c-muted);font-size:11px;font-weight:600;
-  transition:border-color .2s,color .2s,transform .2s;
+  color:var(--c-muted);
+  transition:color .2s,transform .2s;
 }
-.f-soc:hover{border-color:var(--c-orange);color:var(--c-orange);transform:translateY(-2px);}
+.f-soc svg{width:22px;height:22px;display:block;}
+.f-soc:hover{color:var(--c-ink);transform:translateY(-2px);}
 .f-col-title{font-size:var(--t-xs);font-weight:700;letter-spacing:2px;color:var(--c-ink);text-transform:uppercase;margin-bottom:18px;}
 .f-links{list-style:none;display:flex;flex-direction:column;gap:11px;}
 .f-links a{font-size:var(--t-sm);color:var(--c-sub);transition:color .15s;}
@@ -698,10 +701,12 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
    RESPONSIVE
 ══════════════════════════════════════════════════════ */
 @media(max-width:960px){
-  .pos-cards,.results-grid,.test-grid,.about-grid,.why-grid{grid-template-columns:1fr;}
+  .pos-cards,.test-grid,.about-grid,.why-grid{grid-template-columns:1fr;}
+  .results-grid{grid-template-columns:repeat(2,1fr);}
   .blog-grid{grid-template-columns:1fr;}
   .process-rail{grid-template-columns:1fr;gap:24px;}.process-rail::before{display:none;}
   .clients-grid{grid-template-columns:repeat(3,1fr);}
+  .brands-grid{grid-template-columns:repeat(3,1fr)!important;}
   .footer-inner{grid-template-columns:1fr 1fr;}
   .nav-links,.#cursor-glow{display:none;}
   .about-visual{display:none;}
@@ -711,7 +716,9 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .hero-stats-bar{flex-direction:column;border-radius:var(--r-xl);}
   .hstat{border-right:none;border-bottom:0.5px solid rgba(210,210,215,.55);}
   .hstat:last-child{border-bottom:none;}
+  .results-grid{grid-template-columns:1fr;}
   .clients-grid{grid-template-columns:repeat(2,1fr);}
+  .brands-grid{grid-template-columns:repeat(2,1fr)!important;}
   .footer-inner{grid-template-columns:1fr;}
   .svc-card{flex:0 0 280px;}
   .cta-contacts{gap:24px;}
@@ -737,14 +744,14 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">
       <div class="nav-logo-icon"><svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg></div>
-      Swytch<span class="logo-dot">.</span>
+      <span class="nav-logo-text">Swytch Studio</span>
     </a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="components-showcase.html">Services</a></li>
+      <li><a href="portfolio.html">Case studies</a></li>
       <li><a href="tools.html">Tools</a></li>
-      <li><a href="about-blog.html">About</a></li>
-      <li><a href="components-showcase.html">Components</a></li>
+      <li><a href="Blogs.html">Blogs</a></li>
     </ul>
     <a href="#cta" class="nav-pill">Get in touch</a>
   </div>
@@ -779,10 +786,10 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     </div>
     <div class="hero-stats" data-anim="fade-up" data-delay="4">
       <div class="hero-stats-bar">
-        <div class="hstat"><div class="hstat-num">26<em>+</em></div><div class="hstat-lbl">Projects</div></div>
-        <div class="hstat"><div class="hstat-num">50<em>M+</em></div><div class="hstat-lbl">Reached</div></div>
-        <div class="hstat"><div class="hstat-num">3.2<em>×</em></div><div class="hstat-lbl">Avg ROAS</div></div>
-        <div class="hstat"><div class="hstat-num">15<em>+</em></div><div class="hstat-lbl">Team</div></div>
+        <div class="hstat"><div class="hstat-num">30<em>+</em></div><div class="hstat-lbl">Active clients</div></div>
+        <div class="hstat"><div class="hstat-num">100<em>M+</em></div><div class="hstat-lbl">Views</div></div>
+        <div class="hstat"><div class="hstat-num">10<em>K+</em></div><div class="hstat-lbl">AI visuals created</div></div>
+        <div class="hstat"><div class="hstat-num">5.8<em>×</em></div><div class="hstat-lbl">Avg ROAS</div></div>
       </div>
     </div>
   </div>
@@ -820,7 +827,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 <section id="positioning" class="section">
   <div class="container">
     <p class="eyebrow" data-anim="fade-up">What we do</p>
-    <h2 class="pos-headline" data-anim="fade-up" data-delay="1">One studio.<br><span class="accent">The full job.</span></h2>
+    <h2 class="pos-headline" data-anim="fade-up" data-delay="1">One studio. <span class="accent">The full job.</span></h2>
     <p class="pos-body" data-anim="fade-up" data-delay="2">Most brands juggle 4 agencies and get 0 accountability. Swytch combines strategy, content, performance, and technology into one compounding system.</p>
     <hr class="rule">
     <div class="pos-cards">
@@ -848,7 +855,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 ════════════════════════════════════════════ -->
 <section id="services">
   <div class="services-header">
-    <h2 class="svc-headline" data-anim="fade-up">Eight services.<br><span class="accent">Zero handoffs.</span></h2>
+    <h2 class="svc-headline" data-anim="fade-up">Eight services; <span class="accent">zero handoffs.</span></h2>
     <a href="#cta" class="btn btn-text" data-anim="fade-up" data-delay="1">
       Talk to us
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1014,20 +1021,40 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     </div>
     <div class="results-grid">
       <article class="r-card" data-anim="fade-up" data-delay="1">
-        <div><div class="r-metric">2M<span style="font-size:18px">+</span></div><div class="r-metric-lbl">Installs</div></div>
-        <div><div class="r-brand">MeTime App</div><div class="r-scope">Full brand, content & tech studio — zero to market leader.</div><div class="r-outcome">Content system, app marketing, and brand identity delivered end-to-end.</div></div>
+        <div class="r-metric">3L<span style="font-size:24px">+</span></div>
+        <div class="r-scope">SKUs Audited</div>
+        <div class="r-brand">National Handloom Corporation</div>
+        <div class="r-outcome">Digitising India's one of the largest retail chains: Audited and optimized over 300,000 SKUs, creating a structured warehouse foundation for scalable commerce.</div>
       </article>
       <article class="r-card" data-anim="fade-up" data-delay="2">
-        <div><div class="r-metric">50M<span style="font-size:18px">+</span></div><div class="r-metric-lbl">Impressions</div></div>
-        <div><div class="r-brand">Mahindra Finance</div><div class="r-scope">Nationwide content campaign across all major platforms.</div><div class="r-outcome">High-production campaign reaching 50M+ accounts in 60 days.</div></div>
+        <div class="r-metric">75<span style="font-size:24px">+</span></div>
+        <div class="r-scope">Stores expansion</div>
+        <div class="r-brand">Kewal Kiran Clothing Limited</div>
+        <div class="r-outcome">Scaling Retail Presence Across India: Supported marketing strategy across 75+ stores with creative, digital, and omnichannel brand experiences nationwide.</div>
       </article>
       <article class="r-card" data-anim="fade-up" data-delay="3">
-        <div><div class="r-metric">3×</div><div class="r-metric-lbl">Engagement</div></div>
-        <div><div class="r-brand">Kewal Kiran / Lawman</div><div class="r-scope">Ecommerce content & social growth strategy.</div><div class="r-outcome">3× engagement lift and 40% organic reach growth in 90 days.</div></div>
+        <div class="r-metric">200k<span style="font-size:24px">+</span></div>
+        <div class="r-scope">Organic downloads</div>
+        <div class="r-brand">Metubez</div>
+        <div class="r-outcome">Building India's Next Creator Platform: Achieved over 200,000 organic app downloads through content, branding, product marketing, and community growth.</div>
       </article>
       <article class="r-card" data-anim="fade-up" data-delay="4">
-        <div><div class="r-metric">6wk</div><div class="r-metric-lbl">Delivery</div></div>
-        <div><div class="r-brand">Coinstore</div><div class="r-scope">Full brand strategy & content system, brief to live.</div><div class="r-outcome">Complete brand built and launched in 6 weeks. Zero runaround.</div></div>
+        <div class="r-metric">1st</div>
+        <div class="r-scope">TVC AI film</div>
+        <div class="r-brand">The House of Abhinandan Lodha (HoABL)</div>
+        <div class="r-outcome">India's First AI Television Commercial: Conceptualized and delivered an AI-powered television commercial, redefining premium real estate brand storytelling nationwide.</div>
+      </article>
+      <article class="r-card" data-anim="fade-up" data-delay="5">
+        <div class="r-metric">1st</div>
+        <div class="r-scope">AI catalogue design &amp; launch</div>
+        <div class="r-brand">GRADO by GBTL (Donear group)</div>
+        <div class="r-outcome">Reimagining Fashion Through Artificial Intelligence: Designed and launched our first AI-powered fashion catalogue.</div>
+      </article>
+      <article class="r-card" data-anim="fade-up" data-delay="6">
+        <div class="r-metric">₹600k<span style="font-size:24px">+</span></div>
+        <div class="r-scope">Gross sales</div>
+        <div class="r-brand">The Curated Collective</div>
+        <div class="r-outcome">Scaling Revenue Through Creative Commerce: Generated over ₹600K in gross sales using performance creatives, content, and conversion-focused digital experiences.</div>
       </article>
     </div>
   </div>
@@ -1041,17 +1068,31 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     <p class="eyebrow" data-anim="fade-up">Trusted by</p>
     <h2 class="clients-hl" data-anim="fade-up" data-delay="1">Brands that chose to grow.</h2>
     <p class="clients-sub" data-anim="fade-up" data-delay="2">D2C, fashion, finance, tech — across industries and ambitions.</p>
-    <div class="clients-grid" data-anim="fade-up" data-delay="3">
-      <div class="c-cell">MeTime</div>
-      <div class="c-cell">Mahindra Finance</div>
-      <div class="c-cell">Kewal Kiran</div>
-      <div class="c-cell">Coinstore</div>
-      <div class="c-cell">Lawman PG3</div>
-      <div class="c-cell">The Yoga Institute</div>
-      <div class="c-cell">Fortune Games</div>
-      <div class="c-cell">Apex Diamonds</div>
-      <div class="c-cell">Killer Jeans</div>
-      <div class="c-cell">Furnicom</div>
+    <div class="brands-grid" data-anim="fade-up" data-delay="3">
+      <div class="b-cell">MeTime</div>
+      <div class="b-cell">Mahindra Finance</div>
+      <div class="b-cell">Kewal Kiran</div>
+      <div class="b-cell">Coinstore</div>
+      <div class="b-cell">Lawman</div>
+      <div class="b-cell">The House of Abhinandan Lodha</div>
+      <div class="b-cell">HoABL</div>
+      <div class="b-cell">Grado</div>
+      <div class="b-cell">National Handloom</div>
+      <div class="b-cell">Metubez</div>
+      <div class="b-cell">The Curated Collective</div>
+      <div class="b-cell">Donear</div>
+      <div class="b-cell">Killer Jeans</div>
+      <div class="b-cell">Lawman PG3</div>
+      <div class="b-cell">Integriti</div>
+      <div class="b-cell">GBTL</div>
+      <div class="b-cell">The Yoga Institute</div>
+      <div class="b-cell">Fortune Games</div>
+      <div class="b-cell">Apex Diamonds</div>
+      <div class="b-cell">Furnicom</div>
+      <div class="b-cell">Metubez Creators</div>
+      <div class="b-cell">Donear Suitings</div>
+      <div class="b-cell">Abhinandan Lodha</div>
+      <div class="b-cell">KKCL</div>
     </div>
     <div class="partner-strip" data-anim="fade-up" data-delay="4">
       <span class="p-badge">Meta Business Partner</span>
@@ -1236,29 +1277,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <div data-anim="fade-right">
         <p class="about-eyebrow">About us</p>
         <h2 class="about-hl">Built by people who've been on your side of the table.</h2>
-        <p class="about-body">Swytch Studio was founded in Mumbai by a team tired of agencies that overpromise and under-deliver. We built the studio we wished existed — one that thinks like a partner, moves like a startup, and reports like a CFO.<br><br>We're 15+ creatives, strategists, engineers, and marketers — embedded in your brand, not billing by the hour.</p>
-        <div class="about-values">
-          <div class="av-card" data-anim="scale-up" data-delay="1">
-            <div class="av-icon">⚡</div>
-            <div class="av-name">Speed</div>
-            <div class="av-desc">We launch in weeks. Every time.</div>
-          </div>
-          <div class="av-card" data-anim="scale-up" data-delay="2">
-            <div class="av-icon">🎯</div>
-            <div class="av-name">Accountability</div>
-            <div class="av-desc">Revenue tracked. No hiding in vanity.</div>
-          </div>
-          <div class="av-card" data-anim="scale-up" data-delay="3">
-            <div class="av-icon">🤖</div>
-            <div class="av-name">AI-First</div>
-            <div class="av-desc">Infrastructure, not gimmick.</div>
-          </div>
-          <div class="av-card" data-anim="scale-up" data-delay="4">
-            <div class="av-icon">🔗</div>
-            <div class="av-name">Integrated</div>
-            <div class="av-desc">Strategy through execution. One team.</div>
-          </div>
-        </div>
+        <p class="about-body">Swytch Studio is a Mumbai-based creative and marketing technology studio helping brands scale through strategy, content, AI, ecommerce and performance marketing.</p>
       </div>
       <div class="about-visual" data-anim="fade-left">
         <div class="studio-card">
@@ -1266,14 +1285,11 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
           <div class="studio-overlay">
             <div class="studio-badge">
               <div class="badge-pulse"></div>
-              Est. 2021 · Mumbai
+              EST 2021 · Mumbai
             </div>
             <div class="studio-loc">Swytch Studio</div>
-            <div class="studio-sub">Creative Mar-Tech · Mumbai, India</div>
+            <div class="studio-sub">Trusted by fashion, retail, finance and D2C brands.</div>
           </div>
-          <div class="float-card fc-1"><span class="fc-val">15+</span><span class="fc-lbl">TEAM MEMBERS</span></div>
-          <div class="float-card fc-2"><span class="fc-val">26+</span><span class="fc-lbl">PROJECTS</span></div>
-          <div class="float-card fc-3"><span class="fc-val">₹8L+</span><span class="fc-lbl">REVENUE SCALED</span></div>
         </div>
       </div>
     </div>
@@ -1288,7 +1304,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     <div class="why-grid">
       <div data-anim="fade-right">
         <p class="why-eyebrow">Why Swytch</p>
-        <h2 class="why-hl">We do things differently. Actually.</h2>
+        <h2 class="why-hl">More than an agency. A growth partner.</h2>
         <p class="why-body">Most agencies over-promise and under-report. We built Swytch because founders deserve a partner that thinks like a business, not a vendor.</p>
         <div class="why-checks">
           <div class="wc-item" data-anim="fade-up" data-delay="1"><div class="wc-mark">✓</div><div class="wc-text"><strong>Revenue-tracked campaigns</strong> — every rupee attributed, every outcome reported honestly.</div></div>
@@ -1374,27 +1390,27 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
         <p class="eyebrow" data-anim="fade-up">Insights</p>
         <h2 class="blog-hl" data-anim="fade-up" data-delay="1">Thinking from the studio.</h2>
       </div>
-      <a href="/blog" class="btn btn-text" data-anim="fade-up" data-delay="2">All articles <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="Blogs.html" class="btn btn-text" data-anim="fade-up" data-delay="2">All articles <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
     <div class="blog-grid">
-      <article class="b-card featured" data-anim="fade-right">
+      <a href="Blogs.html" class="b-card featured" data-anim="fade-right">
         <div class="b-tag">AI & Creative</div>
         <h3 class="b-title">AI Fake Ads and Content Creation Redefine Brand Storytelling</h3>
         <p class="b-excerpt">How AI-generated TVC-style content is changing brand advertising economics for Indian D2C brands.</p>
         <div class="b-read">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </article>
-      <article class="b-card" data-anim="fade-up" data-delay="1">
+      </a>
+      <a href="Blogs.html" class="b-card" data-anim="fade-up" data-delay="1">
         <div class="b-tag">Influencer Marketing</div>
         <h3 class="b-title">Why Swytch's UGC Ecosystem Outshines Traditional Influencer Marketing</h3>
         <p class="b-excerpt">The shift from one-time posts to always-on UGC systems — and why it wins.</p>
         <div class="b-read">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </article>
-      <article class="b-card" data-anim="fade-up" data-delay="2">
+      </a>
+      <a href="Blogs.html" class="b-card" data-anim="fade-up" data-delay="2">
         <div class="b-tag">Industry</div>
         <h3 class="b-title">The Advertising Industry Is Not Dead. It's Reloading.</h3>
         <p class="b-excerpt">A contrarian take on advertising in India — and where the next creative studios will come from.</p>
         <div class="b-read">Read article <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </article>
+      </a>
     </div>
   </div>
 </section>
@@ -1434,9 +1450,15 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <div class="f-brand-name">Swytch<span>.</span></div>
       <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
       <div class="f-socials">
-        <a href="https://www.instagram.com/swytch.studio/" class="f-soc" aria-label="Instagram">ig</a>
-        <a href="https://www.linkedin.com/company/82158673/" class="f-soc" aria-label="LinkedIn">li</a>
-        <a href="https://api.whatsapp.com/send/?phone=%2B919930340509" class="f-soc" aria-label="WhatsApp">wa</a>
+        <a href="https://www.google.com/search?q=Swytch+Studio" class="f-soc" aria-label="Google">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21.35 11.1H12v2.9h5.35c-.5 2.4-2.6 4.1-5.35 4.1a5.9 5.9 0 1 1 3.85-10.35l2.05-2.05A8.9 8.9 0 1 0 21 12c0-.3 0-.6-.05-.9Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/swytch.studio/" class="f-soc" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/82158673/" class="f-soc" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7.5v.01M12 17v-4a2 2 0 0 1 4 0v4M12 17v-7"/></svg>
+        </a>
       </div>
     </div>
     <div>
@@ -1456,8 +1478,8 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <div class="f-col-title">Company</div>
       <ul class="f-links">
         <li><a href="#about">About us</a></li>
-        <li><a href="#results">Portfolio</a></li>
-        <li><a href="#blog">Insights</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="Blogs.html">Insights</a></li>
         <li><a href="#testimonials">Client stories</a></li>
         <li><a href="#cta">Contact</a></li>
       </ul>
@@ -1467,13 +1489,13 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <ul class="f-links">
         <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
         <li><a href="tel:+919821817273">+91 98218 17273</a></li>
-        <li><a href="#">WeWork Oberoi Commerz II,<br>Goregaon, Mumbai – 400063</a></li>
+        <li><a href="#">First Floor, WeWork,<br>Oberoi Commerz II,<br>Goregaon East, Mumbai</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-btm">
-    <p class="f-copy">Copyright © 2025 Swytch Studio. All rights reserved.</p>
-    <div class="f-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+    <p class="f-copy">Copyright © 2026-27 Swytch Studio. All rights reserved.</p>
+    <div class="f-legal"><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-use.html">Terms of Use</a></div>
   </div>
 </footer>
 

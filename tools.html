@@ -108,30 +108,30 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
 .calc-cta{margin-top:20px;text-align:center;padding:20px;background:rgba(255,107,26,.08);border:0.5px solid rgba(255,107,26,.2);border-radius:var(--r-lg);}
 .calc-cta p{font-size:13px;color:var(--c-sub);margin-bottom:12px;}
 
-/* ── PRICING ESTIMATOR ─────────────────────────────────────────────── */
-.estimator-wrap{display:grid;grid-template-columns:1fr 380px;gap:16px;align-items:start;}
-.service-picker{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:28px;}
-.sp-title{font-size:17px;font-weight:700;color:var(--c-ink);margin-bottom:20px;}
-.svc-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:0.5px solid var(--c-rule);cursor:pointer;}
-.svc-row:last-child{border-bottom:none;}
-.svc-toggle{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--c-rule);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-.svc-toggle.on{background:var(--c-orange);border-color:var(--c-orange);}
-.svc-toggle.on::after{content:'✓';font-size:12px;font-weight:700;color:#fff;}
-.svc-info{flex:1;}
-.svc-info-name{font-size:14px;font-weight:600;color:var(--c-ink);}
-.svc-info-desc{font-size:12px;color:var(--c-muted);margin-top:1px;}
-.svc-range{font-size:13px;font-weight:600;color:var(--c-orange);white-space:nowrap;}
-.estimate-panel{background:linear-gradient(135deg,#FFF3EE 0%,#FFE8DC 100%);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-xl);padding:28px;color:var(--c-ink);position:sticky;top:80px;}
-.ep-title{font-size:14px;font-weight:600;color:var(--c-muted);margin-bottom:20px;letter-spacing:.5px;text-transform:uppercase;}
-.ep-total{font-size:44px;font-weight:800;letter-spacing:-2px;color:var(--c-ink);margin-bottom:4px;transition:all .3s;}
-.ep-total em{font-size:20px;font-weight:400;color:rgba(255,107,26,.7);font-style:normal;letter-spacing:0;}
-.ep-sub{font-size:13px;color:var(--c-muted);margin-bottom:24px;}
-.ep-items{margin-bottom:24px;}
-.ep-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:0.5px solid var(--c-rule);}
-.ep-item:last-child{border-bottom:none;}
-.ep-item-name{font-size:13px;color:var(--c-sub);}
-.ep-item-val{font-size:13px;font-weight:600;color:var(--c-orange);}
-.ep-note{font-size:11px;color:var(--c-muted);line-height:1.5;margin-bottom:20px;}
+/* ── SITE FOOTER ─────────────────────────────────────────────────────── */
+.site-footer{background:var(--c-bg2);padding:48px var(--sp) 32px;border-top:0.5px solid var(--c-rule);margin-top:40px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:0.5px solid var(--c-rule);}
+.f-brand-name{font-size:17px;font-weight:800;color:var(--c-ink);letter-spacing:-.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.f-brand-name svg{width:22px;height:22px;}
+.f-brand-desc{font-size:14px;color:var(--c-muted);line-height:1.6;margin-bottom:22px;}
+.f-socials{display:flex;gap:10px;}
+.f-soc{width:32px;height:32px;border-radius:10px;border:0.5px solid var(--c-rule);background:rgba(255,255,255,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--c-muted);transition:border-color .2s,color .2s,transform .2s;text-decoration:none;}
+.f-soc:hover{border-color:var(--c-orange);color:var(--c-orange);transform:translateY(-2px);}
+.f-soc svg{width:18px;height:18px;}
+.f-col-title{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--c-ink);text-transform:uppercase;margin-bottom:18px;}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:11px;padding:0;margin:0;}
+.f-links a{font-size:14px;color:var(--c-sub);transition:color .15s;text-decoration:none;}
+.f-links a:hover{color:var(--c-ink);}
+.footer-btm{max-width:1200px;margin:0 auto;padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.f-copy{font-size:12px;color:var(--c-muted);}
+.f-legal{display:flex;gap:22px;}
+.f-legal a{font-size:12px;color:var(--c-muted);transition:color .15s;text-decoration:none;}
+.f-legal a:hover{color:var(--c-ink);}
+@media(max-width:960px){.footer-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.footer-inner{grid-template-columns:1fr;gap:32px;}}
+
+/* Ensure SKUnomics tab (rendered as <a>) matches other tabs */
+a.tool-tab{display:inline-flex;align-items:center;text-decoration:none;line-height:1;}
 </style>
 </head>
 <body>
@@ -156,14 +156,14 @@ body{padding-top:52px;}
   <div class="sn-inner">
     <a href="index.html" class="sn-logo">
       <svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
-      Swytch<span class="dot">.</span>
+      Swytch Studio
     </a>
     <ul>
-      <li><a href="index.html" data-page="index">Home</a></li>
-      <li><a href="portfolio.html" data-page="portfolio">Portfolio</a></li>
+      <li><a href="index.html#about" data-page="about">About</a></li>
+      <li><a href="components-showcase.html" data-page="components-showcase">Services</a></li>
+      <li><a href="portfolio.html" data-page="portfolio">Case studies</a></li>
       <li><a href="tools.html" data-page="tools">Tools</a></li>
-      <li><a href="about-blog.html" data-page="about-blog">About</a></li>
-      <li><a href="components-showcase.html" data-page="components-showcase">Components</a></li>
+      <li><a href="Blogs.html" data-page="Blogs">Blogs</a></li>
     </ul>
     <a href="index.html#cta" class="sn-cta">Get in touch</a>
   </div>
@@ -173,136 +173,18 @@ body{padding-top:52px;}
 
 <div class="page-header">
   <p class="page-eyebrow">Swytch Studio · Tools</p>
-  <h1 class="page-hl">Find your path to growth.</h1>
-  <p class="page-sub">Use these interactive tools to see exactly what Swytch can do for your brand — and what it takes to get there.</p>
+  <h1 class="page-hl">Two tools. Real business math.</h1>
+  <p class="page-sub">Model your growth in minutes — from projected ROAS to unit-level SKU economics.</p>
   <div class="tool-tabs">
-    <button class="tool-tab active" onclick="switchTab('brief')">AI Brief Intake</button>
-    <button class="tool-tab" onclick="switchTab('roas')">ROAS Calculator</button>
-    <button class="tool-tab" onclick="switchTab('pricing')">Pricing Estimator</button>
+    <button class="tool-tab active" onclick="switchTab('roas')">ROAS Calculator</button>
+    <a href="skunomics.html" class="tool-tab">SKUnomics</a>
   </div>
 </div>
 
 <div class="tools-wrap">
 
-<!-- ══ BRIEF INTAKE ══════════════════════════════════════════════════ -->
-<div class="tool-panel active" id="tab-brief">
-  <div class="form-card" id="briefForm">
-    <div class="step-indicator">
-      <div class="step-dot active" id="dot-1"></div>
-      <div class="step-dot" id="dot-2"></div>
-      <div class="step-dot" id="dot-3"></div>
-      <div class="step-dot" id="dot-4"></div>
-      <span class="step-label" id="step-label">Step 1 of 4</span>
-    </div>
-
-    <!-- Step 1: Brand basics -->
-    <div class="step active" id="step-1">
-      <div class="step-title">Tell us about your brand.</div>
-      <div class="step-sub">We'll use this to recommend the right services for you.</div>
-      <div class="field"><label>Brand / Company Name</label><input type="text" id="brandName" placeholder="e.g. Nykaa, Boat, Your Brand"></div>
-      <div class="field"><label>Industry</label>
-        <select id="industry">
-          <option value="">Select your industry</option>
-          <option>Fashion & Apparel</option><option>Beauty & Personal Care</option>
-          <option>Food & Beverage</option><option>Consumer Electronics</option>
-          <option>Home & Lifestyle</option><option>Financial Services</option>
-          <option>Healthcare & Wellness</option><option>Gaming & Entertainment</option>
-          <option>Real Estate</option><option>Education</option><option>Other</option>
-        </select>
-      </div>
-      <div class="field"><label>Stage</label>
-        <div class="option-grid">
-          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">🌱</span>Early stage / Pre-revenue</button>
-          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">🚀</span>Growing (₹10L – ₹1Cr/mo)</button>
-          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">📈</span>Scaling (₹1Cr – ₹10Cr/mo)</button>
-          <button class="option-btn" onclick="selectOption(this,'stage')"><span class="ob-icon">🏢</span>Enterprise (₹10Cr+/mo)</button>
-        </div>
-      </div>
-      <div class="form-actions">
-        <span></span>
-        <button class="btn-primary" onclick="nextStep(2)">Continue <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div>
-
-    <!-- Step 2: Goals -->
-    <div class="step" id="step-2">
-      <div class="step-title">What are your biggest goals?</div>
-      <div class="step-sub">Select all that apply — we'll prioritise accordingly.</div>
-      <div class="option-grid" style="grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px;">
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">💰</span>Drive more sales</button>
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">📱</span>Grow social following</button>
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🌐</span>Launch / redesign website</button>
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🎯</span>Improve ad performance</button>
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🤖</span>Automate marketing</button>
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">🎬</span>Create content at scale</button>
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">👥</span>Influencer campaigns</button>
-        <button class="option-btn" onclick="toggleGoal(this)"><span class="ob-icon">📊</span>Track & measure everything</button>
-      </div>
-      <div class="form-actions">
-        <button class="btn-ghost" onclick="nextStep(1)">← Back</button>
-        <button class="btn-primary" onclick="nextStep(3)">Continue <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div>
-
-    <!-- Step 3: Budget & timeline -->
-    <div class="step" id="step-3">
-      <div class="step-title">Budget &amp; timeline.</div>
-      <div class="step-sub">No judgement — this helps us recommend what's realistic.</div>
-      <div class="field">
-        <label>Monthly Marketing Budget</label>
-        <div class="budget-chips">
-          <button class="budget-chip" onclick="selectChip(this,'budget')">Under ₹50K</button>
-          <button class="budget-chip" onclick="selectChip(this,'budget')">₹50K – ₹2L</button>
-          <button class="budget-chip" onclick="selectChip(this,'budget')">₹2L – ₹5L</button>
-          <button class="budget-chip" onclick="selectChip(this,'budget')">₹5L – ₹15L</button>
-          <button class="budget-chip" onclick="selectChip(this,'budget')">₹15L+</button>
-        </div>
-      </div>
-      <div class="field">
-        <label>When do you want to start?</label>
-        <div class="budget-chips">
-          <button class="budget-chip" onclick="selectChip(this,'timeline')">ASAP</button>
-          <button class="budget-chip" onclick="selectChip(this,'timeline')">Next 2–4 weeks</button>
-          <button class="budget-chip" onclick="selectChip(this,'timeline')">Next 1–2 months</button>
-          <button class="budget-chip" onclick="selectChip(this,'timeline')">Just exploring</button>
-        </div>
-      </div>
-      <div class="field"><label>Biggest frustration with current marketing</label><textarea id="frustration" placeholder="e.g. We're spending on ads but can't track what's working. Our content is inconsistent..."></textarea></div>
-      <div class="form-actions">
-        <button class="btn-ghost" onclick="nextStep(2)">← Back</button>
-        <button class="btn-primary" onclick="nextStep(4)">Continue <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div>
-
-    <!-- Step 4: Contact -->
-    <div class="step" id="step-4">
-      <div class="step-title">One last thing.</div>
-      <div class="step-sub">Where should we send your personalised Swytch recommendation?</div>
-      <div class="field"><label>Your Name</label><input type="text" id="contactName" placeholder="Raj Shah"></div>
-      <div class="field"><label>Work Email</label><input type="email" id="contactEmail" placeholder="raj@yourbrand.com"></div>
-      <div class="field"><label>WhatsApp Number</label><input type="tel" id="contactPhone" placeholder="+91 98218 17273"></div>
-      <div class="form-actions">
-        <button class="btn-ghost" onclick="nextStep(3)">← Back</button>
-        <button class="btn-primary" onclick="showResult()">Get my recommendation <svg width="14" height="14" fill="none" viewBox="0 0 14 14"><path d="M2 7h10M7.5 3l4.5 4-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- RESULT -->
-  <div class="result-card" id="briefResult" style="display:none;margin-top:16px;">
-    <div class="result-badge">✦ Your Swytch Growth Plan</div>
-    <div class="result-hl" id="result-hl">Here's what we'd build for you.</div>
-    <div class="result-sub" id="result-sub">Based on your goals and stage, here are the three services that will move the needle fastest.</div>
-    <div class="result-services" id="result-services"></div>
-    <div class="result-cta">
-      <button class="btn-orange-solid" onclick="window.location.href='https://api.whatsapp.com/send/?phone=%2B919821817273'">Book a strategy call ↗</button>
-      <button class="btn-outline-wt" onclick="resetForm()">Start over</button>
-    </div>
-  </div>
-</div>
-
 <!-- ══ ROAS CALCULATOR ═════════════════════════════════════════════ -->
-<div class="tool-panel" id="tab-roas">
+<div class="tool-panel active" id="tab-roas">
   <div class="calc-grid">
     <div class="calc-card">
       <div class="calc-label">Your current numbers</div>
@@ -348,111 +230,18 @@ body{padding-top:52px;}
   </div>
 </div>
 
-<!-- ══ PRICING ESTIMATOR ═══════════════════════════════════════════ -->
-<div class="tool-panel" id="tab-pricing">
-  <div class="estimator-wrap">
-    <div class="service-picker">
-      <div class="sp-title">Select the services you need</div>
-      <div id="svc-list"></div>
-    </div>
-    <div class="estimate-panel">
-      <div class="ep-title">Monthly Estimate</div>
-      <div class="ep-total" id="ep-total">₹0 <em>/mo</em></div>
-      <div class="ep-sub" id="ep-sub">Select services to see your estimate</div>
-      <div class="ep-items" id="ep-items"></div>
-      <div class="ep-note">All estimates are indicative ranges. Final pricing depends on scope, deliverables, and campaign scale. We'll give you an exact quote on a 30-min call.</div>
-      <button class="btn-orange-solid" style="width:100%;justify-content:center;" onclick="window.location.href='https://api.whatsapp.com/send/?phone=%2B919821817273'">Get exact quote ↗</button>
-    </div>
-  </div>
-</div>
-
 </div><!-- /tools-wrap -->
 
 <script>
 // ── TAB SWITCHING ──────────────────────────────────────────────────────
+// Only ROAS is a real tab now — SKUnomics is an <a> link that navigates away.
 function switchTab(id) {
-  document.querySelectorAll('.tool-tab').forEach((t,i)=>t.classList.toggle('active',['brief','roas','pricing'][i]===id));
+  document.querySelectorAll('.tool-tab').forEach(t=>{
+    if(t.tagName==='BUTTON') t.classList.toggle('active', t.getAttribute('onclick')&&t.getAttribute('onclick').includes("'"+id+"'"));
+  });
   document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-}
-
-// ── BRIEF FORM ─────────────────────────────────────────────────────────
-let currentStep=1, goals=[], selectedStage='', selectedBudget='', selectedTimeline='';
-
-function nextStep(n) {
-  document.getElementById('step-'+currentStep).classList.remove('active');
-  document.getElementById('dot-'+currentStep).classList.remove('active');
-  document.getElementById('dot-'+currentStep).classList.add('done');
-  currentStep=n;
-  if(n<=4){
-    document.getElementById('step-'+n).classList.add('active');
-    document.getElementById('dot-'+n).classList.add('active');
-    document.getElementById('step-label').textContent='Step '+n+' of 4';
-  }
-}
-
-function selectOption(btn, group) {
-  btn.closest('.option-grid').querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  if(group==='stage') selectedStage=btn.textContent.trim();
-}
-function toggleGoal(btn) {
-  btn.classList.toggle('selected');
-  const t=btn.textContent.trim();
-  goals=goals.includes(t)?goals.filter(g=>g!==t):[...goals,t];
-}
-function selectChip(btn,group){
-  btn.closest('.budget-chips').querySelectorAll('.budget-chip').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  if(group==='budget') selectedBudget=btn.textContent.trim();
-  if(group==='timeline') selectedTimeline=btn.textContent.trim();
-}
-
-function showResult(){
-  document.getElementById('briefForm').style.display='none';
-  const res=document.getElementById('briefResult');
-  res.style.display='block';
-
-  // Generate recommendation based on goals
-  const serviceMap={
-    'Drive more sales':          {num:'02',name:'Performance Marketing',desc:'Meta + Google ads optimised to real revenue. Full attribution.'},
-    'Grow social following':     {num:'01',name:'Content & SMM',desc:'Strategy, reels, carousels, posting schedule — all managed.'},
-    'Launch / redesign website': {num:'03',name:'Website Design & Dev',desc:'CRO-first Shopify or custom build. Live in 4–6 weeks.'},
-    'Improve ad performance':    {num:'02',name:'Performance Marketing',desc:'Audit + rebuild. Every campaign tracked to rupee.'},
-    'Automate marketing':        {num:'06',name:'MarTech Services',desc:'CRM + automation + dashboards — all connected.'},
-    'Create content at scale':   {num:'04',name:'AI Content Production',desc:'AI-powered shoots, video, and content at 10× speed.'},
-    'Influencer campaigns':      {num:'05',name:'Influencer Marketing',desc:'Creator matching, briefs, UTMs, reporting.'},
-    'Track & measure everything':{num:'06',name:'MarTech & Analytics',desc:'Live dashboards. Revenue attribution. No more guesswork.'},
-  };
-  const defaults=[
-    {num:'07',name:'Creative Strategy',desc:'Brand positioning, voice, visual identity.'},
-    {num:'01',name:'Content Creation',desc:'Reels, carousels, campaigns — on brand every time.'},
-    {num:'03',name:'Website Design',desc:'Websites built to convert, not just look good.'},
-  ];
-  let recs=goals.map(g=>serviceMap[g]).filter(Boolean).slice(0,3);
-  while(recs.length<3) recs.push(defaults[recs.length]);
-
-  document.getElementById('result-services').innerHTML=recs.map(r=>`
-    <div class="rs-card">
-      <div class="rs-num">${r.num}</div>
-      <div class="rs-name">${r.name}</div>
-      <div class="rs-desc">${r.desc}</div>
-    </div>`).join('');
-
-  const name=document.getElementById('contactName').value||'there';
-  document.getElementById('result-hl').textContent=`Here's what we'd build for ${name.split(' ')[0]}.`;
-}
-
-function resetForm(){
-  document.getElementById('briefResult').style.display='none';
-  document.getElementById('briefForm').style.display='block';
-  currentStep=1; goals=[];
-  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.step-dot').forEach(d=>{d.classList.remove('active','done');});
-  document.getElementById('step-1').classList.add('active');
-  document.getElementById('dot-1').classList.add('active');
-  document.getElementById('step-label').textContent='Step 1 of 4';
-  document.querySelectorAll('.option-btn,.budget-chip').forEach(b=>b.classList.remove('selected'));
+  const target=document.getElementById('tab-'+id);
+  if(target) target.classList.add('active');
 }
 
 // ── ROAS CALCULATOR ────────────────────────────────────────────────────
@@ -491,54 +280,66 @@ function updateCalc(){
   document.getElementById('proj-bar').style.width=Math.round(projRev/maxRev*100)+'%';
 }
 updateCalc();
-
-// ── PRICING ESTIMATOR ──────────────────────────────────────────────────
-const SERVICES=[
-  {name:'Content Creation & Management',  desc:'30 posts/mo · calendar · scheduling',    min:35000, max:75000},
-  {name:'Performance Marketing',           desc:'Meta + Google · full attribution',        min:25000, max:60000},
-  {name:'Website Design & Development',    desc:'Shopify/custom · CRO-first',             min:50000, max:150000},
-  {name:'AI Content Production',           desc:'AI shoots · CGI ads · automation',       min:40000, max:90000},
-  {name:'Influencer Marketing',            desc:'Creator sourcing · briefs · tracking',   min:30000, max:80000},
-  {name:'MarTech Services',                desc:'CRM · dashboards · Zapier/n8n',          min:20000, max:55000},
-  {name:'Creative Strategy',              desc:'Brand voice · identity · direction',      min:15000, max:40000},
-  {name:'Custom Tech Services',           desc:'Apps · integrations · custom builds',     min:50000, max:200000},
-];
-
-let selectedSvcs=new Set();
-
-function renderSvcList(){
-  document.getElementById('svc-list').innerHTML=SERVICES.map((s,i)=>`
-    <div class="svc-row" onclick="toggleSvc(${i})">
-      <div class="svc-toggle ${selectedSvcs.has(i)?'on':''}" id="stog-${i}"></div>
-      <div class="svc-info">
-        <div class="svc-info-name">${s.name}</div>
-        <div class="svc-info-desc">${s.desc}</div>
-      </div>
-      <div class="svc-range">₹${(s.min/1000).toFixed(0)}K–${(s.max/1000).toFixed(0)}K</div>
-    </div>`).join('');
-}
-
-function toggleSvc(i){
-  if(selectedSvcs.has(i)) selectedSvcs.delete(i); else selectedSvcs.add(i);
-  renderSvcList(); updateEstimate();
-}
-
-function updateEstimate(){
-  const sel=[...selectedSvcs].map(i=>SERVICES[i]);
-  const total=sel.reduce((s,v)=>s+(v.min+v.max)/2,0);
-  const minT=sel.reduce((s,v)=>s+v.min,0);
-  const maxT=sel.reduce((s,v)=>s+v.max,0);
-  const fmt2=n=>'₹'+Math.round(n/1000)+'K';
-  document.getElementById('ep-total').innerHTML=sel.length?`${fmt2(minT)}–${fmt2(maxT)} <em>/mo</em>`:'₹0 <em>/mo</em>';
-  document.getElementById('ep-sub').textContent=sel.length?`${sel.length} service${sel.length>1?'s':''} selected · indicative range`:'Select services to see your estimate';
-  document.getElementById('ep-items').innerHTML=sel.map(s=>`
-    <div class="ep-item">
-      <span class="ep-item-name">${s.name}</span>
-      <span class="ep-item-val">₹${(s.min/1000).toFixed(0)}K–${(s.max/1000).toFixed(0)}K</span>
-    </div>`).join('');
-}
-
-renderSvcList(); updateEstimate();
 </script>
+
+<!-- ════════════════════════════════════════════
+     SITE FOOTER
+════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand-name">
+        <svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
+        Swytch Studio
+      </div>
+      <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
+      <div class="f-socials">
+        <a href="https://www.google.com/search?q=Swytch+Studio" class="f-soc" aria-label="Google">
+          <svg viewBox="0 0 24 24" fill="#86868B"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/swytch.studio/" class="f-soc" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#86868B" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/82158673/" class="f-soc" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="#86868B"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title">Services</div>
+      <ul class="f-links">
+        <li><a href="components-showcase.html">Content Creation</a></li>
+        <li><a href="components-showcase.html">Performance Marketing</a></li>
+        <li><a href="components-showcase.html">Website Design &amp; Dev</a></li>
+        <li><a href="components-showcase.html">AI Solutions</a></li>
+        <li><a href="components-showcase.html">Influencer Marketing</a></li>
+        <li><a href="components-showcase.html">MarTech</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Company</div>
+      <ul class="f-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="Blogs.html">Blogs</a></li>
+        <li><a href="index.html#cta">Careers</a></li>
+        <li><a href="index.html#cta">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Contact</div>
+      <ul class="f-links">
+        <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
+        <li><a href="#">First Floor, WeWork,<br>Oberoi Commerz II,<br>Goregaon East, Mumbai</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p class="f-copy">Copyright © 2026-27 Swytch Studio. All rights reserved.</p>
+    <div class="f-legal">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
