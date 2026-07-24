@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start a project — Swytch Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --ink:#111214;
+    --ink-soft:#5b5d63;
+    --ink-faint:#9a9ba0;
+    --line:#ececea;
+    --panel:#f7f6f4;
+    --accent:#FF6B1A;
+    --accent-soft:#FFE7D6;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    display:flex;flex-direction:column;
+  }
+  button{font-family:inherit;}
+
+  /* progress */
+  .progress-track{
+    position:fixed;top:0;left:0;right:0;height:3px;background:var(--line);z-index:20;
+  }
+  .progress-fill{
+    height:100%;background:var(--accent);width:8%;
+    transition:width .4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .top-bar{
+    position:fixed;top:14px;left:0;right:0;z-index:15;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:0 20px;
+  }
+  .brand-mark{
+    display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--ink-soft);
+  }
+  .brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+  .step-count{font-size:12.5px;color:var(--ink-faint);font-weight:600;}
+
+  .stage{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    padding:100px 20px 120px;
+  }
+
+  .step{
+    width:100%;max-width:560px;
+    display:none;
+    opacity:0;transform:translateY(16px);
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  .step.active{display:block;}
+  .step.show{opacity:1;transform:translateY(0);}
+
+  .q-eyebrow{
+    font-size:12px;font-weight:700;color:var(--accent);letter-spacing:0.04em;
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .q-title{
+    font-size:clamp(22px,5vw,32px);font-weight:800;letter-spacing:-0.015em;
+    line-height:1.2;margin:0 0 8px;
+  }
+  .q-hint{font-size:13.5px;color:var(--ink-faint);margin:0 0 28px;}
+
+  .text-input{
+    width:100%;border:none;border-bottom:2px solid var(--line);
+    background:none;font-family:inherit;font-size:22px;font-weight:600;color:var(--ink);
+    padding:10px 2px;outline:none;transition:border-color .2s ease;
+  }
+  .text-input::placeholder{color:var(--ink-faint);font-weight:500;}
+  .text-input:focus{border-color:var(--accent);}
+
+  textarea.text-input{
+    font-size:16px;font-weight:500;resize:none;min-height:110px;line-height:1.5;
+  }
+
+  .chip-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+  .chip{
+    border:1.5px solid var(--line);background:white;color:var(--ink-soft);
+    padding:12px 18px;border-radius:12px;font-size:14.5px;font-weight:600;
+    cursor:pointer;transition:all .18s ease;
+  }
+  .chip:hover{border-color:var(--accent);}
+  .chip.selected{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+
+  .nav-row{
+    display:flex;align-items:center;gap:14px;margin-top:36px;
+  }
+  .btn-next{
+    background:var(--ink);color:white;border:none;padding:14px 28px;
+    border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;
+    transition:background .18s ease, transform .18s ease;
+    display:flex;align-items:center;gap:8px;
+  }
+  .btn-next:hover{background:var(--accent);transform:translateY(-1px);}
+  .btn-next:disabled{background:var(--line);color:var(--ink-faint);cursor:not-allowed;transform:none;}
+  .btn-back{
+    background:none;border:none;color:var(--ink-faint);font-size:13.5px;font-weight:600;
+    cursor:pointer;padding:14px 6px;
+  }
+  .btn-back:hover{color:var(--ink-soft);}
+  .key-hint{font-size:12px;color:var(--ink-faint);margin-left:4px;}
+  .key-hint kbd{
+    background:var(--panel);border-radius:5px;padding:2px 6px;font-family:inherit;font-size:11px;
+  }
+
+  /* review step */
+  .review-list{margin:8px 0 28px;}
+  .review-row{
+    display:flex;justify-content:space-between;gap:16px;
+    padding:14px 0;border-bottom:1px solid var(--line);
+  }
+  .review-row .label{font-size:12.5px;color:var(--ink-faint);font-weight:600;flex:0 0 120px;}
+  .review-row .value{font-size:14.5px;font-weight:600;color:var(--ink);text-align:right;}
+
+  /* thank you */
+  .done-mark{
+    width:56px;height:56px;border-radius:50%;background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+  }
+
+  @media (max-width:480px){
+    .stage{padding:88px 18px 110px;}
+    .chip{padding:11px 15px;font-size:13.5px;}
+    .text-input{font-size:19px;}
+    .nav-row{flex-wrap:wrap;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="top-bar">
+    <div class="brand-mark"><span class="brand-dot"></span>Swytch Studio</div>
+    <div class="step-count" id="stepCount">1 / 7</div>
+  </div>
+
+  <div class="stage">
+
+    <!-- Step 1: Name -->
+    <div class="step active" data-step="1">
+      <p class="q-eyebrow">Let's start</p>
+      <h2 class="q-title">What should we call you?</h2>
+      <p class="q-hint">Just your name is fine.</p>
+      <input type="text" class="text-input" id="q-name" placeholder="Your name" autofocus>
+      <div class="nav-row">
+        <button class="btn-next" onclick="next(1)">Continue<span>→</span></button>
+        <span class="key-hint">press <kbd>Enter</kbd></span>
+      </div>
+    </div>
+
+    <!-- Step 2: Brand -->
+    <div class="step" data-step="2">
+      <p class="q-eyebrow">Nice to meet you</p>
+      <h2 class="q-title">What's your brand or company called?</h2>
+      <input type="text" class="text-input" id="q-brand" placeholder="Brand name">
+      <div class="nav-row">
+        <button class="btn-back" onclick="back(2)">Back</button>
+        <button class="btn-next" onclick="next(2)">Continue<span>→</span></button>
+      </div>
+    </div>
+
+    <!-- Step 3: What do you need -->
+    <div class="step" data-step="3">
+      <p class="q-eyebrow">Quick one</p>
+      <h2 class="q-title">What are you looking for help with?</h2>
+      <p class="q-hint">Pick as many as apply.</p>
+      <div class="chip-grid" id="q-need">
+        <button class="chip" data-value="Performance marketing">Performance marketing</button>
+        <button class="chip" data-value="AI content and video">AI content &amp; video</button>
+        <button class="chip" data-value="Website or product build">Website or product build</button>
+        <button class="chip" data-value="Brand strategy">Brand strategy</button>
+        <button class="chip" data-value="Not sure yet">Not sure yet</button>
+      </div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="back(3)">Back</button>
+        <button class="btn-next" id="btn-need" onclick="next(3)" disabled>Continue<span>→</span></button>
+      </div>
+    </div>
+
+    <!-- Step 4: Budget -->
+    <div class="step" data-step="4">
+      <p class="q-eyebrow">Helps us plan</p>
+      <h2 class="q-title">Roughly what's the monthly budget?</h2>
+      <div class="chip-grid" id="q-budget">
+        <button class="chip" data-value="Under ₹50k">Under ₹50k</button>
+        <button class="chip" data-value="₹50k to ₹2L">₹50k to ₹2L</button>
+        <button class="chip" data-value="₹2L to ₹5L">₹2L to ₹5L</button>
+        <button class="chip" data-value="₹5L+">₹5L+</button>
+        <button class="chip" data-value="Not decided yet">Not decided yet</button>
+      </div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="back(4)">Back</button>
+        <button class="btn-next" id="btn-budget" onclick="next(4)" disabled>Continue<span>→</span></button>
+      </div>
+    </div>
+
+    <!-- Step 5: Details -->
+    <div class="step" data-step="5">
+      <p class="q-eyebrow">Almost there</p>
+      <h2 class="q-title">Tell us a bit more about what you need</h2>
+      <p class="q-hint">Optional, but it helps us come prepared.</p>
+      <textarea class="text-input" id="q-details" placeholder="A line or two is plenty"></textarea>
+      <div class="nav-row">
+        <button class="btn-back" onclick="back(5)">Back</button>
+        <button class="btn-next" onclick="next(5)">Continue<span>→</span></button>
+      </div>
+    </div>
+
+    <!-- Step 6: Contact -->
+    <div class="step" data-step="6">
+      <p class="q-eyebrow">Last thing</p>
+      <h2 class="q-title">Where can we reach you?</h2>
+      <div class="field" style="margin-bottom:20px;">
+        <input type="email" class="text-input" id="q-email" placeholder="Email address">
+      </div>
+      <div class="field">
+        <input type="tel" class="text-input" id="q-phone" placeholder="Phone number, optional" style="font-size:18px;">
+      </div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="back(6)">Back</button>
+        <button class="btn-next" onclick="next(6)">Review<span>→</span></button>
+      </div>
+    </div>
+
+    <!-- Step 7: Review -->
+    <div class="step" data-step="7">
+      <p class="q-eyebrow">One last look</p>
+      <h2 class="q-title">Everything look right?</h2>
+      <div class="review-list" id="reviewList"></div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="back(7)">Back</button>
+        <button class="btn-next" onclick="submitForm()">Discuss with us today<span>→</span></button>
+      </div>
+    </div>
+
+    <!-- Step 8: Thank you -->
+    <div class="step" data-step="8">
+      <div class="done-mark">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="q-title">Got it, thank you.</h2>
+      <p class="q-hint">Someone from Swytch will get back to you within a day. If it's urgent, WhatsApp us instead.</p>
+    </div>
+
+  </div>
+
+<script>
+  const totalSteps = 7;
+  let current = 1;
+  const data = { need: [], budget: null };
+
+  function showStep(n){
+    document.querySelectorAll('.step').forEach(s=>{
+      s.classList.remove('active','show');
+    });
+    const target = document.querySelector(`.step[data-step="${n}"]`);
+    target.classList.add('active');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>target.classList.add('show')));
+
+    const pct = n > totalSteps ? 100 : (n/totalSteps)*100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('stepCount').textContent = n > totalSteps ? '' : `${n} / ${totalSteps}`;
+
+    if(n===7) buildReview();
+    const input = target.querySelector('input, textarea');
+    if(input) setTimeout(()=>input.focus(), 300);
+  }
+
+  function next(step){ if(step < totalSteps) showStep(step+1); else showStep(7); current = step+1; }
+  function back(step){ if(step > 1) showStep(step-1); current = step-1; }
+
+  // enter key advances on single-line steps
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){
+      const activeStep = document.querySelector('.step.active');
+      if(!activeStep) return;
+      const stepNum = +activeStep.dataset.step;
+      if([1,2,5,6].includes(stepNum)){
+        e.preventDefault();
+        if(stepNum===6){ next(6); } else { next(stepNum); }
+      }
+    }
+  });
+
+  // chip selection: multi-select for "need", single-select for "budget"
+  document.querySelectorAll('#q-need .chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      chip.classList.toggle('selected');
+      const val = chip.dataset.value;
+      if(chip.classList.contains('selected')) data.need.push(val);
+      else data.need = data.need.filter(v=>v!==val);
+      document.getElementById('btn-need').disabled = data.need.length===0;
+    });
+  });
+
+  document.querySelectorAll('#q-budget .chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      document.querySelectorAll('#q-budget .chip').forEach(c=>c.classList.remove('selected'));
+      chip.classList.add('selected');
+      data.budget = chip.dataset.value;
+      document.getElementById('btn-budget').disabled = false;
+    });
+  });
+
+  function buildReview(){
+    const rows = [
+      {label:'Name', value: document.getElementById('q-name').value || '—'},
+      {label:'Brand', value: document.getElementById('q-brand').value || '—'},
+      {label:'Looking for', value: data.need.join(', ') || '—'},
+      {label:'Budget', value: data.budget || '—'},
+      {label:'Details', value: document.getElementById('q-details').value || '—'},
+      {label:'Email', value: document.getElementById('q-email').value || '—'},
+      {label:'Phone', value: document.getElementById('q-phone').value || '—'},
+    ];
+    document.getElementById('reviewList').innerHTML = rows.map(r=>
+      `<div class="review-row"><span class="label">${r.label}</span><span class="value">${r.value}</span></div>`
+    ).join('');
+  }
+
+  function submitForm(){
+    // Hook this up to your form backend or email service.
+    // Placeholder: log payload and show the thank-you step.
+    const payload = {
+      name: document.getElementById('q-name').value,
+      brand: document.getElementById('q-brand').value,
+      need: data.need,
+      budget: data.budget,
+      details: document.getElementById('q-details').value,
+      email: document.getElementById('q-email').value,
+      phone: document.getElementById('q-phone').value,
+    };
+    console.log('Swytch contact form submission', payload);
+    showStep(8);
+  }
+
+  showStep(1);
+</script>
+</body>
+</html>
