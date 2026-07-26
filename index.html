@@ -62,7 +62,7 @@
    RESET & BASE
 ══════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;font-size:16px;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;font-size:16px;overflow-x:hidden;}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--c-bg);color:var(--c-ink);overflow-x:hidden;}
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;}
@@ -723,6 +723,12 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .svc-card{flex:0 0 280px;}
   .cta-contacts{gap:24px;}
   #hero{padding-top:88px;}
+  .ai-metrics-grid{grid-template-columns:repeat(2,1fr)!important;}
+  .ai-deliver-grid{grid-template-columns:1fr!important;}
+  .why-mosaic{grid-template-columns:1fr!important;}
+  .wm-card.dark{grid-column:auto!important;}
+  [data-anim="fade-left"]{transform:translateY(28px);}
+  [data-anim="fade-right"]{transform:translateY(28px);}
 }
 @media(prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important;}
@@ -733,7 +739,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
    CANONICAL SITE NAV (from portfolio.html)
 ══════════════════════════════════════════════════════ */
 #site-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(255,255,255,0.82);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:0.5px solid rgba(210,210,215,0.55);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
-#site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;}
+#site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;overflow:hidden;min-width:0;}
 #site-nav .sn-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:#1D1D1F;text-decoration:none;}
 #site-nav .sn-logo svg{width:26px;height:26px;}
 #site-nav .sn-logo .dot{color:#FF6B1A;}
@@ -747,6 +753,8 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 #site-nav .sn-cta:hover{background:#FF6B1A;color:#fff;transform:scale(1.02);}
 @media(max-width:768px){#site-nav ul{display:none;}}
 @media(max-width:600px){#site-nav .sn-cta{font-size:12px;padding:6px 12px;}}
+@media(max-width:600px){#site-nav .sn-inner{gap:8px;}#site-nav .sn-logo .nav-logo-text,#site-nav .sn-logo span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px;}}
+@media(max-width:480px){#site-nav .sn-cta{font-size:11px;padding:5px 10px;white-space:nowrap;}#site-nav .sn-inner{padding:0 12px;}}
 
 /* ══════════════════════════════════════════════════════
    CANONICAL SITE FOOTER (from portfolio.html)
@@ -846,13 +854,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     <p class="hero-sub" data-anim="fade-up" data-delay="2">
       Swytch Studio is a Mumbai-based creative, AI and Shopify agency helping fashion, retail and D2C brands grow through branding, content and marketing.
     </p>
-    <div class="hero-actions" data-anim="fade-up" data-delay="3">
-      <a href="swytch-contact-typeform.html" class="btn btn-orange">
-        Start a project
-        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 4l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="components-showcase.html" class="btn btn-outline">Explore services</a>
-    </div>
+
     <div class="hero-stats" data-anim="fade-up" data-delay="4">
       <div class="hero-stats-bar">
         <div class="hstat"><div class="hstat-num">30<em>+</em></div><div class="hstat-lbl">Active clients</div></div>
@@ -1221,7 +1223,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     </div>
 
     <!-- Metrics row — Botika-style proof -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:0.5px solid var(--c-rule);border-radius:var(--r-xl);overflow:hidden;margin-bottom:48px;" data-anim="fade-up">
+    <div class="ai-metrics-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:0.5px solid var(--c-rule);border-radius:var(--r-xl);overflow:hidden;margin-bottom:48px;" data-anim="fade-up">
       <div style="padding:28px 24px;border-right:0.5px solid var(--c-rule);text-align:center;">
         <div style="font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--c-orange);">90%</div>
         <div style="font-size:12px;color:var(--c-ink);font-weight:600;margin-top:4px;">Cost reduction</div>
@@ -1245,7 +1247,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     </div>
 
     <!-- What we deliver grid -->
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;" data-anim="fade-up">
+    <div class="ai-deliver-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;" data-anim="fade-up">
       <div style="background:var(--c-bg-2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:36px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
         <div style="width:48px;height:48px;border-radius:var(--r-md);background:rgba(255,107,26,.1);border:0.5px solid rgba(255,107,26,.2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">👗</div>
         <div>
@@ -1314,17 +1316,18 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
           <div class="wc-item" data-anim="fade-up" data-delay="4"><div class="wc-mark">✓</div><div class="wc-text"><strong>AI-powered, human-directed</strong> — AI to move 10× faster, never to replace thinking.</div></div>
         </div>
       </div>
-      <div class="about-visual" data-anim="fade-left">
-        <div class="studio-card">
-          <div class="studio-big-num">SS</div>
-          <div class="studio-overlay">
-            <div class="studio-badge">
-              <div class="badge-pulse"></div>
-              EST 2021 · Mumbai
-            </div>
-            <div class="studio-loc">Swytch Studio</div>
-            <div class="studio-sub">Trusted by fashion, retail, finance and D2C brands.</div>
-          </div>
+      <div class="why-mosaic" data-anim="fade-left">
+        <div class="wm-card">
+          <div class="wm-num">₹8L<em>+</em></div>
+          <div class="wm-lbl">Monthly revenue model for a 5Cr+ brand</div>
+        </div>
+        <div class="wm-card">
+          <div class="wm-num">48h</div>
+          <div class="wm-lbl">Avg. brief to creative delivery</div>
+        </div>
+        <div class="wm-card dark">
+          <div class="wm-num">68<em>%</em></div>
+          <div class="wm-lbl">Avg. relative lift across performance campaigns</div>
         </div>
       </div>
     </div>

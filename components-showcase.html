@@ -127,7 +127,7 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .cm-label{font-size:11px;font-weight:600;letter-spacing:1px;color:var(--c-muted);text-transform:uppercase;margin-bottom:3px;}
 .cm-value{font-size:14px;font-weight:600;color:var(--c-ink);}
 /* Multi-step contact form */
-.contact-form-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:36px 32px;}
+.contact-form-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:36px 32px;max-width:100%;box-sizing:border-box;}
 .cf-step{display:none;animation:fadeIn .35s ease;}
 .cf-step.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
@@ -165,6 +165,7 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 #sticky-cta.visible{bottom:24px;}
 .sc-text{font-size:13px;color:var(--c-sub);}
 .sc-text strong{color:var(--c-ink);font-weight:600;}
+@media(max-width:600px){#sticky-cta{white-space:normal;width:calc(100% - 32px);left:16px;transform:none;padding:10px 12px;gap:8px;}.sc-text{display:none;}[data-anim="left"]{transform:translateY(28px);}[data-anim="right"]{transform:translateY(28px);}}
 .sc-btn{display:inline-flex;align-items:center;gap:6px;background:var(--c-orange);color:#fff;font-size:13px;font-weight:600;padding:9px 18px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:background .2s;}
 .sc-btn:hover{background:var(--c-orange-dk);}
 .sc-btn-wa{display:inline-flex;align-items:center;gap:6px;background:var(--c-bg2);color:var(--c-sub);font-size:13px;font-weight:500;padding:9px 18px;border-radius:var(--r-pill);border:0.5px solid var(--c-rule);cursor:pointer;transition:all .2s;text-decoration:none;}
@@ -420,106 +421,6 @@ body{padding-top:52px;}
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- 2. ANIMATED METRICS DASHBOARD -->
-<section id="metrics">
-  <div class="container">
-    <div class="dash-header" data-anim>
-      <p class="eyebrow" style="color:rgba(255,107,26,.7)">Live metrics</p>
-      <h2 class="dash-hl" style="white-space:nowrap;font-size:clamp(24px,4.5vw,56px);">Results. Not just reels.</h2>
-      <p class="dash-sub">Creative. AI. Commerce. Marketing. One partner focused on growing your business.</p>
-    </div>
-    <div class="kpi-row" data-anim data-delay="1">
-      <div class="kpi"><div class="kpi-num" data-count="30" data-suffix="+">0+</div><div class="kpi-lbl">Active clients</div></div>
-      <div class="kpi"><div class="kpi-num green" data-count="100" data-suffix="M+">0M+</div><div class="kpi-lbl">Views</div></div>
-      <div class="kpi"><div class="kpi-num" data-count="10" data-suffix="K+">0K+</div><div class="kpi-lbl">AI visuals created</div></div>
-      <div class="kpi"><div class="kpi-num green" data-final="5.8x">0×</div><div class="kpi-lbl">Avg ROAS</div></div>
-    </div>
-    <div class="dash-chart" data-anim data-delay="2">
-      <div class="chart-header">
-        <div class="chart-title">Revenue vs Ad Spend — Swytch Client Composite</div>
-        <div class="chart-legend">
-          <div class="cl-item"><div class="cl-dot" style="background:rgba(255,255,255,.3)"></div>Ad Spend</div>
-          <div class="cl-item"><div class="cl-dot" style="background:var(--c-orange)"></div>Revenue</div>
-        </div>
-      </div>
-      <div class="chart-bars" id="chartBars">
-        <!-- Bars injected by JS -->
-      </div>
-      <div class="chart-months" id="chartMonths"></div>
-    </div>
-    <div class="dash-live" data-anim data-delay="3">
-      <div class="live-card">
-        <div class="live-label"><div class="live-dot"></div>Active campaigns</div>
-        <div class="live-val" id="lv-campaigns">14</div>
-        <div class="live-delta">↑ 3 this month</div>
-      </div>
-      <div class="live-card">
-        <div class="live-label"><div class="live-dot"></div>Avg ROAS this month</div>
-        <div class="live-val" id="lv-roas">3.4×</div>
-        <div class="live-delta">↑ +0.2 vs last month</div>
-      </div>
-      <div class="live-card">
-        <div class="live-label"><div class="live-dot"></div>Content pieces live</div>
-        <div class="live-val" id="lv-content">847</div>
-        <div class="live-delta">↑ 62 this week</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3. COMPARISON TABLE -->
-<section id="comparison">
-  <div class="container">
-    <div class="comp-header" data-anim>
-      <p class="eyebrow">Why Swytch</p>
-      <h2 class="comp-hl">The honest comparison.</h2>
-      <p class="comp-sub">What most agencies won't tell you, and why we're different.</p>
-    </div>
-    <div class="comp-table" data-anim data-delay="1">
-      <div class="comp-head">
-        <div class="ch-cell topic">What you need</div>
-        <div class="ch-cell">Typical Agency</div>
-        <div class="ch-cell swytch">✦ Swytch Studio</div>
-      </div>
-      <div class="comp-row">
-        <div class="cr-cell topic">Revenue attribution</div>
-        <div class="cr-cell old"><span class="cross">×</span>Reports reach & impressions</div>
-        <div class="cr-cell swytch"><span class="tick">✓</span>Every rupee tracked to revenue</div>
-      </div>
-      <div class="comp-row">
-        <div class="cr-cell topic">Account access</div>
-        <div class="cr-cell old"><span class="cross">×</span>Works from their own accounts</div>
-        <div class="cr-cell swytch"><span class="tick">✓</span>Full access to your accounts, always</div>
-      </div>
-      <div class="comp-row">
-        <div class="cr-cell topic">Launch speed</div>
-        <div class="cr-cell old"><span class="cross">×</span>2–3 months onboarding</div>
-        <div class="cr-cell swytch"><span class="tick">✓</span>Live in weeks, not quarters</div>
-      </div>
-      <div class="comp-row">
-        <div class="cr-cell topic">Service breadth</div>
-        <div class="cr-cell old"><span class="cross">×</span>Specialised in 1–2 areas</div>
-        <div class="cr-cell swytch"><span class="tick">✓</span>8 services, one team, zero handoffs</div>
-      </div>
-      <div class="comp-row">
-        <div class="cr-cell topic">AI adoption</div>
-        <div class="cr-cell old"><span class="cross">×</span>Mentions AI in slides</div>
-        <div class="cr-cell swytch"><span class="tick">✓</span>AI embedded in every workflow</div>
-      </div>
-      <div class="comp-row">
-        <div class="cr-cell topic">Communication</div>
-        <div class="cr-cell old"><span class="cross">×</span>Monthly update calls</div>
-        <div class="cr-cell swytch"><span class="tick">✓</span>Weekly reviews + live dashboards</div>
-      </div>
-      <div class="comp-row">
-        <div class="cr-cell topic">Accountability</div>
-        <div class="cr-cell old"><span class="cross">×</span>Hides behind reach metrics</div>
-        <div class="cr-cell swytch"><span class="tick">✓</span>Revenue-first. No excuses.</div>
-      </div>
     </div>
   </div>
 </section>
