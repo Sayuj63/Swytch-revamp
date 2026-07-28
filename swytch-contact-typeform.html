@@ -131,6 +131,13 @@
     display:flex;align-items:center;justify-content:center;margin-bottom:22px;
   }
 
+  .field-error{
+    color:#c93a1a;font-size:12.5px;font-weight:600;margin-top:10px;min-height:16px;
+    display:none;
+  }
+  .field-error.show{display:block;}
+  .text-input.error{border-color:#c93a1a;}
+
   @media (max-width:480px){
     .stage{padding:88px 18px 110px;}
     .chip{padding:11px 15px;font-size:13.5px;}
@@ -155,6 +162,7 @@
       <h2 class="q-title">What should we call you?</h2>
       <p class="q-hint">Just your name is fine.</p>
       <input type="text" class="text-input" id="q-name" placeholder="Your name" autofocus>
+      <div class="field-error" id="err-1">Please enter your name to continue.</div>
       <div class="nav-row">
         <button class="btn-next" onclick="next(1)">Continue<span>→</span></button>
         <span class="key-hint">press <kbd>Enter</kbd></span>
@@ -166,6 +174,7 @@
       <p class="q-eyebrow">Nice to meet you</p>
       <h2 class="q-title">What's your brand or company called?</h2>
       <input type="text" class="text-input" id="q-brand" placeholder="Brand name">
+      <div class="field-error" id="err-2">Please enter your brand or company name.</div>
       <div class="nav-row">
         <button class="btn-back" onclick="back(2)">Back</button>
         <button class="btn-next" onclick="next(2)">Continue<span>→</span></button>
@@ -211,8 +220,9 @@
     <div class="step" data-step="5">
       <p class="q-eyebrow">Almost there</p>
       <h2 class="q-title">Tell us a bit more about what you need</h2>
-      <p class="q-hint">Optional, but it helps us come prepared.</p>
-      <textarea class="text-input" id="q-details" placeholder="A line or two is plenty"></textarea>
+      <p class="q-hint">A line or two helps us come prepared.</p>
+      <textarea class="text-input" id="q-details" placeholder="What are you trying to build, launch or fix?"></textarea>
+      <div class="field-error" id="err-5">Please share a couple of lines about what you need.</div>
       <div class="nav-row">
         <button class="btn-back" onclick="back(5)">Back</button>
         <button class="btn-next" onclick="next(5)">Continue<span>→</span></button>
@@ -227,8 +237,9 @@
         <input type="email" class="text-input" id="q-email" placeholder="Email address">
       </div>
       <div class="field">
-        <input type="tel" class="text-input" id="q-phone" placeholder="Phone number, optional" style="font-size:18px;">
+        <input type="tel" class="text-input" id="q-phone" placeholder="Phone number" style="font-size:18px;">
       </div>
+      <div class="field-error" id="err-6">Please enter a valid email and phone number.</div>
       <div class="nav-row">
         <button class="btn-back" onclick="back(6)">Back</button>
         <button class="btn-next" onclick="next(6)">Review<span>→</span></button>
@@ -279,7 +290,60 @@
     if(input) setTimeout(()=>input.focus(), 300);
   }
 
-  function next(step){ if(step < totalSteps) showStep(step+1); else showStep(7); current = step+1; }
+  function showError(step, msg){
+    const el = document.getElementById('err-'+step);
+    if(!el) return;
+    if(msg) el.textContent = msg;
+    el.classList.add('show');
+  }
+  function clearError(step){
+    const el = document.getElementById('err-'+step);
+    if(el) el.classList.remove('show');
+    const active = document.querySelector('.step[data-step="'+step+'"]');
+    if(active) active.querySelectorAll('.text-input').forEach(i=>i.classList.remove('error'));
+  }
+  function markInvalid(step, id){
+    const el = document.getElementById(id);
+    if(el) el.classList.add('error');
+    showError(step);
+  }
+
+  function validateStep(step){
+    clearError(step);
+    if(step===1){
+      const v = document.getElementById('q-name').value.trim();
+      if(v.length < 2){ markInvalid(1,'q-name'); return false; }
+    }
+    if(step===2){
+      const v = document.getElementById('q-brand').value.trim();
+      if(v.length < 2){ markInvalid(2,'q-brand'); return false; }
+    }
+    if(step===3){
+      if(data.need.length===0){ showError(3,'Pick at least one option to continue.'); return false; }
+    }
+    if(step===4){
+      if(!data.budget){ showError(4,'Pick a budget range to continue.'); return false; }
+    }
+    if(step===5){
+      const v = document.getElementById('q-details').value.trim();
+      if(v.length < 10){ markInvalid(5,'q-details'); showError(5,'Please share a couple of lines (at least 10 characters).'); return false; }
+    }
+    if(step===6){
+      const email = document.getElementById('q-email').value.trim();
+      const phone = document.getElementById('q-phone').value.trim();
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const phoneOk = phone.replace(/\D/g,'').length >= 7;
+      if(!emailOk){ markInvalid(6,'q-email'); showError(6,'Please enter a valid email address.'); return false; }
+      if(!phoneOk){ markInvalid(6,'q-phone'); showError(6,'Please enter a valid phone number.'); return false; }
+    }
+    return true;
+  }
+
+  function next(step){
+    if(!validateStep(step)) return;
+    if(step < totalSteps) showStep(step+1); else showStep(7);
+    current = step+1;
+  }
   function back(step){ if(step > 1) showStep(step-1); current = step-1; }
 
   // enter key advances on single-line steps
@@ -303,6 +367,7 @@
       if(chip.classList.contains('selected')) data.need.push(val);
       else data.need = data.need.filter(v=>v!==val);
       document.getElementById('btn-need').disabled = data.need.length===0;
+      clearError(3);
     });
   });
 
@@ -312,6 +377,17 @@
       chip.classList.add('selected');
       data.budget = chip.dataset.value;
       document.getElementById('btn-budget').disabled = false;
+      clearError(4);
+    });
+  });
+
+  // clear error as user types
+  ['q-name','q-brand','q-details','q-email','q-phone'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('input', ()=>{
+      el.classList.remove('error');
+      const stepEl = el.closest('.step');
+      if(stepEl) clearError(stepEl.dataset.step);
     });
   });
 
@@ -331,18 +407,24 @@
   }
 
   function submitForm(){
-    // Hook this up to your form backend or email service.
-    // Placeholder: log payload and show the thank-you step.
     const payload = {
-      name: document.getElementById('q-name').value,
-      brand: document.getElementById('q-brand').value,
-      need: data.need,
+      name: document.getElementById('q-name').value.trim(),
+      brand: document.getElementById('q-brand').value.trim(),
+      need: data.need.join(', '),
       budget: data.budget,
-      details: document.getElementById('q-details').value,
-      email: document.getElementById('q-email').value,
-      phone: document.getElementById('q-phone').value,
+      details: document.getElementById('q-details').value.trim(),
+      email: document.getElementById('q-email').value.trim(),
+      phone: document.getElementById('q-phone').value.trim(),
+      _subject: 'New Swytch lead — ' + (document.getElementById('q-brand').value.trim() || document.getElementById('q-name').value.trim()),
+      _template: 'table',
+      _captcha: 'false'
     };
-    console.log('Swytch contact form submission', payload);
+    // Show thank-you optimistically; email is delivered via FormSubmit in the background.
+    fetch('https://formsubmit.co/ajax/raj@swytch.studio', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(()=>{ /* silent — user already saw thank-you */ });
     showStep(8);
   }
 
