@@ -42,11 +42,22 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .fn-item.active .fn-item-dot{background:var(--c-orange);transform:scale(1.5);}
 .fn-item-name{font-size:14px;font-weight:500;color:var(--c-muted);transition:color .2s;}
 .fn-item.active .fn-item-name{color:var(--c-ink);font-weight:600;}
-/* Scroll content panels */
-.features-panels{padding:clamp(40px,6vw,80px) 0 clamp(40px,6vw,80px) 48px;}
-.feature-panel{min-height:80vh;display:flex;align-items:center;padding:40px 0;opacity:.3;transition:opacity .5s;}
-.feature-panel.active{opacity:1;}
-.fp-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:48px 44px;width:100%;position:relative;overflow:hidden;}
+/* Notification-stack content panels */
+.features-panels{padding:clamp(40px,6vw,80px) 0 clamp(40px,6vw,80px) 48px;position:relative;min-height:640px;display:flex;align-items:flex-start;}
+.feature-panel{
+  position:absolute;top:clamp(40px,6vw,80px);left:48px;right:0;
+  padding:0;
+  transform-origin:top center;
+  transition:transform .55s cubic-bezier(.22,1,.36,1),opacity .45s ease,filter .45s ease;
+  will-change:transform,opacity,filter;
+}
+/* Notification stack — data-stack=0 is the active card on top; higher = further behind */
+.feature-panel[data-stack="0"]{transform:translateY(0) scale(1);opacity:1;z-index:20;filter:none;pointer-events:auto;}
+.feature-panel[data-stack="1"]{transform:translateY(36px) scale(.955);opacity:.75;z-index:19;filter:none;pointer-events:none;}
+.feature-panel[data-stack="2"]{transform:translateY(66px) scale(.915);opacity:.45;z-index:18;filter:blur(.3px);pointer-events:none;}
+.feature-panel[data-stack="3"]{transform:translateY(90px) scale(.88);opacity:.22;z-index:17;filter:blur(.6px);pointer-events:none;}
+.feature-panel:not([data-stack="0"]):not([data-stack="1"]):not([data-stack="2"]):not([data-stack="3"]){transform:translateY(108px) scale(.86);opacity:0;z-index:1;filter:blur(1px);pointer-events:none;}
+.fp-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:48px 44px;width:100%;position:relative;overflow:hidden;box-shadow:0 20px 50px -20px rgba(15,15,20,.12),0 4px 12px -4px rgba(15,15,20,.06);}
 .fp-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,26,.07),transparent 70%);pointer-events:none;}
 .fp-num{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);margin-bottom:16px;}
 .fp-title{font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-1px;color:var(--c-ink);margin-bottom:16px;line-height:1.1;}
@@ -175,6 +186,9 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 
 @media(max-width:960px){
   .features-inner{grid-template-columns:1fr;}.features-nav{position:relative;height:auto;padding:40px var(--sp);}
+  .features-panels{padding:20px var(--sp) 60px;min-height:520px;}
+  .feature-panel{left:var(--sp);right:var(--sp);top:20px;}
+  .fp-card{padding:32px 24px;}
   .kpi-row{grid-template-columns:repeat(2,1fr);}.dash-live{grid-template-columns:1fr 1fr;}
   .comp-head,.comp-row{grid-template-columns:1fr 1fr;}.ch-cell.topic,.cr-cell.topic{display:none;}
   .contact-grid{grid-template-columns:1fr;}
@@ -211,6 +225,7 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 #site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;}
 #site-nav .sn-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:#1D1D1F;text-decoration:none;}
 #site-nav .sn-logo svg{width:26px;height:26px;}
+#site-nav .sn-logo img{width:28px;height:28px;object-fit:contain;display:block;}
 #site-nav .sn-logo .dot{color:#FF6B1A;}
 #site-nav ul{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
 #site-nav ul a{font-size:14px;color:#6E6E73;text-decoration:none;position:relative;transition:color .15s;}
@@ -226,7 +241,7 @@ body{padding-top:52px;}
 <nav id="site-nav">
   <div class="sn-inner">
     <a href="index.html" class="sn-logo">
-      <svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
+      <img src="Swytch%20official%20logo-02%201.png" alt="Swytch Studio" width="28" height="28">
       Swytch Studio
     </a>
     <ul>
@@ -269,7 +284,7 @@ body{padding-top:52px;}
     </div>
     <div class="features-panels" id="featurePanels">
 
-      <div class="feature-panel active" data-panel="0">
+      <div class="feature-panel active" data-panel="0" data-stack="0">
         <div class="fp-card">
           <div class="fp-num">SERVICE 01</div>
           <div class="fp-title">Content Creation & Management</div>
@@ -288,7 +303,7 @@ body{padding-top:52px;}
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="1">
+      <div class="feature-panel" data-panel="1" data-stack="1">
         <div class="fp-card">
           <div class="fp-num">SERVICE 02</div>
           <div class="fp-title">Performance Marketing</div>
@@ -307,7 +322,7 @@ body{padding-top:52px;}
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="2">
+      <div class="feature-panel" data-panel="2" data-stack="2">
         <div class="fp-card">
           <div class="fp-num">SERVICE 03</div>
           <div class="fp-title">Website Design & Development</div>
@@ -326,7 +341,7 @@ body{padding-top:52px;}
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="3">
+      <div class="feature-panel" data-panel="3" data-stack="3">
         <div class="fp-card">
           <div class="fp-num">SERVICE 04</div>
           <div class="fp-title">AI Solutions</div>
@@ -345,7 +360,7 @@ body{padding-top:52px;}
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="4">
+      <div class="feature-panel" data-panel="4" data-stack="4">
         <div class="fp-card">
           <div class="fp-num">SERVICE 05</div>
           <div class="fp-title">Influencer Marketing</div>
@@ -364,7 +379,7 @@ body{padding-top:52px;}
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="5">
+      <div class="feature-panel" data-panel="5" data-stack="5">
         <div class="fp-card">
           <div class="fp-num">SERVICE 06</div>
           <div class="fp-title">MarTech Services</div>
@@ -383,7 +398,7 @@ body{padding-top:52px;}
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="6">
+      <div class="feature-panel" data-panel="6" data-stack="6">
         <div class="fp-card">
           <div class="fp-num">SERVICE 07</div>
           <div class="fp-title">Creative Strategy</div>
@@ -402,7 +417,7 @@ body{padding-top:52px;}
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="7">
+      <div class="feature-panel" data-panel="7" data-stack="7">
         <div class="fp-card">
           <div class="fp-num">SERVICE 08</div>
           <div class="fp-title">Custom Tech Services</div>
@@ -537,21 +552,32 @@ body{padding-top:52px;}
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
 
-// ── SCROLL-DRIVEN FEATURES ─────────────────────────────────────────────
+// ── NOTIFICATION-STACK FEATURES ────────────────────────────────────────
 const panels=document.querySelectorAll('.feature-panel');
 const navItems=document.querySelectorAll('.fn-item');
+const featurePanelsEl=document.getElementById('featurePanels');
+const n=panels.length;
 
 function activatePanel(idx){
-  panels.forEach((p,i)=>{p.classList.toggle('active',i===idx);});
-  navItems.forEach((n,i)=>{n.classList.toggle('active',i===idx);});
+  navItems.forEach((el,i)=>el.classList.toggle('active',i===idx));
+  panels.forEach((p,i)=>{
+    const stack=(i-idx+n)%n;
+    p.dataset.stack=stack;
+    p.classList.toggle('active',stack===0);
+  });
+  const active=panels[idx];
+  if(active && featurePanelsEl){
+    featurePanelsEl.style.minHeight=(active.offsetHeight+140)+'px';
+  }
 }
 
-navItems.forEach(n=>n.addEventListener('click',()=>activatePanel(+n.dataset.target)));
+navItems.forEach(el=>el.addEventListener('click',()=>activatePanel(+el.dataset.target)));
 
-const panelObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting) activatePanel(+e.target.dataset.panel);});
-},{threshold:.5});
-panels.forEach(p=>panelObs.observe(p));
+activatePanel(0);
+window.addEventListener('resize',()=>{
+  const active=document.querySelector('.feature-panel[data-stack="0"]');
+  if(active && featurePanelsEl) featurePanelsEl.style.minHeight=(active.offsetHeight+140)+'px';
+});
 
 // ── CHART BARS ─────────────────────────────────────────────────────────
 const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

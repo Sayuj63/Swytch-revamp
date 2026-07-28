@@ -210,14 +210,14 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 
 .hero-headline{
   font-size:var(--t-display);font-weight:800;
-  letter-spacing:-2.5px;line-height:1.03;color:var(--c-ink);
+  letter-spacing:-2.5px;line-height:1.15;color:var(--c-ink);
   margin-bottom:8px;
 }
 .hero-headline .accent{color:var(--c-orange);}
 /* Typewriter underline */
-.hero-headline .underline-wrap{position:relative;display:inline-block;}
+.hero-headline .underline-wrap{position:relative;display:inline-block;padding-bottom:6px;}
 .hero-headline .underline-wrap::after{
-  content:'';position:absolute;bottom:-3px;left:0;width:0;height:3px;
+  content:'';position:absolute;bottom:0;left:0;width:0;height:3px;
   background:var(--c-orange);border-radius:2px;
   animation:reveal-width 1.2s var(--ease-out) .8s forwards;
 }
@@ -449,20 +449,22 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 .clients-hl{font-size:var(--t-sec);font-weight:700;letter-spacing:-.8px;color:var(--c-ink);margin-bottom:8px;}
 .clients-sub{font-size:var(--t-body);color:var(--c-muted);margin-bottom:48px;}
 .brands-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(6,1fr);
   border-radius:var(--r-xl);overflow:hidden;
   border:0.5px solid var(--c-rule);box-shadow:var(--gl-sh);
   background:var(--c-rule);gap:.5px;
 }
 .b-cell{
-  padding:28px 16px;background:var(--c-bg);
+  padding:20px 16px;background:var(--c-bg);
   display:flex;align-items:center;justify-content:center;text-align:center;
   font-size:var(--t-sm);font-weight:500;color:var(--c-muted);
   letter-spacing:.2px;line-height:1.3;
   transition:background .2s,color .2s,transform .2s;
-  min-height:76px;
+  min-height:104px;
 }
+.b-cell img{max-width:100%;max-height:60px;width:auto;height:auto;object-fit:contain;filter:grayscale(100%);opacity:.75;transition:filter .25s,opacity .25s,transform .2s;}
 .b-cell:hover{background:var(--gl-bg-hv);backdrop-filter:var(--gl-blur);color:var(--c-ink);transform:scale(1.03);}
+.b-cell:hover img{filter:grayscale(0);opacity:1;}
 .partner-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:40px;}
 .p-badge{
   font-size:10px;font-weight:600;letter-spacing:.8px;color:var(--c-muted);
@@ -707,18 +709,25 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .blog-grid{grid-template-columns:1fr;}
   .process-rail{grid-template-columns:1fr;gap:24px;}.process-rail::before{display:none;}
   .clients-grid{grid-template-columns:repeat(3,1fr);}
-  .brands-grid{grid-template-columns:repeat(3,1fr)!important;}
+  .brands-grid{grid-template-columns:repeat(4,1fr)!important;}
   .footer-inner{grid-template-columns:1fr 1fr;}
   .nav-links,.#cursor-glow{display:none;}
   .svc-card{flex:0 0 300px;}
 }
 @media(max-width:600px){
-  .hero-stats-bar{flex-direction:column;border-radius:var(--r-xl);}
-  .hstat{border-right:none;border-bottom:0.5px solid rgba(210,210,215,.55);}
-  .hstat:last-child{border-bottom:none;}
+  .hero-content{width:100%;max-width:100%;}
+  .hero-headline{font-size:clamp(30px,9vw,44px);letter-spacing:-1px;line-height:1.15;}
+  .hero-stats{margin-top:48px;width:100%;}
+  .hero-stats-bar{display:flex;flex-direction:row;border-radius:var(--r-xl);width:100%;box-sizing:border-box;}
+  .hstat{flex:1 1 0;padding:14px 4px;border-right:0.5px solid rgba(210,210,215,.55);border-bottom:none;min-width:0;box-sizing:border-box;}
+  .hstat:last-child{border-right:none;}
+  .hstat-num{font-size:15px;letter-spacing:-.5px;}
+  .hstat-lbl{font-size:8px;letter-spacing:.3px;margin-top:4px;line-height:1.2;}
   .results-grid{grid-template-columns:1fr;}
   .clients-grid{grid-template-columns:repeat(2,1fr);}
-  .brands-grid{grid-template-columns:repeat(2,1fr)!important;}
+  .brands-grid{grid-template-columns:repeat(3,1fr)!important;}
+  .b-cell{padding:14px 10px;min-height:82px;}
+  .b-cell img{max-height:44px;}
   .footer-inner{grid-template-columns:1fr;}
   .svc-card{flex:0 0 280px;}
   .cta-contacts{gap:24px;}
@@ -742,6 +751,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 #site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;overflow:hidden;min-width:0;}
 #site-nav .sn-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:#1D1D1F;text-decoration:none;}
 #site-nav .sn-logo svg{width:26px;height:26px;}
+#site-nav .sn-logo img{width:28px;height:28px;object-fit:contain;display:block;}
 #site-nav .sn-logo .dot{color:#FF6B1A;}
 #site-nav ul{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
 #site-nav ul a{font-size:14px;color:#6E6E73;text-decoration:none;position:relative;transition:color .15s;}
@@ -820,7 +830,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 <nav id="site-nav">
   <div class="sn-inner">
     <a href="index.html" class="sn-logo">
-      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
+      <img src="Swytch%20official%20logo-02%201.png" alt="Swytch Studio" width="28" height="28">
       Swytch Studio
     </a>
     <ul>
@@ -1100,30 +1110,24 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     <h2 class="clients-hl" data-anim="fade-up" data-delay="1">Brands that chose to grow.</h2>
     <p class="clients-sub" data-anim="fade-up" data-delay="2">D2C, fashion, finance, tech — across industries and ambitions.</p>
     <div class="brands-grid" data-anim="fade-up" data-delay="3">
-      <div class="b-cell">MeTime</div>
-      <div class="b-cell">Mahindra Finance</div>
-      <div class="b-cell">Kewal Kiran</div>
-      <div class="b-cell">Coinstore</div>
-      <div class="b-cell">Lawman</div>
-      <div class="b-cell">The House of Abhinandan Lodha</div>
-      <div class="b-cell">HoABL</div>
-      <div class="b-cell">Grado</div>
-      <div class="b-cell">National Handloom</div>
-      <div class="b-cell">Metubez</div>
-      <div class="b-cell">The Curated Collective</div>
-      <div class="b-cell">Donear</div>
-      <div class="b-cell">Killer Jeans</div>
-      <div class="b-cell">Lawman PG3</div>
-      <div class="b-cell">Integriti</div>
-      <div class="b-cell">GBTL</div>
-      <div class="b-cell">The Yoga Institute</div>
-      <div class="b-cell">Fortune Games</div>
-      <div class="b-cell">Apex Diamonds</div>
-      <div class="b-cell">Furnicom</div>
-      <div class="b-cell">Metubez Creators</div>
-      <div class="b-cell">Donear Suitings</div>
-      <div class="b-cell">Abhinandan Lodha</div>
-      <div class="b-cell">KKCL</div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/Metime.jpg" alt="MeTime" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/MahindraFinance.jpg" alt="Mahindra Finance" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/KKCL.jpg" alt="Kewal Kiran (KKCL)" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/Coinstore.jpg" alt="Coinstore" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/Lawmn.jpg" alt="Lawman" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/House%20of%20abhinandan.jpg" alt="House of Abhinandan Lodha" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/GRADO.jpg" alt="Grado" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/DONEAR.jpg" alt="Donear" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/Killer.jpg" alt="Killer Jeans" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/integriti.jpg" alt="Integriti" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/theyogainstitute.jpg" alt="The Yoga Institute" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/fortunegames.jpg" alt="Fortune Games" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/Apex.jpg" alt="Apex Diamonds" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/furnicom.jpg" alt="Furnicom" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/thecuratedcollective.jpg" alt="The Curated Collective" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/GOYO.jpg" alt="GOYO" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/adore.jpg" alt="Adore" loading="lazy"></div>
+      <div class="b-cell"><img src="Swytch%20Client%20logo/Radiantandkeen.jpg" alt="Radiant and Keen" loading="lazy"></div>
     </div>
     <div class="partner-strip" data-anim="fade-up" data-delay="4">
       <span class="p-badge">Meta Business Partner</span>
