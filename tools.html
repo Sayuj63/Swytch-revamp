@@ -35,7 +35,9 @@ a{color:inherit;text-decoration:none;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
 
 /* ── ROAS CALCULATOR ─────────────────────────────────────────────── */
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;scroll-margin-top:72px;transition:box-shadow .4s ease,transform .4s ease;border-radius:var(--r-xl);}
+.calc-grid.pulse{box-shadow:0 0 0 4px rgba(255,107,26,.25),0 20px 40px -20px rgba(255,107,26,.35);transform:translateY(-2px);}
+html{scroll-behavior:smooth;}
 .calc-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:32px 28px;}
 .calc-label{font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--c-muted);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
 .calc-label::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--c-orange);}
@@ -314,7 +316,7 @@ updateCalc();
   <div class="footer-inner">
     <div>
       <div class="f-brand-name">
-        <svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
+        <img src="Swytch%20official%20logo-02%201.png" alt="Swytch" style="width:22px;height:22px;object-fit:contain;">
         Swytch Studio
       </div>
       <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
@@ -333,14 +335,17 @@ updateCalc();
         <li><a href="components-showcase.html">AI Solutions</a></li>
         <li><a href="components-showcase.html">Influencer Marketing</a></li>
         <li><a href="components-showcase.html">MarTech</a></li>
+        <li><a href="components-showcase.html">Creative Strategy</a></li>
+        <li><a href="components-showcase.html">Custom Tech</a></li>
       </ul>
     </div>
     <div>
       <div class="f-col-title">Company</div>
       <ul class="f-links">
         <li><a href="about.html">About</a></li>
-        <li><a href="Blogs.html">Blogs</a></li>
         <li><a href="portfolio.html">Case Studies</a></li>
+        <li><a href="Blogs.html">Blogs</a></li>
+        <li><a href="tools.html">Tools</a></li>
         <li><a href="swytch-contact-typeform.html">Contact</a></li>
       </ul>
     </div>
@@ -348,6 +353,7 @@ updateCalc();
       <div class="f-col-title">Contact</div>
       <ul class="f-links">
         <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
+        <li><a href="tel:+919821817273">+91 98218 17273</a></li>
         <li>First Floor, WeWork,<br>Oberoi Commerz II,<br>Goregaon East, Mumbai</li>
       </ul>
     </div>
@@ -374,5 +380,6 @@ updateCalc();
 </div>
 <script>(function(){var d=document.getElementById('floatingDock');if(!d)return;var c=d.querySelector('.fd-close');if(c)c.addEventListener('click',function(){d.style.display='none';});})();</script>
 <script>(function(){var b=document.querySelector('#site-nav .sn-burger');if(!b)return;var u=document.querySelector('#site-nav ul');function close(){b.classList.remove('open');u.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=!b.classList.contains('open');b.classList.toggle('open',o);u.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});u.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('click',function(e){if(u.classList.contains('open')&&!u.contains(e.target)&&e.target!==b)close();});})();</script>
+<script>(function(){document.querySelectorAll('.tool-card-cta').forEach(function(a){var href=a.getAttribute('href')||'';if(!href.startsWith('#'))return;a.addEventListener('click',function(e){e.preventDefault();var tgt=document.querySelector(href);if(!tgt)return;tgt.scrollIntoView({behavior:'smooth',block:'start'});tgt.classList.add('pulse');setTimeout(function(){tgt.classList.remove('pulse');},900);var input=tgt.querySelector('input,button,select,textarea');if(input && typeof input.focus==='function')setTimeout(function(){input.focus({preventScroll:true});},500);});});})();</script>
 </body>
 </html>

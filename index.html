@@ -697,10 +697,13 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 /* AI Content cards — desktop grid, mobile snap-carousel */
 .ai-cards-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
 .ai-card{border-radius:var(--r-xl);overflow:hidden;border:0.5px solid var(--c-rule);background:var(--c-bg-2);}
+.ai-metrics-inf{font-family:'Inter','Helvetica Neue',Arial,sans-serif;-webkit-text-fill-color:var(--c-orange);font-variant-emoji:text;font-size:48px;line-height:.85;letter-spacing:-2px;display:inline-block;}
 @media(max-width:768px){
-  .ai-cards-strip{display:flex;grid-template-columns:none;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 20px 12px;margin-left:calc(var(--sp) * -1);margin-right:calc(var(--sp) * -1);scrollbar-width:none;}
-  .ai-cards-strip::-webkit-scrollbar{display:none;}
+  .ai-cards-strip,.ai-metrics-grid,.ai-deliver-grid{display:flex!important;grid-template-columns:none!important;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 20px 12px;margin-left:calc(var(--sp) * -1)!important;margin-right:calc(var(--sp) * -1)!important;scrollbar-width:none;border:none!important;border-radius:0!important;}
+  .ai-cards-strip::-webkit-scrollbar,.ai-metrics-grid::-webkit-scrollbar,.ai-deliver-grid::-webkit-scrollbar{display:none;}
   .ai-card{flex:0 0 82%;scroll-snap-align:center;}
+  .ai-metrics-grid > div{flex:0 0 68%;scroll-snap-align:center;border:0.5px solid var(--c-rule)!important;border-right:0.5px solid var(--c-rule)!important;border-radius:var(--r-xl);background:var(--c-bg-2);padding:32px 24px!important;}
+  .ai-deliver-grid > div{flex:0 0 86%;scroll-snap-align:center;}
 }
 
 /* ══════════════════════════════════════════════════════
@@ -1265,7 +1268,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
         <div style="font-size:11px;color:var(--c-muted);margin-top:3px;">Brief to final images</div>
       </div>
       <div style="padding:28px 24px;border-right:0.5px solid var(--c-rule);text-align:center;">
-        <div style="font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--c-orange);">∞</div>
+        <div style="font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--c-orange);"><span class="ai-metrics-inf">∞︎</span></div>
         <div style="font-size:12px;color:var(--c-ink);font-weight:600;margin-top:4px;">SKU variants</div>
         <div style="font-size:11px;color:var(--c-muted);margin-top:3px;">Any product, any angle</div>
       </div>
@@ -1490,7 +1493,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   <div class="footer-inner">
     <div>
       <div class="f-brand-name">
-        <svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
+        <img src="Swytch%20official%20logo-02%201.png" alt="Swytch" style="width:22px;height:22px;object-fit:contain;">
         Swytch Studio
       </div>
       <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
@@ -1509,14 +1512,17 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
         <li><a href="components-showcase.html">AI Solutions</a></li>
         <li><a href="components-showcase.html">Influencer Marketing</a></li>
         <li><a href="components-showcase.html">MarTech</a></li>
+        <li><a href="components-showcase.html">Creative Strategy</a></li>
+        <li><a href="components-showcase.html">Custom Tech</a></li>
       </ul>
     </div>
     <div>
       <div class="f-col-title">Company</div>
       <ul class="f-links">
         <li><a href="about.html">About</a></li>
-        <li><a href="Blogs.html">Blogs</a></li>
         <li><a href="portfolio.html">Case Studies</a></li>
+        <li><a href="Blogs.html">Blogs</a></li>
+        <li><a href="tools.html">Tools</a></li>
         <li><a href="swytch-contact-typeform.html">Contact</a></li>
       </ul>
     </div>
@@ -1524,6 +1530,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <div class="f-col-title">Contact</div>
       <ul class="f-links">
         <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
+        <li><a href="tel:+919821817273">+91 98218 17273</a></li>
         <li>First Floor, WeWork,<br>Oberoi Commerz II,<br>Goregaon East, Mumbai</li>
       </ul>
     </div>

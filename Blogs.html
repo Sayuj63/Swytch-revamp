@@ -262,8 +262,11 @@
   .article-card p.excerpt{
     font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0 0 14px;
   }
-  .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-faint);}
+  .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-faint);justify-content:space-between;}
+  .card-meta .meta-left{display:flex;align-items:center;gap:8px;}
   .card-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-faint);}
+  .card-read{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:999px;transition:background .18s ease,transform .18s ease;flex-shrink:0;}
+  .article-card:hover .card-read{background:var(--accent);color:#fff;transform:translateX(2px);}
 
   .empty-state{
     display:none;text-align:center;padding:80px 20px;color:var(--ink-faint);
@@ -488,7 +491,7 @@
   <div class="footer-inner">
     <div>
       <div class="f-brand-name">
-        <svg viewBox="0 0 28 28" fill="none"><path d="M4 8h13l7 6-7 6H4l7-6-7-6Z" fill="#FF6B1A"/></svg>
+        <img src="Swytch%20official%20logo-02%201.png" alt="Swytch" style="width:22px;height:22px;object-fit:contain;">
         Swytch Studio
       </div>
       <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
@@ -507,14 +510,17 @@
         <li><a href="components-showcase.html">AI Solutions</a></li>
         <li><a href="components-showcase.html">Influencer Marketing</a></li>
         <li><a href="components-showcase.html">MarTech</a></li>
+        <li><a href="components-showcase.html">Creative Strategy</a></li>
+        <li><a href="components-showcase.html">Custom Tech</a></li>
       </ul>
     </div>
     <div>
       <div class="f-col-title">Company</div>
       <ul class="f-links">
         <li><a href="about.html">About</a></li>
-        <li><a href="Blogs.html">Blogs</a></li>
         <li><a href="portfolio.html">Case Studies</a></li>
+        <li><a href="Blogs.html">Blogs</a></li>
+        <li><a href="tools.html">Tools</a></li>
         <li><a href="swytch-contact-typeform.html">Contact</a></li>
       </ul>
     </div>
@@ -522,6 +528,7 @@
       <div class="f-col-title">Contact</div>
       <ul class="f-links">
         <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
+        <li><a href="tel:+919821817273">+91 98218 17273</a></li>
         <li>First Floor, WeWork,<br>Oberoi Commerz II,<br>Goregaon East, Mumbai</li>
       </ul>
     </div>
@@ -692,7 +699,8 @@
       <h3>${a.title}</h3>
       <p class="excerpt">${a.excerpt}</p>
       <div class="card-meta">
-        <span>${a.author}</span><span class="dot"></span><span>${a.displayDate}</span><span class="dot"></span><span>${a.read}</span>
+        <span class="meta-left"><span>${a.author}</span><span class="dot"></span><span>${a.displayDate}</span><span class="dot"></span><span>${a.read}</span></span>
+        <span class="card-read">Read →</span>
       </div>
     </a>`;
   }
