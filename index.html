@@ -214,13 +214,7 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
   margin-bottom:8px;
 }
 .hero-headline .accent{color:var(--c-orange);}
-/* Typewriter underline */
-.hero-headline .underline-wrap{position:relative;display:inline-block;padding-bottom:6px;}
-.hero-headline .underline-wrap::after{
-  content:'';position:absolute;bottom:0;left:0;width:0;height:3px;
-  background:var(--c-orange);border-radius:2px;
-  animation:reveal-width 1.2s var(--ease-out) .8s forwards;
-}
+.hero-headline .underline-wrap{display:inline;}
 .hero-sub{
   font-size:var(--t-lg);font-weight:300;line-height:1.65;
   color:var(--c-sub);max-width:600px;margin:28px auto 0;
@@ -700,6 +694,15 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   transition:opacity .3s;
 }
 
+/* AI Content cards — desktop grid, mobile snap-carousel */
+.ai-cards-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;}
+.ai-card{border-radius:var(--r-xl);overflow:hidden;border:0.5px solid var(--c-rule);background:var(--c-bg-2);}
+@media(max-width:768px){
+  .ai-cards-strip{display:flex;grid-template-columns:none;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 20px 12px;margin-left:calc(var(--sp) * -1);margin-right:calc(var(--sp) * -1);scrollbar-width:none;}
+  .ai-cards-strip::-webkit-scrollbar{display:none;}
+  .ai-card{flex:0 0 82%;scroll-snap-align:center;}
+}
+
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════════════ */
@@ -761,10 +764,32 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 #site-nav ul a.active{color:#1D1D1F;font-weight:600;}
 #site-nav .sn-cta{font-size:14px;font-weight:600;color:#FF6B1A;padding:7px 18px;border:1px solid #FF6B1A;border-radius:100px;text-decoration:none;transition:background .2s,color .2s,transform .15s;}
 #site-nav .sn-cta:hover{background:#FF6B1A;color:#fff;transform:scale(1.02);}
-@media(max-width:768px){#site-nav ul{display:none;}}
-@media(max-width:600px){#site-nav .sn-cta{font-size:12px;padding:6px 12px;}}
+#site-nav .sn-burger{display:none;background:none;border:none;padding:0;cursor:pointer;width:36px;height:36px;flex-direction:column;justify-content:center;align-items:center;gap:5px;}
+#site-nav .sn-burger span{display:block;width:20px;height:2px;background:#1D1D1F;border-radius:2px;transition:transform .3s cubic-bezier(.22,1,.36,1),opacity .2s;}
+#site-nav .sn-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+#site-nav .sn-burger.open span:nth-child(2){opacity:0;}
+#site-nav .sn-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:768px){
+  #site-nav .sn-inner{overflow:visible;}
+  #site-nav .sn-burger{display:flex;}
+  #site-nav ul{
+    position:fixed;top:52px;left:0;right:0;display:flex;flex-direction:column;
+    align-items:stretch;gap:0;padding:8px 20px 20px;margin:0;
+    background:rgba(255,255,255,.98);backdrop-filter:saturate(200%) blur(20px);
+    -webkit-backdrop-filter:saturate(200%) blur(20px);
+    border-bottom:0.5px solid rgba(210,210,215,.55);
+    transform:translateY(-110%);opacity:0;pointer-events:none;
+    transition:transform .32s cubic-bezier(.22,1,.36,1),opacity .2s ease;
+  }
+  #site-nav ul.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+  #site-nav ul li{list-style:none;}
+  #site-nav ul a{display:block;padding:14px 4px;font-size:16px;border-bottom:0.5px solid rgba(210,210,215,.35);}
+  #site-nav ul li:last-child a{border-bottom:none;}
+  #site-nav ul a::after{display:none;}
+}
+@media(max-width:600px){#site-nav .sn-cta{font-size:12px;padding:6px 14px;}}
 @media(max-width:600px){#site-nav .sn-inner{gap:8px;}#site-nav .sn-logo .nav-logo-text,#site-nav .sn-logo span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px;}}
-@media(max-width:480px){#site-nav .sn-cta{font-size:11px;padding:5px 10px;white-space:nowrap;}#site-nav .sn-inner{padding:0 12px;}}
+@media(max-width:480px){#site-nav .sn-cta{font-size:11px;padding:5px 12px;white-space:nowrap;}#site-nav .sn-inner{padding:0 14px;}}
 
 /* ══════════════════════════════════════════════════════
    CANONICAL SITE FOOTER (from portfolio.html)
@@ -841,6 +866,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <li><a href="Blogs.html">Blogs</a></li>
     </ul>
     <a href="swytch-contact-typeform.html" class="sn-cta">Get in touch</a>
+    <button class="sn-burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -1150,14 +1176,14 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     <!-- Header -->
     <div style="text-align:center;margin-bottom:64px;" data-anim="fade-up">
       <p class="eyebrow">New · AI Content Generation</p>
-      <h2 style="font-size:clamp(22px,4.2vw,54px);font-weight:800;letter-spacing:-2px;line-height:1.05;color:var(--c-ink);margin:0 auto 20px;white-space:nowrap;">No studio. No model. <span style="color:var(--c-orange);">No problem.</span></h2>
+      <h2 style="font-size:clamp(22px,4.2vw,54px);font-weight:800;letter-spacing:-2px;line-height:1.15;color:var(--c-ink);margin:0 auto 20px;">No studio. No model. <span style="color:var(--c-orange);">No problem.</span></h2>
       <p style="font-size:var(--t-lg);font-weight:300;color:var(--c-sub);max-width:600px;margin:0 auto;">We generate professional fashion and product photography using AI — any look, any backdrop, in 48 hours.</p>
     </div>
 
     <!-- Before / After comparison strip -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px;">
+    <div class="ai-cards-strip">
 
-      <div style="border-radius:var(--r-xl);overflow:hidden;border:0.5px solid var(--c-rule);background:var(--c-bg-2);" data-anim="scale-up" data-delay="1">
+      <div class="ai-card" data-anim="scale-up" data-delay="1">
         <div style="padding:16px 20px;border-bottom:0.5px solid var(--c-rule);display:flex;align-items:center;justify-content:space-between;">
           <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-muted);text-transform:uppercase;">Flat lay input</span>
           <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;">→ AI Output</span>
@@ -1182,7 +1208,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
         </div>
       </div>
 
-      <div style="border-radius:var(--r-xl);overflow:hidden;border:0.5px solid var(--c-rule);background:var(--c-bg-2);" data-anim="scale-up" data-delay="2">
+      <div class="ai-card" data-anim="scale-up" data-delay="2">
         <div style="padding:16px 20px;border-bottom:0.5px solid var(--c-rule);display:flex;align-items:center;justify-content:space-between;">
           <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-muted);text-transform:uppercase;">Product shot</span>
           <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;">CGI render</span>
@@ -1199,7 +1225,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
         </div>
       </div>
 
-      <div style="border-radius:var(--r-xl);overflow:hidden;border:0.5px solid var(--c-rule);background:var(--c-bg-2);" data-anim="scale-up" data-delay="3">
+      <div class="ai-card" data-anim="scale-up" data-delay="3">
         <div style="padding:16px 20px;border-bottom:0.5px solid var(--c-rule);display:flex;align-items:center;justify-content:space-between;">
           <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-muted);text-transform:uppercase;">Model brief</span>
           <span style="font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;">Diversity</span>
@@ -1666,5 +1692,6 @@ hero && hero.addEventListener('mousemove', e => {
   <button class="fd-close" aria-label="Close" type="button">×</button>
 </div>
 <script>(function(){var d=document.getElementById('floatingDock');if(!d)return;var c=d.querySelector('.fd-close');if(c)c.addEventListener('click',function(){d.style.display='none';});})();</script>
+<script>(function(){var b=document.querySelector('#site-nav .sn-burger');if(!b)return;var u=document.querySelector('#site-nav ul');function close(){b.classList.remove('open');u.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=!b.classList.contains('open');b.classList.toggle('open',o);u.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});u.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('click',function(e){if(u.classList.contains('open')&&!u.contains(e.target)&&e.target!==b)close();});})();</script>
 </body>
 </html>
