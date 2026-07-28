@@ -299,14 +299,14 @@ body{padding-top:52px;}
       <p class="fn-eyebrow">Our services</p>
       <h2 class="fn-headline">Eight services.<br>Zero handoffs.</h2>
       <div class="fn-items" id="fnItems">
-        <div class="fn-item active" data-target="0"><div class="fn-item-dot"></div><span class="fn-item-name">Content Creation</span></div>
-        <div class="fn-item" data-target="1"><div class="fn-item-dot"></div><span class="fn-item-name">Performance Marketing</span></div>
-        <div class="fn-item" data-target="2"><div class="fn-item-dot"></div><span class="fn-item-name">Website Design & Dev</span></div>
-        <div class="fn-item" data-target="3"><div class="fn-item-dot"></div><span class="fn-item-name">AI Solutions</span></div>
-        <div class="fn-item" data-target="4"><div class="fn-item-dot"></div><span class="fn-item-name">Influencer Marketing</span></div>
-        <div class="fn-item" data-target="5"><div class="fn-item-dot"></div><span class="fn-item-name">MarTech</span></div>
-        <div class="fn-item" data-target="6"><div class="fn-item-dot"></div><span class="fn-item-name">Creative Strategy</span></div>
-        <div class="fn-item" data-target="7"><div class="fn-item-dot"></div><span class="fn-item-name">Custom Tech</span></div>
+        <div class="fn-item active" id="content-creation" data-target="0" data-slug="content-creation"><div class="fn-item-dot"></div><span class="fn-item-name">Content Creation</span></div>
+        <div class="fn-item" id="performance-marketing" data-target="1" data-slug="performance-marketing"><div class="fn-item-dot"></div><span class="fn-item-name">Performance Marketing</span></div>
+        <div class="fn-item" id="website-dev" data-target="2" data-slug="website-dev"><div class="fn-item-dot"></div><span class="fn-item-name">Website Design & Dev</span></div>
+        <div class="fn-item" id="ai-solutions" data-target="3" data-slug="ai-solutions"><div class="fn-item-dot"></div><span class="fn-item-name">AI Solutions</span></div>
+        <div class="fn-item" id="influencer-marketing" data-target="4" data-slug="influencer-marketing"><div class="fn-item-dot"></div><span class="fn-item-name">Influencer Marketing</span></div>
+        <div class="fn-item" id="martech" data-target="5" data-slug="martech"><div class="fn-item-dot"></div><span class="fn-item-name">MarTech</span></div>
+        <div class="fn-item" id="creative-strategy" data-target="6" data-slug="creative-strategy"><div class="fn-item-dot"></div><span class="fn-item-name">Creative Strategy</span></div>
+        <div class="fn-item" id="custom-tech" data-target="7" data-slug="custom-tech"><div class="fn-item-dot"></div><span class="fn-item-name">Custom Tech</span></div>
       </div>
     </div>
     <div class="features-panels" id="featurePanels">
@@ -602,7 +602,20 @@ function activatePanel(idx){
 
 navItems.forEach(el=>el.addEventListener('click',()=>activatePanel(+el.dataset.target)));
 
-activatePanel(0);
+function activateFromHash(){
+  const hash=(window.location.hash||'').replace('#','').trim();
+  if(!hash) return false;
+  const match=document.querySelector('.fn-item[data-slug="'+hash+'"]');
+  if(!match) return false;
+  activatePanel(+match.dataset.target);
+  // Scroll to the features section so user lands on the correct stack
+  const featSection=document.getElementById('features');
+  if(featSection) setTimeout(()=>featSection.scrollIntoView({behavior:'smooth',block:'start'}),50);
+  return true;
+}
+
+if(!activateFromHash()) activatePanel(0);
+window.addEventListener('hashchange',activateFromHash);
 window.addEventListener('resize',()=>{
   const active=document.querySelector('.feature-panel[data-stack="0"]');
   const isMobile=window.matchMedia('(max-width:960px)').matches;
@@ -691,14 +704,14 @@ setInterval(()=>{
     <div>
       <div class="f-col-title">Services</div>
       <ul class="f-links">
-        <li><a href="components-showcase.html">Content Creation</a></li>
-        <li><a href="components-showcase.html">Performance Marketing</a></li>
-        <li><a href="components-showcase.html">Website Design &amp; Dev</a></li>
-        <li><a href="components-showcase.html">AI Solutions</a></li>
-        <li><a href="components-showcase.html">Influencer Marketing</a></li>
-        <li><a href="components-showcase.html">MarTech</a></li>
-        <li><a href="components-showcase.html">Creative Strategy</a></li>
-        <li><a href="components-showcase.html">Custom Tech</a></li>
+        <li><a href="components-showcase.html#content-creation">Content Creation</a></li>
+        <li><a href="components-showcase.html#performance-marketing">Performance Marketing</a></li>
+        <li><a href="components-showcase.html#website-dev">Website Design &amp; Dev</a></li>
+        <li><a href="components-showcase.html#ai-solutions">AI Solutions</a></li>
+        <li><a href="components-showcase.html#influencer-marketing">Influencer Marketing</a></li>
+        <li><a href="components-showcase.html#martech">MarTech</a></li>
+        <li><a href="components-showcase.html#creative-strategy">Creative Strategy</a></li>
+        <li><a href="components-showcase.html#custom-tech">Custom Tech</a></li>
       </ul>
     </div>
     <div>

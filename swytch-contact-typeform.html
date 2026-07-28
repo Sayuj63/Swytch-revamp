@@ -416,7 +416,8 @@
       email: document.getElementById('q-email').value.trim(),
       phone: document.getElementById('q-phone').value.trim(),
       _subject: 'New Swytch lead — ' + (document.getElementById('q-brand').value.trim() || document.getElementById('q-name').value.trim()),
-      _template: 'table',
+      _replyto: document.getElementById('q-email').value.trim(),
+      _template: 'box',
       _captcha: 'false'
     };
     // Show thank-you optimistically; email is delivered via FormSubmit in the background.
