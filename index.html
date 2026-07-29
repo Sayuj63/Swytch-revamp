@@ -856,7 +856,15 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 .floating-dock .fd-cta svg,.floating-dock .fd-wa svg{width:14px;height:14px;display:block;}
 .floating-dock .fd-close{border:none;background:transparent;color:#86868B;font-size:20px;cursor:pointer;padding:0 6px;line-height:1}
 .floating-dock .fd-close:hover{color:#1D1D1F}
-@media (max-width:600px){.floating-dock .fd-desc,.floating-dock .fd-dot{display:none}.floating-dock{padding:5px 5px 5px 8px;font-size:12px;gap:6px}.floating-dock .fd-brand{padding:5px 10px 5px 6px;font-size:12px}.floating-dock .fd-cta,.floating-dock .fd-wa{padding:6px 10px;font-size:12px}.floating-dock .fd-cta span,.floating-dock .fd-wa span{display:none}}
+@media (max-width:600px){
+  .floating-dock .fd-desc,.floating-dock .fd-dot{display:none}
+  .floating-dock{padding:4px;font-size:12px;gap:5px;max-width:calc(100vw - 16px)}
+  .floating-dock .fd-brand{padding:5px 8px 5px 6px;font-size:12px;gap:5px}
+  .floating-dock .fd-brand span.fd-brand-text{display:none}
+  .floating-dock .fd-cta,.floating-dock .fd-wa{padding:6px 10px;font-size:12px}
+  .floating-dock .fd-cta span,.floating-dock .fd-wa span{display:none}
+  .floating-dock .fd-close{padding:0 4px}
+}
 
 /* Service stacking animation container */
 .svc-stack{position:relative;}
@@ -1567,7 +1575,7 @@ hero && hero.addEventListener('mousemove', e => {
 <div class="floating-dock" id="floatingDock">
   <span class="fd-brand">
     <img src="Swytch%20official%20logo-02%201.png" alt="Swytch" width="16" height="16">
-    Swytch Studio
+    <span class="fd-brand-text">Swytch Studio</span>
   </span>
   <span class="fd-dot">·</span>
   <span class="fd-desc">Mumbai's creative mar-tech studio</span>
