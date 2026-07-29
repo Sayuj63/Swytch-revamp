@@ -31,8 +31,8 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .btn-orange:hover{background:var(--c-orange-dk);transform:translateY(-1px);}
 
 /* ══ ABOUT HERO ════════════════════════════════════════════════════ */
-#about-hero{background:var(--c-bg);padding-top:clamp(24px,3vw,48px);}
-.ah-grid{display:grid;grid-template-columns:1fr 560px;gap:72px;align-items:center;}
+#about-hero{background:var(--c-bg);padding-top:clamp(16px,2vw,32px);padding-bottom:clamp(40px,5vw,72px);}
+.ah-grid{display:grid;grid-template-columns:1fr 580px;gap:64px;align-items:center;}
 .ah-hl{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.04;color:var(--c-ink);margin-bottom:20px;}
 .ah-hl em{color:var(--c-orange);font-style:normal;}
 .ah-body{font-size:15px;color:var(--c-sub);line-height:1.75;margin-bottom:36px;}
@@ -43,7 +43,7 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .av-name{font-size:13px;font-weight:700;color:var(--c-ink);margin-bottom:3px;}
 .av-desc{font-size:12px;color:var(--c-muted);line-height:1.5;}
 /* Studio card */
-.studio-visual{border-radius:var(--r-2xl);background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 55%,#FFD4B8 100%);border:0.5px solid rgba(255,107,26,.18);overflow:hidden;position:relative;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 40px;box-shadow:0 20px 60px rgba(255,107,26,.12),0 4px 12px rgba(0,0,0,.04);}
+.studio-visual{border-radius:var(--r-2xl);background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 55%,#FFD4B8 100%);border:0.5px solid rgba(255,107,26,.18);overflow:hidden;position:relative;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 48px;box-shadow:0 20px 60px rgba(255,107,26,.12),0 4px 12px rgba(0,0,0,.04);}
 .sv-bg{position:absolute;font-size:220px;font-weight:800;color:rgba(255,107,26,.08);letter-spacing:-10px;line-height:1;bottom:-30px;right:-16px;pointer-events:none;}
 .sv-content{position:relative;z-index:1;text-align:center;}
 .sv-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border:0.5px solid rgba(255,107,26,.25);border-radius:var(--r-pill);padding:8px 18px;font-size:11px;font-weight:600;color:var(--c-orange);letter-spacing:.5px;margin-bottom:22px;}
@@ -51,12 +51,12 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 @keyframes svpulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,107,26,.4);}50%{opacity:.7;box-shadow:0 0 0 7px rgba(255,107,26,0);}}
 .sv-name{font-size:38px;font-weight:800;letter-spacing:-1.8px;color:var(--c-ink);margin-bottom:8px;}
 .sv-sub{font-size:15px;color:var(--c-sub);}
-.sv-stat{position:absolute;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-lg);padding:14px 20px;box-shadow:var(--gl-sh-lg);min-width:110px;text-align:center;}
-.sv-stat-val{font-size:24px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
-.sv-stat-lbl{font-size:10px;color:var(--c-muted);letter-spacing:1.2px;margin-top:3px;font-weight:600;}
-.sv-s1{top:32px;right:24px;animation:floatA 3.5s ease-in-out infinite;}
-.sv-s2{bottom:28px;left:24px;animation:floatA 4.2s ease-in-out infinite .8s;}
-.sv-s3{bottom:28px;right:24px;animation:floatA 5s ease-in-out infinite 1.5s;}
+.sv-stat{position:absolute;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-lg);padding:12px 18px;box-shadow:var(--gl-sh-lg);width:118px;min-width:118px;box-sizing:border-box;text-align:center;}
+.sv-stat-val{font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);line-height:1;}
+.sv-stat-lbl{font-size:9.5px;color:var(--c-muted);letter-spacing:1.4px;margin-top:5px;font-weight:600;white-space:nowrap;}
+.sv-s1{top:28px;right:28px;animation:floatA 3.5s ease-in-out infinite;}
+.sv-s2{bottom:28px;left:28px;animation:floatA 4.2s ease-in-out infinite .8s;}
+.sv-s3{bottom:28px;right:28px;animation:floatA 5s ease-in-out infinite 1.5s;}
 @keyframes floatA{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 
 /* ══ TEAM ════════════════════════════════════════════════════════ */
@@ -519,10 +519,10 @@ document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
     <div>
       <div class="f-col-title">Company</div>
       <ul class="f-links">
-        <li><a href="about.html">About us</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="Blogs.html">Insights</a></li>
-        <li><a href="portfolio.html">Client stories</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Case Studies</a></li>
+        <li><a href="Blogs.html">Blogs</a></li>
+        <li><a href="tools.html">Tools</a></li>
         <li><a href="swytch-contact-typeform.html">Contact</a></li>
       </ul>
     </div>

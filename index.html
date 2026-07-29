@@ -289,7 +289,7 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 /* ══════════════════════════════════════════════════════
    SERVICES — Horizontal scroll snap cards (Apple-style)
 ══════════════════════════════════════════════════════ */
-#services{padding:var(--sec) 0 24px;overflow:hidden;margin-bottom:0;}
+#services{padding:var(--sec) 0 12px;overflow:hidden;margin-bottom:0;}
 .services-header{padding:0 var(--sp);max-width:1200px;margin:0 auto;
   display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:48px;}
 .svc-headline{font-size:var(--t-title);font-weight:800;letter-spacing:-1.5px;line-height:1.08;color:var(--c-ink);}
@@ -300,15 +300,16 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 .services-scroll{
   display:flex;
   gap:16px;
-  padding:12px var(--sp) 48px;
-  scroll-padding-left:var(--sp);
-  scroll-padding-right:var(--sp);
+  padding:12px clamp(24px,5vw,80px) 48px;
+  scroll-padding-left:clamp(24px,5vw,80px);
+  scroll-padding-right:clamp(24px,5vw,80px);
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   scroll-behavior:smooth;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
 }
+.services-scroll::before,.services-scroll::after{content:'';flex:0 0 1px;}
 .services-scroll::-webkit-scrollbar{display:none;}
 
 /* Individual service card — scroll snap */
@@ -446,8 +447,11 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 /* ══════════════════════════════════════════════════════
    CLIENTS
 ══════════════════════════════════════════════════════ */
-#clients{text-align:center;padding-top:clamp(28px,4vw,56px);}
-#results{padding-bottom:clamp(28px,4vw,56px);}
+#clients{text-align:center;padding-top:clamp(24px,3vw,48px);padding-bottom:clamp(40px,5vw,72px);}
+#results{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(24px,3vw,48px);}
+#why{padding-top:clamp(40px,5vw,72px);}
+#testimonials{padding-bottom:clamp(40px,5vw,72px);}
+#blog{padding-top:clamp(40px,5vw,72px);}
 .clients-hl{font-size:var(--t-sec);font-weight:700;letter-spacing:-.8px;color:var(--c-ink);margin-bottom:8px;}
 .clients-sub{font-size:var(--t-body);color:var(--c-muted);margin-bottom:48px;}
 .brands-grid{
@@ -467,14 +471,15 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 .b-cell img{max-width:100%;max-height:60px;width:auto;height:auto;object-fit:contain;filter:grayscale(0);opacity:1;transition:transform .35s cubic-bezier(.16,1,.3,1);}
 .b-cell:hover{background:var(--gl-bg-hv);backdrop-filter:var(--gl-blur);color:var(--c-ink);z-index:2;}
 .b-cell:hover img{transform:scale(1.25);}
-.partner-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:40px;}
+.partner-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 28px;margin-top:44px;padding-top:32px;border-top:0.5px solid var(--c-rule-lt);}
+.partner-strip-label{width:100%;text-align:center;font-size:10px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:6px;}
 .p-badge{
-  font-size:10px;font-weight:600;letter-spacing:.8px;color:var(--c-muted);
-  padding:7px 16px;border:0.5px solid var(--c-rule);border-radius:var(--r-pill);
-  background:rgba(255,255,255,.7);backdrop-filter:blur(8px);
-  transition:color .2s,border-color .2s,transform .2s;
+  font-size:11px;font-weight:600;letter-spacing:1.6px;color:var(--c-sub);
+  text-transform:uppercase;background:transparent;border:none;padding:2px 0;
+  transition:color .2s;
 }
-.p-badge:hover{color:var(--c-orange);border-color:var(--c-orange-bd);transform:translateY(-2px);}
+.p-badge:hover{color:var(--c-orange);}
+@media(max-width:600px){.partner-strip{gap:6px 18px;}.p-badge{font-size:10px;letter-spacing:1.2px;}}
 
 /* ══════════════════════════════════════════════════════
    WHY SWYTCH — split grid
@@ -744,6 +749,9 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .brands-grid{grid-template-columns:repeat(3,1fr)!important;}
   .b-cell{padding:18px 14px;min-height:96px;}
   .b-cell img{max-height:60px;}
+  /* Zoom in small logos (first cell Metime + last cell Radiant and Keen render small) */
+  .b-cell:first-child img,.b-cell:last-child img{transform:scale(1.55);}
+  .b-cell:first-child:hover img,.b-cell:last-child:hover img{transform:scale(1.85);}
   .footer-inner{grid-template-columns:1fr;}
   .svc-card{flex:0 0 280px;min-height:320px;}
   .cta-contacts{gap:24px;}
@@ -1173,6 +1181,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <div class="b-cell"><img src="Swytch%20Client%20logo/Radiantandkeen.jpg" alt="Radiant and Keen" loading="lazy"></div>
     </div>
     <div class="partner-strip" data-anim="fade-up" data-delay="4">
+      <div class="partner-strip-label">Certified Partnerships</div>
       <span class="p-badge">Meta Business Partner</span>
       <span class="p-badge">Shopify Partner</span>
       <span class="p-badge">Adobe Solution Partner</span>
