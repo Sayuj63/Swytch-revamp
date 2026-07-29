@@ -34,40 +34,8 @@ a{color:inherit;text-decoration:none;}
 .tool-panel.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
 
-/* ── ROAS CALCULATOR ─────────────────────────────────────────────── */
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;scroll-margin-top:72px;transition:box-shadow .4s ease,transform .4s ease;border-radius:var(--r-xl);}
-.calc-grid.pulse{box-shadow:0 0 0 4px rgba(255,107,26,.25),0 20px 40px -20px rgba(255,107,26,.35);transform:translateY(-2px);}
-html{scroll-behavior:smooth;}
-.calc-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:32px 28px;}
-.calc-label{font-size:12px;font-weight:600;letter-spacing:.5px;color:var(--c-muted);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
-.calc-label::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--c-orange);}
-.slider-field{margin-bottom:24px;}
-.slider-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
-.slider-name{font-size:13px;color:var(--c-ink);font-weight:500;}
-.slider-val{font-size:18px;font-weight:700;color:var(--c-orange);letter-spacing:-.5px;}
-input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;background:var(--c-rule);outline:none;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--c-orange);cursor:pointer;border:2px solid #fff;box-shadow:0 2px 8px rgba(255,107,26,.3);}
-input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--c-orange);cursor:pointer;border:2px solid #fff;}
-.result-panel{background:linear-gradient(135deg,#FFF3EE 0%,#FFE8DC 100%);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-xl);padding:32px 28px;color:var(--c-ink);}
-.rp-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;color:rgba(255,107,26,.7);text-transform:uppercase;margin-bottom:14px;}
-.rp-headline{font-size:14px;color:var(--c-sub);margin-bottom:24px;}
-.metric-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
-.metric{background:#fff;border:0.5px solid rgba(255,107,26,.15);border-radius:var(--r-lg);padding:16px;}
-.metric-num{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
-.metric-num.good{color:#30D158;}
-.metric-lbl{font-size:11px;color:var(--c-muted);margin-top:4px;}
-.uplift-bar{margin-top:16px;}
-.uplift-label{display:flex;justify-content:space-between;margin-bottom:8px;}
-.uplift-label span{font-size:12px;color:var(--c-muted);}
-.bar-track{height:8px;background:var(--c-rule);border-radius:4px;overflow:hidden;}
-.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--c-orange),#FF9A5C);transition:width .6s cubic-bezier(0,0,.2,1);}
-.bar-fill.good{background:linear-gradient(90deg,#30D158,#34C759);}
-.calc-cta{margin-top:20px;text-align:center;padding:20px;background:rgba(255,107,26,.08);border:0.5px solid rgba(255,107,26,.2);border-radius:var(--r-lg);}
-.calc-cta p{font-size:13px;color:var(--c-sub);margin-bottom:12px;}
-.btn-orange-solid{display:inline-flex;align-items:center;gap:7px;background:var(--c-orange);color:#fff;font-size:14px;font-weight:600;padding:12px 22px;border-radius:var(--r-pill);border:none;cursor:pointer;transition:all .2s;text-decoration:none;}
-.btn-orange-solid:hover{background:var(--c-orange-dk);}
-
 /* ── SHARED TOOL CARD + PREVIEW IFRAME ─────────────────────────────── */
+html{scroll-behavior:smooth;}
 .tool-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-xl);padding:32px 28px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 .tool-card-body{flex:1;min-width:260px;}
 .tool-card-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;margin-bottom:8px;}
@@ -176,83 +144,14 @@ body{padding-top:52px;}
 
 <div class="page-header">
   <p class="page-eyebrow">Swytch Studio · Tools</p>
-  <h1 class="page-hl">Two tools. Real business math.</h1>
-  <p class="page-sub">Model your growth in minutes — from projected ROAS to unit-level SKU economics.</p>
-  <div class="tool-tabs">
-    <button class="tool-tab active" onclick="switchTab('roas')">ROAS Calculator</button>
-    <button class="tool-tab" onclick="switchTab('skunomics')">SKUnomics</button>
-  </div>
+  <h1 class="page-hl">SKUnomics</h1>
+  <p class="page-sub">Traditional shoot vs AI, priced out. Move the sliders to match your catalogue and see the real gap in cost and turnaround.</p>
 </div>
 
 <div class="tools-wrap">
 
-<!-- ══ ROAS CALCULATOR ═════════════════════════════════════════════ -->
-<div class="tool-panel active" id="tab-roas">
-  <div class="tool-card">
-    <div class="tool-card-body">
-      <p class="tool-card-eyebrow">ROAS Calculator</p>
-      <h2 class="tool-card-title">Project your 90-day ROAS uplift</h2>
-      <p class="tool-card-desc">Move the sliders below to model what a Swytch engagement typically delivers against your current ad spend and unit economics.</p>
-    </div>
-    <a href="#roas-live" class="tool-card-cta">Open full tool ↗</a>
-  </div>
-
-  <div class="calc-grid" id="roas-live">
-    <div class="calc-card">
-      <div class="calc-label">Your current numbers</div>
-      <div class="slider-field">
-        <div class="slider-top"><span class="slider-name">Monthly ad spend</span><span class="slider-val" id="spend-val">₹1,00,000</span></div>
-        <input type="range" min="10000" max="1000000" step="10000" value="100000" oninput="updateCalc()" id="spend-slider">
-      </div>
-      <div class="slider-field">
-        <div class="slider-top"><span class="slider-name">Current ROAS</span><span class="slider-val" id="roas-val">1.8×</span></div>
-        <input type="range" min="0.5" max="8" step="0.1" value="1.8" oninput="updateCalc()" id="roas-slider">
-      </div>
-      <div class="slider-field">
-        <div class="slider-top"><span class="slider-name">Avg order value</span><span class="slider-val" id="aov-val">₹1,200</span></div>
-        <input type="range" min="200" max="10000" step="100" value="1200" oninput="updateCalc()" id="aov-slider">
-      </div>
-      <div class="slider-field">
-        <div class="slider-top"><span class="slider-name">Avg team size</span><span class="slider-val" id="team-val">3 people</span></div>
-        <input type="range" min="1" max="20" step="1" value="3" oninput="updateCalc()" id="team-slider">
-      </div>
-    </div>
-    <div class="result-panel">
-      <div class="rp-eyebrow">Projected with Swytch</div>
-      <div class="rp-headline">Here's what we typically achieve in 90 days:</div>
-      <div class="metric-row">
-        <div class="metric"><div class="metric-num" id="proj-roas">3.2×</div><div class="metric-lbl">Projected ROAS</div></div>
-        <div class="metric"><div class="metric-num good" id="proj-rev">₹3.2L</div><div class="metric-lbl">Monthly revenue</div></div>
-        <div class="metric"><div class="metric-num" id="proj-orders">267</div><div class="metric-lbl">Est. orders/mo</div></div>
-        <div class="metric"><div class="metric-num good" id="proj-uplift">+78%</div><div class="metric-lbl">Revenue uplift</div></div>
-      </div>
-      <div class="uplift-bar">
-        <div class="uplift-label"><span>Current revenue</span><span id="cur-rev-lbl">₹1.8L</span></div>
-        <div class="bar-track"><div class="bar-fill" id="cur-bar" style="width:45%"></div></div>
-      </div>
-      <div class="uplift-bar" style="margin-top:10px;">
-        <div class="uplift-label"><span>With Swytch</span><span id="proj-rev-lbl">₹3.2L</span></div>
-        <div class="bar-track"><div class="bar-fill good" id="proj-bar" style="width:80%"></div></div>
-      </div>
-      <div class="calc-cta">
-        <p>Ready to achieve these numbers for your brand?</p>
-        <a href="https://api.whatsapp.com/send/?phone=%2B919821817273" target="_blank" rel="noopener" class="btn-orange-solid">Talk to Swytch ↗</a>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- ══ SKUNOMICS ═════════════════════════════════════════════ -->
-<div class="tool-panel" id="tab-skunomics">
-  <div class="tool-card">
-    <div class="tool-card-body">
-      <p class="tool-card-eyebrow">SKUnomics</p>
-      <h2 class="tool-card-title">Traditional shoot vs AI, priced out</h2>
-      <p class="tool-card-desc">Move the sliders in the preview to match your catalogue and see the real gap in cost and turnaround. Open the full tool for the best experience.</p>
-    </div>
-    <a href="skunomics.html" class="tool-card-cta">Open full tool ↗</a>
-  </div>
-
+<div class="tool-panel active" id="tab-skunomics">
   <div class="tool-preview">
     <iframe src="skunomics.html" title="SKUnomics — Traditional vs AI" loading="lazy"></iframe>
   </div>
@@ -271,42 +170,6 @@ function switchTab(id) {
   if(target) target.classList.add('active');
 }
 
-// ── ROAS CALCULATOR ────────────────────────────────────────────────────
-function fmt(n){return'₹'+n.toLocaleString('en-IN');}
-
-function updateCalc(){
-  const spend=+document.getElementById('spend-slider').value;
-  const roas=+document.getElementById('roas-slider').value;
-  const aov=+document.getElementById('aov-slider').value;
-  const team=+document.getElementById('team-slider').value;
-
-  document.getElementById('spend-val').textContent=fmt(spend);
-  document.getElementById('roas-val').textContent=roas.toFixed(1)+'×';
-  document.getElementById('aov-val').textContent=fmt(aov);
-  document.getElementById('team-val').textContent=team+' '+(team===1?'person':'people');
-
-  const curRev=spend*roas;
-  const curOrders=Math.round(curRev/aov);
-
-  // Swytch typically achieves 1.6–2.4× improvement
-  const improvement=Math.min(1+(team<=3?0.9:0.6),roas<2?1.9:roas<4?1.5:1.3);
-  const projRoas=Math.min(roas*improvement, 12);
-  const projRev=spend*projRoas;
-  const projOrders=Math.round(projRev/aov);
-  const uplift=Math.round((projRev/curRev-1)*100);
-
-  document.getElementById('proj-roas').textContent=projRoas.toFixed(1)+'×';
-  document.getElementById('proj-rev').textContent=fmt(Math.round(projRev));
-  document.getElementById('proj-orders').textContent=projOrders.toLocaleString('en-IN');
-  document.getElementById('proj-uplift').textContent='+'+uplift+'%';
-  document.getElementById('cur-rev-lbl').textContent=fmt(Math.round(curRev));
-  document.getElementById('proj-rev-lbl').textContent=fmt(Math.round(projRev));
-
-  const maxRev=Math.max(curRev,projRev)*1.1;
-  document.getElementById('cur-bar').style.width=Math.round(curRev/maxRev*100)+'%';
-  document.getElementById('proj-bar').style.width=Math.round(projRev/maxRev*100)+'%';
-}
-updateCalc();
 </script>
 
 <!-- ════════════════════════════════════════════
