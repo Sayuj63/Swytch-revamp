@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journal — Swytch Studio</title>
+<title>Blogs — Swytch Studio</title>
+<link rel="icon" type="image/png" href="Swytch%20official%20logo-02%201.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -90,10 +91,12 @@
   }
   .brand-mark{
     width:32px;height:32px;border-radius:9px;
-    background:var(--accent);
+    background:#fff;border:1px solid var(--line);
     display:flex;align-items:center;justify-content:center;
     color:white;font-weight:800;font-size:15px;flex:0 0 auto;
+    overflow:hidden;
   }
+  .brand-mark img{width:26px;height:26px;object-fit:contain;display:block;}
   .brand-text{font-size:15px;font-weight:700;letter-spacing:-0.01em;}
   .brand-sub{font-size:11px;color:var(--ink-faint);font-weight:500;}
 
@@ -177,7 +180,7 @@
   /* ---------------- MAIN ---------------- */
   .main{padding:48px 56px 96px;max-width:1240px;}
   .main-head{
-    display:flex;justify-content:space-between;align-items:flex-end;
+    display:flex;justify-content:space-between;align-items:center;
     margin-bottom:36px;gap:20px;flex-wrap:wrap;
   }
   .main-head h1{
@@ -379,7 +382,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <div class="brand">
-        <div class="brand-mark">S</div>
+        <div class="brand-mark"><img src="Swytch%20official%20logo-02%201.png" alt="Swytch"></div>
         <div>
           <div class="brand-text">Swytch Journal</div>
           <div class="brand-sub">Notes on growth &amp; AI content</div>
@@ -396,35 +399,35 @@
       <div class="nav-group open" data-group="all">
         <button class="nav-item active" data-filter="all">
           <span>All articles</span>
-          <span class="count">24</span>
+          <span class="count">17</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="marketing">
         <button class="nav-item" data-filter="performance-marketing" onclick="toggleGroup(this)">
           <span>Performance marketing</span>
-          <span class="count">8</span>
+          <span class="count">6</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="ai">
         <button class="nav-item" data-filter="ai-content" onclick="toggleGroup(this)">
           <span>AI content &amp; video</span>
-          <span class="count">7</span>
+          <span class="count">5</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="case-studies">
         <button class="nav-item" data-filter="case-studies" onclick="toggleGroup(this)">
           <span>Case studies</span>
-          <span class="count">5</span>
+          <span class="count">3</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="founder">
         <button class="nav-item" data-filter="founder-notes" onclick="toggleGroup(this)">
           <span>Founder notes</span>
-          <span class="count">4</span>
+          <span class="count">3</span>
         </button>
       </div>
     </aside>
@@ -452,7 +455,7 @@
       <!-- Featured -->
       <a class="featured" id="featured" data-category="ai-content" href="https://swytch.studio/ai-fake-ads-and-content-creation-redefine-brand-storytelling/" target="_blank" rel="noopener">
         <div class="featured-img">
-          <img src="https://picsum.photos/seed/swytch-hero/800/600" alt="Featured article cover">
+          <img src="blog-images/website-brief.png" alt="Featured article cover">
         </div>
         <div class="featured-body">
           <span class="tag-chip">AI content</span>
@@ -547,119 +550,112 @@
     {
       title:"The Advertising Industry Is Not Dead. It's Reloading.",
       excerpt:"The old ad playbook is over. Here's the reload happening across creative, tech, and measurement — and how brands should reposition.",
-      cat:"performance-marketing", tag:"Industry", seed:"a1",
+      cat:"performance-marketing", tag:"Industry", seed:"a1", image:"blog-images/same-ad-spend.png",
       author:"Raj Shah", date:"2025-03-20", displayDate:"Mar 20", read:"6 min", views:14200,
       href:"https://swytch.studio/the-advertising-industry-is-not-dead-its-reloading/", external:true
     },
     {
       title:"Why Swytch's UGC Ecosystem Outshines Traditional Influencer Marketing",
       excerpt:"How a curated UGC ecosystem outperforms one-off influencer deals on cost, conversion, and consistency.",
-      cat:"performance-marketing", tag:"Influencer marketing", seed:"a2",
+      cat:"performance-marketing", tag:"Influencer marketing", seed:"a2", image:"blog-images/dear-creator.png",
       author:"Swytch Team", date:"2025-03-05", displayDate:"Mar 5", read:"5 min", views:12800,
       href:"https://swytch.studio/why-swytchs-ugc-ecosystem-outshines-traditional-influencer-marketing/", external:true
     },
     {
       title:"Swytch Studio Leads AI-Powered TVC Campaign Innovation in India",
       excerpt:"A behind-the-scenes look at how AI TVCs are shortening timelines and lifting recall across Indian brand campaigns.",
-      cat:"ai-content", tag:"AI content", seed:"a3",
+      cat:"ai-content", tag:"AI content", seed:"a3", image:"blog-images/indian-exporters.png",
       author:"Raj Shah", date:"2025-02-18", displayDate:"Feb 18", read:"6 min", views:11400,
       href:"https://swytch.studio/swytch-studio-leads-ai-powered-tvc-campaign-innovation-in-india/", external:true
     },
     {
       title:"Raj Shah: Driving Growth Through Creative-Tech Leadership",
       excerpt:"A founder note on building a creative-tech studio at the intersection of AI, performance, and brand.",
-      cat:"founder-notes", tag:"Founder notes", seed:"a4",
+      cat:"founder-notes", tag:"Founder notes", seed:"a4", image:"blog-images/five-years-agency.png",
       author:"Raj Shah", date:"2025-02-04", displayDate:"Feb 4", read:"5 min", views:9600,
       href:"https://swytch.studio/raj-shah-driving-growth-through-creative-tech-leadership/", external:true
     },
     {
       title:"Swytch Studio Powers Growth for Leading Fashion Brands in India",
       excerpt:"How AI-first content ops and performance loops are unlocking growth for India's most-loved fashion brands.",
-      cat:"case-studies", tag:"Case study", seed:"a5",
+      cat:"case-studies", tag:"Case study", seed:"a5", image:"blog-images/d2c-plateau.png",
       author:"Swytch Team", date:"2025-01-22", displayDate:"Jan 22", read:"6 min", views:10200,
       href:"https://swytch.studio/swytch-studio-powers-growth-for-leading-fashion-brands-in-india/", external:true
     },
     {
       title:"Revolutionising Fashion with AI-Powered E-commerce Shoots",
       excerpt:"Cutting shoot cost and time by an order of magnitude with AI-native product photography that actually converts.",
-      cat:"ai-content", tag:"AI content", seed:"a6",
+      cat:"ai-content", tag:"AI content", seed:"a6", image:"blog-images/ecommerce-audit.png",
       author:"Raj Shah", date:"2025-01-10", displayDate:"Jan 10", read:"5 min", views:13500,
       href:"https://swytch.studio/revolutionising-fashion-with-ai-powered-e-commerce-shoots/", external:true
     },
     {
       title:"Swytch Studio: Brand, Content & Tech Services for Growth",
       excerpt:"An overview of how Swytch stitches brand, content, and technology into one growth engine for modern challengers.",
-      cat:"performance-marketing", tag:"Performance marketing", seed:"a7",
+      cat:"performance-marketing", tag:"Performance marketing", seed:"a7", image:"blog-images/full-stack-agency.png",
       author:"Swytch Team", date:"2024-12-18", displayDate:"Dec 18", read:"4 min", views:8900,
       href:"https://swytch.studio/swytch-studio-brand-content-tech-services-for-growth/", external:true
     },
     {
-      title:"AI, Fake Ads and Content Creation Redefine Brand Storytelling",
-      excerpt:"AI-generated ads and synthetic media are rewriting the rules of brand storytelling — here's the playbook.",
-      cat:"ai-content", tag:"AI content", seed:"a8",
-      author:"Raj Shah", date:"2024-12-02", displayDate:"Dec 2", read:"6 min", views:15100,
-      href:"https://swytch.studio/ai-fake-ads-and-content-creation-redefine-brand-storytelling/", external:true
-    },
-    {
       title:"Inside the Swytch playbook: creative ops that move as fast as the feed",
       excerpt:"A LinkedIn dispatch on the operating model behind our fastest-growing brand accounts.",
-      cat:"founder-notes", tag:"Founder notes", seed:"a9",
+      cat:"founder-notes", tag:"Founder notes", seed:"a9", image:"blog-images/eight-things.png",
       author:"Raj Shah", date:"2025-03-15", displayDate:"Mar 15", read:"3 min", views:7800,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7472177191775232000", external:true
     },
     {
       title:"Why the next wave of D2C brands will be creative-tech first",
       excerpt:"A LinkedIn take on what separates the D2C brands compounding in 2025 from the ones stuck at plateau.",
-      cat:"performance-marketing", tag:"Performance marketing", seed:"b1",
+      cat:"performance-marketing", tag:"Performance marketing", seed:"b1", image:"blog-images/manufacturers-losing-d2c.png",
       author:"Raj Shah", date:"2025-03-12", displayDate:"Mar 12", read:"3 min", views:6900,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7471071992713105409", external:true
     },
     {
       title:"UGC economics: what actually drove our best quarter",
       excerpt:"Numbers, learnings, and a candid teardown of a UGC-led growth engine — shared on LinkedIn.",
-      cat:"performance-marketing", tag:"Influencer marketing", seed:"b2",
+      cat:"performance-marketing", tag:"Influencer marketing", seed:"b2", image:"blog-images/gorakhpur-creator.png",
       author:"Swytch Team", date:"2025-03-08", displayDate:"Mar 8", read:"3 min", views:7250,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7469614207588761600", external:true
     },
     {
       title:"AI TVCs: the fastest, ugliest, most exciting shift in Indian advertising",
       excerpt:"A LinkedIn post on how AI TVCs are reshaping India's ad economy — and what agencies are quietly changing.",
-      cat:"ai-content", tag:"AI content", seed:"b3",
+      cat:"ai-content", tag:"AI content", seed:"b3", image:"blog-images/youtube-conversation.png",
       author:"Raj Shah", date:"2025-03-04", displayDate:"Mar 4", read:"3 min", views:8200,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7468527052736897025", external:true
     },
     {
       title:"Fashion + AI: what a great e-commerce shoot actually looks like now",
       excerpt:"LinkedIn breakdown of an AI-powered fashion shoot workflow, from brief to storefront-ready assets.",
-      cat:"case-studies", tag:"Case study", seed:"b4",
+      cat:"case-studies", tag:"Case study", seed:"b4", image:"blog-images/ecommerce-15-percent.png",
       author:"Swytch Team", date:"2025-02-28", displayDate:"Feb 28", read:"3 min", views:6400,
-      href:"https://www.linkedin.com/feed/update/urn:li:activity:7467707513744318466", external:true
+      href:"https://www.linkedin.com/feed/update/urn:li:activity:7467077513744318466", external:true
     },
     {
       title:"Notes from the front lines of AI content at scale",
       excerpt:"A LinkedIn field note on what breaks and what compounds when you run AI content across dozens of SKUs.",
-      cat:"ai-content", tag:"AI content", seed:"b5",
+      cat:"ai-content", tag:"AI content", seed:"b5", image:"blog-images/metubez-monetisation.png",
       author:"Raj Shah", date:"2025-02-20", displayDate:"Feb 20", read:"3 min", views:5900,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7465982882130518016", external:true
     },
     {
       title:"The performance marketer's guide to AI-native creative",
       excerpt:"How to brief, test, and iterate AI-native creative without blowing up your CAC — LinkedIn edition.",
-      cat:"performance-marketing", tag:"Performance marketing", seed:"b6",
+      cat:"performance-marketing", tag:"Performance marketing", seed:"b6", image:"blog-images/creator-economy-gap.png",
       author:"Swytch Team", date:"2025-02-12", displayDate:"Feb 12", read:"3 min", views:7100,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7464533333063155712", external:true
     },
     {
       title:"Founder note: what the first 100 pitches taught us",
       excerpt:"A LinkedIn founder note on the patterns we saw across our first hundred brand conversations.",
-      cat:"founder-notes", tag:"Founder notes", seed:"b7",
+      cat:"founder-notes", tag:"Founder notes", seed:"b7", image:"blog-images/next-100m-creators.png",
       author:"Raj Shah", date:"2025-02-05", displayDate:"Feb 5", read:"3 min", views:8450,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7463083695084601344", external:true
     },
     {
       title:"Case study drop: a full-funnel AI campaign, in the open",
       excerpt:"LinkedIn write-up of a full-funnel campaign built AI-native from creative to media — with numbers.",
-      cat:"case-studies", tag:"Case study", seed:"b8",
+      cat:"case-studies", tag:"Case study", seed:"b8", image:"blog-images/client-story.png",
       author:"Swytch Team", date:"2025-01-28", displayDate:"Jan 28", read:"3 min", views:6650,
       href:"https://www.linkedin.com/feed/update/urn:li:activity:7461996559413600256", external:true
     }
@@ -684,7 +680,7 @@
     <a class="article-card" href="${a.href}"${targetAttr} data-category="${a.cat}" data-title="${safeTitle.toLowerCase()}" style="transition-delay:${(i%6)*70}ms">
       <div class="card-img">
         <span class="card-tag">${a.tag}</span>
-        <img src="https://picsum.photos/seed/${a.seed}/500/400" alt="${safeTitle}">
+        <img src="${a.image || 'https://picsum.photos/seed/'+a.seed+'/500/400'}" alt="${safeTitle}">
       </div>
       <h3>${a.title}</h3>
       <p class="excerpt">${a.excerpt}</p>

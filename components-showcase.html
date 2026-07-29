@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Swytch Studio — Advanced Components</title>
+<title>Services — Swytch Studio</title>
+<link rel="icon" type="image/png" href="Swytch%20official%20logo-02%201.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 :root{
@@ -48,16 +49,17 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
   position:absolute;top:clamp(40px,6vw,80px);left:48px;right:0;
   padding:0;
   transform-origin:top center;
-  transition:transform .55s cubic-bezier(.22,1,.36,1),opacity .45s ease,filter .45s ease;
+  transition:transform .38s cubic-bezier(.16,1,.3,1),opacity .34s cubic-bezier(.16,1,.3,1),filter .34s ease-out;
   will-change:transform,opacity,filter;
 }
 /* Notification stack — data-stack=0 is the active card on top; higher = further behind */
 .feature-panel[data-stack="0"]{transform:translateY(0) scale(1);opacity:1;z-index:20;filter:none;pointer-events:auto;}
+.feature-panel[data-stack="0"] .fp-card{box-shadow:0 30px 70px -20px rgba(15,15,20,.20),0 6px 18px -6px rgba(15,15,20,.10);}
 .feature-panel[data-stack="1"]{transform:translateY(36px) scale(.955);opacity:.75;z-index:19;filter:none;pointer-events:none;}
 .feature-panel[data-stack="2"]{transform:translateY(66px) scale(.915);opacity:.45;z-index:18;filter:blur(.3px);pointer-events:none;}
 .feature-panel[data-stack="3"]{transform:translateY(90px) scale(.88);opacity:.22;z-index:17;filter:blur(.6px);pointer-events:none;}
 .feature-panel:not([data-stack="0"]):not([data-stack="1"]):not([data-stack="2"]):not([data-stack="3"]){transform:translateY(108px) scale(.86);opacity:0;z-index:1;filter:blur(1px);pointer-events:none;}
-.fp-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:48px 44px;width:100%;position:relative;overflow:hidden;box-shadow:0 20px 50px -20px rgba(15,15,20,.12),0 4px 12px -4px rgba(15,15,20,.06);}
+.fp-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:48px 44px;width:100%;position:relative;overflow:hidden;box-shadow:0 20px 50px -20px rgba(15,15,20,.12),0 4px 12px -4px rgba(15,15,20,.06);transition:box-shadow .34s cubic-bezier(.16,1,.3,1);}
 .fp-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,26,.07),transparent 70%);pointer-events:none;}
 .fp-num{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);margin-bottom:16px;}
 .fp-title{font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-1px;color:var(--c-ink);margin-bottom:16px;line-height:1.1;}
@@ -67,10 +69,13 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .fp-point-icon{font-size:18px;margin-bottom:6px;}
 .fp-point-name{font-size:13px;font-weight:600;color:var(--c-ink);margin-bottom:3px;}
 .fp-point-desc{font-size:11px;color:var(--c-muted);line-height:1.4;}
-.fp-stat{display:flex;gap:20px;margin-top:24px;padding-top:24px;border-top:0.5px solid var(--c-rule);align-items:flex-end;flex-wrap:wrap;justify-content:space-around;}
-.fps-item{font-size:26px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);line-height:1;display:flex;flex-direction:column;align-items:center;text-align:center;flex:1 1 auto;min-width:80px;max-width:180px;}
-.fps-item .inf{font-size:38px;line-height:.85;letter-spacing:-2px;display:inline-block;transform:translateY(2px);color:var(--c-orange);font-family:'Inter','Helvetica Neue',Arial,sans-serif;-webkit-text-fill-color:var(--c-orange);font-variant-emoji:text;}
-.fps-item span{display:block;font-size:11px;font-weight:400;color:var(--c-muted);margin-top:6px;letter-spacing:0;line-height:1.2;}
+.fp-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;padding-top:24px;border-top:0.5px solid var(--c-rule);align-items:stretch;}
+.fps-item{font-size:26px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);line-height:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:6px 4px;box-sizing:border-box;min-height:64px;}
+.fps-item .num{display:flex;align-items:center;justify-content:center;height:32px;line-height:1;}
+.fps-item .inf{font-size:32px;line-height:1;letter-spacing:-1px;display:inline-flex;align-items:center;justify-content:center;height:32px;color:var(--c-orange);font-family:'Inter','Helvetica Neue',Arial,sans-serif;-webkit-text-fill-color:var(--c-orange);font-variant-emoji:text;font-weight:800;}
+.fps-item span.lbl{display:block;font-size:11px;font-weight:400;color:var(--c-muted);margin-top:8px;letter-spacing:0;line-height:1.3;padding:0 2px;white-space:normal;word-break:normal;}
+/* Legacy: any inline span inside fps-item that isn't the number line */
+.fps-item > span:not(.num):not(.inf){display:block;font-size:11px;font-weight:400;color:var(--c-muted);margin-top:8px;letter-spacing:0;line-height:1.3;padding:0 2px;}
 
 /* ══ 2. ANIMATED METRICS DASHBOARD ═══════════════════════════════════ */
 #metrics{background:linear-gradient(135deg,#FFF8F4 0%,#FFEFE3 100%);}
@@ -139,7 +144,12 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .cm-label{font-size:11px;font-weight:600;letter-spacing:1px;color:var(--c-muted);text-transform:uppercase;margin-bottom:3px;}
 .cm-value{font-size:14px;font-weight:600;color:var(--c-ink);}
 /* Multi-step contact form */
-.contact-form-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:36px 32px;max-width:100%;box-sizing:border-box;}
+.contact-form-card{background:var(--c-bg2);border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);padding:36px 32px;max-width:100%;box-sizing:border-box;margin-top:56px;}
+@media(max-width:960px){.contact-form-card{margin-top:24px;}}
+.cf-error{display:none;margin-top:6px;font-size:11px;color:#D93025;letter-spacing:.2px;}
+.cf-field.invalid input,.cf-field.invalid select,.cf-field.invalid textarea{border-color:#D93025;box-shadow:0 0 0 3px rgba(217,48,37,.08);}
+.cf-field.invalid .cf-error{display:block;}
+.btn-cf-next:disabled{opacity:.5;cursor:not-allowed;background:var(--c-orange);}
 .cf-step{display:none;animation:fadeIn .35s ease;}
 .cf-step.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
@@ -192,13 +202,14 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
   /* On mobile: no notification stack — show only active panel, no absolute positioning */
   .feature-panel{position:relative;top:auto;left:auto;right:auto;padding:0;transform:none!important;opacity:0;height:0;overflow:hidden;filter:none!important;pointer-events:none;transition:opacity .3s ease;}
   .feature-panel[data-stack="0"]{opacity:1;height:auto;overflow:visible;pointer-events:auto;}
-  .fp-card{padding:32px 24px;box-shadow:0 8px 24px -10px rgba(15,15,20,.10);}
+  .fp-card{padding:32px 24px;box-shadow:0 8px 24px -10px rgba(15,15,20,.10);width:100%;}
+  .feature-panel{width:100%;}
   .kpi-row{grid-template-columns:repeat(2,1fr);}.dash-live{grid-template-columns:1fr 1fr;}
   .comp-head,.comp-row{grid-template-columns:1fr 1fr;}.ch-cell.topic,.cr-cell.topic{display:none;}
   .contact-grid{grid-template-columns:1fr;}
   #sticky-cta{width:calc(100% - 32px);justify-content:center;}
 }
-@media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr;}.dash-live{grid-template-columns:1fr;}.fp-points{grid-template-columns:1fr;}}
+@media(max-width:600px){.kpi-row{grid-template-columns:1fr 1fr;}.dash-live{grid-template-columns:1fr;}.fp-points{grid-template-columns:1fr;}.fp-stat{gap:8px;}.fps-item{font-size:22px;min-height:56px;}.fps-item .num{height:28px;font-size:22px;}.fps-item .inf{font-size:28px;height:28px;}.fps-item span.lbl,.fps-item > span:not(.num):not(.inf){font-size:10px;margin-top:6px;}}
 
 /* ══ SITE FOOTER ═════════════════════════════════════════════════════ */
 .site-footer{background:var(--c-bg2);padding:48px var(--sp) 32px;border-top:0.5px solid var(--c-rule);}
@@ -311,7 +322,7 @@ body{padding-top:52px;}
     </div>
     <div class="features-panels" id="featurePanels">
 
-      <div class="feature-panel active" data-panel="0" data-stack="0">
+      <div class="feature-panel active" id="service-01" data-panel="0" data-stack="0">
         <div class="fp-card">
           <div class="fp-num">SERVICE 01</div>
           <div class="fp-title">Content Creation & Management</div>
@@ -323,14 +334,14 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">📊</div><div class="fp-point-name">Analytics & Reporting</div><div class="fp-point-desc">Weekly reports — what worked, what didn't, what's next.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">30+<span>Posts/month</span></div>
-            <div class="fps-item">48h<span>Turnaround</span></div>
-            <div class="fps-item">3×<span>Avg engagement lift</span></div>
+            <div class="fps-item"><span class="num">30+</span><span class="lbl">Posts/month</span></div>
+            <div class="fps-item"><span class="num">48h</span><span class="lbl">Turnaround</span></div>
+            <div class="fps-item"><span class="num">3×</span><span class="lbl">Avg engagement lift</span></div>
           </div>
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="1" data-stack="1">
+      <div class="feature-panel" id="service-02" data-panel="1" data-stack="1">
         <div class="fp-card">
           <div class="fp-num">SERVICE 02</div>
           <div class="fp-title">Performance Marketing</div>
@@ -342,14 +353,14 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">🔬</div><div class="fp-point-name">Creative Testing</div><div class="fp-point-desc">Multi-variant testing. Scale winners, kill losers fast.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">3.2×<span>Avg ROAS</span></div>
-            <div class="fps-item">68%<span>Retention lift</span></div>
-            <div class="fps-item">90d<span>To results</span></div>
+            <div class="fps-item"><span class="num">3.2×</span><span class="lbl">Avg ROAS</span></div>
+            <div class="fps-item"><span class="num">68%</span><span class="lbl">Retention lift</span></div>
+            <div class="fps-item"><span class="num">90d</span><span class="lbl">To results</span></div>
           </div>
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="2" data-stack="2">
+      <div class="feature-panel" id="service-03" data-panel="2" data-stack="2">
         <div class="fp-card">
           <div class="fp-num">SERVICE 03</div>
           <div class="fp-title">Website Design & Development</div>
@@ -361,14 +372,14 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">⚙️</div><div class="fp-point-name">Custom Builds</div><div class="fp-point-desc">React, Next.js, or WordPress — whatever fits your logic.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">4–6wk<span>Build time</span></div>
-            <div class="fps-item">3s<span>Load time target</span></div>
-            <div class="fps-item">+40%<span>Avg CVR lift</span></div>
+            <div class="fps-item"><span class="num">4–6wk</span><span class="lbl">Build time</span></div>
+            <div class="fps-item"><span class="num">3s</span><span class="lbl">Load time target</span></div>
+            <div class="fps-item"><span class="num">+40%</span><span class="lbl">Avg CVR lift</span></div>
           </div>
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="3" data-stack="3">
+      <div class="feature-panel" id="service-04" data-panel="3" data-stack="3">
         <div class="fp-card">
           <div class="fp-num">SERVICE 04</div>
           <div class="fp-title">AI Solutions</div>
@@ -380,14 +391,14 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">🔄</div><div class="fp-point-name">Workflow AI</div><div class="fp-point-desc">AI embedded into briefs, approvals, and reporting.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">10×<span>Output speed</span></div>
-            <div class="fps-item">70%<span>Cost reduction</span></div>
-            <div class="fps-item">48h<span>Delivery</span></div>
+            <div class="fps-item"><span class="num">10×</span><span class="lbl">Output speed</span></div>
+            <div class="fps-item"><span class="num">70%</span><span class="lbl">Cost reduction</span></div>
+            <div class="fps-item"><span class="num">48h</span><span class="lbl">Delivery</span></div>
           </div>
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="4" data-stack="4">
+      <div class="feature-panel" id="service-05" data-panel="4" data-stack="4">
         <div class="fp-card">
           <div class="fp-num">SERVICE 05</div>
           <div class="fp-title">Influencer Marketing</div>
@@ -399,14 +410,14 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">📊</div><div class="fp-point-name">ROI Tracking</div><div class="fp-point-desc">UTMs, unique codes, post-campaign revenue attribution.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">3–5×<span>Avg ROI</span></div>
-            <div class="fps-item">48h<span>Creator turnaround</span></div>
-            <div class="fps-item">100+<span>Creator network</span></div>
+            <div class="fps-item"><span class="num">3–5×</span><span class="lbl">Avg ROI</span></div>
+            <div class="fps-item"><span class="num">48h</span><span class="lbl">Creator turnaround</span></div>
+            <div class="fps-item"><span class="num">100+</span><span class="lbl">Creator network</span></div>
           </div>
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="5" data-stack="5">
+      <div class="feature-panel" id="service-06" data-panel="5" data-stack="5">
         <div class="fp-card">
           <div class="fp-num">SERVICE 06</div>
           <div class="fp-title">MarTech Services</div>
@@ -418,14 +429,14 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">📧</div><div class="fp-point-name">Email & WhatsApp</div><div class="fp-point-desc">Retention flows that activate, nurture, and win back.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">68%<span>Retention lift</span></div>
-            <div class="fps-item"><span class="inf">∞︎</span><span>Tools connected</span></div>
-            <div class="fps-item">0<span>Manual steps</span></div>
+            <div class="fps-item"><span class="num">68%</span><span class="lbl">Retention lift</span></div>
+            <div class="fps-item"><span class="inf">∞</span><span class="lbl">Tools connected</span></div>
+            <div class="fps-item"><span class="num">0</span><span class="lbl">Manual steps</span></div>
           </div>
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="6" data-stack="6">
+      <div class="feature-panel" id="service-07" data-panel="6" data-stack="6">
         <div class="fp-card">
           <div class="fp-num">SERVICE 07</div>
           <div class="fp-title">Creative Strategy</div>
@@ -437,14 +448,14 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">📐</div><div class="fp-point-name">Design Systems</div><div class="fp-point-desc">Templates and toolkits so your team can create on-brand fast.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">2wk<span>Brand sprint</span></div>
-            <div class="fps-item">100%<span>Original</span></div>
-            <div class="fps-item"><span class="inf">∞︎</span><span>Differentiation</span></div>
+            <div class="fps-item"><span class="num">2wk</span><span class="lbl">Brand sprint</span></div>
+            <div class="fps-item"><span class="num">100%</span><span class="lbl">Original</span></div>
+            <div class="fps-item"><span class="inf">∞</span><span class="lbl">Differentiation</span></div>
           </div>
         </div>
       </div>
 
-      <div class="feature-panel" data-panel="7" data-stack="7">
+      <div class="feature-panel" id="service-08" data-panel="7" data-stack="7">
         <div class="fp-card">
           <div class="fp-num">SERVICE 08</div>
           <div class="fp-title">Custom Tech Services</div>
@@ -456,9 +467,9 @@ body{padding-top:52px;}
             <div class="fp-point"><div class="fp-point-icon">⚙️</div><div class="fp-point-name">API Development</div><div class="fp-point-desc">REST, GraphQL, webhooks — whatever your stack needs.</div></div>
           </div>
           <div class="fp-stat">
-            <div class="fps-item">6–12wk<span>App delivery</span></div>
-            <div class="fps-item">React<span>Frontend</span></div>
-            <div class="fps-item">Node.js<span>Backend</span></div>
+            <div class="fps-item"><span class="num">6–12wk</span><span class="lbl">App delivery</span></div>
+            <div class="fps-item"><span class="num">React</span><span class="lbl">Frontend</span></div>
+            <div class="fps-item"><span class="num">Node.js</span><span class="lbl">Backend</span></div>
           </div>
         </div>
       </div>
@@ -505,23 +516,26 @@ body{padding-top:52px;}
           <div class="cf-step active" id="cf1">
             <div class="cf-title">About your brand</div>
             <div class="cf-sub">Let's start with the basics.</div>
-            <div class="cf-field"><label>Brand name</label><input type="text" placeholder="Your brand / company name"></div>
-            <div class="cf-field"><label>Industry</label>
-              <select>
-                <option>Fashion & Apparel</option><option>Beauty & Personal Care</option>
-                <option>Food & Beverage</option><option>Consumer Electronics</option>
+            <div class="cf-field" data-validate="brand"><label>Brand name</label><input type="text" name="brand" autocomplete="organization" placeholder="Enter your brand name" required minlength="2"><div class="cf-error">Please enter a brand name (2+ characters).</div></div>
+            <div class="cf-field" data-validate="industry"><label>Industry</label>
+              <select name="industry" required>
+                <option value="">Select your industry</option>
+                <option>Fashion &amp; Apparel</option><option>Beauty &amp; Personal Care</option>
+                <option>Food &amp; Beverage</option><option>Consumer Electronics</option>
                 <option>Financial Services</option><option>D2C / Ecommerce</option><option>Other</option>
               </select>
+              <div class="cf-error">Please choose an industry.</div>
             </div>
-            <div class="cf-field"><label>Website (if live)</label><input type="url" placeholder="https://yourbrand.com"></div>
-            <div class="cf-actions"><span></span><button class="btn-cf-next" onclick="cfNext(2)">Next →</button></div>
+            <div class="cf-field" data-validate="website"><label>Website (if live)</label><input type="url" name="website" autocomplete="url" placeholder="https://yourbrand.com" pattern="https?://.+\..+"><div class="cf-error">Enter a valid URL (e.g., https://yourbrand.com).</div></div>
+            <div class="cf-actions"><span></span><button class="btn-cf-next" data-next="2" disabled>Next →</button></div>
           </div>
 
           <div class="cf-step" id="cf2">
             <div class="cf-title">Your goals</div>
             <div class="cf-sub">What do you most want to achieve?</div>
-            <div class="cf-field"><label>Primary goal</label>
-              <select>
+            <div class="cf-field" data-validate="goal"><label>Primary goal</label>
+              <select name="goal" required>
+                <option value="">Select your primary goal</option>
                 <option>Increase online sales / ROAS</option>
                 <option>Grow social media following</option>
                 <option>Launch or redesign website</option>
@@ -529,33 +543,37 @@ body{padding-top:52px;}
                 <option>Scale content production</option>
                 <option>Run influencer campaigns</option>
               </select>
+              <div class="cf-error">Please choose a primary goal.</div>
             </div>
-            <div class="cf-field"><label>Monthly budget range</label>
-              <select>
+            <div class="cf-field" data-validate="budget"><label>Monthly budget range</label>
+              <select name="budget" required>
+                <option value="">Select your budget range</option>
                 <option>Under ₹50K/month</option>
                 <option>₹50K – ₹2L/month</option>
                 <option>₹2L – ₹5L/month</option>
                 <option>₹5L – ₹15L/month</option>
                 <option>₹15L+/month</option>
               </select>
+              <div class="cf-error">Please choose a budget range.</div>
             </div>
-            <div class="cf-field"><label>What's your biggest pain right now?</label><textarea placeholder="Describe your current challenge in one or two sentences..."></textarea></div>
-            <div class="cf-actions"><button class="btn-cf-back" onclick="cfNext(1)">← Back</button><button class="btn-cf-next" onclick="cfNext(3)">Next →</button></div>
+            <div class="cf-field" data-validate="pain"><label>What's your biggest pain right now?</label><textarea name="pain" placeholder="Describe your current challenge in one or two sentences..." required minlength="10"></textarea><div class="cf-error">Please share a short description (10+ characters).</div></div>
+            <div class="cf-actions"><button class="btn-cf-back" data-next="1">← Back</button><button class="btn-cf-next" data-next="3" disabled>Next →</button></div>
           </div>
 
           <div class="cf-step" id="cf3">
             <div class="cf-title">Contact details</div>
             <div class="cf-sub">Where should we send your strategy plan?</div>
             <div class="cf-row">
-              <div class="cf-field"><label>First name</label><input type="text" placeholder="Raj"></div>
-              <div class="cf-field"><label>Last name</label><input type="text" placeholder="Shah"></div>
+              <div class="cf-field" data-validate="firstName"><label>First name</label><input type="text" name="firstName" autocomplete="given-name" placeholder="First name" required minlength="2"><div class="cf-error">Please enter your first name.</div></div>
+              <div class="cf-field" data-validate="lastName"><label>Last name</label><input type="text" name="lastName" autocomplete="family-name" placeholder="Last name" required minlength="2"><div class="cf-error">Please enter your last name.</div></div>
             </div>
-            <div class="cf-field"><label>Work email</label><input type="email" placeholder="raj@yourbrand.com"></div>
-            <div class="cf-field"><label>WhatsApp number</label><input type="tel" placeholder="+91 98218 17273"></div>
-            <div class="cf-field"><label>How did you hear about us?</label>
-              <select><option>Instagram</option><option>LinkedIn</option><option>Google</option><option>Referral</option><option>Other</option></select>
+            <div class="cf-field" data-validate="email"><label>Work email</label><input type="email" name="email" autocomplete="email" placeholder="you@yourbrand.com" required><div class="cf-error">Please enter a valid email address.</div></div>
+            <div class="cf-field" data-validate="phone"><label>WhatsApp number</label><input type="tel" name="phone" autocomplete="tel" placeholder="+91 98218 17273" required><div class="cf-error">Enter a valid phone (10 digits or +country code).</div></div>
+            <div class="cf-field" data-validate="source"><label>How did you hear about us?</label>
+              <select name="source" required><option value="">Select an option</option><option>Instagram</option><option>LinkedIn</option><option>Google</option><option>Referral</option><option>Other</option></select>
+              <div class="cf-error">Please choose an option.</div>
             </div>
-            <div class="cf-actions"><button class="btn-cf-back" onclick="cfNext(2)">← Back</button><button class="btn-cf-next" onclick="cfNext(4)">Submit brief ↗</button></div>
+            <div class="cf-actions"><button class="btn-cf-back" data-next="2">← Back</button><button class="btn-cf-next" data-next="4" disabled>Submit brief ↗</button></div>
           </div>
 
           <div class="cf-step" id="cf4">
@@ -605,10 +623,21 @@ navItems.forEach(el=>el.addEventListener('click',()=>activatePanel(+el.dataset.t
 function activateFromHash(){
   const hash=(window.location.hash||'').replace('#','').trim();
   if(!hash) return false;
+  // service-01..service-08 anchor format
+  const svcMatch=hash.match(/^service-0?(\d+)$/i);
+  if(svcMatch){
+    const idx=parseInt(svcMatch[1],10)-1;
+    if(idx>=0 && idx<panels.length){
+      activatePanel(idx);
+      const featSection=document.getElementById('features');
+      if(featSection) setTimeout(()=>featSection.scrollIntoView({behavior:'smooth',block:'start'}),50);
+      return true;
+    }
+  }
+  // legacy slug format (content-creation, etc.)
   const match=document.querySelector('.fn-item[data-slug="'+hash+'"]');
   if(!match) return false;
   activatePanel(+match.dataset.target);
-  // Scroll to the features section so user lands on the correct stack
   const featSection=document.getElementById('features');
   if(featSection) setTimeout(()=>featSection.scrollIntoView({behavior:'smooth',block:'start'}),50);
   return true;
@@ -661,14 +690,78 @@ const cntObs=new IntersectionObserver(entries=>{
 },{threshold:.4});
 document.querySelectorAll('[data-anim]').forEach(el=>{if(el.querySelector('[data-count]')||el.querySelector('[data-final]')) cntObs.observe(el);});
 
-// ── CONTACT FORM STEPS ─────────────────────────────────────────────────
+// ── CONTACT FORM STEPS + VALIDATION ───────────────────────────────────
 let cfStep=1;
-function cfNext(n){
+function cfGoTo(n){
   document.getElementById('cf'+cfStep).classList.remove('active');
   cfStep=n;
   document.getElementById('cf'+n).classList.add('active');
   document.getElementById('cfProg').style.width=(n/4*100)+'%';
+  validateStep(cfStep);
 }
+// Legacy global (kept for safety if anything still calls it)
+function cfNext(n){cfGoTo(n);}
+
+const EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const URL_RE=/^https?:\/\/[^\s.]+\.[^\s]+$/i;
+const PHONE_RE=/^(\+\d{1,3}[\s-]?)?[\d\s-]{10,14}$/;
+
+function fieldValid(field){
+  const el=field.querySelector('input,select,textarea');
+  if(!el) return true;
+  const type=field.dataset.validate;
+  const v=(el.value||'').trim();
+  if(el.required && !v) return false;
+  if(!v && !el.required) return true;
+  if(type==='website'){
+    if(!v) return true; // website optional
+    return URL_RE.test(v);
+  }
+  if(type==='email') return EMAIL_RE.test(v);
+  if(type==='phone') return PHONE_RE.test(v);
+  if(el.minLength>0 && v.length<el.minLength) return false;
+  return true;
+}
+
+function validateStep(step){
+  const stepEl=document.getElementById('cf'+step);
+  if(!stepEl) return true;
+  let allOk=true;
+  stepEl.querySelectorAll('.cf-field[data-validate]').forEach(f=>{
+    const ok=fieldValid(f);
+    // Only paint invalid after user has interacted
+    if(f.dataset.touched==='1') f.classList.toggle('invalid',!ok);
+    if(!ok) allOk=false;
+  });
+  const nextBtn=stepEl.querySelector('.btn-cf-next');
+  if(nextBtn) nextBtn.disabled=!allOk;
+  return allOk;
+}
+
+// Wire up all fields + navigation buttons
+document.querySelectorAll('.cf-field[data-validate]').forEach(f=>{
+  const el=f.querySelector('input,select,textarea');
+  if(!el) return;
+  const mark=()=>{f.dataset.touched='1';validateStep(cfStep);};
+  el.addEventListener('input',mark);
+  el.addEventListener('change',mark);
+  el.addEventListener('blur',mark);
+});
+document.querySelectorAll('.btn-cf-next,.btn-cf-back').forEach(btn=>{
+  const n=parseInt(btn.dataset.next,10);
+  if(!n) return;
+  btn.addEventListener('click',()=>{
+    // If moving forward, force-validate current step; if invalid, mark all touched and block
+    if(n>cfStep){
+      const stepEl=document.getElementById('cf'+cfStep);
+      stepEl.querySelectorAll('.cf-field[data-validate]').forEach(f=>{f.dataset.touched='1';});
+      if(!validateStep(cfStep)) return;
+    }
+    cfGoTo(n);
+  });
+});
+// Initial validation state
+validateStep(1);
 
 // ── STICKY CTA BAR ─────────────────────────────────────────────────────
 const stickyBar=document.getElementById('sticky-cta');
@@ -677,11 +770,14 @@ window.addEventListener('scroll',()=>{
   stickyBar.classList.toggle('visible',shown);
 },{passive:true});
 
-// ── LIVE VALUES TICKER ─────────────────────────────────────────────────
-setInterval(()=>{
-  const r=(3.2+Math.random()*.4).toFixed(1);
-  document.getElementById('lv-roas').textContent=r+'×';
-},5000);
+// ── LIVE VALUES TICKER (guarded — metrics section removed) ────────────
+const _lvRoas=document.getElementById('lv-roas');
+if(_lvRoas){
+  setInterval(()=>{
+    const r=(3.2+Math.random()*.4).toFixed(1);
+    _lvRoas.textContent=r+'×';
+  },5000);
+}
 </script>
 
 <!-- ════════════════════════════════════════════

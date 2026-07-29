@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Swytch Studio</title>
+<link rel="icon" type="image/png" href="Swytch official logo-02 1.png">
 <meta name="description" content="Meet Swytch Studio — a Mumbai-based creative mar-tech studio of 15+ strategists, creatives, engineers, and performance marketers building brands that ship, scale, and get measured.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -30,8 +31,8 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .btn-orange:hover{background:var(--c-orange-dk);transform:translateY(-1px);}
 
 /* ══ ABOUT HERO ════════════════════════════════════════════════════ */
-#about-hero{background:var(--c-bg);}
-.ah-grid{display:grid;grid-template-columns:1fr 480px;gap:72px;align-items:center;}
+#about-hero{background:var(--c-bg);padding-top:clamp(24px,3vw,48px);}
+.ah-grid{display:grid;grid-template-columns:1fr 560px;gap:72px;align-items:center;}
 .ah-hl{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-2px;line-height:1.04;color:var(--c-ink);margin-bottom:20px;}
 .ah-hl em{color:var(--c-orange);font-style:normal;}
 .ah-body{font-size:15px;color:var(--c-sub);line-height:1.75;margin-bottom:36px;}
@@ -42,20 +43,20 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .av-name{font-size:13px;font-weight:700;color:var(--c-ink);margin-bottom:3px;}
 .av-desc{font-size:12px;color:var(--c-muted);line-height:1.5;}
 /* Studio card */
-.studio-visual{border-radius:var(--r-2xl);background:linear-gradient(135deg,#f0eef5,#e8f0f8);border:0.5px solid var(--c-rule);overflow:hidden;position:relative;min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px;}
-.sv-bg{position:absolute;font-size:180px;font-weight:800;color:rgba(0,0,0,.04);letter-spacing:-8px;line-height:1;bottom:-20px;right:-10px;pointer-events:none;}
+.studio-visual{border-radius:var(--r-2xl);background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 55%,#FFD4B8 100%);border:0.5px solid rgba(255,107,26,.18);overflow:hidden;position:relative;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 40px;box-shadow:0 20px 60px rgba(255,107,26,.12),0 4px 12px rgba(0,0,0,.04);}
+.sv-bg{position:absolute;font-size:220px;font-weight:800;color:rgba(255,107,26,.08);letter-spacing:-10px;line-height:1;bottom:-30px;right:-16px;pointer-events:none;}
 .sv-content{position:relative;z-index:1;text-align:center;}
-.sv-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border:0.5px solid rgba(255,107,26,.2);border-radius:var(--r-pill);padding:7px 16px;font-size:11px;font-weight:600;color:var(--c-orange);letter-spacing:.5px;margin-bottom:16px;}
+.sv-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border:0.5px solid rgba(255,107,26,.25);border-radius:var(--r-pill);padding:8px 18px;font-size:11px;font-weight:600;color:var(--c-orange);letter-spacing:.5px;margin-bottom:22px;}
 .sv-dot{width:6px;height:6px;border-radius:50%;background:var(--c-orange);animation:svpulse 2.4s ease-in-out infinite;}
 @keyframes svpulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,107,26,.4);}50%{opacity:.7;box-shadow:0 0 0 7px rgba(255,107,26,0);}}
-.sv-name{font-size:32px;font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:6px;}
-.sv-sub{font-size:14px;color:var(--c-muted);}
-.sv-stat{position:absolute;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border:0.5px solid rgba(210,210,215,.6);border-radius:var(--r-lg);padding:12px 18px;box-shadow:var(--gl-sh-lg);}
-.sv-stat-val{font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
-.sv-stat-lbl{font-size:10px;color:var(--c-muted);letter-spacing:1px;margin-top:2px;}
-.sv-s1{top:28px;right:-16px;animation:floatA 3.5s ease-in-out infinite;}
-.sv-s2{bottom:60px;left:-20px;animation:floatA 4.2s ease-in-out infinite .8s;}
-.sv-s3{bottom:28px;right:16px;animation:floatA 5s ease-in-out infinite 1.5s;}
+.sv-name{font-size:38px;font-weight:800;letter-spacing:-1.8px;color:var(--c-ink);margin-bottom:8px;}
+.sv-sub{font-size:15px;color:var(--c-sub);}
+.sv-stat{position:absolute;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border:0.5px solid rgba(255,107,26,.18);border-radius:var(--r-lg);padding:14px 20px;box-shadow:var(--gl-sh-lg);min-width:110px;text-align:center;}
+.sv-stat-val{font-size:24px;font-weight:800;letter-spacing:-1px;color:var(--c-orange);}
+.sv-stat-lbl{font-size:10px;color:var(--c-muted);letter-spacing:1.2px;margin-top:3px;font-weight:600;}
+.sv-s1{top:32px;right:24px;animation:floatA 3.5s ease-in-out infinite;}
+.sv-s2{bottom:28px;left:24px;animation:floatA 4.2s ease-in-out infinite .8s;}
+.sv-s3{bottom:28px;right:24px;animation:floatA 5s ease-in-out infinite 1.5s;}
 @keyframes floatA{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 
 /* ══ TEAM ════════════════════════════════════════════════════════ */
@@ -66,16 +67,18 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
 .team-card{background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-xl);overflow:hidden;transition:transform .3s,box-shadow .3s;}
 .team-card:hover{transform:translateY(-5px);box-shadow:var(--gl-sh-lg);}
-.tc-avatar{height:180px;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:800;position:relative;overflow:hidden;}
+.tc-avatar{height:180px;display:flex;align-items:center;justify-content:center;font-size:56px;font-weight:800;position:relative;overflow:hidden;}
 .tc-avatar::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,.1) 100%);}
+.tc-avatar img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1;}
+.tc-avatar .tc-initial{position:relative;z-index:1;letter-spacing:-2px;text-shadow:0 2px 8px rgba(255,107,26,.15);}
 .tc-body{padding:20px 18px;}
 .tc-name{font-size:15px;font-weight:700;color:var(--c-ink);margin-bottom:3px;}
 .tc-role{font-size:12px;color:var(--c-orange);font-weight:600;margin-bottom:6px;}
-.tc-bio{font-size:12px;color:var(--c-muted);line-height:1.5;}
+.tc-bio{font-size:11.5px;color:var(--c-muted);line-height:1.55;text-wrap:balance;}
 .tc-links{display:flex;gap:8px;margin-top:12px;}
-.tc-link{width:28px;height:28px;border-radius:8px;border:0.5px solid var(--c-rule);display:flex;align-items:center;justify-content:center;color:var(--c-muted);transition:all .2s;text-decoration:none;}
+.tc-link{width:28px;height:28px;border-radius:8px;border:0.5px solid var(--c-rule);display:flex;align-items:center;justify-content:center;color:var(--c-muted);transition:all .2s;text-decoration:none;cursor:pointer;background:transparent;}
 .tc-link svg{width:13px;height:13px;display:block;}
-.tc-link:hover{border-color:var(--c-orange);color:var(--c-orange);}
+.tc-link:hover{border-color:var(--c-orange);color:var(--c-orange);background:rgba(255,107,26,.08);transform:translateY(-1px);}
 
 /* Culture section */
 #culture{background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 100%);}
@@ -95,7 +98,7 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .culture-stat.big .cst-num{color:var(--c-orange-dk);}
 
 /* ══ BLOG ═══════════════════════════════════════════════════════ */
-#blog-section{background:var(--c-bg);}
+#blog-section{background:var(--c-bg);padding-top:clamp(40px,5vw,72px);}
 .blog-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px;}
 .blog-hl{font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-1px;color:var(--c-ink);}
 .blog-link{font-size:14px;color:var(--c-orange);font-weight:500;display:flex;align-items:center;gap:5px;transition:gap .2s;}
@@ -283,13 +286,14 @@ body{padding-top:52px;}
     </div>
     <div class="team-grid">
       <div class="team-card" data-anim data-d1>
+        <!-- TODO: Replace with actual team photos -->
         <div class="tc-avatar" style="background:linear-gradient(135deg,#FFE8DC,#FFD4B8);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">RS</span>
+          <span class="tc-initial" style="color:var(--c-orange);">RS</span>
         </div>
         <div class="tc-body">
           <div class="tc-name">Raj Shah</div>
           <div class="tc-role">Chief Business Officer</div>
-          <div class="tc-bio">Full-stack marketing strategist. D2C growth, performance systems, and brand strategy.</div>
+          <div class="tc-bio">Full-stack marketing strategist. D2C growth &amp; brand strategy.</div>
           <div class="tc-links">
             <a class="tc-link" href="https://www.linkedin.com/company/82158673/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3v10ZM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7ZM19 19h-3v-5c0-1.2-.4-2-1.5-2A1.6 1.6 0 0 0 13 13.6V19h-3V9h3v1.4A3.3 3.3 0 0 1 15.8 9c2 0 3.2 1.3 3.2 3.9V19Z"/></svg></a>
             <a class="tc-link" href="https://x.com/swytchstudio" target="_blank" rel="noopener" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
@@ -297,13 +301,14 @@ body{padding-top:52px;}
         </div>
       </div>
       <div class="team-card" data-anim data-d2>
+        <!-- TODO: Replace with actual team photos -->
         <div class="tc-avatar" style="background:linear-gradient(135deg,#E5EFFA,#D5E5F5);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">PD</span>
+          <span class="tc-initial" style="color:var(--c-orange);">PD</span>
         </div>
         <div class="tc-body">
           <div class="tc-name">Priya Desai</div>
           <div class="tc-role">Creative Director</div>
-          <div class="tc-bio">Visual identity, campaign concepting, and content direction for D2C and lifestyle brands.</div>
+          <div class="tc-bio">Visual identity &amp; content direction for D2C brands.</div>
           <div class="tc-links">
             <a class="tc-link" href="https://www.linkedin.com/company/82158673/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3v10ZM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7ZM19 19h-3v-5c0-1.2-.4-2-1.5-2A1.6 1.6 0 0 0 13 13.6V19h-3V9h3v1.4A3.3 3.3 0 0 1 15.8 9c2 0 3.2 1.3 3.2 3.9V19Z"/></svg></a>
             <a class="tc-link" href="https://www.behance.net/swytchstudio" target="_blank" rel="noopener" aria-label="Behance"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5.5h7V7Zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168Zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219Zm-9.574 6.988H0V4.999h6.826c5.665.096 5.772 5.395 2.826 6.769 3.577 1.278 3.677 8.22-3.186 8.22ZM3 11h3.584c2.508 0 2.906-3-.312-3H3v3Zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016Z"/></svg></a>
@@ -311,13 +316,14 @@ body{padding-top:52px;}
         </div>
       </div>
       <div class="team-card" data-anim data-d3>
+        <!-- TODO: Replace with actual team photos -->
         <div class="tc-avatar" style="background:linear-gradient(135deg,#FDF0DC,#FAE0C0);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">AM</span>
+          <span class="tc-initial" style="color:var(--c-orange);">AM</span>
         </div>
         <div class="tc-body">
           <div class="tc-name">Arjun Mehta</div>
           <div class="tc-role">Head of Performance</div>
-          <div class="tc-bio">Meta + Google specialist. 3.2× average ROAS across 20+ active campaigns.</div>
+          <div class="tc-bio">Meta + Google specialist. 3.2× ROAS across 20+ campaigns.</div>
           <div class="tc-links">
             <a class="tc-link" href="https://www.linkedin.com/company/82158673/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3v10ZM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7ZM19 19h-3v-5c0-1.2-.4-2-1.5-2A1.6 1.6 0 0 0 13 13.6V19h-3V9h3v1.4A3.3 3.3 0 0 1 15.8 9c2 0 3.2 1.3 3.2 3.9V19Z"/></svg></a>
             <a class="tc-link" href="https://x.com/swytchstudio" target="_blank" rel="noopener" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
@@ -325,13 +331,14 @@ body{padding-top:52px;}
         </div>
       </div>
       <div class="team-card" data-anim data-d4>
+        <!-- TODO: Replace with actual team photos -->
         <div class="tc-avatar" style="background:linear-gradient(135deg,#E0F2E8,#D0EADB);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">SK</span>
+          <span class="tc-initial" style="color:var(--c-orange);">SK</span>
         </div>
         <div class="tc-body">
           <div class="tc-name">Shreya Kumar</div>
           <div class="tc-role">Tech Lead</div>
-          <div class="tc-bio">Full-stack engineer. Shopify builds, MarTech integrations, and custom AI workflows.</div>
+          <div class="tc-bio">Full-stack engineer. Shopify, MarTech &amp; AI workflows.</div>
           <div class="tc-links">
             <a class="tc-link" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.95.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.16 1.18a11 11 0 0 1 5.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.77.11 3.06.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.18c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a>
             <a class="tc-link" href="https://www.linkedin.com/company/82158673/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3v10ZM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7ZM19 19h-3v-5c0-1.2-.4-2-1.5-2A1.6 1.6 0 0 0 13 13.6V19h-3V9h3v1.4A3.3 3.3 0 0 1 15.8 9c2 0 3.2 1.3 3.2 3.9V19Z"/></svg></a>
@@ -356,7 +363,7 @@ body{padding-top:52px;}
           <div class="perk"><div class="perk-icon">🤖</div><div class="perk-name">AI-first culture</div><div class="perk-desc">Tools, workflows, and thinking.</div></div>
           <div class="perk"><div class="perk-icon">🌱</div><div class="perk-name">Fast growth</div><div class="perk-desc">Real ownership. Real responsibility.</div></div>
         </div>
-        <a class="btn-orange" style="margin-top:28px;text-decoration:none;" href="mailto:hello@swytch.studio">We're hiring — say hi ↗</a>
+        <a class="btn-orange" style="margin-top:28px;text-decoration:none;" href="swytch-contact-typeform.html">Say Hi ↗</a>
       </div>
       <div class="culture-right" data-anim="right">
         <div class="culture-stat big"><div class="cst-num">₹50Cr+</div><div class="cst-lbl">Total revenue influenced across client portfolio</div></div>
@@ -381,7 +388,7 @@ body{padding-top:52px;}
     </div>
     <div class="blog-main">
       <!-- Featured article -->
-      <div class="article-card featured" data-anim>
+      <a href="about-blog.html" class="article-card featured" data-anim style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#F0EEF5,#E5E1F0);">
           <div class="ac-img-bg">AI</div>
           <div class="ac-img-label">AI & Creative</div>
@@ -395,9 +402,9 @@ body{padding-top:52px;}
             <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="article-card" data-anim data-d1>
+      <a href="about-blog.html" class="article-card" data-anim data-d1 style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#E5EFFA,#D5E5F5);">
           <div class="ac-img-bg">UGC</div>
           <div class="ac-img-label">Influencer</div>
@@ -411,9 +418,9 @@ body{padding-top:52px;}
             <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="article-card" data-anim data-d2>
+      <a href="about-blog.html" class="article-card" data-anim data-d2 style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#FDF0DC,#FAE0C0);">
           <div class="ac-img-bg">AD</div>
           <div class="ac-img-label">Industry</div>
@@ -427,7 +434,23 @@ body{padding-top:52px;}
             <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
-      </div>
+      </a>
+
+      <a href="about-blog.html" class="article-card" data-anim data-d3 style="text-decoration:none;color:inherit;">
+        <div class="ac-img" style="background:linear-gradient(135deg,#EDE8F5,#DED4EF);">
+          <div class="ac-img-bg">PM</div>
+          <div class="ac-img-label">AI Playbook</div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-tag">Performance Marketing</div>
+          <div class="ac-title">A Performance Marketer's Guide to AI in 2025</div>
+          <div class="ac-excerpt">Which AI tools actually move ROAS, which are hype, and how top-performing teams are stitching AI into their weekly optimisation stack.</div>
+          <div class="ac-footer">
+            <div class="ac-author"><div class="ac-avatar">AM</div><div><div class="ac-name">Arjun Mehta</div><div class="ac-date">Aug 2024 · 8 min read</div></div></div>
+            <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -496,10 +519,10 @@ document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
     <div>
       <div class="f-col-title">Company</div>
       <ul class="f-links">
-        <li><a href="about.html">About</a></li>
-        <li><a href="portfolio.html">Case Studies</a></li>
-        <li><a href="Blogs.html">Blogs</a></li>
-        <li><a href="tools.html">Tools</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="Blogs.html">Insights</a></li>
+        <li><a href="portfolio.html">Client stories</a></li>
         <li><a href="swytch-contact-typeform.html">Contact</a></li>
       </ul>
     </div>
