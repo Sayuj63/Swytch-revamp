@@ -738,7 +738,9 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   html,body{overflow-x:hidden;max-width:100%;}
   .hero-content{width:100%;max-width:100%;}
   .hero-headline{font-size:clamp(30px,9vw,44px);letter-spacing:-1px;line-height:1.15;}
-  .hero-sub{font-size:13px;line-height:1.55;max-width:100%;}
+  .hero-sub{font-size:12px;line-height:1.55;max-width:100%;letter-spacing:-.2px;text-wrap:balance;padding:0 2px;}
+  .hero-sub .mobile-hide{display:none;}
+  #hero{padding-left:14px;padding-right:14px;}
   .hero-stats{margin-top:40px;width:100%;}
   .hero-stats-bar{display:flex;flex-direction:row;border-radius:var(--r-xl);width:100%;box-sizing:border-box;}
   .hstat{flex:1 1 0;padding:14px 4px;border-right:0.5px solid rgba(210,210,215,.55);border-bottom:none;min-width:0;box-sizing:border-box;}
@@ -913,7 +915,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <span class="visually-hidden"> Mumbai | Swytch Studio</span>
     </h1>
     <p class="hero-sub" data-anim="fade-up" data-delay="2">
-      Swytch Studio is a Mumbai-based creative, AI and Shopify agency helping fashion, retail and D2C brands grow through branding, content and marketing.
+      Swytch Studio is a Mumbai-based creative, AI and Shopify agency helping fashion, retail and D2C brands grow<span class="mobile-hide"> through branding, content and marketing</span>.
     </p>
 
     <div class="hero-stats" data-anim="fade-up" data-delay="4">
