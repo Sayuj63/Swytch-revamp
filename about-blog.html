@@ -72,24 +72,6 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .sv-s3{bottom:28px;right:16px;animation:floatA 5s ease-in-out infinite 1.5s;}
 @keyframes floatA{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
 
-/* ══ TEAM ════════════════════════════════════════════════════════ */
-#team{background:var(--c-bg2);}
-.team-header{text-align:center;margin-bottom:56px;}
-.team-hl{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;color:var(--c-ink);margin-bottom:14px;}
-.team-sub{font-size:clamp(14px,1.5vw,17px);color:var(--c-sub);font-weight:300;}
-.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.team-card{background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-xl);overflow:hidden;transition:transform .3s,box-shadow .3s;}
-.team-card:hover{transform:translateY(-5px);box-shadow:var(--gl-sh-lg);}
-.tc-avatar{height:180px;display:flex;align-items:center;justify-content:center;font-size:48px;font-weight:800;position:relative;overflow:hidden;}
-.tc-avatar::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,.1) 100%);}
-.tc-body{padding:20px 18px;}
-.tc-name{font-size:15px;font-weight:700;color:var(--c-ink);margin-bottom:3px;}
-.tc-role{font-size:12px;color:var(--c-orange);font-weight:600;margin-bottom:6px;}
-.tc-bio{font-size:12px;color:var(--c-muted);line-height:1.5;}
-.tc-links{display:flex;gap:8px;margin-top:12px;}
-.tc-link{width:28px;height:28px;border-radius:var(--r-sm);border:0.5px solid var(--c-rule);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--c-muted);transition:all .2s;}
-.tc-link:hover{border-color:var(--c-orange);color:var(--c-orange);}
-
 /* Culture section */
 #culture{background:linear-gradient(135deg,#FFF3EE 0%,#FFE0CC 100%);}
 .culture-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
@@ -282,59 +264,6 @@ body{padding-top:52px;}
           <div class="sv-stat sv-s1"><div class="sv-stat-val">15+</div><div class="sv-stat-lbl">TEAM MEMBERS</div></div>
           <div class="sv-stat sv-s2"><div class="sv-stat-val">26+</div><div class="sv-stat-lbl">PROJECTS</div></div>
           <div class="sv-stat sv-s3"><div class="sv-stat-val">₹8L+</div><div class="sv-stat-lbl">REVENUE SCALED</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team">
-  <div class="container">
-    <div class="team-header" data-anim>
-      <p class="eyebrow">The team</p>
-      <h2 class="team-hl">15+ people. One obsession.</h2>
-      <p class="team-sub">Creators, strategists, engineers, and performance marketers — all embedded in your growth.</p>
-    </div>
-    <div class="team-grid">
-      <div class="team-card" data-anim data-d1>
-        <div class="tc-avatar" style="background:linear-gradient(135deg,#FFE8DC,#FFD4B8);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">RS</span>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Raj Shah</div>
-          <div class="tc-role">Chief Business Officer</div>
-          <div class="tc-bio">Full-stack marketing strategist. D2C growth, performance systems, and brand strategy.</div>
-        </div>
-      </div>
-      <div class="team-card" data-anim data-d2>
-        <div class="tc-avatar" style="background:linear-gradient(135deg,#E5EFFA,#D5E5F5);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">PD</span>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Priya Desai</div>
-          <div class="tc-role">Creative Director</div>
-          <div class="tc-bio">Visual identity, campaign concepting, and content direction for D2C and lifestyle brands.</div>
-        </div>
-      </div>
-      <div class="team-card" data-anim data-d3>
-        <div class="tc-avatar" style="background:linear-gradient(135deg,#FDF0DC,#FAE0C0);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">AM</span>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Arjun Mehta</div>
-          <div class="tc-role">Head of Performance</div>
-          <div class="tc-bio">Meta + Google specialist. 3.2× average ROAS across 20+ active campaigns.</div>
-        </div>
-      </div>
-      <div class="team-card" data-anim data-d4>
-        <div class="tc-avatar" style="background:linear-gradient(135deg,#E0F2E8,#D0EADB);">
-          <span style="color:var(--c-orange);position:relative;z-index:1;">SK</span>
-        </div>
-        <div class="tc-body">
-          <div class="tc-name">Shreya Kumar</div>
-          <div class="tc-role">Tech Lead</div>
-          <div class="tc-bio">Full-stack engineer. Shopify builds, MarTech integrations, and custom AI workflows.</div>
         </div>
       </div>
     </div>
