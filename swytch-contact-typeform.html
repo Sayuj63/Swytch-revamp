@@ -125,8 +125,8 @@
   .text-input:focus{border-color:var(--accent);}
 
   textarea.text-input{
-    font-size:16px;font-weight:500;resize:none;min-height:110px;line-height:1.5;
-    padding:12px 2px;margin-top:8px;
+    font-size:16px;font-weight:500;resize:none;min-height:auto;height:auto;overflow:hidden;line-height:1.5;
+    padding:12px 2px 4px;margin-top:8px;
   }
 
   .chip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:6px;}
@@ -515,6 +515,13 @@
   }
 
   showStep(1);
+
+  // Auto-resize textareas so the border sits right below the text
+  function autoResize(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
+  document.querySelectorAll('textarea.text-input').forEach(function(ta){
+    ta.addEventListener('input',function(){autoResize(ta);});
+    autoResize(ta);
+  });
 </script>
 </body>
 </html>
