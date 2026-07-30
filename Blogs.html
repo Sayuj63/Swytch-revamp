@@ -137,7 +137,12 @@
 
   .nav-group{margin-bottom:6px;}
   .nav-item{
-    display:flex;align-items:center;gap:32px;}
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    width:100%;background:none;border:none;text-align:left;
+    padding:11px 12px;border-radius:10px;cursor:pointer;
+    font-size:14px;font-weight:600;color:var(--ink-soft);
+    transition:background .16s ease, color .16s ease;
+  }
   .nav-item:hover{background:var(--panel);color:var(--ink);}
   .nav-item.active{background:var(--accent-soft);color:var(--accent);}
   .nav-item .count{

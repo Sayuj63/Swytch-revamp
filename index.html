@@ -1214,7 +1214,6 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <div class="b-cell"><img src="Swytch%20Client%20logo/VentureX.png" alt="VentureX" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/Bron_Studios_II.svg" alt="Bron Studios" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/felisha-logo.webp" alt="Felisha Cosmetics" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/stori_fashions_pvt_ltd__logo.jpeg" alt="Stori Fashions" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/tyi.png" alt="The Yoga Institute" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/coinstore-logo.png" alt="Coinstore" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/DIG.jpg" alt="DIG" loading="lazy"></div>
@@ -1225,7 +1224,6 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
       <div class="b-cell"><img src="Swytch%20Client%20logo/Easies.png" alt="Easies" loading="lazy"></div>
       <div class="b-cell dark-bg"><img src="Swytch%20Client%20logo/Hobl.png" alt="Hobl" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/JR%20KILLER.png" alt="JR Killer" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Killer.jpg" alt="Killer Jeans" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/Lawman%20%20New%20Logo-01%20%281%29.png" alt="Lawman" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/MeTime%20Insta%20logo%20copy.png" alt="MeTime" loading="lazy"></div>
       <div class="b-cell"><img src="Swytch%20Client%20logo/NHC.png" alt="NHC" loading="lazy"></div>
@@ -1582,7 +1580,7 @@ if (svcNext) svcNext.addEventListener('click', () => scrollToSvc(currentSvc + 1)
 if (svcPrev) svcPrev.addEventListener('click', () => scrollToSvc(currentSvc - 1));
 
 /* Update dot on manual scroll + seamlessly wrap when scrolling into clone territory */
-let scrollTimeout;
+let stackAnimTimeout;
 if (svcScroll) svcScroll.addEventListener('scroll', () => {
   if (isJumping) return;
   const cardW = getCardWidth();
@@ -1594,15 +1592,15 @@ if (svcScroll) svcScroll.addEventListener('scroll', () => {
     requestAnimationFrame(() => { isJumping = false; });
     return;
   }
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    const idx = ((Math.round(svcScroll.scrollLeft / cardW)) % TOTAL_SVC + TOTAL_SVC) % TOTAL_SVC;
-    if (idx !== currentSvc) {
-      currentSvc = idx;
-      svcDots.forEach((d, i) => d.classList.toggle('active', i === idx));
-      triggerStackAnim(idx);
-    }
-  }, 80);
+  const idx = ((Math.round(svcScroll.scrollLeft / cardW)) % TOTAL_SVC + TOTAL_SVC) % TOTAL_SVC;
+  if (idx !== currentSvc) {
+    currentSvc = idx;
+    // Update dots immediately so they follow the scroll in real time
+    svcDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    // Debounce the heavier stack animation
+    clearTimeout(stackAnimTimeout);
+    stackAnimTimeout = setTimeout(() => triggerStackAnim(idx), 80);
+  }
 }, { passive: true });
 
 /* ══════════════════════════════════════════════════════
