@@ -382,5 +382,86 @@
   }, {threshold:0.12});
   targets.forEach(el=>io.observe(el));
 </script>
+<style id="site-footer-css">
+.site-footer{background:#F5F5F7;padding:48px clamp(20px,5vw,80px) 32px;border-top:0.5px solid #D2D2D7;margin-top:40px;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#1D1D1F;}
+.site-footer *{box-sizing:border-box;}
+.site-footer .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:0.5px solid #D2D2D7;}
+.site-footer .f-brand-name{font-size:17px;font-weight:800;color:#1D1D1F;letter-spacing:-.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.site-footer .f-brand-name svg{width:22px;height:22px;}
+.site-footer .f-brand-desc{font-size:14px;color:#86868B;line-height:1.6;margin-bottom:22px;}
+.site-footer .f-socials{display:flex;gap:10px;}
+.site-footer .f-soc{width:32px;height:32px;border-radius:10px;border:0.5px solid #D2D2D7;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#86868B;transition:border-color .2s,color .2s,transform .2s;text-decoration:none;}
+.site-footer .f-soc:hover{border-color:#FF6B1A;color:#FF6B1A;transform:translateY(-2px);}
+.site-footer .f-soc svg{width:18px;height:18px;}
+.site-footer .f-col-title{font-size:11px;font-weight:700;letter-spacing:2px;color:#1D1D1F;text-transform:uppercase;margin-bottom:18px;}
+.site-footer .f-links{list-style:none;display:flex;flex-direction:column;gap:11px;padding:0;margin:0;}
+.site-footer .f-links a,.site-footer .f-links li{font-size:14px;color:#6E6E73;transition:color .15s;text-decoration:none;line-height:1.5;}
+.site-footer .f-links a:hover{color:#1D1D1F;}
+.site-footer .footer-btm{max-width:1200px;margin:0 auto;padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.site-footer .f-copy{font-size:12px;color:#86868B;margin:0;}
+.site-footer .f-legal{display:flex;gap:22px;}
+.site-footer .f-legal a{font-size:12px;color:#86868B;transition:color .15s;text-decoration:none;}
+.site-footer .f-legal a:hover{color:#1D1D1F;}
+.site-footer .f-map-container{width:100%;height:140px;border-radius:10px;overflow:hidden;border:0.5px solid #D2D2D7;margin-top:16px;}
+.site-footer .f-map-container iframe{width:100%;height:100%;border:none;}
+@media(max-width:960px){.site-footer .footer-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.site-footer .footer-inner{grid-template-columns:1fr;gap:32px;}}
+</style>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand-name">
+        <img src="Swytch%20official%20logo-02%201.png" alt="Swytch" style="width:22px;height:22px;object-fit:contain;">
+        Swytch Studio
+      </div>
+      <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
+      <div class="f-socials">
+        <a href="https://www.google.com/search?q=Swytch+Studio" class="f-soc" aria-label="Google" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 11v2h5.5c-.2 1.5-1.6 4.4-5.5 4.4-3.3 0-6-2.7-6-6s2.7-6 6-6c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.9 2.9 14.7 2 12 2 6.5 2 2 6.5 2 12s4.5 10 10 10c5.8 0 9.6-4 9.6-9.8 0-.7-.1-1.2-.2-1.7H12Z"/></svg></a>
+        <a href="https://www.instagram.com/swytch.studio/" class="f-soc" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.linkedin.com/company/82158673/" class="f-soc" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3v10ZM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7ZM19 19h-3v-5c0-1.2-.4-2-1.5-2A1.6 1.6 0 0 0 13 13.6V19h-3V9h3v1.4A3.3 3.3 0 0 1 15.8 9c2 0 3.2 1.3 3.2 3.9V19Z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title">Services</div>
+      <ul class="f-links">
+        <li><a href="components-showcase.html#content-creation">Content Creation</a></li>
+        <li><a href="components-showcase.html#performance-marketing">Performance Marketing</a></li>
+        <li><a href="components-showcase.html#website-dev">Website Design &amp; Dev</a></li>
+        <li><a href="components-showcase.html#ai-solutions">AI Solutions</a></li>
+        <li><a href="components-showcase.html#influencer-marketing">Influencer Marketing</a></li>
+        <li><a href="components-showcase.html#martech">MarTech</a></li>
+        <li><a href="components-showcase.html#creative-strategy">Creative Strategy</a></li>
+        <li><a href="components-showcase.html#custom-tech">Custom Tech</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Company</div>
+      <ul class="f-links">
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Case Studies</a></li>
+        <li><a href="Blogs.html">Blogs</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="swytch-contact-typeform.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Contact</div>
+      <ul class="f-links">
+        <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
+        <li><a href="tel:+919821817273">+91 98218 17273</a></li>
+      </ul>
+      <div class="f-map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.544190280416!2d72.8600404!3d19.1714195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6526f109ead%3A0xd2c40fb03018be68!2sSwytch%20Studio!5e0!3m2!1sen!2sin!4v1785404881750!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p class="f-copy">Copyright &copy; 2026-27 Swytch Studio. All rights reserved.</p>
+    <div class="f-legal">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-use.html">Terms of Use</a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
