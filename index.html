@@ -469,25 +469,26 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 #blog{padding-top:clamp(40px,5vw,72px);}
 .clients-hl{font-size:var(--t-sec);font-weight:700;letter-spacing:-.8px;color:var(--c-ink);margin-bottom:8px;}
 .clients-sub{font-size:var(--t-body);color:var(--c-muted);margin-bottom:48px;}
-.brands-grid{
-  display:grid;grid-template-columns:repeat(6,1fr);
-  border-radius:var(--r-xl);overflow:hidden;
-  border:1px solid var(--c-rule);box-shadow:var(--gl-sh);
-  background:var(--c-rule);gap:1px;
-  position:relative;isolation:isolate;
+/* ── Infinite logo marquee ── */
+.marquee-wrap{overflow:hidden;width:100%;display:flex;flex-direction:column;gap:14px;margin-bottom:0;}
+.marquee-track{overflow:hidden;width:100%;}
+.marquee-inner{display:flex;gap:12px;width:max-content;will-change:transform;}
+.marquee-ltr .marquee-inner{animation:mq-ltr 40s linear infinite;}
+.marquee-rtl .marquee-inner{animation:mq-rtl 40s linear infinite;}
+.marquee-wrap.paused .marquee-inner,
+.marquee-wrap:hover .marquee-inner{animation-play-state:paused;}
+.logo-tile{
+  flex:0 0 160px;width:160px;height:88px;
+  background:var(--c-bg);
+  border:1px solid var(--c-rule);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  padding:14px 18px;box-sizing:border-box;overflow:hidden;
 }
-.b-cell{
-  padding:28px 20px;background:var(--c-bg);
-  display:flex;align-items:center;justify-content:center;text-align:center;
-  font-size:var(--t-sm);font-weight:500;color:var(--c-muted);
-  letter-spacing:.2px;line-height:1.3;
-  transition:background .25s,color .25s,transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s;
-  min-height:140px;cursor:default;position:relative;
-}
-.b-cell img{max-width:100%;max-height:90px;width:auto;height:auto;object-fit:contain;filter:grayscale(0);opacity:1;transition:transform .35s cubic-bezier(.16,1,.3,1);}
-.b-cell:hover{background:#FFFFFF;color:var(--c-ink);z-index:3;transform:scale(1.05);box-shadow:0 12px 28px -8px rgba(15,15,20,.14),0 4px 10px -4px rgba(15,15,20,.08);}
-.b-cell:hover img{transform:scale(1.15);}
-.b-cell.dark-bg{background:#000;}
+.logo-tile.dark{background:#000;}
+.logo-tile img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
+@keyframes mq-ltr{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+@keyframes mq-rtl{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
 .partner-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 28px;margin-top:44px;padding-top:32px;border-top:0.5px solid var(--c-rule-lt);}
 .partner-strip-label{width:100%;text-align:center;font-size:10px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:6px;}
 .p-badge{
@@ -745,7 +746,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .blog-grid{grid-template-columns:1fr;}
   .process-rail{grid-template-columns:1fr;gap:24px;}.process-rail::before{display:none;}
   .clients-grid{grid-template-columns:repeat(3,1fr);}
-  .brands-grid{grid-template-columns:repeat(4,1fr)!important;}
+  .logo-tile{flex:0 0 130px;width:130px;height:72px;}
   .footer-inner{grid-template-columns:1fr 1fr;}
   .nav-links,.#cursor-glow{display:none;}
   .svc-card{flex:0 0 300px;}
@@ -765,12 +766,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .hstat-lbl{font-size:8px;letter-spacing:.3px;margin-top:4px;line-height:1.2;}
   .results-grid{grid-template-columns:1fr;}
   .clients-grid{grid-template-columns:repeat(2,1fr);}
-  .brands-grid{grid-template-columns:repeat(3,1fr)!important;}
-  .b-cell{padding:18px 14px;min-height:96px;}
-  .b-cell img{max-height:60px;}
-  /* Zoom in small logos (first cell Metime + last cell Radiant and Keen render small) */
-  .b-cell:first-child img,.b-cell:last-child img{transform:scale(1.55);}
-  .b-cell:first-child:hover img,.b-cell:last-child:hover img{transform:scale(1.85);}
+  .logo-tile{flex:0 0 110px;width:110px;height:64px;padding:10px 14px;}
   .footer-inner{grid-template-columns:1fr;}
   .svc-card{flex:0 0 280px;min-height:320px;}
   .cta-contacts{gap:24px;}
@@ -1196,43 +1192,91 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     <p class="eyebrow" data-anim="fade-up">Trusted by</p>
     <h2 class="clients-hl" data-anim="fade-up" data-delay="1">Brands that chose to grow.</h2>
     <p class="clients-sub" data-anim="fade-up" data-delay="2">D2C, fashion, finance, tech — across industries and ambitions.</p>
-    <div class="brands-grid" data-anim="fade-up" data-delay="3">
-      <div class="b-cell"><img src="Swytch%20Client%20logo/MeTubez-logo.jpg" alt="MeTime" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/MahindraFinance.jpg" alt="Mahindra Finance" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/KKCL.jpg" alt="Kewal Kiran (KKCL)" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Lawmn.jpg" alt="Lawman" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/House%20of%20abhinandan.jpg" alt="House of Abhinandan Lodha" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/GRADO.jpg" alt="Grado" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/DONEAR.jpg" alt="Donear" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Killer.jpg" alt="Killer Jeans" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/integriti.jpg" alt="Integriti" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/fashback.png" alt="Fashback" loading="lazy" style="transform:scale(1.6);"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/calvium.png" alt="Calvium" loading="lazy" style="transform:scale(1.6);"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/furnicom.jpg" alt="Furnicom" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/GOYO.jpg" alt="GOYO" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/adore.jpg" alt="Adore" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/VentureX.png" alt="VentureX" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Bron_Studios_II.svg" alt="Bron Studios" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/felisha-logo.webp" alt="Felisha Cosmetics" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/tyi.png" alt="The Yoga Institute" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/coinstore-logo.png" alt="Coinstore" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/DIG.jpg" alt="DIG" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Fortune.png" alt="Fortune Games" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/apex.png" alt="Apex Diamonds" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/KRL%20TEXT%20STYLE-02.png" alt="KRL" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Apurvi.png" alt="Apurvi" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Easies.png" alt="Easies" loading="lazy"></div>
-      <div class="b-cell dark-bg"><img src="Swytch%20Client%20logo/Hobl.png" alt="Hobl" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/JR%20KILLER.png" alt="JR Killer" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/Lawman%20%20New%20Logo-01%20%281%29.png" alt="Lawman" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/MeTime%20Insta%20logo%20copy.png" alt="MeTime" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/NHC.png" alt="NHC" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/RK.png" alt="RK" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/TCC.png" alt="The Curated Collective" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/VentureX%20icon.png" alt="VentureX" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/almost%20always.png" alt="Almost Always" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/gyg.png" alt="GYG" loading="lazy"></div>
-      <div class="b-cell"><img src="Swytch%20Client%20logo/logo.png" alt="Logo" loading="lazy"></div>
+    <!-- Row 1: scrolls right → left -->
+    <div class="marquee-wrap" data-anim="fade-up" data-delay="3" id="logo-marquee">
+      <div class="marquee-track marquee-ltr">
+        <div class="marquee-inner">
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/MeTubez-logo.jpg" alt="MeTime" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/MahindraFinance.jpg" alt="Mahindra Finance" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/KKCL.jpg" alt="Kewal Kiran" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Lawmn.jpg" alt="Lawman" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/House%20of%20abhinandan.jpg" alt="House of Abhinandan Lodha" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/GRADO.jpg" alt="Grado" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/DONEAR.jpg" alt="Donear" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Killer.jpg" alt="Killer Jeans" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/integriti.jpg" alt="Integriti" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/fashback.png" alt="Fashback" loading="lazy" style="transform:scale(1.5);"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/calvium.png" alt="Calvium" loading="lazy" style="transform:scale(1.5);"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/furnicom.jpg" alt="Furnicom" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/GOYO.jpg" alt="GOYO" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/adore.jpg" alt="Adore" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/VentureX.png" alt="VentureX" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Bron_Studios_II.svg" alt="Bron Studios" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/felisha-logo.webp" alt="Felisha Cosmetics" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/tyi.png" alt="The Yoga Institute" loading="lazy"></div>
+          <!-- duplicate for seamless loop -->
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/MeTubez-logo.jpg" alt="MeTime" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/MahindraFinance.jpg" alt="Mahindra Finance" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/KKCL.jpg" alt="Kewal Kiran" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Lawmn.jpg" alt="Lawman" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/House%20of%20abhinandan.jpg" alt="House of Abhinandan Lodha" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/GRADO.jpg" alt="Grado" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/DONEAR.jpg" alt="Donear" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Killer.jpg" alt="Killer Jeans" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/integriti.jpg" alt="Integriti" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/fashback.png" alt="Fashback" loading="lazy" style="transform:scale(1.5);"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/calvium.png" alt="Calvium" loading="lazy" style="transform:scale(1.5);"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/furnicom.jpg" alt="Furnicom" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/GOYO.jpg" alt="GOYO" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/adore.jpg" alt="Adore" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/VentureX.png" alt="VentureX" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Bron_Studios_II.svg" alt="Bron Studios" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/felisha-logo.webp" alt="Felisha Cosmetics" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/tyi.png" alt="The Yoga Institute" loading="lazy"></div>
+        </div>
+      </div>
+      <!-- Row 2: scrolls left → right -->
+      <div class="marquee-track marquee-rtl">
+        <div class="marquee-inner">
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/coinstore-logo.png" alt="Coinstore" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/DIG.jpg" alt="DIG" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Fortune.png" alt="Fortune Games" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/apex.png" alt="Apex Diamonds" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/KRL%20TEXT%20STYLE-02.png" alt="KRL" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Apurvi.png" alt="Apurvi" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Easies.png" alt="Easies" loading="lazy"></div>
+          <div class="logo-tile dark"><img src="Swytch%20Client%20logo/Hobl.png" alt="Hobl" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/JR%20KILLER.png" alt="JR Killer" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Lawman%20%20New%20Logo-01%20%281%29.png" alt="Lawman" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/MeTime%20Insta%20logo%20copy.png" alt="MeTime" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/NHC.png" alt="NHC" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/RK.png" alt="RK" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/TCC.png" alt="The Curated Collective" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/VentureX%20icon.png" alt="VentureX icon" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/almost%20always.png" alt="Almost Always" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/gyg.png" alt="GYG" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/logo.png" alt="Logo" loading="lazy"></div>
+          <!-- duplicate for seamless loop -->
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/coinstore-logo.png" alt="Coinstore" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/DIG.jpg" alt="DIG" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Fortune.png" alt="Fortune Games" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/apex.png" alt="Apex Diamonds" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/KRL%20TEXT%20STYLE-02.png" alt="KRL" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Apurvi.png" alt="Apurvi" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Easies.png" alt="Easies" loading="lazy"></div>
+          <div class="logo-tile dark"><img src="Swytch%20Client%20logo/Hobl.png" alt="Hobl" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/JR%20KILLER.png" alt="JR Killer" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/Lawman%20%20New%20Logo-01%20%281%29.png" alt="Lawman" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/MeTime%20Insta%20logo%20copy.png" alt="MeTime" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/NHC.png" alt="NHC" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/RK.png" alt="RK" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/TCC.png" alt="The Curated Collective" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/VentureX%20icon.png" alt="VentureX icon" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/almost%20always.png" alt="Almost Always" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/gyg.png" alt="GYG" loading="lazy"></div>
+          <div class="logo-tile"><img src="Swytch%20Client%20logo/logo.png" alt="Logo" loading="lazy"></div>
+        </div>
+      </div>
     </div>
     <div class="partner-strip" data-anim="fade-up" data-delay="4">
       <div class="partner-strip-label">Certified Partnerships</div>
@@ -1673,6 +1717,7 @@ hero && hero.addEventListener('mousemove', e => {
   </a>
   <button class="fd-close" aria-label="Close" type="button">×</button>
 </div>
+<script>(function(){var m=document.getElementById('logo-marquee');if(!m)return;m.addEventListener('touchstart',function(){m.classList.add('paused');},{passive:true});m.addEventListener('touchend',function(){m.classList.remove('paused');});m.addEventListener('touchcancel',function(){m.classList.remove('paused');});})();</script>
 <script>(function(){var d=document.getElementById('floatingDock');if(!d)return;var c=d.querySelector('.fd-close');if(c)c.addEventListener('click',function(){d.style.display='none';});})();</script>
 <script>(function(){var b=document.querySelector('#site-nav .sn-burger');if(!b)return;var u=document.querySelector('#site-nav ul');function close(){b.classList.remove('open');u.classList.remove('open');b.setAttribute('aria-expanded','false');}b.addEventListener('click',function(e){e.stopPropagation();var o=!b.classList.contains('open');b.classList.toggle('open',o);u.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});u.querySelectorAll('a').forEach(function(a){a.addEventListener('click',close);});document.addEventListener('click',function(e){if(u.classList.contains('open')&&!u.contains(e.target)&&e.target!==b)close();});})();</script>
 </body>
