@@ -42,7 +42,7 @@
     display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink-soft);
   }
   .back-link:hover{color:var(--accent);}
-  .topbar-brand{font-size:13px;font-weight:700;color:var(--ink-faint);}
+  .topbar-brand{font-size:13px;font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:8px;text-decoration:none;letter-spacing:-.01em;}.topbar-brand img{width:22px;height:22px;object-fit:contain;display:block;}.topbar-brand:hover{color:var(--accent);}
 
   .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.visible{opacity:1;transform:translateY(0);}
@@ -203,6 +203,20 @@
     .section, .section-wide, .cta-section, .next-nav{padding-left:18px;padding-right:18px;}
     .step-item{grid-template-columns:44px 1fr;gap:14px;}
   }
+
+  /* Case study inline banner */
+  .article-banner{
+    max-width:1080px;margin:0 auto 56px;padding:0 24px;
+  }
+  .article-banner img{
+    width:100%;height:auto;display:block;border-radius:20px;
+    box-shadow:0 12px 40px -12px rgba(15,15,20,.15),0 4px 14px -6px rgba(15,15,20,.08);
+    aspect-ratio:16/9;object-fit:cover;
+  }
+  @media (max-width:720px){
+    .article-banner{padding:0 18px;margin-bottom:40px;}
+    .article-banner img{border-radius:14px;}
+  }
 </style>
 </head>
 <body>
@@ -212,7 +226,7 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
       Back to case studies
     </a>
-    <span class="topbar-brand">Swytch Studio</span>
+    <a class="topbar-brand" href="index.html"><img src="Swytch%20official%20logo-02%201.png" alt="Swytch">Swytch Studio</a>
   </div>
 
   <!-- HERO -->
@@ -220,7 +234,6 @@
     <span class="hero-tag reveal">Brand · Tech · Content</span>
     <h1 class="reveal">Full brand identity, website, and content system — built live in 6 weeks.</h1>
     <p class="hero-dek reveal">Coinstore needed to look, feel, and function like a serious global crypto platform. Swytch delivered a full identity, website, and content system in 6 weeks.</p>
-    <div class="hero-img reveal"><img src="case-study-banners/coinstore.jpg" alt="Coinstore case study banner" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;border-radius:inherit;"></div>
   </div>
 
   <div class="section-wide">
@@ -244,6 +257,7 @@
     </div>
   </div>
 
+  <div class="article-banner reveal"><img src="case-study-banners/coinstore.jpg" alt="Coinstore case study" loading="lazy"></div>
   <!-- CHALLENGE -->
   <div class="section reveal">
     <p class="section-label">The challenge</p>
