@@ -296,7 +296,7 @@
         <input type="email" class="text-input" id="q-email" placeholder="Email address">
       </div>
       <div class="field">
-        <input type="tel" class="text-input" id="q-phone" placeholder="Phone number" style="font-size:18px;">
+        <input type="tel" class="text-input" id="q-phone" placeholder="Phone number" style="font-size:18px;" maxlength="10" inputmode="numeric">
       </div>
       <div class="field-error" id="err-6">Please enter a valid email and phone number.</div>
       <div class="nav-row">
@@ -395,9 +395,9 @@
       const email = document.getElementById('q-email').value.trim();
       const phone = document.getElementById('q-phone').value.trim();
       const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      const phoneOk = phone.replace(/\D/g,'').length >= 7;
+      const phoneOk = phone.replace(/\D/g,'').length === 10;
       if(!emailOk){ markInvalid(6,'q-email'); showError(6,'Please enter a valid email address.'); return false; }
-      if(!phoneOk){ markInvalid(6,'q-phone'); showError(6,'Please enter a valid phone number.'); return false; }
+      if(!phoneOk){ markInvalid(6,'q-phone'); showError(6,'Please enter a valid 10-digit phone number.'); return false; }
     }
     return true;
   }
@@ -460,6 +460,21 @@
       if(stepEl) clearError(stepEl.dataset.step);
     });
   });
+
+  // phone number validation: only digits, max 10
+  const phoneInput = document.getElementById('q-phone');
+  if(phoneInput){
+    phoneInput.addEventListener('input', (e)=>{
+      // Remove any non-digit characters
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    });
+    phoneInput.addEventListener('paste', (e)=>{
+      e.preventDefault();
+      const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+      const digitsOnly = pastedText.replace(/\D/g, '').slice(0, 10);
+      e.target.value = digitsOnly;
+    });
+  }
 
   function buildReview(){
     const rows = [
