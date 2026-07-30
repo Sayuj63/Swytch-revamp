@@ -51,7 +51,10 @@
 
   /* ------- Site-wide top navigation ------- */
   #site-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(255,255,255,0.82);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:0.5px solid rgba(210,210,215,0.55);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
-  #site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;}
+  #site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;gap:32px;}
+#site-nav .sn-logo{flex-shrink:0;}
+#site-nav ul{flex:1;justify-content:center;}
+#site-nav .sn-cta{margin-left:auto;flex-shrink:0;}
   #site-nav .sn-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:#1D1D1F;text-decoration:none;}
   #site-nav .sn-logo svg{width:26px;height:26px;}
   #site-nav .sn-logo img{width:28px;height:28px;object-fit:contain;display:block;}
@@ -133,7 +136,10 @@
 
   .nav-group{margin-bottom:6px;}
   .nav-item{
-    display:flex;align-items:center;justify-content:space-between;
+    display:flex;align-items:center;gap:32px;}
+#site-nav .sn-logo{flex-shrink:0;}
+#site-nav ul{flex:1;justify-content:center;}
+#site-nav .sn-cta{margin-left:auto;flex-shrink:0;
     width:100%;background:none;border:none;text-align:left;
     padding:11px 12px;border-radius:10px;cursor:pointer;
     font-size:14px;font-weight:600;color:var(--ink-soft);
@@ -194,7 +200,10 @@
   /* ---------------- MAIN ---------------- */
   .main{padding:48px 56px 96px;max-width:1240px;}
   .main-head{
-    display:flex;justify-content:space-between;align-items:center;
+    display:flex;gap:32px;}
+#site-nav .sn-logo{flex-shrink:0;}
+#site-nav ul{flex:1;justify-content:center;}
+#site-nav .sn-cta{margin-left:auto;flex-shrink:0;align-items:center;
     margin-bottom:36px;gap:20px;flex-wrap:wrap;
   }
   .main-head h1{
@@ -259,10 +268,12 @@
     display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
   }
   .article-card{
-    display:block;
+    display:flex;
+    flex-direction:column;
     cursor:pointer;color:inherit;
     opacity:0;transform:translateY(24px);
     transition:opacity .6s ease, transform .6s ease, box-shadow .3s ease, translate .3s ease;
+    min-height:420px;
   }
   .article-card.visible{opacity:1;transform:translateY(0);}
   .article-card:hover{translate:0 -4px;}
@@ -284,8 +295,12 @@
   }
   .article-card p.excerpt{
     font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0 0 14px;
+    flex:1;
   }
-  .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-faint);justify-content:space-between;}
+  .card-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-faint);gap:32px;}
+#site-nav .sn-logo{flex-shrink:0;}
+#site-nav ul{flex:1;justify-content:center;}
+#site-nav .sn-cta{margin-left:auto;flex-shrink:0;margin-top:auto;}
   .card-meta .meta-left{display:flex;align-items:center;gap:8px;}
   .card-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-faint);}
   .card-read{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:999px;transition:background .18s ease,transform .18s ease;flex-shrink:0;}
@@ -349,7 +364,10 @@
 .site-footer .f-links{list-style:none;display:flex;flex-direction:column;gap:11px;padding:0;margin:0;}
 .site-footer .f-links a,.site-footer .f-links li{font-size:14px;color:#6E6E73;transition:color .15s;text-decoration:none;line-height:1.5;}
 .site-footer .f-links a:hover{color:#1D1D1F;}
-.site-footer .footer-btm{max-width:1200px;margin:0 auto;padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.site-footer .footer-btm{max-width:1200px;margin:0 auto;padding-top:22px;display:flex;align-items:center;gap:32px;}
+#site-nav .sn-logo{flex-shrink:0;}
+#site-nav ul{flex:1;justify-content:center;}
+#site-nav .sn-cta{margin-left:auto;flex-shrink:0;flex-wrap:wrap;gap:10px;}
 .site-footer .f-copy{font-size:12px;color:#86868B;margin:0;}
 .site-footer .f-legal{display:flex;gap:22px;}
 .site-footer .f-legal a{font-size:12px;color:#86868B;transition:color .15s;text-decoration:none;}

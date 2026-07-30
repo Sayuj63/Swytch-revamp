@@ -791,7 +791,10 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
    CANONICAL SITE NAV (from portfolio.html)
 ══════════════════════════════════════════════════════ */
 #site-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(255,255,255,0.82);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:0.5px solid rgba(210,210,215,0.55);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
-#site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;justify-content:space-between;overflow:hidden;min-width:0;}
+#site-nav .sn-inner{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,80px);height:100%;display:flex;align-items:center;gap:32px;overflow:hidden;min-width:0;}
+#site-nav .sn-logo{flex-shrink:0;}
+#site-nav ul{flex:1;justify-content:center;}
+#site-nav .sn-cta{margin-left:auto;flex-shrink:0;}
 #site-nav .sn-logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-0.3px;color:#1D1D1F;text-decoration:none;}
 #site-nav .sn-logo svg{width:26px;height:26px;}
 #site-nav .sn-logo img{width:28px;height:28px;object-fit:contain;display:block;}
