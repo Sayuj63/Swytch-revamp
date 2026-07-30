@@ -269,11 +269,11 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 /* ══════════════════════════════════════════════════════
    POSITIONING
 ══════════════════════════════════════════════════════ */
-#positioning{text-align:center;}
-.pos-headline{font-size:var(--t-hero);font-weight:800;letter-spacing:-2px;line-height:1.06;color:var(--c-ink);max-width:840px;margin:0 auto 28px;}
+#positioning{text-align:center;padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(24px,3vw,48px);}
+.pos-headline{font-size:var(--t-hero);font-weight:800;letter-spacing:-2px;line-height:1.06;color:var(--c-ink);max-width:840px;margin:0 auto 20px;}
 .pos-headline .accent{color:var(--c-orange);}
-.pos-body{font-size:var(--t-lg);font-weight:300;color:var(--c-sub);line-height:1.7;max-width:820px;margin:0 auto 52px;}
-.pos-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.pos-body{font-size:var(--t-lg);font-weight:300;color:var(--c-sub);line-height:1.7;max-width:820px;margin:0 auto 32px;}
+.pos-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
 .pos-card{
   border-radius:var(--r-xl);padding:36px 28px;
   background:var(--c-bg-2);border:0.5px solid var(--c-rule-lt);
@@ -310,8 +310,8 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
 }
-.services-scroll::before,.services-scroll::after{content:'';flex:0 0 1px;}
 .services-scroll::-webkit-scrollbar{display:none;}
+.services-scroll .svc-card[data-clone]{pointer-events:auto;}
 
 /* Individual service card — scroll snap */
 .svc-card{
@@ -355,9 +355,9 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 }
 .svc-card:hover .svc-icon-wrap{background:rgba(255,107,26,.13);transform:scale(1.08) rotate(-3deg);}
 .svc-icon-wrap svg{width:22px;height:22px;}
-.svc-name{font-size:18px;font-weight:700;letter-spacing:-0.4px;color:var(--c-ink);}
-.svc-desc{font-size:var(--t-sm);line-height:1.65;color:var(--c-sub);flex:1;}
-.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.svc-name{font-size:18px;font-weight:700;letter-spacing:-0.4px;color:var(--c-ink);min-height:44px;display:flex;align-items:center;}
+.svc-desc{font-size:var(--t-sm);line-height:1.65;color:var(--c-sub);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(1.65em * 3);}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;min-height:56px;align-content:flex-start;}
 .svc-tag{font-size:10px;font-weight:600;letter-spacing:.3px;color:var(--c-muted);padding:4px 10px;border:0.5px solid var(--c-rule);border-radius:var(--r-pill);background:rgba(255,255,255,.7);backdrop-filter:blur(4px);}
 .svc-arrow{
   display:flex;align-items:center;gap:5px;
@@ -1459,42 +1459,69 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 /* ══════════════════════════════════════════════════════
-   SERVICES HORIZONTAL SCROLL + STACKING ANIMATION (endless loop)
+   SERVICES HORIZONTAL SCROLL + STACKING ANIMATION (true infinite loop)
 ══════════════════════════════════════════════════════ */
 const svcScroll = document.getElementById('svcScroll');
 const svcPrev   = document.getElementById('svcPrev');
 const svcNext   = document.getElementById('svcNext');
 const svcDots   = document.querySelectorAll('.scroll-dot');
-const svcCards  = svcScroll ? svcScroll.querySelectorAll('.svc-card') : [];
+const svcCardsOriginal = svcScroll ? Array.from(svcScroll.querySelectorAll('.svc-card')) : [];
+const TOTAL_SVC = svcCardsOriginal.length;
 
+// Clone all cards once and append (so after card N users see card 1 continuing seamlessly)
+if (svcScroll && TOTAL_SVC > 0) {
+  svcCardsOriginal.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute('data-clone', 'true');
+    svcScroll.appendChild(clone);
+  });
+}
+
+// All cards (originals + clones) — used only for measurement
+const svcCards = svcScroll ? svcScroll.querySelectorAll('.svc-card') : [];
 let currentSvc = 0;
-const TOTAL_SVC = svcCards.length;
+let isJumping = false;
 
 function getCardWidth() {
-  if (!svcCards[0] || !svcCards[1]) {
-    return (svcCards[0] ? svcCards[0].offsetWidth : 360) + 16;
+  if (!svcCardsOriginal[0] || !svcCardsOriginal[1]) {
+    return (svcCardsOriginal[0] ? svcCardsOriginal[0].offsetWidth : 360) + 16;
   }
-  return svcCards[1].offsetLeft - svcCards[0].offsetLeft;
+  return svcCardsOriginal[1].offsetLeft - svcCardsOriginal[0].offsetLeft;
 }
 
 function triggerStackAnim(idx) {
-  const card = svcCards[idx];
+  const card = svcCardsOriginal[idx];
   if (!card) return;
   card.classList.remove('stack-active');
   void card.offsetWidth;
   card.classList.add('stack-active');
 }
 
-function scrollToSvc(idx) {
+function scrollToSvc(idx, smooth = true) {
   if (TOTAL_SVC === 0) return;
-  // Endless loop wrap-around
-  if (idx < 0) idx = TOTAL_SVC - 1;
-  else if (idx >= TOTAL_SVC) idx = 0;
-  currentSvc = idx;
-  const target = svcCards[idx];
-  if (svcScroll && target) {
-    svcScroll.scrollTo({ left: target.offsetLeft - svcScroll.offsetLeft, behavior: 'smooth' });
+  const cardW = getCardWidth();
+  // Support wrap-around by scrolling INTO the clone set (then teleport back on next scroll event)
+  let scrollLeft;
+  if (idx < 0) {
+    // Going before card 0: jump into clone-set index (TOTAL_SVC - 1), no smooth, then let real position sync
+    idx = TOTAL_SVC - 1;
+    scrollLeft = svcCardsOriginal[idx].offsetLeft - svcScroll.offsetLeft;
+    svcScroll.scrollTo({ left: scrollLeft, behavior: 'auto' });
+  } else if (idx >= TOTAL_SVC) {
+    // Going past card N-1: scroll into first clone (which shows card 0), then teleport back after animation
+    idx = 0;
+    scrollLeft = (TOTAL_SVC * cardW) - svcScroll.offsetLeft;
+    svcScroll.scrollTo({ left: scrollLeft, behavior: smooth ? 'smooth' : 'auto' });
+    setTimeout(() => {
+      isJumping = true;
+      svcScroll.scrollTo({ left: svcCardsOriginal[0].offsetLeft - svcScroll.offsetLeft, behavior: 'auto' });
+      requestAnimationFrame(() => { isJumping = false; });
+    }, 500);
+  } else {
+    scrollLeft = svcCardsOriginal[idx].offsetLeft - svcScroll.offsetLeft;
+    svcScroll.scrollTo({ left: scrollLeft, behavior: smooth ? 'smooth' : 'auto' });
   }
+  currentSvc = idx;
   svcDots.forEach((d, i) => d.classList.toggle('active', i === idx));
   triggerStackAnim(idx);
 }
@@ -1502,13 +1529,22 @@ function scrollToSvc(idx) {
 if (svcNext) svcNext.addEventListener('click', () => scrollToSvc(currentSvc + 1));
 if (svcPrev) svcPrev.addEventListener('click', () => scrollToSvc(currentSvc - 1));
 
-/* Update dot on manual scroll */
+/* Update dot on manual scroll + seamlessly wrap when scrolling into clone territory */
 let scrollTimeout;
 if (svcScroll) svcScroll.addEventListener('scroll', () => {
+  if (isJumping) return;
+  const cardW = getCardWidth();
+  const totalWidth = TOTAL_SVC * cardW;
+  // Seamless wrap: if scrolled past the original set into clones, teleport back
+  if (svcScroll.scrollLeft >= totalWidth) {
+    isJumping = true;
+    svcScroll.scrollTo({ left: svcScroll.scrollLeft - totalWidth, behavior: 'auto' });
+    requestAnimationFrame(() => { isJumping = false; });
+    return;
+  }
   clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(() => {
-    const cardW = getCardWidth();
-    const idx = Math.min(TOTAL_SVC - 1, Math.max(0, Math.round(svcScroll.scrollLeft / cardW)));
+    const idx = ((Math.round(svcScroll.scrollLeft / cardW)) % TOTAL_SVC + TOTAL_SVC) % TOTAL_SVC;
     if (idx !== currentSvc) {
       currentSvc = idx;
       svcDots.forEach((d, i) => d.classList.toggle('active', i === idx));
