@@ -1500,26 +1500,31 @@ function triggerStackAnim(idx) {
 function scrollToSvc(idx, smooth = true) {
   if (TOTAL_SVC === 0) return;
   const cardW = getCardWidth();
-  // Support wrap-around by scrolling INTO the clone set (then teleport back on next scroll event)
-  let scrollLeft;
+  const svcCardsAll = svcScroll.querySelectorAll('.svc-card');
+
   if (idx < 0) {
-    // Going before card 0: jump into clone-set index (TOTAL_SVC - 1), no smooth, then let real position sync
+    // Wrap backward: instantly teleport to the last clone position, then smooth-scroll to the last original card
+    isJumping = true;
+    // Position at index that visually sits right after the first original card (i.e. clone of last card)
+    // Simple approach: jump to last original card without animation
     idx = TOTAL_SVC - 1;
-    scrollLeft = svcCardsOriginal[idx].offsetLeft - svcScroll.offsetLeft;
-    svcScroll.scrollTo({ left: scrollLeft, behavior: 'auto' });
+    svcScroll.scrollTo({ left: svcCardsOriginal[idx].offsetLeft - svcScroll.offsetLeft, behavior: 'auto' });
+    requestAnimationFrame(() => { isJumping = false; });
   } else if (idx >= TOTAL_SVC) {
-    // Going past card N-1: scroll into first clone (which shows card 0), then teleport back after animation
+    // Wrap forward: smooth-scroll INTO the clone of card 0 (which sits at position TOTAL_SVC), then invisibly teleport back
+    isJumping = true; // Prevent scroll handler teleporting mid-animation
+    const cloneOfFirst = svcCardsAll[TOTAL_SVC];
+    if (cloneOfFirst) {
+      svcScroll.scrollTo({ left: cloneOfFirst.offsetLeft - svcScroll.offsetLeft, behavior: 'smooth' });
+    }
     idx = 0;
-    scrollLeft = (TOTAL_SVC * cardW) - svcScroll.offsetLeft;
-    svcScroll.scrollTo({ left: scrollLeft, behavior: smooth ? 'smooth' : 'auto' });
+    // After the smooth scroll settles, quietly teleport to real card 0
     setTimeout(() => {
-      isJumping = true;
       svcScroll.scrollTo({ left: svcCardsOriginal[0].offsetLeft - svcScroll.offsetLeft, behavior: 'auto' });
       requestAnimationFrame(() => { isJumping = false; });
-    }, 500);
+    }, 650);
   } else {
-    scrollLeft = svcCardsOriginal[idx].offsetLeft - svcScroll.offsetLeft;
-    svcScroll.scrollTo({ left: scrollLeft, behavior: smooth ? 'smooth' : 'auto' });
+    svcScroll.scrollTo({ left: svcCardsOriginal[idx].offsetLeft - svcScroll.offsetLeft, behavior: smooth ? 'smooth' : 'auto' });
   }
   currentSvc = idx;
   svcDots.forEach((d, i) => d.classList.toggle('active', i === idx));

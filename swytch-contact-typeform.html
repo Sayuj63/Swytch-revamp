@@ -114,14 +114,20 @@
     font-size:16px;font-weight:500;resize:none;min-height:110px;line-height:1.5;
   }
 
-  .chip-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px;}
+  .chip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:6px;}
   .chip{
     border:1.5px solid var(--line);background:white;color:var(--ink-soft);
-    padding:12px 18px;border-radius:12px;font-size:14.5px;font-weight:600;
-    cursor:pointer;transition:all .18s ease;
+    padding:14px 18px;border-radius:12px;font-size:14.5px;font-weight:600;
+    cursor:pointer;transition:all .18s ease;text-align:center;
+    display:flex;align-items:center;justify-content:center;min-height:48px;
   }
   .chip:hover{border-color:var(--accent);}
   .chip.selected{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);}
+  .not-sure-input{
+    margin-top:14px;display:none;animation:fadeIn .25s ease;
+  }
+  .not-sure-input.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 
   .nav-row{
     display:flex;align-items:center;gap:14px;margin-top:36px;
@@ -139,10 +145,6 @@
     cursor:pointer;padding:14px 6px;
   }
   .btn-back:hover{color:var(--ink-soft);}
-  .key-hint{font-size:12px;color:var(--ink-faint);margin-left:4px;}
-  .key-hint kbd{
-    background:var(--panel);border-radius:5px;padding:2px 6px;font-family:inherit;font-size:11px;
-  }
 
   /* review step */
   .review-list{margin:8px 0 28px;}
@@ -202,7 +204,7 @@
       <div class="field-error" id="err-1">Please enter your name to continue.</div>
       <div class="nav-row">
         <button class="btn-next" onclick="next(1)">Continue<span>→</span></button>
-        <span class="key-hint">press <kbd>Enter</kbd></span>
+        
       </div>
     </div>
 
@@ -215,7 +217,7 @@
       <div class="nav-row">
         <button class="btn-back" onclick="back(2)">Back</button>
         <button class="btn-next" onclick="next(2)">Continue<span>→</span></button>
-        <span class="key-hint">press <kbd>Enter</kbd></span>
+        
       </div>
     </div>
 
@@ -230,6 +232,9 @@
         <button class="chip" data-value="Website or product build">Website or product build</button>
         <button class="chip" data-value="Brand strategy">Brand strategy</button>
         <button class="chip" data-value="Not sure yet">Not sure yet</button>
+      </div>
+      <div class="not-sure-input" id="not-sure-wrap">
+        <textarea class="text-input" id="q-not-sure" placeholder="Describe what you're trying to solve — we'll figure out the fit."></textarea>
       </div>
       <div class="nav-row">
         <button class="btn-back" onclick="back(3)">Back</button>
@@ -264,7 +269,7 @@
       <div class="nav-row">
         <button class="btn-back" onclick="back(5)">Back</button>
         <button class="btn-next" onclick="next(5)">Continue<span>→</span></button>
-        <span class="key-hint">press <kbd>Enter</kbd></span>
+        
       </div>
     </div>
 
@@ -282,7 +287,7 @@
       <div class="nav-row">
         <button class="btn-back" onclick="back(6)">Back</button>
         <button class="btn-next" onclick="next(6)">Review<span>→</span></button>
-        <span class="key-hint">press <kbd>Enter</kbd></span>
+        
       </div>
     </div>
 
@@ -303,7 +308,7 @@
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B1A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h2 class="q-title">Got it, thank you.</h2>
-      <p class="q-hint">Someone from Swytch will get back to you within a day. If it's urgent, WhatsApp us instead.</p>
+      <p class="q-hint">Someone from Swytch will get back to you within a day. If it's urgent, <a href="https://api.whatsapp.com/send/?phone=%2B919821817273" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;font-weight:600;">WhatsApp</a> us instead.</p>
       <div class="nav-row" style="margin-top:36px;">
         <a href="index.html" class="btn-next" style="text-decoration:none;display:inline-flex;">Back to home<span>↩</span></a>
       </div>
@@ -403,12 +408,19 @@
   });
 
   // chip selection: multi-select for "need", single-select for "budget"
+  const notSureWrap = document.getElementById('not-sure-wrap');
+  const notSureInput = document.getElementById('q-not-sure');
   document.querySelectorAll('#q-need .chip').forEach(chip=>{
     chip.addEventListener('click', ()=>{
       chip.classList.toggle('selected');
       const val = chip.dataset.value;
       if(chip.classList.contains('selected')) data.need.push(val);
       else data.need = data.need.filter(v=>v!==val);
+      // Reveal textarea when "Not sure yet" is picked
+      if(val === 'Not sure yet' && notSureWrap){
+        notSureWrap.classList.toggle('active', chip.classList.contains('selected'));
+        if(chip.classList.contains('selected') && notSureInput) setTimeout(()=>notSureInput.focus(),120);
+      }
       document.getElementById('btn-need').disabled = data.need.length===0;
       clearError(3);
     });
