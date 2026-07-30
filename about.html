@@ -114,8 +114,9 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 .article-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.10);}
 .article-card:hover .ac-arrow svg{transform:translateX(4px);}
 .ac-img{height:190px;background:linear-gradient(135deg,#F5F5F7,#EBEBED);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden;}
+.ac-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
 .ac-img-bg{position:absolute;font-size:110px;opacity:.07;font-weight:800;letter-spacing:-5px;color:var(--c-ink);}
-.ac-img-label{position:absolute;bottom:14px;left:14px;background:rgba(255,107,26,.92);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:5px 11px;border-radius:var(--r-pill);text-transform:uppercase;}
+.ac-img-label{position:absolute;bottom:14px;left:14px;background:rgba(255,107,26,.92);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:5px 11px;border-radius:var(--r-pill);text-transform:uppercase;z-index:1;}
 .ac-body{padding:22px 20px;display:flex;flex-direction:column;flex:1;}
 .ac-tag{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;margin-bottom:8px;}
 .ac-title{font-size:16px;font-weight:700;letter-spacing:-.3px;color:var(--c-ink);line-height:1.4;margin-bottom:8px;}
@@ -328,7 +329,7 @@ body{padding-top:52px;}
       <!-- Featured article -->
       <a href="about-blog.html" class="article-card featured" data-anim style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#F0EEF5,#E5E1F0);">
-          <div class="ac-img-bg">AI</div>
+          <img src="blog-images/website-brief.png" alt="AI & Creative cover" loading="lazy">
           <div class="ac-img-label">AI & Creative</div>
         </div>
         <div class="ac-body" style="display:flex;flex-direction:column;justify-content:center;">
@@ -344,7 +345,7 @@ body{padding-top:52px;}
 
       <a href="https://swytch.studio/why-swytchs-ugc-ecosystem-outshines-traditional-influencer-marketing/" target="_blank" rel="noopener" class="article-card" data-anim data-d1 style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#E5EFFA,#D5E5F5);">
-          <div class="ac-img-bg">UGC</div>
+          <img src="blog-images/dear-creator.png" alt="Influencer cover" loading="lazy">
           <div class="ac-img-label">Influencer</div>
         </div>
         <div class="ac-body">
@@ -360,7 +361,7 @@ body{padding-top:52px;}
 
       <a href="https://swytch.studio/the-advertising-industry-is-not-dead-its-reloading/" target="_blank" rel="noopener" class="article-card" data-anim data-d2 style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#FDF0DC,#FAE0C0);">
-          <div class="ac-img-bg">AD</div>
+          <img src="blog-images/same-ad-spend.png" alt="Industry cover" loading="lazy">
           <div class="ac-img-label">Industry</div>
         </div>
         <div class="ac-body">
@@ -376,7 +377,7 @@ body{padding-top:52px;}
 
       <a href="Blogs.html" class="article-card" data-anim data-d3 style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#EDE8F5,#DED4EF);">
-          <div class="ac-img-bg">PM</div>
+          <img src="blog-images/full-stack-agency.png" alt="Performance Marketing cover" loading="lazy">
           <div class="ac-img-label">AI Playbook</div>
         </div>
         <div class="ac-body">
