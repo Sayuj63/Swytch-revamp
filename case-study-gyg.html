@@ -158,6 +158,20 @@
     .hero{padding:44px 18px 0;}
     .section, .section-wide, .cta-section, .next-nav{padding-left:18px;padding-right:18px;}
   }
+
+  /* Case study inline banner */
+  .article-banner{
+    max-width:1080px;margin:0 auto 56px;padding:0 24px;
+  }
+  .article-banner img{
+    width:100%;height:auto;display:block;border-radius:20px;
+    box-shadow:0 12px 40px -12px rgba(15,15,20,.15),0 4px 14px -6px rgba(15,15,20,.08);
+    aspect-ratio:16/9;object-fit:cover;
+  }
+  @media (max-width:720px){
+    .article-banner{padding:0 18px;margin-bottom:40px;}
+    .article-banner img{border-radius:14px;}
+  }
 </style>
 </head>
 <body>
@@ -184,6 +198,8 @@
       <div class="meta-item"><div class="meta-label">Timeline</div><div class="meta-value">Project-based</div></div>
     </div>
   </div>
+
+  <div class="article-banner reveal"><img src="case-study-banners/swytch%20client_GYG.jpg" alt="The GYG case study" loading="lazy"></div>
 
   <div class="section reveal">
     <p class="section-label">The challenge</p>
