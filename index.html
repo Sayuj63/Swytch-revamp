@@ -596,6 +596,16 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
 .test-hl-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px;}
 .test-hl{font-size:var(--t-sec);font-weight:800;letter-spacing:-.8px;color:var(--c-ink);}
 .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.test-marquee-wrap{overflow:hidden;width:100%;position:relative;}
+.test-marquee-wrap::before,.test-marquee-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
+}
+.test-marquee-wrap::before{left:0;background:linear-gradient(to right,var(--c-bg-2),transparent);}
+.test-marquee-wrap::after{right:0;background:linear-gradient(to left,var(--c-bg-2),transparent);}
+.test-marquee-inner{display:flex;gap:16px;width:max-content;will-change:transform;animation:test-mq 80s linear infinite;}
+.test-marquee-wrap:hover .test-marquee-inner{animation-play-state:paused;}
+.test-marquee-inner .t-card{flex:0 0 380px;max-width:380px;}
+@keyframes test-mq{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .t-card{
   border-radius:var(--r-xl);padding:32px 28px;
   background:var(--c-bg-2);border:0.5px solid var(--c-rule-lt);
@@ -603,17 +613,15 @@ button{border:none;background:none;cursor:pointer;font:inherit;color:inherit;}
   transition:transform .3s var(--ease-out),box-shadow .3s,background .3s;
 }
 .t-card:hover{transform:translateY(-5px);background:var(--gl-bg-hv);backdrop-filter:var(--gl-blur);-webkit-backdrop-filter:var(--gl-blur);box-shadow:var(--gl-sh-lg);}
-.t-stars{display:flex;gap:3px;}
-.t-star{width:14px;height:14px;color:var(--c-orange);}
-.t-star svg{width:100%;height:100%;}
 .t-quote{font-size:var(--t-sm);color:var(--c-ink);line-height:1.7;font-style:italic;}
 .t-author{display:flex;align-items:center;gap:12px;margin-top:auto;}
 .t-avatar{
-  width:38px;height:38px;border-radius:50%;
+  width:44px;height:44px;border-radius:50%;
   background:linear-gradient(135deg,var(--c-orange),#FF9A5C);
   display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:700;color:#fff;flex-shrink:0;
+  font-size:14px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden;
 }
+.t-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .t-name{font-size:13px;font-weight:700;color:var(--c-ink);}
 .t-role{font-size:11px;color:var(--c-muted);}
 
@@ -747,6 +755,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .process-rail{grid-template-columns:1fr;gap:24px;}.process-rail::before{display:none;}
   .clients-grid{grid-template-columns:repeat(3,1fr);}
   .logo-tile{flex:0 0 130px;width:130px;height:72px;}
+  .test-marquee-inner .t-card{flex:0 0 320px;max-width:320px;}
   .footer-inner{grid-template-columns:1fr 1fr;}
   .nav-links,.#cursor-glow{display:none;}
   .svc-card{flex:0 0 300px;}
@@ -767,6 +776,7 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   .results-grid{grid-template-columns:1fr;}
   .clients-grid{grid-template-columns:repeat(2,1fr);}
   .logo-tile{flex:0 0 110px;width:110px;height:64px;padding:10px 14px;}
+  .test-marquee-inner .t-card{flex:0 0 280px;max-width:280px;padding:24px 22px;}
   .footer-inner{grid-template-columns:1fr;}
   .svc-card{flex:0 0 280px;min-height:320px;}
   .cta-contacts{gap:24px;}
@@ -1334,47 +1344,134 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
         <h2 class="test-hl" data-anim="fade-up" data-delay="1">What our clients say.</h2>
       </div>
     </div>
-    <div class="test-grid">
-      <div class="t-card" data-anim="scale-up" data-delay="1">
-        <div class="t-stars">
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
+    <div class="test-marquee-wrap" data-anim="fade-up" data-delay="2">
+      <div class="test-marquee-inner">
+        <div class="t-card">
+          <p class="t-quote">"More than a service partner, Swytch became part of our core team. Their strategic guidance and execution helped shape MeTubez's growth from the ground up."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Viren%20Gathani.jpeg" alt="Viren Gathani" loading="lazy"></div>
+            <div><div class="t-name">Viren Gathani</div><div class="t-role">Founder, Twenties Entertainment Pvt. Ltd.</div></div>
+          </div>
         </div>
-        <p class="t-quote">"Swytch transformed how we show up online. They built an entire content and performance system we now own. The ROAS improvement in 3 months was something our old agency promised for 18."</p>
-        <div class="t-author">
-          <div class="t-avatar">VK</div>
-          <div><div class="t-name">Viren Gathani</div><div class="t-role">Founder, MeTime App</div></div>
+        <div class="t-card">
+          <p class="t-quote">"Swytch has consistently delivered reliable technical support, timely website enhancements, and seamless maintenance. They've been a trusted partner in ensuring our digital platform performs at its best."</p>
+          <div class="t-author">
+            <div class="t-avatar">SJ</div>
+            <div><div class="t-name">Sandeep Joshi</div><div class="t-role">IT Head, Kewal Kiran Clothing Limited</div></div>
+          </div>
         </div>
-      </div>
-      <div class="t-card" data-anim="scale-up" data-delay="2">
-        <div class="t-stars">
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
+        <div class="t-card">
+          <p class="t-quote">"Swytch helped us bring our collection to market with remarkable speed. They delivered premium campaign assets that matched our brand standards while significantly reducing production timelines &amp; costs."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Rahul%20Gaur%2C%20Donear.jpeg" alt="Rahul Gaur" loading="lazy"></div>
+            <div><div class="t-name">Rahul Gaur</div><div class="t-role">Brand Manager, GRADO (Donear Group)</div></div>
+          </div>
         </div>
-        <p class="t-quote">"What impressed me most was speed. Brief on Monday, live content by Thursday. The team thinks in CAC and LTV, not just followers and impressions."</p>
-        <div class="t-author">
-          <div class="t-avatar">AM</div>
-          <div><div class="t-name">Ankit Mehta</div><div class="t-role">Director, D2C Brand</div></div>
+        <div class="t-card">
+          <p class="t-quote">"Working with Swytch gave us access to a dependable blockchain engineering team that understood both technology and execution. Their contribution helped us deliver complex Web3 solutions with confidence."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Haydn%20Snape%2C%20DIG.png" alt="Haydn Snape" loading="lazy"></div>
+            <div><div class="t-name">Haydn Snape</div><div class="t-role">Co-Founder, Decentralised Investment Group</div></div>
+          </div>
         </div>
-      </div>
-      <div class="t-card" data-anim="scale-up" data-delay="3">
-        <div class="t-stars">
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
-          <div class="t-star"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M7 1l1.8 3.6L13 5.3l-3 2.9.7 4.1L7 10.4l-3.7 1.9.7-4.1-3-2.9 4.2-.7z"/></svg></div>
+        <div class="t-card">
+          <p class="t-quote">"Swytch helped simplify complex warehouse and retail operations with a structured digitization approach. Their expertise made a measurable difference in how we manage inventory and store processes."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Veer%20Bhadra%20Mehta.jpeg" alt="Veer Bhadra Mehta" loading="lazy"></div>
+            <div><div class="t-name">Veer Bhadra Mehta</div><div class="t-role">Promoter, National Handloom Corporation</div></div>
+          </div>
         </div>
-        <p class="t-quote">"The MarTech setup they built is the biggest operational upgrade we've made in two years. Our CRM, ads, and analytics finally talk to each other."</p>
-        <div class="t-author">
-          <div class="t-avatar">RS</div>
-          <div><div class="t-name">Rohan Shah</div><div class="t-role">CMO, Fashion Brand</div></div>
+        <div class="t-card">
+          <p class="t-quote">"From branding to digital execution, Swytch delivered thoughtful solutions that elevated our brand and helped us stand out in a competitive market."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Riya%20Shah.png" alt="Riya K Shah" loading="lazy"></div>
+            <div><div class="t-name">Riya K Shah</div><div class="t-role">Founder, Radiant and Keen Jewellery</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <p class="t-quote">"The Swytch team understands fashion marketing exceptionally well. Their ability to combine creative storytelling with digital execution has helped us launch campaigns that resonate with our audience."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Yash%20Jain.JPG" alt="Yash Jain" loading="lazy"></div>
+            <div><div class="t-name">Yash Jain</div><div class="t-role">Director, Lawman</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <p class="t-quote">"From content creation to day-to-day social media management, Swytch brought creativity, consistency, and professionalism to every campaign. They became a dependable extension of our marketing team."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Pravesh%20Kanther.jpeg" alt="Pravesh Kanther" loading="lazy"></div>
+            <div><div class="t-name">Pravesh Kanther</div><div class="t-role">Director, Felisha Cosmetics Pvt. Ltd</div></div>
+          </div>
+        </div>
+        <div class="t-card">
+          <p class="t-quote">"Swytch has been a trusted partner in our digital journey. From Shopify and social media to performance marketing, their team consistently delivers creative solutions with speed, reliability, and a deep understanding of our brand."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Ariana%20Shah.jpeg" alt="Ariana Shah" loading="lazy"></div>
+            <div><div class="t-name">Ariana Shah</div><div class="t-role">Founder, The Curated Collective</div></div>
+          </div>
+        </div>
+        <!-- duplicate for seamless loop -->
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"More than a service partner, Swytch became part of our core team. Their strategic guidance and execution helped shape MeTubez's growth from the ground up."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Viren%20Gathani.jpeg" alt="" loading="lazy"></div>
+            <div><div class="t-name">Viren Gathani</div><div class="t-role">Founder, Twenties Entertainment Pvt. Ltd.</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"Swytch has consistently delivered reliable technical support, timely website enhancements, and seamless maintenance. They've been a trusted partner in ensuring our digital platform performs at its best."</p>
+          <div class="t-author">
+            <div class="t-avatar">SJ</div>
+            <div><div class="t-name">Sandeep Joshi</div><div class="t-role">IT Head, Kewal Kiran Clothing Limited</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"Swytch helped us bring our collection to market with remarkable speed. They delivered premium campaign assets that matched our brand standards while significantly reducing production timelines &amp; costs."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Rahul%20Gaur%2C%20Donear.jpeg" alt="" loading="lazy"></div>
+            <div><div class="t-name">Rahul Gaur</div><div class="t-role">Brand Manager, GRADO (Donear Group)</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"Working with Swytch gave us access to a dependable blockchain engineering team that understood both technology and execution. Their contribution helped us deliver complex Web3 solutions with confidence."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Haydn%20Snape%2C%20DIG.png" alt="" loading="lazy"></div>
+            <div><div class="t-name">Haydn Snape</div><div class="t-role">Co-Founder, Decentralised Investment Group</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"Swytch helped simplify complex warehouse and retail operations with a structured digitization approach. Their expertise made a measurable difference in how we manage inventory and store processes."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Veer%20Bhadra%20Mehta.jpeg" alt="" loading="lazy"></div>
+            <div><div class="t-name">Veer Bhadra Mehta</div><div class="t-role">Promoter, National Handloom Corporation</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"From branding to digital execution, Swytch delivered thoughtful solutions that elevated our brand and helped us stand out in a competitive market."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Riya%20Shah.png" alt="" loading="lazy"></div>
+            <div><div class="t-name">Riya K Shah</div><div class="t-role">Founder, Radiant and Keen Jewellery</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"The Swytch team understands fashion marketing exceptionally well. Their ability to combine creative storytelling with digital execution has helped us launch campaigns that resonate with our audience."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Yash%20Jain.JPG" alt="" loading="lazy"></div>
+            <div><div class="t-name">Yash Jain</div><div class="t-role">Director, Lawman</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"From content creation to day-to-day social media management, Swytch brought creativity, consistency, and professionalism to every campaign. They became a dependable extension of our marketing team."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Pravesh%20Kanther.jpeg" alt="" loading="lazy"></div>
+            <div><div class="t-name">Pravesh Kanther</div><div class="t-role">Director, Felisha Cosmetics Pvt. Ltd</div></div>
+          </div>
+        </div>
+        <div class="t-card" aria-hidden="true">
+          <p class="t-quote">"Swytch has been a trusted partner in our digital journey. From Shopify and social media to performance marketing, their team consistently delivers creative solutions with speed, reliability, and a deep understanding of our brand."</p>
+          <div class="t-author">
+            <div class="t-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Ariana%20Shah.jpeg" alt="" loading="lazy"></div>
+            <div><div class="t-name">Ariana Shah</div><div class="t-role">Founder, The Curated Collective</div></div>
+          </div>
         </div>
       </div>
     </div>
