@@ -220,7 +220,7 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 
 @media(max-width:960px){
   .features-inner{grid-template-columns:1fr;}
-  .features-nav{position:relative;height:auto;padding:72px var(--sp) 28px;border-right:none;border-bottom:0.5px solid var(--c-rule);}
+  .features-nav{position:static;height:auto;padding:56px var(--sp) 28px;border-right:none;border-bottom:0.5px solid var(--c-rule);justify-content:flex-start;}
   .features-panels{padding:32px var(--sp) 60px;margin-top:0;min-height:auto!important;position:relative;display:block;}
   /* On mobile: no notification stack — show only active panel, no absolute positioning */
   .feature-panel{position:relative;top:auto;left:auto;right:auto;padding:0;transform:none!important;opacity:0;height:0;overflow:hidden;filter:none!important;pointer-events:none;transition:opacity .3s ease;}
