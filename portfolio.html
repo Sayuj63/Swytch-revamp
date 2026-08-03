@@ -104,7 +104,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:v
 .pull-quote::before{content:'❝';position:absolute;top:24px;left:40px;font-size:80px;color:rgba(255,107,26,.15);line-height:1;font-family:Georgia,serif;}
 .pq-text{font-size:clamp(18px,2.5vw,26px);font-weight:300;color:var(--c-ink);line-height:1.55;margin-bottom:28px;padding-top:16px;font-style:italic;max-width:700px;}
 .pq-author{display:flex;align-items:center;gap:16px;}
-.pq-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--c-orange),#FF9A5C);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;}
+.pq-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--c-orange),#FF9A5C);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden;}
+.pq-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .pq-name{font-size:14px;font-weight:700;color:var(--c-ink);}
 .pq-role{font-size:12px;color:var(--c-muted);}
 
@@ -254,7 +255,7 @@ body{padding-top:52px;}
   <div class="pull-quote" data-anim>
     <div class="pq-text">"Swytch didn't just run our social — they built our entire marketing infrastructure. Content system, ad stack, dashboards. We couldn't have scaled without them."</div>
     <div class="pq-author">
-      <div class="pq-avatar">VG</div>
+      <div class="pq-avatar"><img src="Swytch%20Client%20logo/Client%20review%20Profile%20images/Viren%20Gathani.jpeg" alt="Viren Gathani"></div>
       <div><div class="pq-name">Viren Gathani</div><div class="pq-role">Founder, MeTime / Twenties Entertainment</div></div>
     </div>
   </div>
