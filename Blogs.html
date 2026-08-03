@@ -253,9 +253,8 @@
   }
   .meta-text{font-size:12.5px;color:var(--ink-faint);}
   .meta-text b{color:var(--ink-soft);font-weight:600;}
-  .featured-cta{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;color:var(--accent);white-space:nowrap;transition:gap .2s;}
-  .featured:hover .featured-cta{gap:9px;}
-  .featured:hover .featured-cta svg{transform:translateX(3px);}
+  .featured-cta{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:6px 12px;border-radius:999px;white-space:nowrap;transition:background .18s ease,transform .18s ease,gap .2s;flex-shrink:0;}
+  .featured:hover .featured-cta{background:var(--accent);color:#fff;transform:translateX(2px);}
   .featured-cta svg{transition:transform .2s;}
 
   /* Article grid */
@@ -332,9 +331,11 @@
       padding:18px 20px;border-bottom:1px solid var(--line);
     }
     .burger-toggle button{
-      width:38px;height:38px;border-radius:10px;background:var(--panel);
+      width:34px;height:34px;border-radius:10px;background:var(--panel);
       border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;
+      order:2;margin-left:auto;
     }
+    .burger-toggle span{padding-left:0;}
     .main{padding:28px 20px 72px;}
     .featured{grid-template-columns:1fr;padding:14px;border-radius:20px;}
     .featured-body{padding:16px 8px 4px;}
@@ -343,6 +344,10 @@
   @media (max-width:560px){
     .article-grid{grid-template-columns:1fr;}
     .main-head{align-items:flex-start;}
+    .card-meta{flex-wrap:wrap;gap:8px;}
+    .card-meta .meta-left{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .card-read,.featured-cta{flex-shrink:0;}
+    .featured .meta-row{flex-wrap:wrap;gap:8px;}
   }
 
 /* ============ SITE FOOTER ============ */
@@ -769,7 +774,7 @@
       <p class="excerpt">${a.excerpt}</p>
       <div class="card-meta">
         <span class="meta-left"><span>${a.author}</span><span class="dot"></span><span>${a.displayDate}</span><span class="dot"></span><span>${a.read}</span></span>
-        <span class="card-read">Read →</span>
+        <span class="card-read">Read article →</span>
       </div>
     </a>`;
   }
