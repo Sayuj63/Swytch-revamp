@@ -19,7 +19,6 @@
 <meta name="twitter:description" content="Mumbai-based creative, AI and marketing studio helping fashion, D2C and retail brands scale through branding, Shopify, content and technology.">
 <meta name="twitter:image" content="https://swytch.studio/Swytch%20official%20logo-02%201.png">
 <title>Article — Swytch Studio</title>
-<link rel="icon" type="image/png" href="Swytch official logo-02 1.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 :root{
@@ -145,7 +144,10 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 @media(max-width:960px){.ah-grid,.culture-grid,.contact-grid{grid-template-columns:1fr;}.studio-visual{display:none;}.team-grid{grid-template-columns:repeat(2,1fr);}.blog-main{grid-template-columns:1fr;}.article-card.featured{grid-column:span 1;grid-template-columns:1fr;}}
 @media(max-width:600px){.team-grid{grid-template-columns:1fr 1fr;}.ah-values{grid-template-columns:1fr;}}
 </style>
-</head>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon.png">
+
 <body>
 <style>
 #site-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(255,255,255,0.82);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:0.5px solid rgba(210,210,215,0.55);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
@@ -157,6 +159,9 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 #site-nav .sn-logo svg{width:26px;height:26px;}
 #site-nav .sn-logo img{width:28px;height:28px;object-fit:contain;display:block;}
 #site-nav .sn-logo .dot{color:#FF6B1A;}
+@media(max-width:600px){#site-nav .sn-cta{font-size:12px;padding:6px 12px;white-space:nowrap;}#site-nav .sn-logo{font-size:14px;flex-shrink:1;min-width:0;}#site-nav .sn-logo img{width:22px;height:22px;flex-shrink:0;}#site-nav .sn-logo span:last-child,#site-nav .sn-logo .nav-logo-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:110px;}}
+@media(max-width:480px){#site-nav .sn-cta{font-size:11px;padding:5px 10px;white-space:nowrap;}#site-nav .sn-inner{padding:0 14px;gap:6px;}#site-nav .sn-logo{font-size:13px;}#site-nav .sn-logo span:last-child{max-width:90px;}}
+
 #site-nav ul{display:flex;align-items:center;gap:44px;list-style:none;margin:0;padding:0;}
 #site-nav ul a{font-size:14px;color:#6E6E73;text-decoration:none;position:relative;transition:color .15s;}
 #site-nav ul a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:#FF6B1A;transform:scaleX(0);transition:transform .2s ease-out;}
@@ -310,7 +315,7 @@ body{padding-top:52px;}
     </div>
     <div class="blog-main">
       <!-- Featured article -->
-      <div class="article-card featured" data-anim>
+      <a href="https://swytch.studio/ai-fake-ads-and-content-creation-redefine-brand-storytelling/" target="_blank" rel="noopener" class="article-card featured" data-anim style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#F0EEF5,#E5E1F0);">
           <div class="ac-img-bg">AI</div>
           <div class="ac-img-label">AI & Creative</div>
@@ -321,12 +326,12 @@ body{padding-top:52px;}
           <div class="ac-excerpt">How AI-generated TVC-style content is changing the economics of brand advertising for Indian D2C brands — and why the studios that figure this out early will win the next decade of marketing.</div>
           <div class="ac-footer">
             <div class="ac-author"><div class="ac-avatar">RS</div><div><div class="ac-name">Raj Shah</div><div class="ac-date">Nov 2024 · 6 min read</div></div></div>
-            <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="ac-arrow">Read article <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="article-card" data-anim data-d1>
+      <a href="https://swytch.studio/why-swytchs-ugc-ecosystem-outshines-traditional-influencer-marketing/" target="_blank" rel="noopener" class="article-card" data-anim data-d1 style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#E5EFFA,#D5E5F5);">
           <div class="ac-img-bg">UGC</div>
           <div class="ac-img-label">Influencer</div>
@@ -337,12 +342,12 @@ body{padding-top:52px;}
           <div class="ac-excerpt">The shift from one-time posts to always-on UGC systems — and why the brands that build creator pipelines instead of booking individual posts will win.</div>
           <div class="ac-footer">
             <div class="ac-author"><div class="ac-avatar">PD</div><div><div class="ac-name">Priya Desai</div><div class="ac-date">Oct 2024 · 5 min read</div></div></div>
-            <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="ac-arrow">Read article <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="article-card" data-anim data-d2>
+      <a href="https://swytch.studio/the-advertising-industry-is-not-dead-its-reloading/" target="_blank" rel="noopener" class="article-card" data-anim data-d2 style="text-decoration:none;color:inherit;">
         <div class="ac-img" style="background:linear-gradient(135deg,#FDF0DC,#FAE0C0);">
           <div class="ac-img-bg">AD</div>
           <div class="ac-img-label">Industry</div>
@@ -353,38 +358,10 @@ body{padding-top:52px;}
           <div class="ac-excerpt">A contrarian take on advertising in India in 2025 — and where the next generation of creative studios will come from.</div>
           <div class="ac-footer">
             <div class="ac-author"><div class="ac-avatar">RS</div><div><div class="ac-name">Raj Shah</div><div class="ac-date">Sep 2024 · 7 min read</div></div></div>
-            <div class="ac-arrow">Read <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="ac-arrow">Read article <svg width="13" height="13" fill="none" viewBox="0 0 13 13"><path d="M2 6.5h9M7.5 3l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG ARTICLE TEMPLATE (sample) -->
-<section style="background:var(--c-bg2);padding:clamp(40px,6vw,80px) var(--sp);">
-  <div class="container">
-    <p style="text-align:center;font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:24px;">Article page template preview</p>
-    <div class="article-template" style="background:#fff;border:0.5px solid var(--c-rule);border-radius:var(--r-2xl);">
-      <div class="art-header">
-        <div class="art-cat">AI & Creative</div>
-        <h1 class="art-title">AI Fake Ads and Content Creation Redefine Brand Storytelling</h1>
-        <div class="art-meta">
-          <div class="art-author"><div class="art-avatar">RS</div><div><div class="art-byline">Raj Shah</div><div class="art-date">Chief Business Officer, Swytch Studio</div></div></div>
-          <div class="art-read">📅 Nov 12, 2024</div>
-          <div class="art-read">⏱ 6 min read</div>
-        </div>
-      </div>
-      <div class="art-body">
-        <p>For decades, producing a brand film meant a real barrier. A TVC required a director, crew, studio, talent, and a budget running into lakhs. That barrier is gone.</p>
-        <h2>The democratisation of cinematic production</h2>
-        <p>AI-generated content tools have reached a quality level where, for many applications — product showcases, lifestyle campaigns, social content — the output is indistinguishable from traditional footage, at a fraction of the cost.</p>
-        <div class="pull-quote-art"><div class="pqa-text">"The brands that figure out AI content production in 2024 will have a 3-year head start on everyone who waits for 'the right time' to start."</div></div>
-        <p>At Swytch, we've embedded AI into creative production since early 2023 — not as an experiment, as infrastructure. Every brand we work with has some part of their content pipeline powered by AI: fashion shoots, CGI renders, or AI-assisted scripting.</p>
-        <h2>What this means for D2C brands</h2>
-        <p>The implications for D2C brands are significant. A brand that couldn't afford a monthly campaign video can now produce one at a fraction of the cost. A fashion brand that needed a studio and models for every SKU can now generate visuals in 48 hours.</p>
-        <p>This isn't the future of marketing — it's the present. And the brands adopting it now are already seeing the results.</p>
-      </div>
+      </a>
     </div>
   </div>
 </section>

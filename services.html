@@ -19,7 +19,6 @@
 <meta name="twitter:description" content="Mumbai-based creative, AI and marketing studio helping fashion, D2C and retail brands scale through branding, Shopify, content and technology.">
 <meta name="twitter:image" content="https://swytch.studio/Swytch%20official%20logo-02%201.png">
 <title>Services — Swytch Studio</title>
-<link rel="icon" type="image/png" href="Swytch%20official%20logo-02%201.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 :root{
@@ -33,6 +32,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{-webkit-font-smoothing:antialiased;}
 body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:var(--c-ink);overflow-x:hidden;}
+html{scroll-padding-bottom:80px;}
+@media(max-width:960px){.site-footer{padding-bottom:calc(88px + env(safe-area-inset-bottom))!important;}}
 section{padding:clamp(60px,8vw,120px) var(--sp);}
 .container{max-width:1200px;margin:0 auto;}
 .eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--c-orange);text-transform:uppercase;margin-bottom:14px;}
@@ -219,8 +220,8 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 
 @media(max-width:960px){
   .features-inner{grid-template-columns:1fr;}
-  .features-nav{position:relative;height:auto;padding:40px var(--sp) 40px;border-right:none;border-bottom:0.5px solid var(--c-rule);}
-  .features-panels{padding:48px var(--sp) 60px;margin-top:32px;min-height:auto!important;position:relative;display:block;}
+  .features-nav{position:relative;height:auto;padding:72px var(--sp) 28px;border-right:none;border-bottom:0.5px solid var(--c-rule);}
+  .features-panels{padding:32px var(--sp) 60px;margin-top:0;min-height:auto!important;position:relative;display:block;}
   /* On mobile: no notification stack — show only active panel, no absolute positioning */
   .feature-panel{position:relative;top:auto;left:auto;right:auto;padding:0;transform:none!important;opacity:0;height:0;overflow:hidden;filter:none!important;pointer-events:none;transition:opacity .3s ease;}
   .feature-panel[data-stack="0"]{opacity:1;height:auto;overflow:visible;pointer-events:auto;}
@@ -261,7 +262,10 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 @media(max-width:960px){.footer-inner{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){.footer-inner{grid-template-columns:1fr;gap:32px;}}
 </style>
-</head>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon.png">
+
 <body>
 <style>
 #site-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(255,255,255,0.82);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:0.5px solid rgba(210,210,215,0.55);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
@@ -273,6 +277,9 @@ section{padding:clamp(60px,8vw,120px) var(--sp);}
 #site-nav .sn-logo svg{width:26px;height:26px;}
 #site-nav .sn-logo img{width:28px;height:28px;object-fit:contain;display:block;}
 #site-nav .sn-logo .dot{color:#FF6B1A;}
+@media(max-width:600px){#site-nav .sn-cta{font-size:12px;padding:6px 12px;white-space:nowrap;}#site-nav .sn-logo{font-size:14px;flex-shrink:1;min-width:0;}#site-nav .sn-logo img{width:22px;height:22px;flex-shrink:0;}#site-nav .sn-logo span:last-child,#site-nav .sn-logo .nav-logo-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:110px;}}
+@media(max-width:480px){#site-nav .sn-cta{font-size:11px;padding:5px 10px;white-space:nowrap;}#site-nav .sn-inner{padding:0 14px;gap:6px;}#site-nav .sn-logo{font-size:13px;}#site-nav .sn-logo span:last-child{max-width:90px;}}
+
 #site-nav ul{display:flex;align-items:center;gap:44px;list-style:none;margin:0;padding:0;}
 #site-nav ul a{font-size:14px;color:#6E6E73;text-decoration:none;position:relative;transition:color .15s;}
 #site-nav ul a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:#FF6B1A;transform:scaleX(0);transition:transform .2s ease-out;}

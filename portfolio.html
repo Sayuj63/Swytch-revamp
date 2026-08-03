@@ -19,7 +19,6 @@
 <meta name="twitter:description" content="Mumbai-based creative, AI and marketing studio helping fashion, D2C and retail brands scale through branding, Shopify, content and technology.">
 <meta name="twitter:image" content="https://swytch.studio/Swytch%20official%20logo-02%201.png">
 <title>Case Studies — Swytch Studio</title>
-<link rel="icon" type="image/png" href="Swytch official logo-02 1.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 :root{
@@ -91,7 +90,8 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:v
 .cv-metric-num{font-size:40px;font-weight:800;letter-spacing:-2px;color:var(--c-ink);line-height:1;}
 .cv-metric-lbl{font-size:10px;color:var(--c-sub);letter-spacing:1px;margin-top:4px;}
 .cs-card-body{padding:24px 20px;overflow:hidden;}
-.cs-card-tag{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;margin-bottom:8px;}
+.cs-card-tag{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--c-orange);text-transform:uppercase;margin-bottom:14px;line-height:1.5;}
+@media(max-width:600px){.cs-card-tag{margin-bottom:18px;}}
 .cs-card-name{font-size:16px;font-weight:700;letter-spacing:-.3px;color:var(--c-ink);margin-bottom:6px;}
 .cs-card-scope{font-size:12px;color:var(--c-muted);line-height:1.5;margin-bottom:14px;}
 .cs-card-metrics{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;max-width:100%;overflow:hidden;}
@@ -118,7 +118,10 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:v
 @media(max-width:600px){.ph-stats{gap:28px;}.cs-metrics{grid-template-columns:1fr 1fr;}.cs-small-grid{grid-template-columns:1fr 1fr;}.cs-card-metrics{gap:10px;}.ccm{font-size:12px;}.ccm span{font-size:9px;}}
 @media(max-width:480px){.cs-small-grid{grid-template-columns:1fr;}.cs-card-metrics{flex-wrap:wrap;gap:8px;}.ccm{font-size:11px;flex:1 1 auto;min-width:70px;}.ccm span{font-size:9px;}}
 </style>
-</head>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon.png">
+
 <body>
 <style>
 #site-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(255,255,255,0.82);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border-bottom:0.5px solid rgba(210,210,215,0.55);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;}
@@ -130,6 +133,9 @@ body{font-family:'Inter',-apple-system,sans-serif;background:var(--c-bg);color:v
 #site-nav .sn-logo svg{width:26px;height:26px;}
 #site-nav .sn-logo img{width:28px;height:28px;object-fit:contain;display:block;}
 #site-nav .sn-logo .dot{color:#FF6B1A;}
+@media(max-width:600px){#site-nav .sn-cta{font-size:12px;padding:6px 12px;white-space:nowrap;}#site-nav .sn-logo{font-size:14px;flex-shrink:1;min-width:0;}#site-nav .sn-logo img{width:22px;height:22px;flex-shrink:0;}#site-nav .sn-logo span:last-child,#site-nav .sn-logo .nav-logo-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:110px;}}
+@media(max-width:480px){#site-nav .sn-cta{font-size:11px;padding:5px 10px;white-space:nowrap;}#site-nav .sn-inner{padding:0 14px;gap:6px;}#site-nav .sn-logo{font-size:13px;}#site-nav .sn-logo span:last-child{max-width:90px;}}
+
 #site-nav ul{display:flex;align-items:center;gap:44px;list-style:none;margin:0;padding:0;}
 #site-nav ul a{font-size:14px;color:#6E6E73;text-decoration:none;position:relative;transition:color .15s;}
 #site-nav ul a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:#FF6B1A;transform:scaleX(0);transition:transform .2s ease-out;}

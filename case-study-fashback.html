@@ -186,12 +186,23 @@
     box-shadow:0 12px 40px -12px rgba(15,15,20,.15),0 4px 14px -6px rgba(15,15,20,.08);
     aspect-ratio:16/9;object-fit:cover;
   }
+  /* Tight the gap between meta bar and article banner */
+  .section-wide:has(> .meta-bar){padding-bottom:0;}
+  .section-wide > .meta-bar{margin-bottom:24px;}
   @media (max-width:720px){
     .article-banner{padding:0 18px;margin-bottom:40px;}
     .article-banner img{border-radius:14px;}
+    .section-wide > .meta-bar{margin-bottom:16px;}
   }
+
+  /* Tighten space before footer */
+  .next-nav{padding-bottom:32px!important;}
+  .site-footer{margin-top:0!important;}
 </style>
-</head>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon.png">
+
 <body>
 
   <div class="topbar">
