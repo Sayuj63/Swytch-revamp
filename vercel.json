@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/components-showcase", "destination": "/services", "permanent": true }
+    { "source": "/components-showcase", "destination": "/services", "permanent": true },
+    { "source": "/tools", "destination": "/skunomics", "permanent": true }
   ]
 }
