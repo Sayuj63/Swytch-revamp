@@ -793,6 +793,23 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
   [data-anim]{opacity:1;transform:none;filter:none;}
 }
 
+/* ── Services marquee on mobile ── */
+@media(max-width:960px){
+  .services-scroll-wrap{overflow:hidden;position:relative;}
+  .services-scroll{
+    display:flex;
+    gap:16px;
+    padding:12px 20px 48px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .services-scroll::-webkit-scrollbar{display:none;}
+  .scroll-nav{display:none;}
+  .svc-card{scroll-snap-align:start;flex:0 0 82vw;max-width:340px;}
+}
+
 /* ══════════════════════════════════════════════════════
    CANONICAL SITE NAV (from portfolio.html)
 ══════════════════════════════════════════════════════ */
@@ -1075,15 +1092,6 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
         <div class="svc-arrow">Explore service <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </a>
 
-      <a href="services#ai-solutions" class="svc-card" data-svc="4-new" style="text-decoration:none;color:inherit;">
-        <div class="svc-num">04B</div>
-        <div class="svc-icon-wrap"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="8" height="10" rx="2"/><rect x="12" y="2" width="8" height="6" rx="2"/><rect x="12" y="12" width="8" height="8" rx="2"/><rect x="2" y="16" width="8" height="4" rx="2"/></svg></div>
-        <div class="svc-name">AI Fashion &amp; Product Content</div>
-        <div class="svc-desc">Studio-quality on-model photos from flat lays. Any backdrop, any model — no shoot, no logistics, 48-hour delivery.</div>
-        <div class="svc-tags"><span class="svc-tag">On-model</span><span class="svc-tag">Product CGI</span><span class="svc-tag">Diverse models</span></div>
-        <div class="svc-arrow">Explore service <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </a>
-
       <a href="services#influencer-marketing" class="svc-card" data-svc="4" style="text-decoration:none;color:inherit;">
         <div class="svc-num">05</div>
         <div class="svc-icon-wrap"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="7" r="4"/><path d="M2 19c0-4 4-7 9-7s9 3 9 7"/></svg></div>
@@ -1131,7 +1139,6 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
     </button>
     <div class="scroll-dots" id="svcDots">
       <div class="scroll-dot active"></div>
-      <div class="scroll-dot"></div>
       <div class="scroll-dot"></div>
       <div class="scroll-dot"></div>
       <div class="scroll-dot"></div>
@@ -1739,6 +1746,40 @@ if (svcScroll) svcScroll.addEventListener('scroll', () => {
     stackAnimTimeout = setTimeout(() => triggerStackAnim(idx), 80);
   }
 }, { passive: true });
+
+/* ── Mobile auto-scroll marquee for services ── */
+(function() {
+  if (!svcScroll || !svcCardsOriginal.length) return;
+  let autoTimer = null;
+  let paused = false;
+  const CARD_INTERVAL = 3000;
+
+  function autoStep() {
+    if (paused || window.innerWidth > 960) { autoTimer = setTimeout(autoStep, 500); return; }
+    const cardW = getCardWidth();
+    const nextLeft = svcScroll.scrollLeft + cardW;
+    const totalW = TOTAL_SVC * cardW;
+    // If we've scrolled past originals into clones, teleport back
+    if (nextLeft >= totalW) {
+      svcScroll.scrollTo({ left: nextLeft - totalW, behavior: 'auto' });
+    } else {
+      svcScroll.scrollTo({ left: nextLeft, behavior: 'smooth' });
+    }
+    const idx = ((Math.round(svcScroll.scrollLeft / cardW)) % TOTAL_SVC + TOTAL_SVC) % TOTAL_SVC;
+    if (idx !== currentSvc) {
+      currentSvc = idx;
+      svcDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+    autoTimer = setTimeout(autoStep, CARD_INTERVAL);
+  }
+
+  svcScroll.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+  svcScroll.addEventListener('touchend', () => { setTimeout(() => { paused = false; }, 4000); }, { passive: true });
+  svcScroll.addEventListener('mouseenter', () => { paused = true; });
+  svcScroll.addEventListener('mouseleave', () => { paused = false; });
+
+  autoTimer = setTimeout(autoStep, CARD_INTERVAL);
+})();
 
 /* ══════════════════════════════════════════════════════
    SMOOTH ANCHORS
