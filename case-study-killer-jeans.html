@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Swytch runs Killer Jeans' full growth stack — SEO, Google + Meta ads and content on a 30-day cycle, driving 4x ROAS on Rs 8L+ monthly ad spend.">
+<meta name="description" content="Swytch Studio built and executed Killer Jeans' retail and digital creative ecosystem: LED content, 3D visuals, festive campaigns, store production and large-scale promotional communication across 250+ Exclusive Brand Outlets in India.">
 <!-- Open Graph -->
 <meta property="og:site_name" content="Swytch Studio">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swytch Studio: Creative | AI | Marketing | Tech">
-<meta property="og:description" content="Swytch runs Killer Jeans' full growth stack — SEO, Google + Meta ads and content on a 30-day cycle, driving 4x ROAS on Rs 8L+ monthly ad spend.">
+<meta property="og:description" content="Swytch Studio built and executed Killer Jeans' retail and digital creative ecosystem: LED content, 3D visuals, festive campaigns, store production and large-scale promotional communication across 250+ Exclusive Brand Outlets in India.">
 <link rel="canonical" href="https://swytch.studio/case-study-killer-jeans">
 <meta property="og:url" content="https://swytch.studio/case-study-killer-jeans">
 <meta property="og:image" content="https://swytch.studio/Swytch%20official%20logo-02%201.png">
@@ -17,7 +17,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Swytch Studio: Creative | AI | Marketing | Tech">
-<meta name="twitter:description" content="Swytch runs Killer Jeans' full growth stack — SEO, Google + Meta ads and content on a 30-day cycle, driving 4x ROAS on Rs 8L+ monthly ad spend.">
+<meta name="twitter:description" content="Swytch Studio built and executed Killer Jeans' retail and digital creative ecosystem: LED content, 3D visuals, festive campaigns, store production and large-scale promotional communication across 250+ Exclusive Brand Outlets in India.">
 <meta name="twitter:image" content="https://swytch.studio/Swytch%20official%20logo-02%201.png">
 <title>Killer Jeans — Case study — Swytch Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,11 +88,22 @@
     top:50%;left:50%;transform:translate(-50%,-52%);
   }
   .hero-img::after{
-    content:"Killer Jeans · ₹8L+ / month ad ops";position:relative;z-index:2;
+    content:"Killer Jeans · 250+ EBOs";position:relative;z-index:2;
     color:#fff;font-weight:700;font-size:clamp(14px,1.6vw,18px);
     letter-spacing:0.02em;background:rgba(0,0,0,0.28);
     padding:10px 18px;border-radius:999px;backdrop-filter:blur(6px);
   }
+
+  /* deliver grid (7 delivery categories) */
+  .deliver-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;}
+  .deliver-card{background:var(--panel);border-radius:18px;padding:26px;}
+  .deliver-num{
+    display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+    border-radius:11px;background:var(--accent-soft);color:var(--accent);font-weight:800;
+    font-size:14px;margin-bottom:14px;
+  }
+  .deliver-card h3{font-size:17px;font-weight:700;margin:0 0 8px;letter-spacing:-0.005em;}
+  .deliver-card p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;}
 
   /* meta bar */
   .meta-bar{
@@ -223,6 +234,7 @@
     .stat-grid{grid-template-columns:1fr;}
     .next-nav{grid-template-columns:1fr;}
     .cta-card{padding:40px 24px;}
+    .deliver-grid{grid-template-columns:1fr;}
   }
   @media (max-width:560px){
     .hero{padding:44px 18px 0;}
@@ -268,9 +280,9 @@
 
   <!-- HERO -->
   <div class="hero">
-    <span class="hero-tag reveal">SEO · Performance · Content</span>
-    <h1 class="reveal">₹8L+ in ad spend, deep SEO + Google Ads, and content built for 30-day cycles.</h1>
-    <p class="hero-dek reveal">Swytch runs Killer Jeans' full growth stack — SEO, Google + Meta ads, and content operations — engineered around a 30-day performance cadence.</p>
+    <span class="hero-tag reveal">Retail · Creative Production</span>
+    <h1 class="reveal">Visual communication across 250+ Exclusive Brand Outlets, nationwide.</h1>
+    <p class="hero-dek reveal">Swytch Studio partnered with Killer Jeans to create and execute visual communication across 250+ Exclusive Brand Outlets and digital touchpoints in India — from LED screen content and 3D visuals to festive campaigns, store shoots and large-scale promotional communication.</p>
   </div>
 
   <div class="section-wide">
@@ -281,11 +293,11 @@
       </div>
       <div class="meta-item">
         <div class="meta-label">Industry</div>
-        <div class="meta-value">Fashion / apparel</div>
+        <div class="meta-value">Fashion / apparel, denim</div>
       </div>
       <div class="meta-item">
         <div class="meta-label">Services</div>
-        <div class="meta-value">SEO, Performance, Content</div>
+        <div class="meta-value">Retail creative, 3D &amp; motion, campaign production</div>
       </div>
       <div class="meta-item">
         <div class="meta-label">Timeline</div>
@@ -294,35 +306,69 @@
     </div>
   </div>
 
-  <div class="article-banner reveal"><img src="case-study-banners/killer-jeans.jpg" alt="Killer Jeans case study" loading="lazy"></div>
+  <div class="article-banner reveal"><img src="case-study-banners/killer-jeans.jpg" alt="Killer Jeans retail creative case study" loading="lazy"></div>
   <!-- CHALLENGE -->
   <div class="section reveal">
     <p class="section-label">The challenge</p>
-    <h2>Winning a saturated fashion category on paid, organic and content — at the same time</h2>
-    <p>D2C fashion is one of the hardest categories in Indian ecommerce: CACs keep climbing, discount pressure is relentless, and platform algorithms punish anyone who slows down. Killer Jeans needed a growth stack built for exactly that environment.</p>
-    <p>The brief wasn't a single-channel win. Google Ads, Meta ads, SEO and content had to move in lockstep — each channel briefing the next, so paid didn't burn what organic was building, and content didn't lag behind the funnel.</p>
-    <p>And it all had to be defensible month after month. This wasn't a one-off spike; it was a system that needed to hold ROAS while spend, catalogue and inventory all shifted.</p>
+    <h2>One brand, 250+ outlets, and every format at once</h2>
+    <p>Killer Jeans needed visual communication that could hold up across an enormous physical footprint — over 250 Exclusive Brand Outlets nationwide — while staying consistent across LED screens, in-store displays, website banners, festive campaigns, trade events and sponsorship activations.</p>
+    <p>The brief wasn't a single creative asset. It was a production system: the same brand had to look right on a store LED screen in one city, a festive banner online, a tradeshow booth, and a World Cup sponsorship graphic, all at once, without the visual identity drifting from one format to the next.</p>
   </div>
 
   <!-- APPROACH -->
   <div class="section reveal">
     <p class="section-label">The approach</p>
-    <h2>One 30-day cycle running creative, bidding and SEO as a single loop</h2>
-    <p>We rebuilt the operating rhythm around a 30-day cycle. Every month starts with a shared read of last month's data — creatives that carried the load, keywords that converted, categories that softened — and every function briefs off that same read.</p>
-    <p>Creative production is treated as a growth function, not a design deliverable. Static, motion, UGC and hook-first videos are produced in volume so the ad account never runs on tired assets, and testing velocity stays high.</p>
-    <p>On Google, we run a full-funnel stack — brand defence, category, non-brand, PMax and shopping — with bidding tuned against contribution margin, not vanity ROAS. Meta focuses on prospecting-first creative and structured retargeting.</p>
-    <p>SEO is the quiet compounder. Category and product page architecture, internal linking, and content clusters around denim fits, occasions and styling questions keep pulling in traffic that paid doesn't have to buy twice.</p>
+    <h2>A consistent visual ecosystem, built to work across retail, digital and brand environments</h2>
+    <p>We built a creative production pipeline structured around seven delivery categories, so every touchpoint — physical or digital — drew from the same visual system instead of being designed in isolation.</p>
+
+    <div class="deliver-grid">
+      <div class="deliver-card">
+        <div class="deliver-num">01</div>
+        <h3>Retail</h3>
+        <p>PAN India LED screen content and in-store communication across 250+ EBOs.</p>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-num">02</div>
+        <h3>Digital</h3>
+        <p>Website banners, performance creatives and campaign graphics for ongoing digital communication.</p>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-num">03</div>
+        <h3>3D &amp; Motion</h3>
+        <p>High-impact 3D and motion content for retail screens, campaigns and promotional assets.</p>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-num">04</div>
+        <h3>Campaigns &amp; Festive</h3>
+        <p>Festive creatives and campaign adaptations designed for large-scale retail rollouts.</p>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-num">05</div>
+        <h3>Brand &amp; Sponsorship</h3>
+        <p>World Cup promotional sponsorship graphics and brand communication.</p>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-num">06</div>
+        <h3>Production</h3>
+        <p>Store shoots and content production tailored for retail and digital use.</p>
+      </div>
+      <div class="deliver-card">
+        <div class="deliver-num">07</div>
+        <h3>Events &amp; Trade</h3>
+        <p>Fair, tradeshow and event creatives, including advertising and promotional communication.</p>
+      </div>
+    </div>
   </div>
 
   <!-- QUOTE -->
   <div class="quote-block reveal">
     <div class="quote-mark">&ldquo;</div>
-    <p class="quote-text">Swytch runs our growth stack like a product team — creative, bidding and SEO all moving on the same 30-day beat.</p>
+    <p class="quote-text">Swytch runs our retail creative like a production studio embedded inside the brand — LED content, festive campaigns, store shoots, all moving off one visual system instead of two hundred separate briefs.</p>
     <div class="quote-attr">
       <div class="quote-avatar">KJ</div>
       <div>
-        <div class="quote-name">Killer Jeans ecommerce team</div>
-        <div class="quote-role">Performance &amp; brand marketing</div>
+        <div class="quote-name">Killer Jeans brand team</div>
+        <div class="quote-role">Retail &amp; marketing communication</div>
       </div>
     </div>
   </div>
@@ -330,20 +376,20 @@
   <!-- RESULTS -->
   <div class="section-wide reveal">
     <p class="section-label">The outcome</p>
-    <h2>A defensible growth engine, cycle after cycle</h2>
-    <p>The 30-day cadence has become the drumbeat for how Killer Jeans plans creative, spend and inventory. Media, SEO and content stay in sync, and the ROAS story compounds instead of resetting each month.</p>
+    <h2>A visual system that holds up from a store LED screen to a sponsorship banner</h2>
+    <p>The same creative system now runs across every Killer Jeans touchpoint — physical retail, digital, campaigns and events — so the brand reads as one consistent identity regardless of where a customer encounters it.</p>
     <div class="stat-grid">
       <div class="stat-card">
-        <div class="stat-num">₹8L+</div>
-        <div class="stat-label">Monthly ad spend</div>
+        <div class="stat-num">250+</div>
+        <div class="stat-label">Exclusive Brand Outlets covered</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">30d</div>
-        <div class="stat-label">Sprint cycle</div>
+        <div class="stat-num">PAN India</div>
+        <div class="stat-label">LED &amp; in-store rollout</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">4×</div>
-        <div class="stat-label">ROAS lift</div>
+        <div class="stat-num">7</div>
+        <div class="stat-label">Format categories delivered</div>
       </div>
     </div>
   </div>
@@ -351,8 +397,8 @@
   <!-- CTA -->
   <div class="cta-section reveal">
     <div class="cta-card">
-      <h2>Ready to run growth as a system?</h2>
-      <p>If SEO, paid and content are living in different tabs — and different agencies — we can bring them onto one 30-day cadence.</p>
+      <h2>Need creative that works at retail scale?</h2>
+      <p>If your brand needs consistent visual execution across hundreds of outlets and every digital touchpoint, this is exactly the kind of production system we build.</p>
       <a class="cta-btn" href="swytch-contact-typeform">Get in touch <span>&rarr;</span></a>
     </div>
   </div>
