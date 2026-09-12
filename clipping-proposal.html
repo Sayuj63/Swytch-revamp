@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swytch Clips — Swytch Studio</title>
+<meta name="description" content="Swytch Clips — how the clipping and distribution service works, what's included, and package pricing.">
+<link rel="canonical" href="https://www.swytch.studio/clipping-proposal">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;--ink:#111214;--ink-soft:#5b5d63;--ink-faint:#9a9ba0;--line:#ececea;--panel:#f7f6f4;
+    --accent:#FF6B1A;--accent-soft:#FFE7D6;--glass-bg: rgba(255,255,255,0.6);--glass-border: rgba(255,255,255,0.85);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--white);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .topbar{
+    position:sticky;top:0;z-index:30;background:rgba(255,255,255,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .back-link{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink-soft);}
+  .back-link:hover{color:var(--accent);}
+  .topbar-brand{font-size:13px;font-weight:700;color:var(--ink-faint);}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* HERO */
+  .hero{
+    max-width:1080px;margin:0 auto;padding:80px 24px 72px;display:flex;align-items:center;gap:48px;
+  }
+  .hero-mark{
+    width:150px;height:150px;border-radius:34px;background:var(--white);border:1px solid var(--line);flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 30px 60px -26px rgba(17,18,20,0.28);
+  }
+  .hero-mark img{width:92px;height:92px;object-fit:contain;}
+  .hero-copy h1{font-size:clamp(34px,5.4vw,58px);font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin:0 0 14px;}
+  .hero-copy .sub{
+    display:inline-block;font-size:16px;font-weight:600;color:var(--ink-soft);border-bottom:3px solid var(--accent);padding-bottom:6px;
+  }
+
+  /* PITCH */
+  .pitch{max-width:1080px;margin:0 auto;padding:0 24px 56px;}
+  .pitch h2{font-size:clamp(28px,4.2vw,44px);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin:0 0 20px;}
+  .pitch h2 span{color:var(--accent);}
+  .pitch p{font-size:17px;color:var(--ink-soft);max-width:640px;line-height:1.6;margin:0 0 24px;}
+  .platform-row{display:flex;gap:28px;flex-wrap:wrap;}
+  .platform-chip{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--ink);}
+  .platform-dot{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .platform-dot svg{width:17px;height:17px;display:block;fill:#fff;}
+  .platform-dot.yt{background:#FF0000;}
+  .platform-dot.ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);}
+  .platform-dot.fb{background:#1877F2;}
+
+  /* STAT STRIP */
+  .stat-strip-wrap{max-width:1080px;margin:0 auto;padding:0 24px 88px;}
+  .strip-label{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+  .strip-label .line{flex:1;height:1px;background:var(--line);}
+  .strip-label span{font-size:13px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;}
+  .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .stat-card{background:var(--panel);border-radius:18px;padding:26px 20px;text-align:center;}
+  .stat-num{font-size:30px;font-weight:800;color:var(--accent);margin-bottom:6px;}
+  .stat-label{font-size:12.5px;color:var(--ink-soft);font-weight:600;}
+
+  /* HOW IT WORKS + PRICING */
+  .split-section{max-width:1080px;margin:0 auto;padding:0 24px 96px;display:grid;grid-template-columns:0.85fr 1.4fr;gap:48px;}
+  .how-col .section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--accent);margin:0 0 8px;}
+  .how-col h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;letter-spacing:-0.015em;margin:0 0 28px;}
+  .step-item{display:flex;gap:16px;margin-bottom:26px;}
+  .step-num{
+    width:32px;height:32px;border-radius:9px;background:var(--ink);color:#fff;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;
+  }
+  .step-item h4{font-size:16px;font-weight:700;margin:0 0 6px;}
+  .step-item p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin:0;}
+  .done-note{font-size:15px;font-weight:700;border-top:2px solid var(--ink);padding-top:16px;margin-top:8px;}
+
+  .price-col h2{font-size:clamp(24px,3vw,32px);font-weight:800;letter-spacing:-0.015em;margin:0 0 20px;}
+  .price-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 20px;}
+  .price-head h2{margin:0;}
+  .currency-toggle{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;}
+  .cur-btn{border:none;background:transparent;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--ink-soft);padding:8px 15px;border-radius:999px;cursor:pointer;transition:background .18s ease,color .18s ease;}
+  .cur-btn.active{background:var(--ink);color:#fff;}
+  .cur-btn:hover:not(.active){color:var(--accent);}
+  .start-package{
+    background:var(--panel);border-radius:18px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:12px;margin-bottom:22px;
+  }
+  .start-pill{display:inline-block;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:11.5px;font-weight:700;color:var(--ink-soft);margin-bottom:8px;}
+  .start-package .name{font-size:19px;font-weight:800;}
+  .start-package .price{font-size:22px;font-weight:800;color:var(--accent);}
+  .start-package .price-note{font-size:12px;color:var(--ink-faint);}
+
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .price-card{border:1px solid var(--line);border-radius:18px;padding:22px 18px;}
+  .price-card.featured{border-color:var(--accent);box-shadow:0 20px 40px -24px rgba(255,107,26,0.35);}
+  .tier-pill{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:5px 14px;font-size:11.5px;font-weight:700;margin-bottom:12px;}
+  .price-card .price{font-size:26px;font-weight:800;margin-bottom:2px;}
+  .price-card .price-period{font-size:12px;color:var(--ink-faint);margin-bottom:16px;}
+  .spec-row{display:flex;justify-content:space-between;font-size:12.5px;padding:8px 0;border-top:1px solid var(--line);}
+  .spec-row .k{color:var(--ink-faint);}
+  .spec-row .v{font-weight:700;color:var(--ink);text-align:right;}
+  .guarantee{font-size:12px;font-weight:700;color:var(--accent);text-align:center;margin-top:14px;}
+
+  /* FEATURES GRID */
+  .features-section{max-width:1080px;margin:0 auto;padding:0 24px 96px;}
+  .features-section h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-0.02em;margin:0 0 40px;}
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 28px;}
+  .feature-item{position:relative;padding-right:36px;}
+  .feature-item h4{font-size:17px;font-weight:700;margin:0 0 8px;}
+  .feature-item p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin:0;}
+  .feature-item .fnum{position:absolute;top:0;right:0;font-size:22px;font-weight:800;color:var(--line);}
+
+  /* DASHBOARD + CTA */
+  .close-section{max-width:1080px;margin:0 auto;padding:0 24px 100px;}
+  .close-card{
+    background:var(--ink);border-radius:28px;padding:56px 48px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;
+  }
+  .close-card h3{font-size:clamp(22px,3vw,30px);font-weight:800;color:#fff;letter-spacing:-0.015em;line-height:1.2;margin:0 0 14px;}
+  .close-card h3 span{color:var(--accent);}
+  .close-card p{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;margin:0 0 18px;max-width:420px;}
+  .metric-pills{display:flex;flex-wrap:wrap;gap:10px;}
+  .metric-pill{border:1px solid rgba(255,255,255,0.25);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:600;color:#fff;}
+  .close-right{text-align:center;border-left:1px solid rgba(255,255,255,0.15);padding-left:40px;}
+  .close-right h4{font-size:20px;font-weight:800;color:#fff;margin:0 0 20px;}
+  .cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:white;border:none;padding:16px 30px;border-radius:999px;font-size:14.5px;font-weight:700;cursor:pointer;transition:transform .18s ease, background .18s ease;}
+  .cta-btn:hover{background:#ff7d33;transform:translateY(-2px);}
+
+  .site-footer{border-top:1px solid var(--line);padding:32px 24px;max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .site-footer span, .site-footer a{font-size:12.5px;color:var(--ink-faint);}
+  .site-footer a:hover{color:var(--accent);}
+
+  ::selection{background:var(--accent-soft);}
+
+  @media (max-width:900px){
+    .hero{flex-direction:column;align-items:flex-start;text-align:left;gap:32px;}
+    .split-section{grid-template-columns:1fr;gap:56px;}
+    .price-grid{grid-template-columns:1fr;}
+    .features-grid{grid-template-columns:1fr 1fr;}
+    .close-card{grid-template-columns:1fr;padding:44px 32px;}
+    .close-right{border-left:none;padding-left:0;border-top:1px solid rgba(255,255,255,0.15);padding-top:28px;}
+    .stat-strip{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .topbar{padding:12px 16px;}
+    .back-link{font-size:13px;}
+    .hero, .pitch, .stat-strip-wrap, .split-section, .features-section, .close-section{padding-left:18px;padding-right:18px;}
+    .hero{padding-top:48px;padding-bottom:48px;}
+    .hero-mark{width:104px;height:104px;border-radius:26px;}
+    .hero-mark img{width:62px;height:62px;}
+    .hero-copy h1{font-size:clamp(30px,9vw,44px);}
+    .features-grid{grid-template-columns:1fr;gap:28px;}
+    .feature-item{padding-right:0;}
+    .feature-item .fnum{position:static;display:block;margin-bottom:6px;}
+    .price-head{flex-direction:column;align-items:flex-start;gap:12px;}
+    .currency-toggle{align-self:stretch;justify-content:center;}
+    .start-package{padding:18px 18px;}
+    .start-package .price{font-size:19px;}
+    .price-card{padding:20px 16px;}
+    .stat-strip{gap:12px;}
+    .stat-card{padding:20px 14px;}
+    .stat-num{font-size:26px;}
+    .close-card{padding:34px 20px;border-radius:22px;}
+    .cta-btn{width:100%;justify-content:center;}
+    .site-footer{flex-direction:column;align-items:flex-start;}
+    .pitch{padding-bottom:44px;}.stat-strip-wrap{padding-bottom:64px;}.split-section{padding-bottom:64px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a class="back-link" href="service-clipping">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Clipping
+    </a>
+    <span class="topbar-brand">Swytch Studio</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero reveal">
+    <div class="hero-mark"><img src="Swytch%20official%20logo-02%201.png" alt="Swytch Studio"></div>
+    <div class="hero-copy">
+      <h1>Swytch<br>Clips</h1>
+      <span class="sub">Clipping &amp; distribution</span>
+    </div>
+  </div>
+
+  <!-- PITCH -->
+  <div class="pitch reveal">
+    <h2>Your content deserves <span>a bigger audience.</span></h2>
+    <p>We repurpose your long-form content into short-form clips, edited, captioned, and posted on a consistent schedule by a dedicated team.</p>
+    <div class="platform-row">
+      <div class="platform-chip">
+        <span class="platform-dot yt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span> YouTube Shorts
+      </div>
+      <div class="platform-chip">
+        <span class="platform-dot ig"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 0 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></span> Instagram Reels
+      </div>
+      <div class="platform-chip">
+        <span class="platform-dot fb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span> Facebook Reels
+      </div>
+    </div>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip-wrap reveal">
+    <div class="strip-label"><div class="line"></div><span>What's running behind the scenes</span><div class="line"></div></div>
+    <div class="stat-strip">
+      <div class="stat-card"><div class="stat-num">15-60s</div><div class="stat-label">Native clip length</div></div>
+      <div class="stat-card"><div class="stat-num">Weekly</div><div class="stat-label">Delivery cadence</div></div>
+      <div class="stat-card"><div class="stat-num">1</div><div class="stat-label">Dedicated editing team</div></div>
+      <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">Platforms formatted for</div></div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS + PRICING -->
+  <div class="split-section reveal">
+    <div class="how-col">
+      <p class="section-label">How it works</p>
+      <h2>Four steps.</h2>
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Content review &amp; extraction</h4>
+          <p>We go through your raw footage and flag the moments actually worth cutting.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Professional editing</h4>
+          <p>Every clip is edited with hooks, captions and pacing built for each platform.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Scheduled distribution</h4>
+          <p>Clips go out on a consistent schedule across YouTube Shorts, Reels and Facebook.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div>
+          <h4>Performance tracking</h4>
+          <p>You get a clear weekly report showing growth, reach and engagement.</p>
+        </div>
+      </div>
+
+      <p class="done-note">Fully done for you.</p>
+    </div>
+
+    <div class="price-col">
+      <div class="price-head">
+        <h2>Pricing, packages built to scale</h2>
+        <div class="currency-toggle" role="group" aria-label="Display currency">
+          <button type="button" class="cur-btn active" data-cur="INR" aria-pressed="true">&#8377; INR</button>
+          <button type="button" class="cur-btn" data-cur="USD" aria-pressed="false">$ USD</button>
+        </div>
+      </div>
+
+      <div class="start-package">
+        <div>
+          <span class="start-pill">Starting package</span>
+          <div class="name">Trial batch</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="price">Talk to sales</div>
+          <div class="price-note">Clip volume depends on your footage</div>
+        </div>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-card">
+          <span class="tier-pill">Growth</span>
+          <div class="price" data-inr="100">&#8377;100</div>
+          <div class="price-period">per month</div>
+          <div class="spec-row"><span class="k">Clips / week</span><span class="v">10</span></div>
+          <div class="spec-row"><span class="k">Platforms</span><span class="v">YT + IG + FB</span></div>
+          <div class="spec-row"><span class="k">Weekly reports</span><span class="v">Yes</span></div>
+          <div class="spec-row"><span class="k">Dedicated team</span><span class="v">Yes</span></div>
+          <div class="guarantee">Flat retainer, no per-view fees</div>
+        </div>
+        <div class="price-card featured">
+          <span class="tier-pill">Authority</span>
+          <div class="price" data-inr="300">&#8377;300</div>
+          <div class="price-period">per month</div>
+          <div class="spec-row"><span class="k">Clips / week</span><span class="v">25</span></div>
+          <div class="spec-row"><span class="k">Platforms</span><span class="v">YT + IG + FB</span></div>
+          <div class="spec-row"><span class="k">Weekly reports</span><span class="v">Yes</span></div>
+          <div class="spec-row"><span class="k">Dedicated team</span><span class="v">Yes</span></div>
+          <div class="guarantee">Flat retainer, no per-view fees</div>
+        </div>
+        <div class="price-card">
+          <span class="tier-pill">Dominance</span>
+          <div class="price" data-inr="400">&#8377;400</div>
+          <div class="price-period">per month</div>
+          <div class="spec-row"><span class="k">Clips / week</span><span class="v">40</span></div>
+          <div class="spec-row"><span class="k">Platforms</span><span class="v">YT + IG + FB + TikTok</span></div>
+          <div class="spec-row"><span class="k">Weekly reports</span><span class="v">Yes</span></div>
+          <div class="spec-row"><span class="k">Dedicated team</span><span class="v">Priority</span></div>
+          <div class="guarantee">Flat retainer, no per-view fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="features-section reveal">
+    <h2>Everything. We handle it all.</h2>
+    <div class="features-grid">
+      <div class="feature-item"><span class="fnum">01</span>
+        <h4>Account setup</h4>
+        <p>We set up and brand every posting account for you. Zero effort required on your side.</p>
+      </div>
+      <div class="feature-item"><span class="fnum">02</span>
+        <h4>Clipping &amp; editing</h4>
+        <p>Every clip edited with hooks, captions, pacing and platform-specific formatting.</p>
+      </div>
+      <div class="feature-item"><span class="fnum">03</span>
+        <h4>Scheduled posting</h4>
+        <p>Clips go out on a fixed weekly cadence across every connected platform.</p>
+      </div>
+      <div class="feature-item"><span class="fnum">04</span>
+        <h4>Account management</h4>
+        <p>Full handling of growth, engagement and ongoing optimisation.</p>
+      </div>
+      <div class="feature-item"><span class="fnum">05</span>
+        <h4>Audience targeting</h4>
+        <p>Platform-specific formatting across YouTube, Instagram and Facebook to maximise reach.</p>
+      </div>
+      <div class="feature-item"><span class="fnum">06</span>
+        <h4>Weekly reporting</h4>
+        <p>A clear weekly breakdown: growth, views, engagement, per-platform performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSE -->
+  <div class="close-section reveal">
+    <div class="close-card">
+      <div>
+        <h3>Your own live <span>reporting.</span></h3>
+        <p>Track views, engagement and growth across every platform, every week, in one clear report.</p>
+        <div class="metric-pills">
+          <span class="metric-pill">View counts</span>
+          <span class="metric-pill">Engagement metrics</span>
+          <span class="metric-pill">Growth tracking</span>
+          <span class="metric-pill">Per-platform breakdown</span>
+        </div>
+      </div>
+      <div class="close-right">
+        <h4>Ready to scale your content?</h4>
+        <a class="cta-btn" href="https://www.swytch.studio/swytch-contact-typeform">Let's get started <span>&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span>Swytch Studio &middot; Swytch Clips</span>
+    <a href="mailto:hello@swytch.studio">hello@swytch.studio</a>
+  </footer>
+
+<script>
+  const targets = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, {threshold:0.1});
+  targets.forEach(el=>io.observe(el));
+
+  const INR_PER_USD = 83;
+  function formatPrice(inr, cur){
+    if (cur === 'USD') {
+      const usd = Math.round((inr / INR_PER_USD) * 100) / 100;
+      return '$' + usd.toLocaleString('en-US', {maximumFractionDigits:2});
+    }
+    return '₹' + inr.toLocaleString('en-IN');
+  }
+  document.querySelectorAll('.cur-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const cur = btn.dataset.cur;
+      document.querySelectorAll('.cur-btn').forEach(b=>{
+        const on = b === btn;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-inr]').forEach(el=>{
+        el.textContent = formatPrice(parseFloat(el.dataset.inr), cur);
+      });
+    });
+  });
+</script>
+</body>
+</html>
