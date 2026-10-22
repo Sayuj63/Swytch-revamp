@@ -481,26 +481,48 @@
     ).join('');
   }
 
+  // ─── Google Sheet endpoint ──────────────────────────────────────────────
+  // Paste your deployed Apps Script Web App URL here (ends in /exec).
+  // See google-apps-script-leads.gs for the 2-minute setup steps.
+  const SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzzntMzch840xgzorlSnNzEdGmHVsh54b6c_MaTwsZN1CN2Iq03wBXO6n-at_eOxiF3/exec';
+  // ────────────────────────────────────────────────────────────────────────
+
   function submitForm(){
-    const payload = {
+    const lead = {
       name: document.getElementById('q-name').value.trim(),
       brand: document.getElementById('q-brand').value.trim(),
       need: data.need.join(', '),
       budget: data.budget,
       details: document.getElementById('q-details').value.trim(),
       email: document.getElementById('q-email').value.trim(),
-      phone: document.getElementById('q-phone').value.trim(),
-      _subject: 'New Swytch lead — ' + (document.getElementById('q-brand').value.trim() || document.getElementById('q-name').value.trim()),
-      _replyto: document.getElementById('q-email').value.trim(),
+      phone: document.getElementById('q-phone').value.trim()
+    };
+
+    // 1) Email the lead to the team via FormSubmit (unchanged).
+    const emailPayload = Object.assign({}, lead, {
+      _subject: 'New Swytch lead — ' + (lead.brand || lead.name),
+      _replyto: lead.email,
       _template: 'box',
       _captcha: 'false'
-    };
-    // Show thank-you optimistically; email is delivered via FormSubmit in the background.
+    });
     fetch('https://formsubmit.co/ajax/rajshah@swytch.studio', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(emailPayload)
     }).catch(()=>{ /* silent — user already saw thank-you */ });
+
+    // 2) Append the lead as a row in the Google Sheet.
+    //    text/plain avoids a CORS preflight; no-cors = fire-and-forget.
+    if (SHEET_ENDPOINT && SHEET_ENDPOINT.indexOf('http') === 0) {
+      fetch(SHEET_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(lead)
+      }).catch(()=>{ /* silent — user already saw thank-you */ });
+    }
+
+    // Show thank-you optimistically; both requests run in the background.
     showStep(8);
   }
 
