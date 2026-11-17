@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A week-by-week 60-day festive marketing plan for D2C brands in India, from store fixes to creators, ads and retention.">
+<meta property="og:site_name" content="Swytch Studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Festive season marketing for D2C brands: a 60-day plan — Swytch Studio">
+<meta property="og:description" content="A week-by-week 60-day festive marketing plan for D2C brands in India, from store fixes to creators, ads and retention.">
+<link rel="canonical" href="https://swytch.studio/blog-festive-season-60-day-plan">
+<meta property="og:url" content="https://swytch.studio/blog-festive-season-60-day-plan">
+<meta property="og:image" content="https://swytch.studio/blog-images/swytch-blog-03-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Festive season marketing for D2C brands: a 60-day plan — Swytch Studio">
+<meta name="twitter:description" content="A week-by-week 60-day festive marketing plan for D2C brands in India, from store fixes to creators, ads and retention.">
+<meta name="twitter:image" content="https://swytch.studio/blog-images/swytch-blog-03-cover.jpg">
+<title>Festive season marketing for D2C brands: a 60-day plan — Swytch Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --ink:#111214;
+    --ink-soft:#5b5d63;
+    --ink-faint:#9a9ba0;
+    --line:#ececea;
+    --panel:#f7f6f4;
+    --accent:#FF6B1A;
+    --accent-soft:#FFE7D6;
+    --glass-bg: rgba(255,255,255,0.6);
+    --glass-border: rgba(255,255,255,0.85);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--white);color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* top bar */
+  .topbar{
+    position:sticky;top:0;z-index:30;background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+    padding:16px 24px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .back-link{
+    display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink-soft);
+  }
+  .back-link:hover{color:var(--accent);}
+  .topbar-brand{font-size:13px;font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:8px;text-decoration:none;letter-spacing:-.01em;}.topbar-brand img{width:22px;height:22px;object-fit:contain;display:block;}.topbar-brand:hover{color:var(--accent);}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* hero */
+  .hero{padding:64px 24px 0;max-width:1080px;margin:0 auto;}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;
+    color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:999px;
+    text-transform:uppercase;letter-spacing:0.05em;margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(30px,5.6vw,58px);font-weight:800;letter-spacing:-0.02em;line-height:1.08;
+    margin:0 0 20px;max-width:820px;
+  }
+  .hero-dek{font-size:clamp(15px,2vw,18px);color:var(--ink-soft);max-width:620px;line-height:1.6;margin:0 0 40px;}
+
+  .hero-img{
+    border-radius:24px;overflow:hidden;aspect-ratio:16/9;margin-bottom:48px;
+    background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 45%,#0EA5E9 100%);
+    position:relative;display:flex;align-items:center;justify-content:center;
+  }
+  .hero-img::before{
+    content:"C";position:absolute;font-family:'Inter',sans-serif;font-weight:900;
+    font-size:clamp(220px,42vw,460px);color:rgba(255,255,255,0.18);
+    line-height:0.8;letter-spacing:-0.06em;user-select:none;pointer-events:none;
+    top:50%;left:50%;transform:translate(-50%,-52%);
+  }
+  .hero-img::after{
+    content:"Coinstore · Brand + Web in 6 weeks";position:relative;z-index:2;
+    color:#fff;font-weight:700;font-size:clamp(14px,1.6vw,18px);
+    letter-spacing:0.02em;background:rgba(0,0,0,0.28);
+    padding:10px 18px;border-radius:999px;backdrop-filter:blur(6px);
+  }
+
+  /* meta bar */
+  .meta-bar{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:28px 0;margin-bottom:64px;
+  }
+  .meta-item{padding:0 20px;border-left:1px solid var(--line);}
+  .meta-item:first-child{border-left:none;padding-left:0;}
+  .meta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-faint);margin-bottom:6px;}
+  .meta-value{font-size:14.5px;font-weight:700;color:var(--ink);}
+
+  /* content sections */
+  .section{max-width:780px;margin:0 auto;padding:0 24px 88px;}
+  .section-wide{max-width:1080px;margin:0 auto;padding:0 24px 88px;}
+  .section-label{
+    font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;
+    color:var(--accent);margin:0 0 16px;
+  }
+  .section h2{
+    font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-0.015em;line-height:1.2;
+    margin:0 0 20px;
+  }
+  .section p{font-size:16px;color:var(--ink-soft);line-height:1.75;margin:0 0 18px;}
+  .section p:last-child{margin-bottom:0;}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+
+  /* stat blocks */
+  .stat-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:8px 0 0;
+  }
+  .stat-card{
+    background:var(--panel);border-radius:20px;padding:28px 24px;text-align:center;
+  }
+  .stat-num{font-size:clamp(30px,4vw,42px);font-weight:800;color:var(--accent);letter-spacing:-0.02em;line-height:1;margin-bottom:8px;}
+  .stat-label{font-size:13px;color:var(--ink-soft);font-weight:600;line-height:1.4;}
+
+  /* approach steps */
+  .step-list{margin-top:8px;}
+  .step-item{
+    display:grid;grid-template-columns:56px 1fr;gap:20px;padding:24px 0;
+    border-top:1px solid var(--line);
+  }
+  .step-item:last-child{border-bottom:1px solid var(--line);}
+  .step-num{
+    width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
+  }
+  .step-item h3{font-size:16.5px;font-weight:700;margin:6px 0 8px;}
+  .step-item p{font-size:14.5px;color:var(--ink-soft);line-height:1.65;margin:0;}
+
+  /* quote */
+  .quote-block{
+    background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--glass-border);border-radius:24px;padding:40px 36px;
+    margin:0 auto 88px;max-width:780px;
+  }
+  .quote-mark{font-size:40px;color:var(--accent);line-height:1;margin-bottom:12px;font-weight:800;}
+  .quote-text{font-size:clamp(18px,2.4vw,22px);font-weight:600;line-height:1.5;letter-spacing:-0.01em;margin:0 0 20px;}
+  .quote-attr{display:flex;align-items:center;gap:12px;}
+  .quote-avatar{width:38px;height:38px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .quote-name{font-size:13.5px;font-weight:700;}
+  .quote-role{font-size:12.5px;color:var(--ink-faint);}
+
+  /* cta */
+  .cta-section{
+    max-width:1080px;margin:0 auto;padding:0 24px 96px;
+  }
+  .cta-card{
+    background:var(--ink);color:white;border-radius:28px;padding:56px 40px;text-align:center;
+  }
+  .cta-card h2{font-size:clamp(24px,3.6vw,36px);font-weight:800;letter-spacing:-0.02em;margin:0 0 14px;color:white;}
+  .cta-card p{font-size:15px;color:rgba(255,255,255,0.7);margin:0 0 28px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.6;}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent);color:white;border:none;padding:16px 32px;
+    border-radius:999px;font-size:15px;font-weight:700;cursor:pointer;
+    transition:transform .18s ease, background .18s ease;
+  }
+  .cta-btn:hover{background:#ff7d33;transform:translateY(-2px);}
+
+  /* next case study nav */
+  .next-nav{
+    max-width:1080px;margin:0 auto;padding:0 24px 80px;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  }
+  .next-card{
+    border:1px solid var(--line);border-radius:20px;padding:26px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .next-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .next-card .dir{font-size:11.5px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;}
+  .next-card .dir.right{text-align:right;}
+  .next-card h4{font-size:17px;font-weight:700;margin:0;letter-spacing:-0.01em;}
+  .next-card.right{text-align:right;}
+
+  /* floating dock */
+  .floating-dock{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:9998;display:flex;align-items:center;gap:10px;padding:6px 6px 6px 10px;background:rgba(255,240,220,0.9);backdrop-filter:saturate(200%) blur(20px);-webkit-backdrop-filter:saturate(200%) blur(20px);border:0.5px solid rgba(255,107,26,0.2);border-radius:100px;box-shadow:0 8px 32px rgba(0,0,0,0.08),0 2px 4px rgba(0,0,0,0.04);font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-size:13px;font-weight:500;color:#1D1D1F;max-width:calc(100vw - 20px);white-space:nowrap}
+  .floating-dock .fd-brand{display:inline-flex;align-items:center;gap:6px;font-weight:700;background:#FFFFFF;border:0.5px solid rgba(255,107,26,0.25);padding:6px 12px 6px 8px;border-radius:100px;color:#1D1D1F;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+.floating-dock .fd-brand img{width:16px;height:16px;object-fit:contain;display:block;}
+  .floating-dock .fd-dot{color:#86868B;padding:0 2px}
+  .floating-dock .fd-desc{color:#6E6E73}
+  .floating-dock .fd-cta{display:inline-flex;align-items:center;gap:6px;background:#FF6B1A;color:#fff;padding:7px 14px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s,transform .15s;border:0.5px solid transparent}
+  .floating-dock .fd-cta:hover{background:#D95A10;transform:translateY(-1px)}
+  .floating-dock .fd-wa{display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:7px 14px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none !important;border:0.5px solid transparent;transition:background .2s,transform .15s;}
+  .floating-dock .fd-wa:hover{background:#1DAA51;transform:translateY(-1px)}
+.floating-dock .fd-cta svg,.floating-dock .fd-wa svg{width:14px;height:14px;display:block;}
+  .floating-dock .fd-close{border:none;background:transparent;color:#86868B;font-size:20px;cursor:pointer;padding:0 6px;line-height:1}
+  .floating-dock .fd-close:hover{color:#1D1D1F}
+  @media(max-width:600px){
+  .floating-dock .fd-desc,.floating-dock .fd-dot{display:none}
+  .floating-dock{padding:4px;font-size:12px;gap:5px;max-width:calc(100vw - 16px)}
+  .floating-dock .fd-brand{padding:5px 8px 5px 6px;font-size:12px;gap:5px}
+  .floating-dock .fd-brand span.fd-brand-text{display:none}
+  .floating-dock .fd-cta,.floating-dock .fd-wa{padding:6px 10px;font-size:12px}
+  .floating-dock .fd-cta span,.floating-dock .fd-wa span{display:none}
+  .floating-dock .fd-close{padding:0 4px}
+}
+
+  ::selection{background:var(--accent-soft);}
+
+  @media (max-width:820px){
+    .two-col{grid-template-columns:1fr;gap:12px;}
+    .meta-bar{grid-template-columns:repeat(2,1fr);row-gap:20px;}
+    .meta-item{border-left:none;padding-left:0;}
+    .meta-item:nth-child(2n){padding-left:20px;border-left:1px solid var(--line);}
+    .stat-grid{grid-template-columns:1fr;}
+    .next-nav{grid-template-columns:1fr;}
+    .cta-card{padding:40px 24px;}
+  }
+  @media (max-width:560px){
+    .hero{padding:44px 18px 0;}
+    .section, .section-wide, .cta-section, .next-nav{padding-left:18px;padding-right:18px;}
+    .step-item{grid-template-columns:44px 1fr;gap:14px;}
+  }
+
+  /* Case study inline banner */
+  .article-banner{
+    max-width:1080px;margin:0 auto 56px;padding:0 24px;
+  }
+  .article-banner img{
+    width:100%;height:auto;display:block;border-radius:20px;
+    box-shadow:0 12px 40px -12px rgba(15,15,20,.15),0 4px 14px -6px rgba(15,15,20,.08);
+    aspect-ratio:16/9;object-fit:cover;
+  }
+  /* Tight the gap between meta bar and article banner */
+  .section-wide:has(> .meta-bar){padding-bottom:0;}
+  .section-wide > .meta-bar{margin-bottom:24px;}
+  @media (max-width:720px){
+    .article-banner{padding:0 18px;margin-bottom:40px;}
+    .article-banner img{border-radius:14px;}
+    .section-wide > .meta-bar{margin-bottom:16px;}
+  }
+
+  /* Tighten space before footer */
+  .next-nav{padding-bottom:32px!important;}
+  .site-footer{margin-top:0!important;}
+
+  /* ---- article (blog) ---- */
+  .art-hero{padding:52px 24px 0;max-width:760px;margin:0 auto;}
+  .art-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:999px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:20px;}
+  .art-title{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-0.02em;line-height:1.12;margin:0;max-width:720px;}
+  .art-byline{display:flex;align-items:center;gap:11px;margin:22px 0 0;}
+  .art-byline .av{width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .art-byline .by-name{font-size:14px;font-weight:700;color:var(--ink);}
+  .art-byline .by-meta{font-size:12.5px;color:var(--ink-faint);}
+  .art-cover{max-width:1080px;margin:30px auto 44px;padding:0 24px;}
+  .art-cover img{width:100%;height:auto;display:block;border-radius:20px;aspect-ratio:16/9;object-fit:cover;box-shadow:0 12px 40px -12px rgba(15,15,20,.15),0 4px 14px -6px rgba(15,15,20,.08);}
+  .prose{max-width:760px;margin:0 auto;padding:0 24px 72px;}
+  .prose p{font-size:17px;line-height:1.8;color:var(--ink-soft);margin:0 0 20px;}
+  .prose p:first-of-type{font-size:18.5px;color:var(--ink);line-height:1.75;}
+  .prose h2{font-size:clamp(21px,3vw,28px);font-weight:800;letter-spacing:-0.015em;line-height:1.25;color:var(--ink);margin:42px 0 14px;}
+  .prose h3{font-size:18px;font-weight:700;color:var(--ink);margin:28px 0 10px;}
+  .prose ul{list-style:none;margin:0 0 22px;padding:0;}
+  .prose ul li{position:relative;padding-left:26px;margin-bottom:12px;font-size:16.5px;line-height:1.7;color:var(--ink-soft);}
+  .prose ul li::before{content:"";position:absolute;left:3px;top:10px;width:7px;height:7px;border-radius:50%;background:var(--accent);}
+  .prose ol{margin:0 0 22px;padding:0;counter-reset:pr;list-style:none;}
+  .prose ol li{position:relative;padding-left:40px;margin-bottom:14px;font-size:16.5px;line-height:1.7;color:var(--ink-soft);counter-increment:pr;}
+  .prose ol li::before{content:counter(pr);position:absolute;left:0;top:-2px;width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .prose strong{color:var(--ink);font-weight:700;}
+  .prose blockquote{margin:28px 0;padding:22px 26px;background:var(--panel);border-left:3px solid var(--accent);border-radius:0 14px 14px 0;font-size:18px;font-weight:600;color:var(--ink);line-height:1.55;}
+  .prose a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
+  .art-sources{max-width:760px;margin:0 auto;padding:0 24px 64px;}
+  .art-sources h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-faint);margin:0 0 10px;}
+  .art-sources p{font-size:13px;color:var(--ink-faint);line-height:1.6;margin:0 0 6px;}
+  @media (max-width:560px){ .art-hero{padding:36px 18px 0;} .prose,.art-sources{padding-left:18px;padding-right:18px;} .art-cover{padding:0 18px;} .art-cover img{border-radius:14px;} }
+</style>
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon.png">
+
+<body>
+
+  <div class="topbar">
+    <a class="back-link" href="Blogs">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to journal
+    </a>
+    <a class="topbar-brand" href="index"><img src="Swytch%20official%20logo-02%201.png" alt="Swytch">Swytch Studio</a>
+  </div>
+
+  <div class="art-hero">
+    <span class="art-tag reveal">Playbook</span>
+    <h1 class="art-title reveal">Festive season marketing for D2C brands: a 60-day plan</h1>
+    <div class="art-byline reveal">
+      <div class="av">RS</div>
+      <div>
+        <div class="by-name">Raj Shah</div>
+        <div class="by-meta">Sep 18, 2026 · 6 min read</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="art-cover reveal"><img src="blog-images/swytch-blog-03-cover.jpg" alt="Festive season marketing for D2C brands: a 60-day plan" loading="lazy"></div>
+
+  <article class="prose reveal">
+    <p>Festive sales are won in the 60 days before the festival, not in the last week. Work backwards from the date, and each week has one job.</p>
+
+    <h2>Why 60 days</h2>
+    <p>Redseer's festive outlook, reported by The Week in September 2026, projected online retail growth of 25% in the 30 to 35 days before Diwali, up from 16% the year before. Fashion was projected at 20 to 22%. The window is getting more competitive, and the brands that win it start early.</p>
+    <p>The plan below works for Pujo, Diwali or any other major festival. Count back from your festival date.</p>
+
+    <h2>The plan</h2>
+
+    <h3>60 to 45 days — Foundation</h3>
+    <ul>
+      <li>Fix the store: page speed, checkout, stock and size availability.</li>
+      <li>Set up tracking and check it against orders.</li>
+      <li>Lock the festive offer and margin floor.</li>
+    </ul>
+
+    <h3>45 to 30 days — Creative and creators</h3>
+    <ul>
+      <li>Produce festive creatives in the languages your shoppers use.</li>
+      <li>Brief and book creators.</li>
+      <li>Build the audience lists and WhatsApp opt-ins.</li>
+    </ul>
+
+    <h3>30 to 15 days — Warm-up</h3>
+    <ul>
+      <li>Teaser content.</li>
+      <li>Early-access offers to past customers.</li>
+      <li>Start prospecting ads with proven creatives.</li>
+    </ul>
+
+    <h3>15 to 7 days — Main push</h3>
+    <ul>
+      <li>Full ad spend, creators live, store activations running.</li>
+      <li>Daily check on stock, delivery promise and CAC.</li>
+    </ul>
+
+    <h3>7 to 0 days — Close</h3>
+    <ul>
+      <li>Last-chance offers.</li>
+      <li>Delivery cut-off reminders on WhatsApp.</li>
+      <li>Retarget cart and page visitors.</li>
+    </ul>
+
+    <h3>After — Retain</h3>
+    <ul>
+      <li>Thank-you flow.</li>
+      <li>Review requests.</li>
+      <li>A second-purchase offer before the next occasion.</li>
+    </ul>
+
+    <h2>Five rules that matter more than the calendar</h2>
+    <ul>
+      <li><strong>Set a margin floor first.</strong> A festive discount that kills contribution margin is a loss with a good-looking ROAS.</li>
+      <li><strong>Test before you scale.</strong> Run creative tests at 60 to 30 days out, so the main push uses winners.</li>
+      <li><strong>Plan stock like a marketer.</strong> Running out of the best-selling size in week two wastes the ad spend that drove demand.</li>
+      <li><strong>Localise.</strong> A Puja message for eastern India is not a Diwali message for the whole country. Language and styling should match the market.</li>
+      <li><strong>Do not forget the store.</strong> For brands with retail, tie creator content to the stores so online reach turns into footfall.</li>
+    </ul>
+
+    <h2>A note on measurement</h2>
+    <p>Track three numbers daily: blended CAC, contribution margin, and repeat purchase rate from past customers. ROAS alone will flatter a bad festive season.</p>
+
+    <h2>Use it for the next occasion</h2>
+    <p>Every festival in the calendar can run this same 60-day frame. If you start now, you have time for the next big one.</p>
+  </article>
+
+  <div class="art-sources reveal">
+    <h4>Sources</h4>
+    <p>India's festive online retail to be strongest in 5 years: Report, The Week, 18 September 2026 (cites Redseer)</p>
+  </div>
+
+  <div class="cta-section reveal">
+    <div class="cta-card">
+      <h2>Want this run for your brand?</h2>
+      <p>Swytch is your marketing and tech team in one studio — strategy, content, performance and build, under one roof.</p>
+      <a class="cta-btn" href="swytch-contact-typeform">Start a project <span>&rarr;</span></a>
+    </div>
+  </div>
+
+  <div class="floating-dock" id="floatingDock">
+  <span class="fd-brand">
+    <img src="Swytch%20official%20logo-02%201.png" alt="Swytch" width="16" height="16">
+    <span class="fd-brand-text">Swytch Studio</span>
+  </span>
+  <a href="swytch-contact-typeform" class="fd-cta" aria-label="Contact us">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span>Contact us</span>
+  </a>
+  <a href="https://api.whatsapp.com/send/?phone=%2B919821817273" class="fd-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.87 11.87 0 0 0 12.06 0C5.5 0 .17 5.34.17 11.9c0 2.1.55 4.14 1.6 5.94L0 24l6.32-1.66a11.86 11.86 0 0 0 5.73 1.46h.01c6.56 0 11.9-5.34 11.9-11.9 0-3.18-1.24-6.17-3.44-8.42zM12.06 21.8h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.75.98 1-3.66-.24-.38a9.85 9.85 0 0 1-1.51-5.25c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.13 1.03 7 2.9a9.84 9.84 0 0 1 2.9 7c-.01 5.45-4.44 9.88-9.9 9.88zm5.42-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48a9 9 0 0 1-1.66-2.07c-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.49 1.7.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+  <button class="fd-close" aria-label="Close" type="button">×</button>
+</div>
+  <script>(function(){var d=document.getElementById('floatingDock');if(!d)return;var c=d.querySelector('.fd-close');if(c)c.addEventListener('click',function(){d.style.display='none';});})();</script>
+
+<script>
+  const targets = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  targets.forEach(el=>io.observe(el));
+</script>
+<style id="site-footer-css">
+.site-footer{background:#F5F5F7;padding:48px clamp(20px,5vw,80px) 32px;border-top:0.5px solid #D2D2D7;margin-top:40px;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;color:#1D1D1F;}
+.site-footer *{box-sizing:border-box;}
+.site-footer .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:0.5px solid #D2D2D7;}
+.site-footer .f-brand-name{font-size:17px;font-weight:800;color:#1D1D1F;letter-spacing:-.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.site-footer .f-brand-name svg{width:22px;height:22px;}
+.site-footer .f-brand-desc{font-size:14px;color:#86868B;line-height:1.6;margin-bottom:22px;}
+.site-footer .f-socials{display:flex;gap:10px;}
+.site-footer .f-soc{width:32px;height:32px;border-radius:10px;border:0.5px solid #D2D2D7;background:rgba(255,255,255,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#86868B;transition:border-color .2s,color .2s,transform .2s;text-decoration:none;}
+.site-footer .f-soc:hover{border-color:#FF6B1A;color:#FF6B1A;transform:translateY(-2px);}
+.site-footer .f-soc svg{width:18px;height:18px;}
+.site-footer .f-col-title{font-size:11px;font-weight:700;letter-spacing:2px;color:#1D1D1F;text-transform:uppercase;margin-bottom:18px;}
+.site-footer .f-links{list-style:none;display:flex;flex-direction:column;gap:11px;padding:0;margin:0;}
+.site-footer .f-links a,.site-footer .f-links li{font-size:14px;color:#6E6E73;transition:color .15s;text-decoration:none;line-height:1.5;}
+.site-footer .f-links a:hover{color:#1D1D1F;}
+.site-footer .footer-btm{max-width:1200px;margin:0 auto;padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.site-footer .f-copy{font-size:12px;color:#86868B;margin:0;}
+.site-footer .f-legal{display:flex;gap:22px;}
+.site-footer .f-legal a{font-size:12px;color:#86868B;transition:color .15s;text-decoration:none;}
+.site-footer .f-legal a:hover{color:#1D1D1F;}
+.site-footer .f-map-container{width:100%;height:140px;border-radius:10px;overflow:hidden;border:0.5px solid #D2D2D7;margin-top:16px;}
+.site-footer .f-map-container iframe{width:100%;height:100%;border:none;}
+@media(max-width:960px){.site-footer .footer-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.site-footer .footer-inner{grid-template-columns:1fr;gap:32px;}}
+</style>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand-name">
+        <img src="Swytch%20official%20logo-02%201.png" alt="Swytch" style="width:22px;height:22px;object-fit:contain;">
+        Swytch Studio
+      </div>
+      <p class="f-brand-desc">A creative mar-tech studio helping brands scale through strategy, content, technology, and measurable execution.</p>
+      <div class="f-socials">
+        <a href="https://www.google.com/search?q=Swytch+Studio" class="f-soc" aria-label="Google" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 11v2h5.5c-.2 1.5-1.6 4.4-5.5 4.4-3.3 0-6-2.7-6-6s2.7-6 6-6c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.9 2.9 14.7 2 12 2 6.5 2 2 6.5 2 12s4.5 10 10 10c5.8 0 9.6-4 9.6-9.8 0-.7-.1-1.2-.2-1.7H12Z"/></svg></a>
+        <a href="https://www.instagram.com/swytch.studio/" class="f-soc" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.linkedin.com/company/82158673/" class="f-soc" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3v10ZM6.5 7.7A1.7 1.7 0 1 1 8.2 6a1.7 1.7 0 0 1-1.7 1.7ZM19 19h-3v-5c0-1.2-.4-2-1.5-2A1.6 1.6 0 0 0 13 13.6V19h-3V9h3v1.4A3.3 3.3 0 0 1 15.8 9c2 0 3.2 1.3 3.2 3.9V19Z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title">Services</div>
+      <ul class="f-links">
+        <li><a href="services#content-creation">Content Creation</a></li>
+        <li><a href="services#performance-marketing">Performance Marketing</a></li>
+        <li><a href="services#website-dev">Website Design &amp; Dev</a></li>
+        <li><a href="services#ai-solutions">AI Solutions</a></li>
+        <li><a href="services#influencer-marketing">Influencer Marketing</a></li>
+        <li><a href="services#martech">MarTech</a></li>
+        <li><a href="services#creative-strategy">Creative Strategy</a></li>
+        <li><a href="services#custom-tech">Custom Tech</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Company</div>
+      <ul class="f-links">
+        <li><a href="about">About</a></li>
+        <li><a href="portfolio">Case Studies</a></li>
+        <li><a href="Blogs">Blogs</a></li>
+        <li><a href="swytch-contact-typeform">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Contact</div>
+      <ul class="f-links">
+        <li><a href="mailto:hello@swytch.studio">hello@swytch.studio</a></li>
+        <li><a href="tel:+919821817273">+91 98218 17273</a></li>
+      </ul>
+      <div class="f-map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.544190280416!2d72.8600404!3d19.1714195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6526f109ead%3A0xd2c40fb03018be68!2sSwytch%20Studio!5e0!3m2!1sen!2sin!4v1785404881750!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p class="f-copy">Copyright &copy; 2026-27 Swytch Studio. All rights reserved.</p>
+    <div class="f-legal">
+      <a href="privacy-policy">Privacy Policy</a>
+      <a href="terms-of-use">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

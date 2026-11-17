@@ -453,35 +453,35 @@
       <div class="nav-group open" data-group="all">
         <button class="nav-item active" data-filter="all">
           <span>All articles</span>
-          <span class="count">17</span>
+          <span class="count">25</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="marketing">
         <button class="nav-item" data-filter="performance-marketing" onclick="toggleGroup(this)">
           <span>Performance marketing</span>
-          <span class="count">6</span>
+          <span class="count">10</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="ai">
         <button class="nav-item" data-filter="ai-content" onclick="toggleGroup(this)">
           <span>AI content &amp; video</span>
-          <span class="count">5</span>
+          <span class="count">6</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="case-studies">
         <button class="nav-item" data-filter="case-studies" onclick="toggleGroup(this)">
           <span>Case studies</span>
-          <span class="count">3</span>
+          <span class="count">4</span>
         </button>
       </div>
 
       <div class="nav-group" data-group="founder">
         <button class="nav-item" data-filter="founder-notes" onclick="toggleGroup(this)">
           <span>Founder notes</span>
-          <span class="count">3</span>
+          <span class="count">5</span>
         </button>
       </div>
     </aside>
@@ -635,6 +635,62 @@
 
 <script>
   const articles = [
+    {
+      title:"Your ad agency and your dev team should not be strangers",
+      excerpt:"Split vendors leak revenue between the click and the checkout. Here's where it happens — and how one marketing-and-tech team closes the gap.",
+      cat:"founder-notes", tag:"Strategy", seed:"c1", image:"blog-images/swytch-blog-01-cover.jpg",
+      author:"Raj Shah", date:"2026-10-02", displayDate:"Oct 2", read:"6 min", views:6200,
+      href:"blog-ad-agency-and-dev-team", external:false
+    },
+    {
+      title:"200+ stores, 15 days: two festive influencer campaigns",
+      excerpt:"Two festive campaigns — Durga Puja and Diwali — across 200+ D'cot by Donear stores in 15 days. How we planned, briefed and activated at scale.",
+      cat:"case-studies", tag:"Case study", seed:"c2", image:"blog-images/swytch-blog-02-cover.jpg",
+      author:"Swytch Team", date:"2026-10-20", displayDate:"Oct 20", read:"5 min", views:7100,
+      href:"blog-200-stores-15-days", external:false
+    },
+    {
+      title:"Festive season marketing for D2C brands: a 60-day plan",
+      excerpt:"A 60-day, festival-by-festival operating plan for D2C brands — from Pujo to Diwali to wedding season — so you're never scrambling.",
+      cat:"performance-marketing", tag:"Playbook", seed:"c3", image:"blog-images/swytch-blog-03-cover.jpg",
+      author:"Raj Shah", date:"2026-09-18", displayDate:"Sep 18", read:"6 min", views:5400,
+      href:"blog-festive-season-60-day-plan", external:false
+    },
+    {
+      title:"Long video is wasted inventory: the case for clipping",
+      excerpt:"Hours of long video sit unused while your competitors post daily. The case for turning existing footage into a steady stream of clips.",
+      cat:"ai-content", tag:"Clipping", seed:"c4", image:"blog-images/swytch-blog-04-cover.jpg",
+      author:"Swytch Team", date:"2026-09-30", displayDate:"Sep 30", read:"5 min", views:6800,
+      href:"blog-long-video-clipping", external:false
+    },
+    {
+      title:"WhatsApp retention is the cheapest growth most D2C brands skip",
+      excerpt:"Email open rates collapsed; WhatsApp didn't. Why retention on WhatsApp is the cheapest growth most D2C brands still skip.",
+      cat:"performance-marketing", tag:"Retention", seed:"c5", image:"blog-images/swytch-blog-05-cover.jpg",
+      author:"Raj Shah", date:"2026-10-10", displayDate:"Oct 10", read:"6 min", views:8300,
+      href:"blog-whatsapp-retention", external:false
+    },
+    {
+      title:"Your marketing stack is held together with tape",
+      excerpt:"Tools that don't talk to each other quietly cost you money. How a taped-together martech stack leaks data, time and growth.",
+      cat:"performance-marketing", tag:"MarTech", seed:"c6", image:"blog-images/swytch-blog-06-cover.jpg",
+      author:"Raj Shah", date:"2026-10-28", displayDate:"Oct 28", read:"6 min", views:4900,
+      href:"blog-marketing-stack-tape", external:false
+    },
+    {
+      title:"Made it for others? Sell it as your own brand",
+      excerpt:"You already manufacture for other labels. Here's how to package that capability into your own D2C brand — and what it takes.",
+      cat:"founder-notes", tag:"D2C for makers", seed:"c7", image:"blog-images/swytch-blog-07-cover.jpg",
+      author:"Raj Shah", date:"2026-11-04", displayDate:"Nov 4", read:"6 min", views:5600,
+      href:"blog-made-it-for-others", external:false
+    },
+    {
+      title:"Hinglish sells: marketing in the language India actually uses",
+      excerpt:"India doesn't think in pure English or pure Hindi. Why Hinglish converts — and how to use it without sounding forced.",
+      cat:"performance-marketing", tag:"Vernacular", seed:"c8", image:"blog-images/swytch-blog-08-cover.jpg",
+      author:"Swytch Team", date:"2026-11-12", displayDate:"Nov 12", read:"6 min", views:6000,
+      href:"blog-hinglish-sells", external:false
+    },
     {
       title:"The Advertising Industry Is Not Dead. It's Reloading.",
       excerpt:"The old ad playbook is over. Here's the reload happening across creative, tech, and measurement — and how brands should reposition.",
