@@ -316,7 +316,12 @@
       "image": "https://www.swytch.studio/blog-images/swytch-blog-06-cover.jpg",
       "author": {
         "@type": "Person",
-        "name": "Raj Shah"
+        "name": "Raj Shah",
+        "jobTitle": "Founder",
+        "worksFor": {
+          "@id": "https://www.swytch.studio/#organization"
+        },
+        "url": "https://www.swytch.studio/about"
       },
       "publisher": {
         "@id": "https://www.swytch.studio/#organization"
@@ -427,7 +432,22 @@
 
   </article>
 
-  <div class="cta-section reveal">
+  <style>
+  .art-authorwrap{padding:0 24px;margin:8px 0 0;}
+  .art-author-card{max-width:760px;margin:0 auto;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;background:var(--panel,#f7f6f4);border-radius:18px;}
+  .art-author-card .aa-av{width:46px;height:46px;border-radius:50%;background:var(--accent-soft,#FFE7D6);color:var(--accent,#FF6B1A);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .art-author-card .aa-name{font-weight:800;font-size:15px;color:var(--ink,#111214);}
+  .art-author-card .aa-role{font-size:12.5px;color:var(--ink-faint,#9a9ba0);margin-bottom:8px;}
+  .art-author-card .aa-bio{margin:0;font-size:14px;line-height:1.65;color:var(--ink-soft,#5b5d63);}
+  .art-related{max-width:760px;margin:30px auto 0;padding:0 24px;}
+  .art-related h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint,#9a9ba0);margin:0 0 12px;}
+  .art-related ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:10px;}
+  .art-related a{display:inline-block;padding:10px 16px;border:1px solid var(--line,#ececea);border-radius:999px;font-size:14px;font-weight:600;color:var(--ink,#111214);text-decoration:none;transition:border-color .2s ease,color .2s ease;}
+  .art-related a:hover{border-color:var(--accent,#FF6B1A);color:var(--accent,#FF6B1A);}
+</style>
+<div class="art-authorwrap reveal"><div class="art-author-card"><div class="aa-av">RS</div><div><div class="aa-name">Raj Shah</div><div class="aa-role">Founder, Swytch Studio</div><p class="aa-bio">Raj Shah is the founder of Swytch Studio, a Mumbai creative, AI and marketing studio. He writes about creative-tech, performance marketing and building brands that compound.</p></div></div></div>
+<div class="art-related reveal"><h3>Keep reading</h3><ul><li><a href="services#martech">MarTech &amp; integrations</a></li><li><a href="services#custom-tech">Custom tech</a></li><li><a href="services#performance-marketing">Performance marketing</a></li></ul></div>
+<div class="cta-section reveal">
     <div class="cta-card">
       <h2>Want this run for your brand?</h2>
       <p>Swytch is your marketing and tech team in one studio — strategy, content, performance and build, under one roof.</p>
