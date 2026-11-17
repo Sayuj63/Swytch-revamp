@@ -1609,6 +1609,63 @@ footer{background:var(--c-bg-2);padding:48px var(--sp) 32px;border-top:0.5px sol
 <!-- ════════════════════════════════════════════
      CTA
 ════════════════════════════════════════════ -->
+<style>
+  #faq .faq-list{max-width:820px;margin:30px auto 0;}
+  #faq .faq-hl{font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-1px;color:var(--c-ink,#111214);margin:0;}
+  #faq .faq-item{border-bottom:1px solid var(--c-rule,#ececea);}
+  #faq .faq-item summary{list-style:none;cursor:pointer;padding:22px 46px 22px 0;position:relative;font-size:clamp(15.5px,2.1vw,18.5px);font-weight:700;color:var(--c-ink,#111214);}
+  #faq .faq-item summary::-webkit-details-marker{display:none;}
+  #faq .faq-item summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:26px;font-weight:400;line-height:1;color:var(--c-orange,#FF6B1A);transition:transform .2s ease;}
+  #faq .faq-item[open] summary::after{content:"\2013";}
+  #faq .faq-a{padding:0 46px 24px 0;}
+  #faq .faq-a p{margin:0;font-size:15.5px;line-height:1.75;color:var(--c-ink-soft,#5b5d63);}
+</style>
+<section id="faq" class="section">
+  <div class="container">
+    <p class="eyebrow" data-anim="fade-up">FAQ</p>
+    <h2 class="faq-hl" data-anim="fade-up" data-delay="1">Questions, answered.</h2>
+    <div class="faq-list" data-anim="fade-up" data-delay="2">
+      <details class="faq-item">
+        <summary>What does Swytch Studio do?</summary>
+        <div class="faq-a"><p>Swytch Studio is a Mumbai-based creative, AI and marketing studio. We help fashion, retail and D2C brands grow through branding, content creation, performance marketing, Shopify and website development, influencer marketing and custom technology.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Where is Swytch Studio based?</summary>
+        <div class="faq-a"><p>We're based at WeWork Oberoi Commerz II in Mumbai, India, and work with brands across India and internationally.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What services does Swytch Studio offer?</summary>
+        <div class="faq-a"><p>Content creation, performance marketing, website design and development, AI solutions, influencer marketing, martech, creative strategy, custom tech and short-form video clipping.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>What kinds of brands does Swytch work with?</summary>
+        <div class="faq-a"><p>Primarily fashion, retail and D2C brands, alongside finance and tech — from new launches to established names like Donear, Kewal Kiran Clothing, Mahindra Finance and Coinstore.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I start a project with Swytch Studio?</summary>
+        <div class="faq-a"><p>Share your brand and what you need through our contact form and the team gets back within a day. For something urgent, you can WhatsApp us directly.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>How much does Swytch Studio charge?</summary>
+        <div class="faq-a"><p>It depends on scope and services. Tell us your requirements and budget range through the contact form and we'll scope the right plan with you.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What does Swytch Studio do?","acceptedAnswer":{"@type":"Answer","text":"Swytch Studio is a Mumbai-based creative, AI and marketing studio. We help fashion, retail and D2C brands grow through branding, content creation, performance marketing, Shopify and website development, influencer marketing and custom technology."}},
+    {"@type":"Question","name":"Where is Swytch Studio based?","acceptedAnswer":{"@type":"Answer","text":"We're based at WeWork Oberoi Commerz II in Mumbai, India, and work with brands across India and internationally."}},
+    {"@type":"Question","name":"What services does Swytch Studio offer?","acceptedAnswer":{"@type":"Answer","text":"Content creation, performance marketing, website design and development, AI solutions, influencer marketing, martech, creative strategy, custom tech and short-form video clipping."}},
+    {"@type":"Question","name":"What kinds of brands does Swytch work with?","acceptedAnswer":{"@type":"Answer","text":"Primarily fashion, retail and D2C brands, alongside finance and tech — from new launches to established names like Donear, Kewal Kiran Clothing, Mahindra Finance and Coinstore."}},
+    {"@type":"Question","name":"How do I start a project with Swytch Studio?","acceptedAnswer":{"@type":"Answer","text":"Share your brand and what you need through our contact form and the team gets back within a day. For something urgent, you can WhatsApp us directly."}},
+    {"@type":"Question","name":"How much does Swytch Studio charge?","acceptedAnswer":{"@type":"Answer","text":"It depends on scope and services. Tell us your requirements and budget range through the contact form and we'll scope the right plan with you."}}
+  ]
+}
+</script>
 <section id="cta" class="section">
   <div class="container">
     <div class="cta-island" data-anim="scale-up">
